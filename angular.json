@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "proyecto-transversal"
+    }
+  },
+  "defaultProject": "proyecto-transversal",
+  "cli": {
+    "analytics": false
+  }
 }

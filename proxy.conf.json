@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://www.ubermotosisw.tk",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
