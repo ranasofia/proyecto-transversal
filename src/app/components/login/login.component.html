@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="login-container"
+      fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="center"       
+      fxLayoutGap="0"
+      fxLayoutGap.xs="0">
+      <!--Imagen-->
+    <div class="login-image">
+      <img src="../../../assets/images/login.svg">
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login($event)">
+      <mat-card class="login-card"
+          fxLayout="column"
+          fxLayoutAlign="center center">
+        <!--Cabecera de la card-->
+        <mat-card-header>
+          <mat-card-title> INICIAR SESIÓN </mat-card-title>
+        </mat-card-header>
+        <!--Contenido de la card-->
+        <mat-card-content>
+              <!--Input correo electrónico-->
+              <mat-form-field appearance="outline" class="login-full-width">
+                  <mat-label> Correo electrónico </mat-label>
+                  <input type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
+                  <mat-icon matPrefix>mail_outline</mat-icon>
+                  <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
+                      Digita un correo electrónico válido...
+                  </mat-error>
+                  <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+                      Este campo es<strong> obligatorio</strong>
+                  </mat-error>
+              </mat-form-field>
+              <!--Input contraseña-->
+              <mat-form-field appearance="outline" class="login-full-width">
+                  <mat-label> Contraseña </mat-label>
+                  <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" placeholder="Ingresa tu contraseña">
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                        Este campo es<strong> obligatorio</strong>
+                    </mat-error>
+              </mat-form-field>
+              
+              <button mat-raised-button color="primary">Ingresar</button>
+              
+              <div class="forgot-link">
+                <a routerLink="/login">¿Olvidaste tu contraseña?</a>
+              </div>
+
+        </mat-card-content>
+      </mat-card>
+    </form>
+</div>
+  
