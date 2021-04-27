@@ -1,3 +1,4 @@
+import { MasterComponent } from './components/master/master.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material/material.module';
@@ -14,7 +15,8 @@ import { PruebasLoginComponent } from './pruebas-login/pruebas-login.component';
   declarations: [
     AppComponent,
     PruebasLoginComponent,
-    LoginComponent
+    LoginComponent,
+    MasterComponent,
   ],
   imports: [
     BrowserModule,

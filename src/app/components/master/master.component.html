@@ -1,0 +1,28 @@
+<div class="example-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+            <mat-icon *ngIf="sidenav.opened">closed</mat-icon>
+          </button>
+          
+        <h1 class="example-app-name">Proyecto Transversal</h1>
+      
+        <mat-menu #menu="matMenu"></mat-menu>
+    </mat-toolbar>
+    
+    <mat-sidenav-container class="example-sidenav-container">
+      <mat-sidenav #sidenav style="width: 160px">
+        <img src="assets/Logo.png" width="120" style="margin-left: 20px;">
+        <mat-divider></mat-divider>
+        <button mat-menu-item style="cursor: pointer" routerLink="/login" (click)="sidenav.toggle()">
+            <mat-icon>perm_identity</mat-icon>
+            <span>Login</span>
+        </button>
+        <mat-divider></mat-divider>
+      </mat-sidenav>
+      <router-outlet></router-outlet>
+      <p>Esta es la master</p>
+    </mat-sidenav-container>
+</div>
+    
