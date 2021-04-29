@@ -30,6 +30,7 @@ button {
 
 .forgot-link {
   text-align: center;
+  line-height: 10px;
 }
 
 .forgot-link a {
@@ -47,6 +48,14 @@ button {
   position: absolute;
   bottom: 0;
   left: -220px;
+}
+
+.mensajeSesion{
+
+  text-align: center;
+  line-height: 5px;
+  color: red;
+
 }
 
 @media screen and (max-width: 540px) {

@@ -11,15 +11,13 @@ import { environment } from 'src/environments/environment';
 export class ClienteService {
 
   private URL: string = environment.UBER_MOTOS +  '/cliente';
-  private cliente: Cliente;
   constructor(private http: HttpClient) {
   }
 
+  getToken(cliente: Cliente) {
 
-  getToken() {
 
-
-    return this.http.post<string>(this.URL + "/logincliente", this.cliente, {
+    return this.http.post<string>(this.URL + "/logincliente", cliente, {
       headers: {
 
         'Content-Type': 'application/json'
@@ -27,22 +25,6 @@ export class ClienteService {
       }
 
     });
-  }
-
-
-  getUsuario() {
-
-
-    return this.http.get<string>(this.URL + "/usuario?usuario=" + this.cliente.usuario);
-
-  }
-
-  setUsuario(cliente: Cliente) {
-
-    console.log(cliente.usuario);
-    console.log(cliente.contrasena);
-
-    this.cliente = cliente;
   }
 
   getHistorial(fechaInicio: string, usuario: string){
