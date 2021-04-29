@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   UBER_MOTOS: 'http://www.ubermotosisw.tk/api',
-  TOKEN: 'access_token'
-
+  TOKEN: 'access_token',
+  USUARIO: '',
+  CONTRASENA: ''
 };
 
 /*

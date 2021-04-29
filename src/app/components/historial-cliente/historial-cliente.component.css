@@ -3,6 +3,17 @@
     margin: auto;
     margin-top: 4%;
 }
+
+.titulo{
+
+  text-align: center;
+  margin-top: 4%;
+  color: lightskyblue;
+  font-weight: bold;
+  font-size: 40px;
+
+}
+
 .mat-header-cell{
     font-size: 20px;
     text-align:center;
@@ -10,7 +21,7 @@
     color: lightskyblue;
     font-weight: bold;
     border: grey 1px solid;
-    border-collapse: collapse; 
+    border-collapse: collapse;
     padding: 0 !important;
 }
 .mat-cell{

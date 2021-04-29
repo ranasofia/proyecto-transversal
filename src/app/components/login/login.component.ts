@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/_model/Cliente';
 import { environment } from 'src/environments/environment';
-import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,6 +17,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   contrasena : string;
   nombreUsuario: string;
+  mensajeError: string;
 
   createFormGroup() {
     return new FormGroup({
@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+    if(sessionStorage.getItem(environment.TOKEN) != undefined){
+
+      this.router.navigate(['/historialCliente']);
+
+    }
 
   }
 
@@ -54,6 +59,16 @@ export class LoginComponent implements OnInit {
 
         sessionStorage.setItem(environment.TOKEN, data);
         this.router.navigate(['/historialCliente']);
+        environment.USUARIO = cliente.usuario;
+        environment.CONTRASENA = cliente.contrasena;
+
+      }, err => {
+
+        if(err.status == 400){
+
+          this.mensajeError = "El usuario y/o contraseña son incorrectos";
+
+        }
 
       });
 
