@@ -20,12 +20,11 @@ export class HistorialClienteComponent implements OnInit {
 
   notificaciones: Notificacion[];
   dataSource = new MatTableDataSource<Notificacion>();
-  displayedColumns: string[];
+  displayedColumns: string[]; 
 
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private clienteService: ClienteService) { }
-
   ngOnInit(): void {
 
     const helper = new JwtHelperService();
@@ -70,4 +69,7 @@ export class HistorialClienteComponent implements OnInit {
 
   }
 
+  dataFilter(filter: string) {
+    this.dataSource.filter = filter.trim().toLocaleLowerCase(); 
+  }
 }

@@ -1,5 +1,10 @@
 <h1 class="titulo">Historial</h1>
 
+<mat-form-field>
+  <mat-icon matPrefix>search</mat-icon>
+  <input type="text" placeholder="Buscar en el historial  " matInput (keyup)="dataFilter($event.target.value)">
+</mat-form-field>
+
 <table mat-table [dataSource]="dataSource" matSort class="encabezado">
 
   <!--- Note that these columns can be defined in any order.
@@ -35,4 +40,3 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-

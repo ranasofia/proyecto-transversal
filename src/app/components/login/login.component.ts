@@ -1,9 +1,11 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClienteService } from './../../_service/cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/_model/Cliente';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 /**
  * Decorador de LoginComponent
@@ -41,11 +43,12 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Constructor que incializar las variables globales del componente
+   * Constructor que incializa las variables globales del componente
    * @param router 
    * @param clienteService 
    */
-  constructor(private router: Router, private clienteService: ClienteService) {
+  constructor(private router: Router, private clienteService: ClienteService, 
+    private _snackBar: MatSnackBar) {
     this.loginForm = this.createFormGroup();
   }
 
@@ -85,7 +88,9 @@ export class LoginComponent implements OnInit {
 
         if(err.status == 400){
 
-          this.mensajeError = "El usuario y/o contraseña son incorrectos";
+          this._snackBar.open('El usuario y/o contraseña son incorrectos', 'Cancel  ', {
+            duration: 3000
+          });
           this.onResetForm();
 
         }else {
