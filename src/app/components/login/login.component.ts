@@ -2,6 +2,8 @@ import { ClienteService } from './../../_service/cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/_model/Cliente';
+import { environment } from 'src/environments/environment';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-login',
@@ -11,9 +13,11 @@ import { Cliente } from 'src/app/_model/Cliente';
 export class LoginComponent implements OnInit {
 
   token: string;
-  loginForm: FormGroup; 
+  loginForm: FormGroup;
   cliente: Cliente;
   hide = true;
+  contrasena : string;
+  nombreUsuario: string;
 
   createFormGroup() {
     return new FormGroup({
@@ -27,7 +31,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  constructor(private clienteService: ClienteService) { 
+  constructor(private clienteService: ClienteService) {
     this.loginForm = this.createFormGroup();
   }
 
@@ -41,9 +45,28 @@ export class LoginComponent implements OnInit {
 
   }
 
+  iniciarSesion(){
+
+
+    var cliente= new Cliente(this.nombreUsuario,this.contrasena);
+    this.clienteService.setUsuario(cliente);
+
+    this.clienteService.getToken().subscribe(data => {
+
+      sessionStorage.setItem(environment.TOKEN, data);
+
+      const helper = new JwtHelperService();
+
+      console.log("El token es " + sessionStorage.getItem(environment.TOKEN));
+      console.log(helper.decodeToken(data));
+
+    });
+
+  }
+
   // Método que borra el la que viene del form
   onResetForm() {
-    this.loginForm.reset(); 
+    this.loginForm.reset();
   }
 
   // Método que muestra en consola que el login ha sido guardado

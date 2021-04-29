@@ -2,7 +2,7 @@ import { MasterComponent } from './components/master/master.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PruebasLoginComponent } from './pruebas-login/pruebas-login.component';
+import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PruebasLoginComponent } from './pruebas-login/pruebas-login.component';
     PruebasLoginComponent,
     LoginComponent,
     MasterComponent,
+    HistorialClienteComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,9 @@ import { PruebasLoginComponent } from './pruebas-login/pruebas-login.component';
     MaterialModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

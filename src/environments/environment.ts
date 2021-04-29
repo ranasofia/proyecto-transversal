@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  UBER_MOTOS: 'http://www.ubermotosisw.tk/api'
+  UBER_MOTOS: 'http://www.ubermotosisw.tk/api',
+  TOKEN: 'access_token'
+
 };
 
 /*
