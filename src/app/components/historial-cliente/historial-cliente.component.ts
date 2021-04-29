@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource} from '@angular/material/table'
+import { MatTableDataSource } from '@angular/material/table'
 import { Notificacion } from 'src/app/_model/Notificacion';
 import { ClienteService } from 'src/app/_service/cliente.service';
 import { environment } from 'src/environments/environment';
@@ -25,13 +25,14 @@ export class HistorialClienteComponent implements OnInit {
   ngOnInit(): void {
 
     const helper = new JwtHelperService();
-
+    
     var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
-
+    
     this.clienteService.getHistorial("", usuario).subscribe(data => {
 
       this.notificaciones = data;
       this.dataSource = new MatTableDataSource(this.notificaciones);
+
 
     });
 
