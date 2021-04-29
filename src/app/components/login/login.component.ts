@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/_model/Cliente';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   cliente: Cliente;
   hide = true;
-  contrasena : string;
+  contrasena: string;
   nombreUsuario: string;
 
   createFormGroup() {
@@ -24,31 +26,42 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         Validators.email
-      ] ),
+      ]),
       password: new FormControl('', [
         Validators.required
       ])
     });
   }
 
-  constructor(private clienteService: ClienteService) {
+  constructor(private clienteService: ClienteService,
+              private snackBar: MatSnackBar,
+              private router: Router) {
     this.loginForm = this.createFormGroup();
   }
 
   ngOnInit(): void {
 
-    this.cliente = new Cliente("aleja","02042020");
+    this.cliente = new Cliente("aleja", "02042020");
     this.clienteService.setUsuario(this.cliente);
     this.clienteService.getToken().subscribe(data => {
       this.token = data
+    }, err => {
+      console.log(err);
+      if (err.status == 401) {
+        this.snackBar.open('Usuario y/o cotraseña incorrecta', 'Advertencia', {
+          duration: 1000,
+        });
+      } else {
+        this.router.navigate([`/error/${err.status}/${err.statusText}`]);
+      }
     });
 
   }
 
-  iniciarSesion(){
+  iniciarSesion() {
 
 
-    var cliente= new Cliente(this.nombreUsuario,this.contrasena);
+    var cliente = new Cliente(this.nombreUsuario, this.contrasena);
     this.clienteService.setUsuario(cliente);
 
     this.clienteService.getToken().subscribe(data => {

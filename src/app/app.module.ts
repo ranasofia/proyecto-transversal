@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PruebasLoginComponent } from './pruebas-login/pruebas-login.component';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
+import { Not404Component } from './pages/not404/not404.component';
+import { Error500Component } from './pages/error500/error500.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { HistorialClienteComponent } from './components/historial-cliente/histor
     LoginComponent,
     MasterComponent,
     HistorialClienteComponent,
+    Not404Component,
+    Error500Component,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,8 @@ import { HistorialClienteComponent } from './components/historial-cliente/histor
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
 
   ],
   providers: [],
