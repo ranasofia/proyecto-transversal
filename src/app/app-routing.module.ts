@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'historialCliente', component: HistorialClienteComponent},
   {path: 'error/:status/:statusText', component: Error500Component},
-  {path: '**', component: Not404Component}  
+  {path: '**', component: LoginComponent}  
   
 ];
 
