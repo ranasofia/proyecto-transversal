@@ -7,10 +7,11 @@ import { HistorialClienteComponent } from './components/historial-cliente/histor
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'historialCliente', component: HistorialClienteComponent},
+  {path: '', component: LoginComponent},   
+  {path: 'login', component: LoginComponent},
+  {path: 'historialCliente', component: HistorialClienteComponent},
   {path: 'error/:status/:statusText', component: Error500Component},
-  {path: '**', component: LoginComponent}  
+  {path: '**', component: Not404Component}
   
 ];
 

@@ -1,4 +1,4 @@
-
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { Notificacion } from 'src/app/_model/Notificacion';
@@ -24,8 +24,14 @@ export class HistorialClienteComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(private clienteService: ClienteService, private router: Router) { }
+
   ngOnInit(): void {
+    
+    if(sessionStorage.getItem(environment.TOKEN) == undefined){
+
+      this.router.navigate(['/login']);
+    } 
 
     const helper = new JwtHelperService();
 
