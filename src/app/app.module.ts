@@ -10,13 +10,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { PruebasLoginComponent } from './pruebas-login/pruebas-login.component';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PruebasLoginComponent,
     LoginComponent,
     MasterComponent,
     HistorialClienteComponent,
