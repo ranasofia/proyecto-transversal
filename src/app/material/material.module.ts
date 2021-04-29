@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {MatCardModule} from '@angular/material/card';
@@ -10,6 +10,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -24,6 +25,7 @@ import {MatTableModule} from '@angular/material/table';
     MatDividerModule,
     MatMenuModule,
     MatTableModule,
+    MatSortModule
 
   ],
   exports: [
@@ -36,6 +38,7 @@ import {MatTableModule} from '@angular/material/table';
     MatDividerModule,
     MatMenuModule,
     MatTableModule,
+    MatSortModule
 
   ]
 })

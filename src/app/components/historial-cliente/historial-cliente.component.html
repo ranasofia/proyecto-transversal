@@ -1,13 +1,13 @@
 <h1 class="titulo">Historial</h1>
 
-<table mat-table [dataSource]="dataSource" class="encabezado">
+<table mat-table [dataSource]="dataSource" matSort class="encabezado">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
   <ng-container matColumnDef="conductor">
-    <th mat-header-cell *matHeaderCellDef> Conductor </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Conductor </th>
     <td mat-cell *matCellDef="let element"> {{element.conductor}} </td>
   </ng-container>
 
@@ -18,17 +18,17 @@
   </ng-container>-->
 
   <ng-container matColumnDef="ubicacion">
-    <th mat-header-cell *matHeaderCellDef> Ubicación </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ubicación </th>
     <td mat-cell *matCellDef="let element"> {{element.ubicacion}} </td>
   </ng-container>
 
   <ng-container matColumnDef="destino">
-    <th mat-header-cell *matHeaderCellDef> Destino </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Destino </th>
     <td mat-cell *matCellDef="let element"> {{element.destino}} </td>
   </ng-container>
 
   <ng-container matColumnDef="tarifa">
-    <th mat-header-cell *matHeaderCellDef> Tarifa </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tarifa </th>
     <td mat-cell *matCellDef="let element"> ${{element.tarifa}} </td>
   </ng-container>
 
