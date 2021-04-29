@@ -1,11 +1,12 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { Notificacion } from 'src/app/_model/Notificacion';
 import { ClienteService } from 'src/app/_service/cliente.service';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Cliente } from 'src/app/_model/Cliente';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-historial-cliente',
@@ -20,6 +21,8 @@ export class HistorialClienteComponent implements OnInit {
   notificaciones: Notificacion[];
   dataSource = new MatTableDataSource<Notificacion>();
   displayedColumns: string[];
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private clienteService: ClienteService) { }
 
@@ -37,6 +40,7 @@ export class HistorialClienteComponent implements OnInit {
 
         this.notificaciones = data;
         this.dataSource = new MatTableDataSource(this.notificaciones);
+        this.dataSource.sort = this.sort;
         indicador = false;
 
       }, err => {

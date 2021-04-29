@@ -17,12 +17,13 @@
 .mat-header-cell{
     font-size: 20px;
     text-align:center;
-    width: 150px;
+    /**width: 150px;**/
+    padding: 0px 30px;
     color: lightskyblue;
     font-weight: bold;
     border: grey 1px solid;
     border-collapse: collapse;
-    padding: 0 !important;
+
 }
 .mat-cell{
     text-align: center;
@@ -32,3 +33,5 @@
     border-collapse: collapse;
     padding: 0 !important;
 }
+
+

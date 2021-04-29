@@ -5,11 +5,17 @@ import { Cliente } from 'src/app/_model/Cliente';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
+/**
+ * Decorador de LoginComponent
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+/**
+ * Clase del LoginComponent
+ */
 export class LoginComponent implements OnInit {
 
   token: string;
@@ -19,6 +25,10 @@ export class LoginComponent implements OnInit {
   nombreUsuario: string;
   mensajeError: string;
 
+  /**
+   * Método que agrupa dentro del mismo form el username y password
+   * @returns username y password con validaciones requeridas
+   */
   createFormGroup() {
     return new FormGroup({
       username: new FormControl('', [
@@ -30,10 +40,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Constructor que incializar las variables globales del componente
+   * @param router 
+   * @param clienteService 
+   */
   constructor(private router: Router, private clienteService: ClienteService) {
     this.loginForm = this.createFormGroup();
   }
 
+  /**
+   * Implementación que se ejecuta una vez se inicia el componente
+   */
   ngOnInit(): void {
 
     if(sessionStorage.getItem(environment.TOKEN) != undefined){
@@ -42,7 +60,9 @@ export class LoginComponent implements OnInit {
     } 
   }
 
-
+  /**
+   * Método que valida el formulario, obtiene el token y redirige a la página principal
+   */
   private iniciarSesion(){
 
 
@@ -66,9 +86,11 @@ export class LoginComponent implements OnInit {
         if(err.status == 400){
 
           this.mensajeError = "El usuario y/o contraseña son incorrectos";
+          this.onResetForm();
 
         }else {
           this.router.navigate([`/error/${err.status}/${err.statusText}`]);
+          this.onResetForm();
         }
       });
 
@@ -76,17 +98,17 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // Método que borra el la que viene del form
+  /**
+   * Método que borra las cadenas de texto del formulario del login
+   */
   onResetForm() {
     this.loginForm.reset();
   }
 
-  // Método que muestra en consola que el login ha sido guardado
-  onSavedForm() {
-    console.log("Saved");
-  }
-
-  // Método que envía el correo y la contraseña a un objeto de tipo Cliente
+  /**
+   * Método que obtiene los valores que se envían desde el formulario del login
+   * @param event evento que se genera una vez se realiza el onSubmit del formulario
+   */
   login(event: Event): any {
     event.preventDefault();
 
