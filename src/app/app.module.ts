@@ -13,7 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
 import { Not404Component } from './pages/not404/not404.component';
 import { Error500Component } from './pages/error500/error500.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [

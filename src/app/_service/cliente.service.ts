@@ -41,4 +41,22 @@ export class ClienteService {
 
   }
 
+  putCerrarSesion(usuario: string){
+    return this.http.put(this.URL + "/cerrarSesion?usuario=" + usuario, null,{
+      headers:{
+        'Content-Type': 'application/json',
+        'authorization': sessionStorage.getItem(environment.TOKEN)
+      }
+    });
+  }
+
+  deleteEliminarToken(usuario: string){
+    return this.http.delete(this.URL + "/eliminarToken?usuario=" + usuario,{
+      headers:{
+        'Content-Type': 'application/json',
+        'authorization': sessionStorage.getItem(environment.TOKEN)
+      }
+    })
+  }
+
 }
