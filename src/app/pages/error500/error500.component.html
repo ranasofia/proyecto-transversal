@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <!-- Simple HttpErrorPages | MIT X11 License | https://github.com/AndiDittrich/HttpErrorPages -->
+  <!-- Cabecera del error 500 -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,13 +11,15 @@
 </head>
 
 <body>
+  <!-- Cuerpo del error 500 -->
   <div class="cover">
    
     <h1>¡OOPS! Ha ocurrido un error
         <div class="errorEE">
       <small>{{ statusTexts }} {{ status }}</small>
     </div>
-    </h1>    
+    </h1>  
+    <!-- Boton que redirige al login -->  
     <a routerLink="/login">Ir a Login</a> 
   </div>
 
