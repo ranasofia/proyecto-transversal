@@ -1,4 +1,3 @@
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClienteService } from './../../_service/cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -16,19 +15,39 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css']
 })
 /**
- * Clase del LoginComponent
+ * Clase de LoginComponent
  */
 export class LoginComponent implements OnInit {
 
+  /**
+   * Variable de tipo string que almacena el token de la sesión
+   */
   token: string;
-  loginForm: FormGroup;
-  hide = true;
-  contrasena: string;
-  nombreUsuario: string;
-  mensajeError: string;
 
   /**
-   * Método que agrupa dentro del mismo form el username y password
+   * Variable de tipo FormGroup que contiene el formulario del Login
+   */
+  loginForm: FormGroup;
+
+  /**
+   * Variable de tipo boolean que permite mostrar en pantalla la cadena de texto
+   * digitada en el input contraseña
+   */
+  hide = true;
+
+  /**
+   * Variable de tipo string que almacena la contraseña digitada en el input contraseña
+   */
+  contrasena: string;
+
+  /**
+   * Variable de tipo string que almacena el nombre de usuario en el input username
+   */
+  nombreUsuario: string;
+
+
+  /**
+   * Método que agrupa dentro del mismo form tanto el username como el password
    * @returns username y password con validaciones requeridas
    */
   createFormGroup() {
@@ -43,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Constructor que incializa las variables globales del componente
+   * Constructor que incializa las variables globales de LoginComponent
    * @param router 
    * @param clienteService 
    */
@@ -53,7 +72,7 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Implementación que se ejecuta una vez se inicia el componente
+   * Implementación que se ejecuta una vez se inicia el LoginComponent
    */
   ngOnInit(): void {
 
@@ -67,7 +86,6 @@ export class LoginComponent implements OnInit {
    * Método que valida el formulario, obtiene el token y redirige a la página principal
    */
   private iniciarSesion(){
-
 
     if (this.loginForm.valid) {
 
