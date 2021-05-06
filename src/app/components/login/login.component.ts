@@ -1,10 +1,16 @@
 import { ClienteService } from './../../_service/cliente.service';
+import { RegistroHCService } from './../../_service/registro-hc.service';
+import { LoginHCService } from './../../_service/login-hc.service';
+import { RegistroLoginOccibanaService} from './../../_service/registro-login-occibana.service';
+import { UsuarioTransversalService } from './../../_service/usuario-transversal.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Cliente } from 'src/app/_model/Cliente';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Usuario } from 'src/app/_model/Usuario';
+import { UsuarioMototaxi } from 'src/app/_model/UsuarioMototaxi';
+import {Conversion} from 'src/app/_model/Conversion';
 
 /**
  * Decorador de LoginComponent
@@ -63,11 +69,11 @@ export class LoginComponent implements OnInit {
 
   /**
    * Constructor que incializa las variables globales de LoginComponent
-   * @param router 
-   * @param clienteService 
+   * @param router
+   * @param clienteService
    */
-  constructor(private router: Router, private clienteService: ClienteService, 
-    private _snackBar: MatSnackBar) {
+  constructor(private router: Router, private clienteService: ClienteService, private usuarioTransversalService: UsuarioTransversalService,
+    private registroHCService: RegistroHCService, private loginHCService: LoginHCService,private _snackBar: MatSnackBar) {
     this.loginForm = this.createFormGroup();
   }
 
@@ -76,10 +82,51 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
 
+
+    /*
+    var usuario = new Usuario();
+
+    usuario.nombre = "Don";
+    usuario.apellido = "Papa4";
+    usuario.celular = "3133607479";
+    usuario.correo = "donpapa4@gmail.com";
+    usuario.usuario = "El señor don papa 4";
+    usuario.contrasena = "Papaencriptada";
+    usuario.direccion = "Calle don papa";
+    usuario.cedula = "342843218";
+    usuario.fechaNacimiento = "2001-06-24";
+
+    console.log("Obteniendo token general...");
+
+    this.usuarioTransversalService.registrar(usuario).subscribe(data => console.log(data));
+
+
+    this.usuarioTransversalService.getToken(usuario).subscribe(data => {
+      console.log(data)
+      sessionStorage.setItem(environment.TOKEN, data);
+    });
+
+    console.log("Obteniendo usuario general con el token general...")
+
+    //Se llama el método para obtener el usuario y para eso es que obtuvimos el token general
+
+    console.log("Convirtiendo usuario general en usuario de mototaxi...");
+
+    var usuarioMototaxi = Conversion.convertirAMototaxi(usuario);
+
+    this.clienteService.registrar(usuarioMototaxi).subscribe(data => console.log(data));
+
+    console.log("Obteniendo token mototaxi...");
+
+    this.clienteService.getToken(usuarioMototaxi).subscribe(data => console.log(data));
+
+
+    */
+
     if(sessionStorage.getItem(environment.TOKEN) != undefined){
 
       this.router.navigate(['/historialCliente']);
-    } 
+    }
   }
 
   /**
@@ -91,9 +138,7 @@ export class LoginComponent implements OnInit {
 
       const value = this.loginForm.value;
 
-      var cliente = new Cliente(value.username, value.password);
-
-      console.log(cliente);
+      var cliente = new UsuarioMototaxi(value.username, value.password);
 
       this.clienteService.getToken(cliente).subscribe(data => {
 

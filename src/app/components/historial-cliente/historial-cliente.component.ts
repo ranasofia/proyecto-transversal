@@ -5,7 +5,7 @@ import { Notificacion } from 'src/app/_model/Notificacion';
 import { ClienteService } from 'src/app/_service/cliente.service';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Cliente } from 'src/app/_model/Cliente';
+import { UsuarioMototaxi } from 'src/app/_model/UsuarioMototaxi';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 /**
@@ -42,8 +42,8 @@ export class HistorialClienteComponent implements OnInit {
 
   /**
    * Constructor que iniciliza las variables globales de HistorialClienteComponent
-   * @param clienteService 
-   * @param router 
+   * @param clienteService
+   * @param router
    */
   constructor(private clienteService: ClienteService, private router: Router) { }
 
@@ -82,7 +82,7 @@ export class HistorialClienteComponent implements OnInit {
         // Error 401
         if (err.status == 401) {
 
-          var cliente = new Cliente(environment.USUARIO, environment.CONTRASENA);
+          var cliente = new UsuarioMototaxi(environment.USUARIO, environment.CONTRASENA);
 
           this.clienteService.getToken(cliente).subscribe(data => {
 
@@ -101,7 +101,7 @@ export class HistorialClienteComponent implements OnInit {
   }
 
   /**
-   * Método que se encarga de filtrar una cadena de texto en el data source 
+   * Método que se encarga de filtrar una cadena de texto en el data source
    * que se obtiene a partir del input de búsqueda
    * @param filter cadena de texto de llega desde el input de búsqueda
    */

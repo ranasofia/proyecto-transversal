@@ -1,4 +1,7 @@
-export class Cliente {
+/**
+ * Clase que posee los atributos de un usuario de la aplicación de Mototaxi Deluxe
+ */
+export class UsuarioMototaxi {
 
     /**
      * Variable de tipo number que representa el id del cliente
@@ -14,9 +17,13 @@ export class Cliente {
      * Variable de tipo string que representa el apellido del cliente
      */
     apellido: string;
-    
-    //fechaDeNacimiento:
-    
+
+
+    /**
+     * Variable de tipo string que representa la fecha de nacimiento del cliente
+     */
+    fechaDeNacimiento: string;
+
     /**
      * Variable de tipo string que representa el correo
      * Correo que regristró el cliente
@@ -29,12 +36,12 @@ export class Cliente {
     usuario: string;
 
     /**
-     * Variable de tipo string que representa la contreseña de la cuenta del cliente 
+     * Variable de tipo string que representa la contreseña de la cuenta del cliente
      */
     contrasena: string;
 
     /**
-     * Variable de tipo string que representa quién realizó una modificación a ala base de datos 
+     * Variable de tipo string que representa quién realizó una modificación a ala base de datos
      */
     modificado: string;
 
@@ -45,14 +52,22 @@ export class Cliente {
     //fechaSancion:
 
     /**
+     * Variable de tipo number que representa el rol del cliente
+     */
+    rol: number;
+
+    /**
      * Constructor que inicializa las variables @usuario y @constrasena
      * @param usuario variable de tipo string
      * @param contrasena variables de tipo string
      */
-    constructor(usuario: string, contrasena: string) {
+    constructor(usuario?: string, contrasena?: string) {
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
+
+
+
 
 }
 

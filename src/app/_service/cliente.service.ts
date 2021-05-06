@@ -1,4 +1,4 @@
-import { Cliente } from './../_model/Cliente';
+import { UsuarioMototaxi } from '../_model/UsuarioMototaxi';
 import { Notificacion } from './../_model/Notificacion';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -32,8 +32,7 @@ export class ClienteService {
    * @param cliente variable que tiene los datos de autenticación del cliente para poder obtener el token
    * @returns token
    */
-  getToken(cliente: Cliente) {
-
+  getToken(cliente: UsuarioMototaxi) {
 
     return this.http.post<string>(this.URL + "/logincliente", cliente, {
       headers: {
@@ -71,6 +70,7 @@ export class ClienteService {
    * @returns mensaje
    */
   putCerrarSesion(usuario: string){
+
     return this.http.put(this.URL + "/cerrarSesion?usuario=" + usuario, null,{
       headers:{
         'Content-Type': 'application/json',
@@ -91,6 +91,19 @@ export class ClienteService {
         'authorization': sessionStorage.getItem(environment.TOKEN)
       }
     })
+  }
+
+  registrar(usuario: UsuarioMototaxi){
+
+    return this.http.post<string>(this.URL + "/registrocliente", usuario, {
+      headers: {
+
+        'Content-Type': 'application/json'
+
+      }
+
+    });
+
   }
 
 }
