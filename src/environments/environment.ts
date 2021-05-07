@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   UBER_MOTOS: 'http://www.ubermotosisw.tk/api',
   HCCAUCHOS: 'http://18.224.240.8/api',
-  OCCIBANA: 'http://18.230.178.121:8081',
+  OCCIBANA: 'http://18.230.178.121:8081/api',
   TOKEN: 'access_token',
   USUARIO: '',
   CONTRASENA: ''
