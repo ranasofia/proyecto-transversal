@@ -1,0 +1,68 @@
+.login-container {
+    background-color: #607D8B;
+    height: 180%;
+  }
+  
+  .login-card {
+    min-width: 150px;
+    max-width: 400px;
+    height: 500px;
+    top: 10%;
+    line-height: 70px;
+    box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.2);
+    background-color: #2F2E41;
+  }
+  
+  .login-full-width {
+    width: 100%;
+  }
+  
+  .mat-card-title {
+    font-size: 30px;
+    text-shadow: 2px 2px #E91E63;
+  }
+  
+  button {
+    padding: 5px 60px;
+    margin-left: 27%;
+    margin-top: 10%;
+  }
+  
+  .forgot-link {
+    text-align: center;
+    line-height: 10px;
+  }
+  
+  .forgot-link a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .forgot-link :hover {
+    color: gray;
+  }
+  
+  .login-image img {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    bottom: 0;
+    left: -220px;
+  }
+  
+  .mensajeSesion{
+  
+    text-align: center;
+    line-height: 5px;
+    color: red;
+  
+  }
+  
+  @media screen and (max-width: 540px) {
+    .login-container {
+      width: 100%;
+      height: 100%;
+    }
+  
+  }
+  

@@ -14,6 +14,7 @@ import { HistorialClienteComponent } from './components/historial-cliente/histor
 import { Not404Component } from './pages/not404/not404.component';
 import { Error500Component } from './pages/error500/error500.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HistorialClienteComponent,
     Not404Component,
     Error500Component,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
