@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
+import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'historialCliente', component: HistorialClienteComponent},
   {path: 'error/:status/:statusText', component: Error500Component},
+  {path: 'hoteles', component: HotelesComponent},
   {path: '**', component: Not404Component}
   
 ];

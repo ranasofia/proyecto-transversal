@@ -15,6 +15,7 @@ import { Not404Component } from './pages/not404/not404.component';
 import { Error500Component } from './pages/error500/error500.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegistroComponent } from './components/registro/registro.component';
+import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     Not404Component,
     Error500Component,
     RegistroComponent,
+    HotelesComponent,
   ],
   imports: [
     BrowserModule,
