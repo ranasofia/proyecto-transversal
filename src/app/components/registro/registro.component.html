@@ -66,24 +66,33 @@
 
                 <mat-form-field appearance="outline" class="registro-full-width">
                     <mat-label> Contraseña </mat-label>
-                    <input [(ngModel)]="contrasena" [type]="hide ? 'password' : 'text'" matInput
+                    <input [type]="hide ? 'password' : 'text'" matInput
                         formControlName="password" placeholder="Contraseña">
                     <mat-icon matPrefix>lock_outline</mat-icon>
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="registroForm.controls.password.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
+                    <mat-error *ngIf="registroForm.controls.password.hasError('minlength')">
+                      Debe tener como mínimo 8 caracteres
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="registro-full-width">
-                    <mat-label> Contraseña </mat-label>
-                    <input [(ngModel)]="contrasena" [type]="hide ? 'password' : 'text'" matInput
+                    <mat-label> Repita su contraseña </mat-label>
+                    <input [type]="hide2 ? 'password' : 'text'" matInput
                         formControlName="validacionContrasena" placeholder="Repita su contraseña">
                     <mat-icon matPrefix>lock_outline</mat-icon>
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
+                    <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('minlength')">
+                      Debe tener como mínimo 8 caracteres
+                  </mat-error>
+                    <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('verificacionClave')">
+                      Las contraseñas no coinciden
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="registro-full-width">
@@ -93,24 +102,33 @@
                     <mat-error *ngIf="registroForm.controls.fechaNacimiento.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
+                    <mat-error *ngIf="registroForm.controls.fechaNacimiento.hasError('edadValida')">
+                      Debe tener al menos 15 años
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="number" matInput placeholder="Identificación" formControlName="identificacion">
+                    <input type="text" matInput placeholder="Identificación" formControlName="identificacion">
                     <mat-icon matPrefix>badge</mat-icon>
 
                     <mat-error *ngIf="registroForm.controls.identificacion.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
+                    <mat-error *ngIf="registroForm.controls.identificacion.hasError('minlength')">
+                      Debe tener como mínimo 5 números
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="number" matInput placeholder="Celular" formControlName="celular">
+                    <input type="text" matInput placeholder="Celular" formControlName="celular">
                     <mat-icon matPrefix>call</mat-icon>
 
                     <mat-error *ngIf="registroForm.controls.celular.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
+                    <mat-error *ngIf="registroForm.controls.celular.hasError('minlength')">
+                      Debe tener como mínimo 7 números
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="registro-full-width">
@@ -127,7 +145,7 @@
 
                 <button mat-raised-button color="primary">Registrarse</button>
 
-               
+
 
             </mat-card-content>
         </mat-card>
