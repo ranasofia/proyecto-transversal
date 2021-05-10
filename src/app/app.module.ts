@@ -15,6 +15,7 @@ import { Not404Component } from './pages/not404/not404.component';
 import { Error500Component } from './pages/error500/error500.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegistroComponent } from './components/registro/registro.component';
+import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     Not404Component,
     Error500Component,
     RegistroComponent,
+    CatalogoSuperFastComponent,
   ],
   imports: [
     BrowserModule,

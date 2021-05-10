@@ -1,3 +1,4 @@
+import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Not404Component } from './pages/not404/not404.component';
@@ -8,7 +9,7 @@ import { HistorialClienteComponent } from './components/historial-cliente/histor
 
 
 const routes: Routes = [
-  {path: '', component: RegistroComponent},   
+  {path: '', component: CatalogoSuperFastComponent},   
   {path: 'login', component: LoginComponent},
   {path: 'historialCliente', component: HistorialClienteComponent},
   {path: 'error/:status/:statusText', component: Error500Component},
