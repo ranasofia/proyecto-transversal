@@ -16,6 +16,7 @@ import { Error500Component } from './pages/error500/error500.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
+import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/cat
     Error500Component,
     RegistroComponent,
     CatalogoSuperFastComponent,
+    HotelesComponent
   ],
   imports: [
     BrowserModule,
