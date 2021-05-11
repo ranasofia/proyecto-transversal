@@ -29,14 +29,10 @@ import { GenerarTokenRecuperarComponent } from './components/generar-token-recup
     Not404Component,
     Error500Component,
     RegistroComponent,
-<<<<<<< HEAD
     HotelesComponent,
     RecuperarContrasenaComponent,
     GenerarTokenRecuperarComponent,
-=======
-    CatalogoSuperFastComponent,
-    HotelesComponent
->>>>>>> 3388f60b1fecf1e5bce0ecb82fe2cedc283e8f19
+    CatalogoSuperFastComponent
   ],
   imports: [
     BrowserModule,

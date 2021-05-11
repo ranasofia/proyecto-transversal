@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
-=======
 import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
->>>>>>> 3388f60b1fecf1e5bce0ecb82fe2cedc283e8f19
 import { RegistroComponent } from './components/registro/registro.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Not404Component } from './pages/not404/not404.component';
