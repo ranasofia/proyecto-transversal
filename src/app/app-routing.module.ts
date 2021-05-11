@@ -10,13 +10,13 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
 
 
 const routes: Routes = [
-  {path: '', component: CatalogoSuperFastComponent},   
+  {path: '', component: CatalogoSuperFastComponent},
   {path: 'login', component: LoginComponent},
   {path: 'historialCliente', component: HistorialClienteComponent},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: 'hoteles', component: HotelesComponent},
   {path: '**', component: Not404Component}
-  
+
 ];
 
 @NgModule({

@@ -2,6 +2,27 @@ mat-toolbar {
     justify-content: space-between;
 }
 
+mat-card-title{
+
+  text-align: center;
+
+}
+
+mat-card-actions{
+
+  text-align: right;
+
+}
+
+
+img{
+
+  width: 100%;
+  margin-left: 0.2%;
+  height: 300px;
+
+}
+
 .content {
     padding: 16px;
 
