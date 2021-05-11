@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
@@ -19,6 +20,7 @@ import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/cat
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
+import { HotelesPipe } from './pipes/hoteles.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { GenerarTokenRecuperarComponent } from './components/generar-token-recup
     HotelesComponent,
     RecuperarContrasenaComponent,
     GenerarTokenRecuperarComponent,
-    CatalogoSuperFastComponent
+    CatalogoSuperFastComponent,
+    HotelesPipe,
+  
   ],
   imports: [
     BrowserModule,

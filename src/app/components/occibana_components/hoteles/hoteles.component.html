@@ -1,6 +1,34 @@
-<section class="filtro">
-    <p>Sección de filtro</p>
+<section class="filtro" fxLayoutAlign="center">
+    <mat-form-field class="hotel-filter">
+        <mat-label>¿Busca algún hotel en específico?</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="text">
+    </mat-form-field>
 </section>
+
 <section class="hoteles">
-    <p>Sección de lista de hoteles</p>
+
+    <h1>Hoteles Destacados</h1>
+
+    <div class="hoteles-container" fxLayout="row" fxLayoutAlign="center center">
+        <ng-container *ngFor="let hotel of hotelesLista">
+        <mat-card class="hoteles-card">
+            <mat-card-header>
+                <mat-card-title>{{ hotel.nombre }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content fxLayout="row">
+                <p class="hoteles-card-descrip">
+                    
+                </p>
+                <p class="hoteles-card-img">
+                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                        alt="Photo of a Shiba Inu">
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>¡Ver más!</button>
+            </mat-card-actions>
+        </mat-card> 
+        </ng-container>
+    </div>
 </section>
