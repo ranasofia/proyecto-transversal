@@ -17,6 +17,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
+import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
+import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,14 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
     Not404Component,
     Error500Component,
     RegistroComponent,
+<<<<<<< HEAD
+    HotelesComponent,
+    RecuperarContrasenaComponent,
+    GenerarTokenRecuperarComponent,
+=======
     CatalogoSuperFastComponent,
     HotelesComponent
+>>>>>>> 3388f60b1fecf1e5bce0ecb82fe2cedc283e8f19
   ],
   imports: [
     BrowserModule,
