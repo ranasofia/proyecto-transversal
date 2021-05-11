@@ -16,6 +16,8 @@ import { Error500Component } from './pages/error500/error500.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegistroComponent } from './components/registro/registro.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
+import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
+import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
     Error500Component,
     RegistroComponent,
     HotelesComponent,
+    RecuperarContrasenaComponent,
+    GenerarTokenRecuperarComponent,
   ],
   imports: [
     BrowserModule,

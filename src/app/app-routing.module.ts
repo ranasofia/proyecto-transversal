@@ -1,3 +1,4 @@
+import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Not404Component } from './pages/not404/not404.component';
@@ -11,6 +12,7 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
 const routes: Routes = [
   {path: '', component: RegistroComponent},   
   {path: 'login', component: LoginComponent},
+  {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'historialCliente', component: HistorialClienteComponent},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: 'hoteles', component: HotelesComponent},

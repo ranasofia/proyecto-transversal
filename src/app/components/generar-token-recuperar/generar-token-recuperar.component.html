@@ -1,0 +1,33 @@
+<div class="generar-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
+      <!--Imagen-->
+    <div class="generar-image">
+      <img src="../../../assets/images/login.svg">
+    </div>
+
+    <form [formGroup]="generarForm" (ngSubmit)="generar($event)">
+      <mat-card class="generar-card" fxLayout="column" fxLayoutAlign="center center">
+        <!--Cabecera de la card-->
+        <mat-card-header>
+          <mat-card-title> RECUPERACIÓN DE CONTRASEÑA </mat-card-title>
+        </mat-card-header>
+        <!--Contenido de la card-->
+        <mat-card-content>
+              <!--Input correo electrónico-->
+              <mat-form-field appearance="outline" class="generar-full-width">
+                <mat-label> Correo electrónico </mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ingresa tu correo electrónico para recuperación de contraseña">
+                <mat-icon matPrefix>mail_outline</mat-icon>
+                <!--<mat-error
+                    *ngIf="generarForm.controls.email.hasError('email') && !generarForm.controls.email.hasError('required')">
+                    Digita un correo electrónico válido...
+                </mat-error>
+                <mat-error *ngIf="generarForm.controls.email.hasError('required')">
+                    Este campo es<strong> obligatorio</strong>
+                </mat-error>-->
+              </mat-form-field>
+              
+            <button mat-raised-button color="primary">Ingresar</button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+</div>
