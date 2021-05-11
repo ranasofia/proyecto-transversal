@@ -1,0 +1,41 @@
+<div class="content">
+    <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+    <!-- <input type="text" placeholder="Buscar por nombre, precio, descripción" matInput (keyup)="dataFilter($event.target.value)"> --> </mat-form-field>
+      <mat-card-title>BIENVENIDO A HC CAUCHOS</mat-card-title>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7]">
+            <mat-card class="mat-elevation-z4">
+
+                <mat-card-header>
+
+                </mat-card-header>
+                <img mat-card-image src="./../assets/images/caucho.jpg">
+                <mat-card-content>
+                    <p>
+                        NOMBRE:
+                    </p>
+                    <p>
+                        REFERENCIA:
+                    </p>
+                    <p>
+                        PRECIO:
+                    </p>
+                    <p>
+                        STOCK:
+                    </p>
+                    <p>
+                        MARCA:
+                    </p>
+                    <p>
+                        CATEGORIA:
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-icon matPrefix>search</mat-icon>
+                    <button mat-button>Agregar</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
