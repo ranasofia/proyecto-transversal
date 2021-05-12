@@ -28,13 +28,13 @@ export class Hotel {
          * Variable de tipo number que representa el precio por dos noches
          * de estadía en el hotel
          */
-        public precionochedoble: number,
+        public precioNocheDoble: number,
         
         /**
          * Variable de tipo number que representa el precio de la estadía en
          * el hotel con plan premium
          */
-        public precionochepremium: number,
+        public precioNochePremium: number,
         
         /**
          * Variable de tipo string que representa la descripción de la plan del
