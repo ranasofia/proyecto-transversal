@@ -5,7 +5,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -14,15 +14,18 @@ import { LoginComponent } from './components/login/login.component';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
 import { Not404Component } from './pages/not404/not404.component';
 import { Error500Component } from './pages/error500/error500.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
 import { HotelesPipe } from './pipes/hoteles.pipe';
+import { ProductoDialogComponent } from './components/producto-dialog/producto-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
+
   declarations: [
     AppComponent,
     LoginComponent,
@@ -36,7 +39,9 @@ import { HotelesPipe } from './pipes/hoteles.pipe';
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
     HotelesPipe,
-  
+    ProductoDialogComponent,
+    
+
   ],
   imports: [
     BrowserModule,
@@ -47,10 +52,12 @@ import { HotelesPipe } from './pipes/hoteles.pipe';
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
 
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

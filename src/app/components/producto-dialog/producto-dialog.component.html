@@ -1,0 +1,17 @@
+<div class="content">
+    <mat-card-title>¿Qué deseas añadir al producto?</mat-card-title>
+    <p> Especificaciones del producto </p>
+    <mat-form-field appearance="outline" class="cuadro">
+        <textarea matInput></textarea>
+    </mat-form-field>
+    <p> Cantidad </p>
+    <mat-form-field appearance="outline" class="cantidadContenedor">
+        <input class="cantidad" matInput type="number" min="1">
+    </mat-form-field>
+    <mat-dialog-actions aling="end">
+
+        <button class="btnAgragar" mat-raised-button color="primary">Añadir pedido</button>
+        <button class="btnCerrar" mat-dialog-close mat-raised-button color="primary">Cancelar</button>
+
+    </mat-dialog-actions>
+</div>

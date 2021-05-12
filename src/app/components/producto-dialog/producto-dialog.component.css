@@ -1,0 +1,26 @@
+
+mat-card-title{
+    margin-bottom: 30px;
+}
+.cuadro{
+
+    width: 100%;
+    height: 150px;
+
+}
+textarea{
+    height: 100px;
+}
+.cantidad{
+    width: 100%;
+}
+.cantidadContenedor{
+    width: 100%;
+}
+.btnCerrar {
+    margin-left: 150px !important;
+    width: 100px;
+}
+.btnAgregar{
+    width: 100px ;
+}
