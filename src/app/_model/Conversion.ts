@@ -81,14 +81,16 @@ export class Conversion {
 
     var usuarioConvertido = new UsuarioSuperfast();
 
-    usuarioConvertido.id = usuario.idUsuario;
     usuarioConvertido.nombre = usuario.nombre;
     usuarioConvertido.apellido = usuario.apellido;
-    usuarioConvertido.telefono = usuario.celular;
     usuarioConvertido.correo = usuario.correo;
-    usuarioConvertido.contrasenia = usuario.contrasena;
+    usuarioConvertido.contrasennia = usuario.contrasena;
+    usuarioConvertido.telefono = usuario.celular;
     usuarioConvertido.direccion = usuario.direccion;
-    usuarioConvertido.documento = usuario.cedula;
+    usuarioConvertido.imagenperfil = "prueba";
+    usuarioConvertido.auditoria = "sistema";
+    usuarioConvertido.id_rol = "1";
+    usuarioConvertido.aprobacion = "1";
 
     return usuarioConvertido;
 

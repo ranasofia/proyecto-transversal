@@ -1,0 +1,29 @@
+<div class="content">
+    <mat-card-title>¿Qué deseas añadir al producto?</mat-card-title>
+    <p> Especificaciones del producto </p>
+
+    <form [formGroup]="productoForm" (ngSubmit)="enviarACarrito($event)">
+    <mat-form-field appearance="outline" class="cuadro">
+        <textarea matInput formControlName="especificaciones"></textarea>
+        <mat-error *ngIf="productoForm.controls.especificaciones.hasError('required')">
+          Este campo es<strong> obligatorio</strong>
+      </mat-error>
+    </mat-form-field>
+    <p> Cantidad </p>
+    <mat-form-field appearance="outline" class="cantidadContenedor">
+        <input class="cantidad" matInput type="number" formControlName="cantidad" min="1">
+        <mat-error *ngIf="productoForm.controls.cantidad.hasError('required')">
+          Este campo es<strong> obligatorio</strong>
+      </mat-error>
+      <mat-error *ngIf="productoForm.controls.cantidad.hasError('min')">
+        El valor mínimo es 1
+    </mat-error>
+    </mat-form-field>
+    <mat-dialog-actions aling="end">
+
+        <button class="btnAgragar" mat-raised-button color="primary">Añadir pedido</button>
+        <button class="btnCerrar" mat-dialog-close mat-raised-button color="primary">Cancelar</button>
+
+    </mat-dialog-actions>
+  </form>
+</div>

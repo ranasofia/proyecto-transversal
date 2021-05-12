@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/_model/occibana_model/Hotel';
+import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
 import { HotelService } from '../../../_service/occibana_service/hotel.service';
 
 @Component({
@@ -9,17 +10,21 @@ import { HotelService } from '../../../_service/occibana_service/hotel.service';
 })
 export class HotelesComponent implements OnInit {
 
-  hoteles: Hotel[];
+
+  hotelesPrincipales: HotelPrincipal;
+
+  hotelesLista: any;
 
   constructor(private hotelesService: HotelService) { }
 
   ngOnInit(): void {
     this.listadoHoteles();
+    this.hotelesLista = [];
   }
 
   listadoHoteles() {
-    this.hotelesService.postListadoHoteles().subscribe(data => {
-      this.hoteles = data;
+    this.hotelesService.postListadoHoteles(this.hotelesPrincipales).subscribe(data => {
+      this.hotelesLista = data;
       console.log(data);
       
     },
