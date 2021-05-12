@@ -15,18 +15,23 @@
               <!--Input correo electrónico-->
               <mat-form-field appearance="outline" class="generar-full-width">
                 <mat-label> Correo electrónico </mat-label>
-                <input type="email" matInput formControlName="email" placeholder="Ingresa tu correo electrónico para recuperación de contraseña">
+                <input type="text" matInput  placeholder="Ingresa tu correo electrónico para recuperación de contraseña" formControlName="email">
                 <mat-icon matPrefix>mail_outline</mat-icon>
-                <!--<mat-error
+               <mat-error
                     *ngIf="generarForm.controls.email.hasError('email') && !generarForm.controls.email.hasError('required')">
                     Digita un correo electrónico válido...
                 </mat-error>
                 <mat-error *ngIf="generarForm.controls.email.hasError('required')">
                     Este campo es<strong> obligatorio</strong>
-                </mat-error>-->
+                </mat-error>
+            
               </mat-form-field>
               
             <button mat-raised-button color="primary">Ingresar</button>
+
+            <div class="forgot-link">
+              <a routerLink="/recuperarContrasena">¿ya te llego tu token?</a>
+            </div>
         </mat-card-content>
       </mat-card>
     </form>

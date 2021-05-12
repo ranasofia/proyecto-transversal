@@ -44,4 +44,6 @@ export class Usuario {
    */
   cedula: string;
 
+  token:string;
+
 }
