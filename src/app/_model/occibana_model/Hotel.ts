@@ -1,5 +1,43 @@
+/**
+ * Clase que representa los hoteles de la aplicación Occibana
+ */
 export class Hotel {
-        
+    
+    /**
+     * Constructor de la clase Hotel
+     * @param idhotel 
+     * @param idmunicipio 
+     * @param numhabitacion 
+     * @param precionoche 
+     * @param precioNocheDoble 
+     * @param precioNochePremium 
+     * @param descripcion 
+     * @param condicion 
+     * @param checkin 
+     * @param checkout 
+     * @param imagen 
+     * @param nombre 
+     * @param idzona 
+     * @param usuarioencargado 
+     * @param idusuario 
+     * @param imagen_secundaria 
+     * @param imagen_secundaria2 
+     * @param condicionesbioseguridad 
+     * @param promediocalificacion 
+     * @param direccion 
+     * @param mensaje 
+     * @param municipio 
+     * @param zona 
+     * @param numMaxPersonas 
+     * @param tipo 
+     * @param fecha_despuesde 
+     * @param fecha_antesde 
+     * @param numHabitDisponibles 
+     * @param url 
+     * @param mensaje2 
+     * @param mensaje3 
+     * @param boton 
+     */
     constructor(
 
         /**
@@ -19,19 +57,19 @@ export class Hotel {
         public numhabitacion: number,
         
         /**
-         * Variable de tipo number que representa el precio por noche de
+         * Variable de tipo number que representa el precio COP por noche de
          * estadía en el hotel
          */
         public precionoche: number,
         
         /**
-         * Variable de tipo number que representa el precio por dos noches
+         * Variable de tipo number que representa el precio COP por dos noches
          * de estadía en el hotel
          */
         public precioNocheDoble: number,
         
         /**
-         * Variable de tipo number que representa el precio de la estadía en
+         * Variable de tipo number que representa el precio COP de la estadía en
          * el hotel con plan premium
          */
         public precioNochePremium: number,

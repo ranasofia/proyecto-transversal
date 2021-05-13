@@ -1,5 +1,6 @@
 <h1>BIENVENIDO A OCCIBANA</h1>
-<section class="filtro" fxLayoutAlign="center">
+
+<section class="filter" fxLayoutAlign="center">
     <mat-form-field class="hotel-filter">
         <mat-label>¿Busca algún hotel en específico?</mat-label>
         <mat-icon matPrefix>search</mat-icon>
@@ -9,16 +10,16 @@
 
 <section class="hoteles">
 
-    <h1>Hoteles Destacados</h1>
+    <h2>Hoteles Destacados</h2>
 
-    <div class="hoteles-container" fxLayout="row" fxLayoutAlign="center center">
+    <div class="hoteles-container" fxLayout="column" fxLayoutAlign="center center">
         <ng-container *ngFor="let hotel of hotelesFiltrados">
         <mat-card class="hoteles-card">
             <mat-card-header>
                 <mat-card-title>{{ hotel.nombre }}</mat-card-title>
             </mat-card-header>
             <mat-card-content fxLayout="row">
-                <dic class="hoteles-card-descrip">
+                <div class="hoteles-card-descrip">
                     <ul>
                         <li>Precio noche básico: COP {{ hotel.precionoche }}</li>
                         <li>Precio noche doble: COP {{ hotel.precioNocheDoble }}</li>
@@ -26,9 +27,9 @@
                         <li>Numero de habitaciones: {{ hotel.numHabitDisponibles }}</li>
                         <li>Municipio: {{ hotel.municipio }}</li>
                     </ul>
-                </dic>
+                </div>
                 <p class="hoteles-card-img">
-                    
+                    <img mat-card-image src="{{ hotel.imagen }}">
                 </p>
             </mat-card-content>
             <mat-card-actions>
