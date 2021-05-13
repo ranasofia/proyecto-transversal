@@ -31,17 +31,6 @@ button {
   margin-top: 10%;
 }
 
-
-.forgot-link {
-  text-align: center;
-  line-height: 10px;
-}
-
-.forgot-link a {
-  text-decoration: none;
-  color: white;
-}
-
 .generar-image img {
   width: 60%;
   height: 60%;

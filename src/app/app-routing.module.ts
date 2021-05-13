@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
 import { CatalogoSuperFastComponent } from './components/superfast_components/catalogo-super-fast/catalogo-super-fast.component';
@@ -17,14 +14,11 @@ import { GuardianService } from './_service/guardian.service';
 
 
 const routes: Routes = [
-<<<<<<< HEAD
-  //{path: '', component: CatalogoSuperFastComponent},   
+
   {path: '', component: RegistroComponent},   
   {path: '', component: CatalogoSuperFastComponent},
-=======
   {path: '', component: CatalogoHcCauchosComponent},
-  //{path: '', component: RegistroComponent},
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
+  
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
@@ -35,12 +29,7 @@ const routes: Routes = [
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 
-<<<<<<< HEAD
   
-=======
-
-
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 ];
 
 @NgModule({

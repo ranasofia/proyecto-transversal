@@ -38,18 +38,15 @@ import { CatalogoHcCauchosComponent } from './components/hccauchos_components/ca
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
     HotelesComponent,
-<<<<<<< HEAD
     HotelesPipe,
     ProductoDialogComponent,
     
 
-=======
     CatalogoHcCauchosComponent,
     HotelesPipe,
     ProductoDialogComponent,
     HotelesPipe,
     ProductoDialogComponent
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
   ],
   imports: [
     BrowserModule,

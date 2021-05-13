@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/_model/Usuario';
 import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
@@ -35,15 +36,11 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   }
 
   /**
-<<<<<<< HEAD
    * Constructor de GenerarTokenRecuperarComponent
-=======
-   *
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
-  constructor(private recuperar:RecuperarContrasenaService,private _snackBar: MatSnackBar) {
+  constructor(private recuperar:RecuperarContrasenaService,private _snackBar: MatSnackBar, private router: Router) {
     this.generarForm=this.createFormGroup();
   }
 
@@ -68,8 +65,9 @@ export class GenerarTokenRecuperarComponent implements OnInit {
           this._snackBar.open('Recibira un correo con el link para continuar con el proceso', 'Cancel  ', {
             duration: 3000
           });
+          this.router.navigate(['/recuperarContrasena']);
         }else if(data["mensaje"] == "El usuario no exite o está sancionado, por favor verifique"){
-          this._snackBar.open('El correo no existe o está sancionado, por favor verifique', 'Cancel  ', {
+          this._snackBar.open('El correo no existe o el usuario está sancionado, por favor verifique', 'Cancel  ', {
             duration: 3000
           });
         }else if(data["mensaje"] == "Token Vencido"){
@@ -81,13 +79,9 @@ export class GenerarTokenRecuperarComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
   onResetForm() {
     this.generarForm.reset();
   }
-=======
-
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 
   /**
    * Permite iniciar el proceso de generar token

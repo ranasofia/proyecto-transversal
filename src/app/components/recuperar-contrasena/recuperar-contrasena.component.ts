@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import { Router } from '@angular/router';
-import { RecuperarContrasenaService } from './../../_service/recuperar-contrasena.service';
-=======
 import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
@@ -34,22 +30,12 @@ export class RecuperarContrasenaComponent implements OnInit {
    */
   hide2 = true;
 
-<<<<<<< HEAD
   /**
    * Permite configurar las validaciones del formulario
    * @returns 
    */
   createFormGroup(){
     return new FormGroup({
-=======
-   /**
-    * Permite configurar las validaciones del formulario
-    * @returns
-    */
-  createFormGroup(){
-    return new FormGroup({
-
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8)
@@ -66,13 +52,8 @@ export class RecuperarContrasenaComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
   /**
    * Constructor de RecuperarContrasenaComponent
-=======
-   /**
-   *
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
@@ -98,19 +79,15 @@ export class RecuperarContrasenaComponent implements OnInit {
       this._snackBar.open('contraseña actualizada ', 'Cancel  ', {
         duration: 3000
       });
-      this.router.navigate["/login"];
+      this.router.navigate(['/login']);
     });
     
   }
 }
 
-<<<<<<< HEAD
 onResetForm() {
   this.recuperarForm.reset();
 }
-=======
-
->>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 
 /**
   * Permite iniciar el proceso de recuperar contraseña
