@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
-import { Notificacion } from 'src/app/_model/Notificacion';
-import { ClienteService } from 'src/app/_service/cliente.service';
+import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
+import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { UsuarioMototaxi } from 'src/app/_model/UsuarioMototaxi';
+import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 /**

@@ -1,16 +1,16 @@
-import { ClienteService } from './../../_service/cliente.service';
-import { RegistroHCService } from './../../_service/registro-hc.service';
-import { LoginHCService } from './../../_service/login-hc.service';
-import { RegistroLoginOccibanaService} from './../../_service/registro-login-occibana.service';
-import { UsuarioTransversalService } from './../../_service/usuario-transversal.service';
-import { GuardianService } from './../../_service/guardian.service';
+import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
+import { RegistroHCService } from 'src/app/_service/hccauchos_service/registro-hc.service';
+import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
+import { RegistroLoginOccibanaService} from 'src/app/_service/occibana_service/registro-login-occibana.service';
+import { UsuarioTransversalService } from 'src/app/_service/usuario-transversal.service';
+import { GuardianService } from 'src/app/_service/guardian.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/_model/Usuario';
-import { UsuarioMototaxi } from 'src/app/_model/UsuarioMototaxi';
+import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import {Conversion} from 'src/app/_model/Conversion';
 
 /**
@@ -147,7 +147,7 @@ export class LoginComponent implements OnInit {
       this.usuarioTransversalService.getToken(usuario).subscribe(data => {
 
         sessionStorage.setItem(environment.TOKEN, data);
-        this.router.navigate(['/mototaxi/historialCliente']);
+        this.router.navigate(['/superfast/catalogo']);
         localStorage.setItem("correo", usuario.correo);
         localStorage.setItem("contrasena", usuario.contrasena);
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Producto } from '../../_model/superfast_model/Producto';
+import { Producto } from 'src/app/_model/superfast_model/Producto';
 
 /**
  * Decorador de ComunicacionService

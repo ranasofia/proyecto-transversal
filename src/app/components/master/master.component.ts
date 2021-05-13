@@ -1,6 +1,6 @@
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { environment } from './../../../environments/environment';
-import { ClienteService } from 'src/app/_service/cliente.service';
+import { environment } from 'src/environments/environment';
+import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
 import { Component, OnInit , DoCheck} from '@angular/core';
 /**
  * Decorador de Mastercomponent
@@ -20,19 +20,19 @@ export class MasterComponent implements OnInit , DoCheck{
   token: string;
   /**
    * Constructor que inicializa las variables globales de componente
-   * @param clienteService 
+   * @param clienteService
    */
   constructor(private clienteService:ClienteService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   /**
    * Implementacion que se ejecuta cada vez que se verifican las propiedades de entrada del componente
    */
   ngDoCheck() : void{
-   
+
     this.token = sessionStorage.getItem(environment.TOKEN);
   }
 
@@ -52,5 +52,9 @@ export class MasterComponent implements OnInit , DoCheck{
     this.clienteService.deleteEliminarToken(nombre).subscribe();
     //Remueve el token de la sesion
     sessionStorage.removeItem(environment.TOKEN);
+    sessionStorage.removeItem(environment.TOKEN_HCCAUCHOS);
+    sessionStorage.removeItem(environment.TOKEN_MOTOTAXI);
+    sessionStorage.removeItem(environment.TOKEN_OCCIBANA);
+    sessionStorage.removeItem(environment.TOKEN_SUPERFAST);
   }
 }

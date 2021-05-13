@@ -1,4 +1,4 @@
-import { RecuperarContrasenaService } from './../../_service/recuperar-contrasena.service';
+import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
@@ -27,11 +27,11 @@ export class RecuperarContrasenaComponent implements OnInit {
 
    /**
     * Permite configurar las validaciones del formulario
-    * @returns 
+    * @returns
     */
   createFormGroup(){
     return new FormGroup({
-     
+
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8)
@@ -44,12 +44,12 @@ export class RecuperarContrasenaComponent implements OnInit {
       token:new FormControl('',[
         Validators.required
       ]),
-      
+
     });
   }
 
    /**
-   * 
+   *
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
@@ -79,7 +79,7 @@ private recuperarContraseña(){
 
 }
 
-  
+
 
   recuperar(event: Event): any {
     event.preventDefault();

@@ -26,22 +26,22 @@
         </button>
         </div>
         <div *ngIf="token != undefined">
-        <button mat-menu-item style="cursor: pointer" (click)="sidenav.toggle()">
+        <button mat-menu-item style="cursor: pointer" routerLink="/mototaxi/historialCliente" (click)="sidenav.toggle()">
             <mat-icon>two_wheeler</mat-icon>
             <span>Mototaxi Deluxe</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item style="cursor: pointer" routerLink="/hoteles" (click)="sidenav.toggle()">
+        <button mat-menu-item style="cursor: pointer" routerLink="/occibana/hoteles" (click)="sidenav.toggle()">
             <mat-icon>hotel</mat-icon>
             <span>Occibana</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item style="cursor: pointer" (click)="sidenav.toggle()">
+        <button mat-menu-item style="cursor: pointer" routerLink="/hccauchos/catalogo" (click)="sidenav.toggle()">
             <mat-icon>store</mat-icon>
             <span>HC Cauchos</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item style="cursor: pointer" (click)="sidenav.toggle()">
+        <button mat-menu-item style="cursor: pointer" routerLink="/superfast/catalogo" (click)="sidenav.toggle()">
             <mat-icon>shopping_cart</mat-icon>
             <span>SuperFast</span>
         </button>

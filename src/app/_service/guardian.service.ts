@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { ClienteService } from './cliente.service';
+import { ClienteService } from './mototaxi_service/cliente.service';
 import { Conversion } from 'src/app/_model/Conversion';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { UsuarioTransversalService } from './usuario-transversal.service';
 import { Usuario } from '../_model/Usuario';
-import { RegistroHCService } from './registro-hc.service';
-import { RegistroLoginOccibanaService } from './registro-login-occibana.service';
+import { RegistroHCService } from './hccauchos_service/registro-hc.service';
+import { RegistroLoginOccibanaService } from './occibana_service/registro-login-occibana.service';
 import { RegistroSFService} from './superfast_service/registro-sf.service';
 
 
@@ -54,41 +54,48 @@ export class GuardianService implements CanActivate {
         var usuarioConvertido = null;
 
         var servicioConvertido;
+        var cadenaSesion;
 
         if (url.toLocaleLowerCase().includes("hccauchos")) {
 
           servicioConvertido = this.registroHCService;
           usuarioConvertido = Conversion.convertirAHCCauchos(usuarioTransversal);
+          cadenaSesion = environment.TOKEN_HCCAUCHOS;
 
         } else if (url.toLocaleLowerCase().includes("occibana")) {
 
           servicioConvertido = this.registroLoginOccibanaService;
           usuarioConvertido = Conversion.convertirAOccibana(usuarioTransversal);
+          cadenaSesion = environment.TOKEN_OCCIBANA;
 
         } else if (url.toLocaleLowerCase().includes("superfast")) {
 
-          return true;
+          servicioConvertido = this.registroSFService;
+          usuarioConvertido = Conversion.convertirASuperFast(usuarioTransversal);
+          cadenaSesion = environment.TOKEN_SUPERFAST;
 
         } else if (url.toLocaleLowerCase().includes("mototaxi")) {
 
           servicioConvertido = this.clienteService;
           usuarioConvertido = Conversion.convertirAMototaxi(usuarioTransversal);
+          cadenaSesion = environment.TOKEN_MOTOTAXI;
 
         }
 
         servicioConvertido.getToken(usuarioConvertido).subscribe(data => {
 
-          sessionStorage.setItem(environment.UBER_MOTOS, data);
+          sessionStorage.setItem(cadenaSesion, data);
 
         }, err => {
 
-          if (err.status == 400) {
+          if (err.status == 400 || err.status == 401) {
 
+            console.log(usuarioConvertido);
             servicioConvertido.registrar(usuarioConvertido).subscribe();
 
             servicioConvertido.getToken(usuarioConvertido).subscribe(data2 => {
 
-              sessionStorage.setItem(environment.UBER_MOTOS, data2);
+              sessionStorage.setItem(cadenaSesion, data2);
 
             })
 
@@ -100,7 +107,7 @@ export class GuardianService implements CanActivate {
 
           await this.delay(300);
 
-          if (sessionStorage.getItem(environment.UBER_MOTOS) != undefined) {
+          if (sessionStorage.getItem(cadenaSesion) != undefined) {
 
             return true;
 

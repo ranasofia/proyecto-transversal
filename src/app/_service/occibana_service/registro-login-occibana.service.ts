@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { UsuarioOccibana } from '../_model/UsuarioOccibana';
+import { UsuarioOccibana } from 'src/app/_model/occibana_model/UsuarioOccibana';
 
 /**
  * Decorador de RegistroLoginOccibanaService

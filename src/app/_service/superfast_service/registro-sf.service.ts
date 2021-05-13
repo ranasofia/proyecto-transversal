@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { UsuarioSuperfast } from '../../_model/UsuarioSuperfast';
+import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfast';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
-import { UsuarioMototaxi } from '../_model/UsuarioMototaxi';
-import { Notificacion } from './../_model/Notificacion';
+import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
+import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';

@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/_model/occibana_model/Hotel';
 import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
-import { HotelService } from '../../../_service/occibana_service/hotel.service';
+import { HotelService } from 'src/app/_service/occibana_service/hotel.service';
 
 /**
  * Decorador del Componente hoteles
