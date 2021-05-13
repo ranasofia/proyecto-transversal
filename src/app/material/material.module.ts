@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -26,7 +26,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatDividerModule,
     MatMenuModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
 
   ],
   exports: [
@@ -39,8 +40,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatDividerModule,
     MatMenuModule,
     MatTableModule,
-    MatSortModule
-  
+    MatSortModule,
+    MatDialogModule
+
   ]
 })
 export class MaterialModule { }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { Hotel } from '../../_model/occibana_model/Hotel';
+import { Hotel } from 'src/app/_model/occibana_model/Hotel';
 import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
 
 /**
@@ -19,9 +19,9 @@ export class HotelService {
 
   /**
    * Construcutor que incializa la variable URL
-   * @param http 
+   * @param http
    */
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.URL = environment.OCCIBANA + '/listas';
   }
 
@@ -39,7 +39,7 @@ export class HotelService {
 
   /**
    * Método que obtiene el listado de hoteles destacados
-   * @returns 
+   * @returns
    */
   getHotelesDestacados() {
     return this.http.get<Hotel[]>(this.URL + "/getHotelesDestacados");

@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
-import { Notificacion } from 'src/app/_model/Notificacion';
-import { ClienteService } from 'src/app/_service/cliente.service';
+import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
+import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { UsuarioMototaxi } from 'src/app/_model/UsuarioMototaxi';
+import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 /**
@@ -52,11 +52,6 @@ export class HistorialClienteComponent implements OnInit {
    */
   ngOnInit(): void {
 
-    // Validación del token activo a inactivo
-    if (sessionStorage.getItem(environment.TOKEN) == undefined) {
-      this.router.navigate(['/login']);
-    }
-
     // Constante que representa un objeto del módulo JwtHelperServic
     const helper = new JwtHelperService();
 
@@ -65,7 +60,7 @@ export class HistorialClienteComponent implements OnInit {
 
     var indicador = false;
 
-    do {
+    /*do {
 
       // Método que traer el historial del cliente
       this.clienteService.getHistorial("", usuario).subscribe(data => {
@@ -82,7 +77,7 @@ export class HistorialClienteComponent implements OnInit {
         // Error 401
         if (err.status == 401) {
 
-          var cliente = new UsuarioMototaxi(environment.USUARIO, environment.CONTRASENA);
+          /*var cliente = new UsuarioMototaxi(environment.USUARIO, environment.CONTRASENA);
 
           this.clienteService.getToken(cliente).subscribe(data => {
 
@@ -97,7 +92,7 @@ export class HistorialClienteComponent implements OnInit {
     }
     while (indicador);
     // Nombres de la columnas de la tabla
-    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];
+    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];*/
   }
 
   /**

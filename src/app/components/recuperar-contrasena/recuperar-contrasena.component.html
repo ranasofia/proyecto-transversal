@@ -2,7 +2,7 @@
 <div class="recuperar-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
     <!--Imagen-->
   <div class="recuperar-image">
-    <img src="../../../assets/images/login.svg">
+    <img src="assets/images/login.svg">
   </div>
 
   <form [formGroup]="recuperarForm" (ngSubmit)="recuperar($event)">
@@ -14,7 +14,7 @@
       <!--Contenido de la card-->
       <mat-card-content>
             <!--Input correo electrónico-->
-            
+
             <mat-form-field appearance="outline" class="recuperar-full-width">
               <input type="text" matInput placeholder="Token" formControlName="token">
               <mat-icon matPrefix>vpn_key</mat-icon>
@@ -55,8 +55,13 @@
               </mat-error>
             </mat-form-field>
 
+<<<<<<< HEAD
             
           <button mat-raised-button color="primary">Enviar</button>
+=======
+
+          <button mat-raised-button color="primary">Ingresar</button>
+>>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
       </mat-card-content>
     </mat-card>
   </form>

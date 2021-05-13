@@ -1,0 +1,69 @@
+
+mat-toolbar {
+    justify-content: space-between;
+}
+
+mat-card-title{
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  text-shadow: 1px 3px #E91E63;
+  align-items: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, light;
+
+}
+.filter {
+  margin-top: 40px;
+}
+
+.catalogo {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+mat-form-field {
+margin-bottom: 500px ;
+}
+
+mat-card-actions{
+
+  text-align: right;
+
+}
+
+img{
+
+  width: 100%;
+  margin-left: 0.2%;
+  height: 300px;
+
+}
+
+.content {
+    padding: 16px;
+
+}
+
+.content > mat-card {
+    margin-bottom: 16px;
+
+}
+.mat-form-field {
+    display: flex;
+    font-size: 15px;
+    justify-content: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+  h1{
+    font-size: 25px;
+    font-family: Arial Narrow Bold;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+  p{
+    font-size: 15px;
+    font-family: Arial Narrow Bold;
+    font-style: normal;
+  }

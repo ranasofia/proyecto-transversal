@@ -1,28 +1,35 @@
-<section class="filtro" fxLayoutAlign="center">
+<h1>BIENVENIDO A OCCIBANA</h1>
+
+<section class="filter" fxLayoutAlign="center">
     <mat-form-field class="hotel-filter">
         <mat-label>¿Busca algún hotel en específico?</mat-label>
         <mat-icon matPrefix>search</mat-icon>
-        <input matInput type="text">
+        <input matInput type="text" placeholder="Buscar hotel" (keyup)="hotelesFilter($event.target.value)">
     </mat-form-field>
 </section>
 
 <section class="hoteles">
 
-    <h1>Hoteles Destacados</h1>
+    <h2>Hoteles Destacados</h2>
 
-    <div class="hoteles-container" fxLayout="row" fxLayoutAlign="center center">
-        <ng-container *ngFor="let hotel of hotelesLista">
+    <div class="hoteles-container" fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngFor="let hotel of hotelesFiltrados">
         <mat-card class="hoteles-card">
             <mat-card-header>
                 <mat-card-title>{{ hotel.nombre }}</mat-card-title>
             </mat-card-header>
             <mat-card-content fxLayout="row">
-                <p class="hoteles-card-descrip">
-                    
-                </p>
+                <div class="hoteles-card-descrip">
+                    <ul>
+                        <li>Precio noche básico: COP {{ hotel.precionoche }}</li>
+                        <li>Precio noche doble: COP {{ hotel.precioNocheDoble }}</li>
+                        <li>Precio nohe premium: COP {{ hotel.precioNochePremium }} </li>
+                        <li>Numero de habitaciones: {{ hotel.numHabitDisponibles }}</li>
+                        <li>Municipio: {{ hotel.municipio }}</li>
+                    </ul>
+                </div>
                 <p class="hoteles-card-img">
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                        alt="Photo of a Shiba Inu">
+                    <img mat-card-image src="{{ hotel.imagen }}">
                 </p>
             </mat-card-content>
             <mat-card-actions>

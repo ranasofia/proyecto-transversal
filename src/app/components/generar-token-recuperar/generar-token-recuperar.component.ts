@@ -1,5 +1,5 @@
 import { Usuario } from 'src/app/_model/Usuario';
-import { RecuperarContrasenaService } from './../../_service/recuperar-contrasena.service';
+import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -35,7 +35,11 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   }
 
   /**
+<<<<<<< HEAD
    * Constructor de GenerarTokenRecuperarComponent
+=======
+   *
+>>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
@@ -58,7 +62,7 @@ export class GenerarTokenRecuperarComponent implements OnInit {
       var usuario=new Usuario();
 
       usuario.correo=this.generarForm.controls["email"].value;
-      
+
       this.recuperar.generar(usuario).subscribe(data => {
         if(data["mensaje"] == "alert('Recibira un correo con el link para continuar con el proceso')"){
           this._snackBar.open('Recibira un correo con el link para continuar con el proceso', 'Cancel  ', {
@@ -77,9 +81,13 @@ export class GenerarTokenRecuperarComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
   onResetForm() {
     this.generarForm.reset();
   }
+=======
+
+>>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 
   /**
    * Permite iniciar el proceso de generar token

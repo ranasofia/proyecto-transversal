@@ -1,8 +1,8 @@
 <div class="content">
     <mat-form-field>
         <mat-icon matPrefix>search</mat-icon>
-    <input type="text" placeholder="Buscar por nombre, precio, descripción" matInput (keyup)="dataFilter($event.target.value)"> </mat-form-field>
-      <mat-card-title>BIENVENIDO A SUPERFAST</mat-card-title>
+    <input class="barra" type="text" placeholder="Buscar por nombre, precio, descripción" matInput (keyup)="dataFilter($event.target.value)"> </mat-form-field>
+      <div><mat-card-title>- BIENVENIDO A SUPERFAST -</mat-card-title></div>
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let producto of productosFiltrados">
             <mat-card class="mat-elevation-z4">

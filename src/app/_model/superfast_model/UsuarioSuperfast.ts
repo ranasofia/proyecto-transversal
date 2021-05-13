@@ -18,7 +18,7 @@ export class UsuarioSuperfast {
   /**
    * Es la clave de acceso a la aplicación, del usuario
    */
-  contrasennia: string;
+  contrasenia: string;
   /**
    * Es el teléfono celular del usuario
    */
@@ -43,6 +43,10 @@ export class UsuarioSuperfast {
    * Número que indica si se aprobó como aliado al usuario
    */
   aprobacion: string;
+  /**
+   * Número que indica a qué aplicación le pertenece el usuario
+   */
+  aplicacionID: string;
 
 
 }

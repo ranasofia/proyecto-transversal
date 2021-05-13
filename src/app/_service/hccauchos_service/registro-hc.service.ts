@@ -1,4 +1,4 @@
-import { UsuarioHCCauchos } from '../_model/UsuarioHCCauchos';
+import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';

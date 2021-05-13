@@ -1,7 +1,7 @@
 <div class="generar-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
       <!--Imagen-->
     <div class="generar-image">
-      <img src="../../../assets/images/login.svg">
+      <img src="assets/images/login.svg">
     </div>
 
     <form [formGroup]="generarForm" (ngSubmit)="generar($event)">
@@ -24,10 +24,15 @@
                 <mat-error *ngIf="generarForm.controls.email.hasError('required')">
                     Este campo es<strong> obligatorio</strong>
                 </mat-error>
-            
+
               </mat-form-field>
+<<<<<<< HEAD
               
             <button mat-raised-button color="primary">Enviar</button>
+=======
+
+            <button mat-raised-button color="primary">Ingresar</button>
+>>>>>>> 2035906c558c57aa73b086a28cc26550c695c927
 
             <div class="forgot-link">
               <a routerLink="/recuperarContrasena">¿Ya te llego tu token?</a>

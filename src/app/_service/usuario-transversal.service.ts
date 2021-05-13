@@ -65,4 +65,21 @@ export class UsuarioTransversalService {
 
    }
 
+   getUsuario(usuario: Usuario){
+
+    console.log("jjj");
+    console.log(usuario);
+
+    return this.http.post<Usuario>(this.URL + "/mostrarPerfil", usuario,{
+      headers: {
+
+        'Content-Type': 'application/json',
+        'authorization': sessionStorage.getItem(environment.TOKEN)
+
+      }
+
+    });
+
+   }
+
 }

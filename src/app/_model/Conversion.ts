@@ -1,8 +1,8 @@
 import { Usuario } from "./Usuario";
-import { UsuarioHCCauchos } from "./UsuarioHCCauchos";
-import { UsuarioMototaxi } from "./UsuarioMototaxi";
-import { UsuarioOccibana } from "./UsuarioOccibana";
-import { UsuarioSuperfast } from "./UsuarioSuperfast";
+import { UsuarioHCCauchos } from "./hccauchos_model/UsuarioHCCauchos";
+import { UsuarioMototaxi } from "./mototaxi_model/UsuarioMototaxi";
+import { UsuarioOccibana } from "./occibana_model/UsuarioOccibana";
+import { UsuarioSuperfast } from "./superfast_model/UsuarioSuperfast";
 
 /**
  * Clase que convierte a un usuario general en un usuario en específico de acuerdo a la aplicación
@@ -84,13 +84,14 @@ export class Conversion {
     usuarioConvertido.nombre = usuario.nombre;
     usuarioConvertido.apellido = usuario.apellido;
     usuarioConvertido.correo = usuario.correo;
-    usuarioConvertido.contrasennia = usuario.contrasena;
+    usuarioConvertido.contrasenia = usuario.contrasena;
     usuarioConvertido.telefono = usuario.celular;
     usuarioConvertido.direccion = usuario.direccion;
     usuarioConvertido.imagenperfil = "prueba";
     usuarioConvertido.auditoria = "sistema";
     usuarioConvertido.id_rol = "1";
     usuarioConvertido.aprobacion = "1";
+    usuarioConvertido.aplicacionID = "1";
 
     return usuarioConvertido;
 
