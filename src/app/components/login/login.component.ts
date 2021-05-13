@@ -3,6 +3,7 @@ import { RegistroHCService } from './../../_service/registro-hc.service';
 import { LoginHCService } from './../../_service/login-hc.service';
 import { RegistroLoginOccibanaService} from './../../_service/registro-login-occibana.service';
 import { UsuarioTransversalService } from './../../_service/usuario-transversal.service';
+import { GuardianService } from './../../_service/guardian.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -58,8 +59,9 @@ export class LoginComponent implements OnInit {
    */
   createFormGroup() {
     return new FormGroup({
-      username: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
+        Validators.email
       ] ),
       password: new FormControl('', [
         Validators.required
@@ -72,8 +74,8 @@ export class LoginComponent implements OnInit {
    * @param router
    * @param clienteService
    */
-  constructor(private router: Router, private clienteService: ClienteService, private usuarioTransversalService: UsuarioTransversalService,
-    private registroHCService: RegistroHCService, private loginHCService: LoginHCService,private _snackBar: MatSnackBar) {
+  constructor(private router: Router, private usuarioTransversalService: UsuarioTransversalService,
+    private registroHCService: RegistroHCService, private loginHCService: LoginHCService,private _snackBar: MatSnackBar, private guardianService: GuardianService) {
     this.loginForm = this.createFormGroup();
   }
 
@@ -138,14 +140,16 @@ export class LoginComponent implements OnInit {
 
       const value = this.loginForm.value;
 
-      var cliente = new UsuarioMototaxi(value.username, value.password);
+      var usuario = new Usuario();
+      usuario.correo = value.email;
+      usuario.contrasena = value.password;
 
-      this.clienteService.getToken(cliente).subscribe(data => {
+      this.usuarioTransversalService.getToken(usuario).subscribe(data => {
 
         sessionStorage.setItem(environment.TOKEN, data);
-        this.router.navigate(['/historialCliente']);
-        environment.USUARIO = cliente.usuario;
-        environment.CONTRASENA = cliente.contrasena;
+        this.router.navigate(['/mototaxi/historialCliente']);
+        localStorage.setItem("correo", usuario.correo);
+        localStorage.setItem("contrasena", usuario.contrasena);
 
       }, err => {
 

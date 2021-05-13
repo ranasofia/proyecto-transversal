@@ -20,8 +20,9 @@
         <!--Contenido de la card-->
         <mat-card-content>
               <!--Input correo electrónico-->
+
               <mat-form-field appearance="outline" class="login-full-width">
-                  <!--<mat-label> Correo electrónico </mat-label>
+                  <mat-label> Correo electrónico </mat-label>
                   <input [(ngModel)]="nombreUsuario" type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
                   <mat-icon matPrefix>mail_outline</mat-icon>
                   <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
@@ -29,17 +30,9 @@
                   </mat-error>
                   <mat-error *ngIf="loginForm.controls.email.hasError('required')">
                       Este campo es<strong> obligatorio</strong>
-                  </mat-error>-->
-
-                  <input type="text" matInput placeholder="Ingresa tu nombre de usuario" formControlName="username">
-                  <mat-icon matPrefix>person</mat-icon>
-
-                  <mat-error *ngIf="loginForm.controls.username.hasError('required')">
-                      Este campo es<strong> obligatorio</strong>
                   </mat-error>
-
-
               </mat-form-field>
+
               <!--Input contraseña-->
               <mat-form-field appearance="outline" class="login-full-width">
                   <mat-label> Contraseña </mat-label>
@@ -50,7 +43,7 @@
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
               </mat-form-field>
-              
+
               <button mat-raised-button color="primary">Ingresar</button>
 
               <div class="forgot-link">

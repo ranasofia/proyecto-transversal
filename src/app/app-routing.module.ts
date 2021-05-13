@@ -10,19 +10,23 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HistorialClienteComponent } from './components/historial-cliente/historial-cliente.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
+import { GuardianService } from './_service/guardian.service';
 
 
 const routes: Routes = [
-  {path: '', component: RegistroComponent},   
+  //{path: '', component: CatalogoHcCauchosComponent},
+  {path: '', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path:'recuperarContrasena', component:RecuperarContrasenaComponent},
-  {path: 'historialCliente', component: HistorialClienteComponent},
+  {path: 'superfast/catalogoSuperFast', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
+  {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
+  {path: 'occibana/hoteles', component: HotelesComponent, canActivate:[GuardianService]},
   {path: 'error/:status/:statusText', component: Error500Component},
-  {path: 'hoteles', component: HotelesComponent},
   {path: '**', component: Not404Component}
 
   
+
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@ export const environment = {
   OCCIBANA: 'http://18.230.178.121:8081/api',
   SUPERFAST: 'http://52.67.179.68:8081/api',
   TOKEN: 'access_token',
-  USUARIO: '',
+  CORREO: '',
   CONTRASENA: ''
 };
 

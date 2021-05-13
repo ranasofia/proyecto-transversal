@@ -45,6 +45,8 @@ import { CatalogoHcCauchosComponent } from './components/catalogo-hc-cauchos/cat
     HotelesPipe,
     ProductoDialogComponent,
 
+    HotelesPipe,
+    ProductoDialogComponent
   ],
   imports: [
     BrowserModule,
