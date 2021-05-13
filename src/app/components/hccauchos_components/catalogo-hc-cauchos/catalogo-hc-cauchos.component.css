@@ -13,6 +13,15 @@ mat-card-title{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, light;
 
 }
+.filter {
+  margin-top: 40px;
+}
+
+.catalogo {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 mat-form-field {
 margin-bottom: 500px ;
 }
@@ -35,9 +44,7 @@ img{
     padding: 16px;
 
 }
-.barra{
-  width: 100px;
-}
+
 .content > mat-card {
     margin-bottom: 16px;
 

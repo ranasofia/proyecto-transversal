@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ProductoH } from 'src/app/_model/hccauchos_model/ProductoH';
-
+/**
+ * Decorador de ComunicacionCService
+ */
 @Injectable({
   providedIn: 'root'
 })

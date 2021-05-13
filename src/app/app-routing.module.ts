@@ -14,8 +14,8 @@ import { GuardianService } from './_service/guardian.service';
 
 
 const routes: Routes = [
-  //{path: '', component: CatalogoHcCauchosComponent},
-  {path: '', component: RegistroComponent},
+  {path: '', component: CatalogoHcCauchosComponent},
+  //{path: '', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},

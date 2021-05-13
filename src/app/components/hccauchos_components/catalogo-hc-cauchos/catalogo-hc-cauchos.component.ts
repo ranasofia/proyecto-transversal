@@ -4,13 +4,17 @@ import { ProductoDialogComponent } from 'src/app/components/producto-dialog/prod
 import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { MatDialog } from '@angular/material/dialog';
-
+/**
+ * Decorador de CatalogoHcCauchosComponet
+ */
 @Component({
   selector: 'app-catalogo-hc-cauchos',
   templateUrl: './catalogo-hc-cauchos.component.html',
   styleUrls: ['./catalogo-hc-cauchos.component.css']
 })
-
+/**
+ * Clase que maneja la logica del catalogo
+ */
 
   export class CatalogoHcCauchosComponent implements OnInit{
 
@@ -20,7 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
     gridColumns = 3;
 
     /**
-     * Son los productos del catálogo
+     * Productos del catálogo
      */
     productos: ProductoH[];
 
@@ -30,12 +34,12 @@ import { MatDialog } from '@angular/material/dialog';
     formatoMoneda: Intl.NumberFormat;
 
     /**
-     * Es la variable que permite ordenar los productos
+     * Variable que permite ordenar los productos
      */
     dataSource: MatTableDataSource<ProductoH>;
 
     /**
-     * Son los productos que se filtran según la palabra clave
+     * Productos que se filtran según la palabra clave
      */
     productosFiltrados: ProductoH[];
 
