@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Producto } from '../../_model/superfast_model/Producto';
+import { ProductoH } from '../../_model/hccauchos_model/ProductoH';
 
-/**
- * Decorador de ComunicacionService
- */
 @Injectable({
   providedIn: 'root'
 })
-export class ComunicacionService {
-
+export class ComunicacionCService {
   /**
    * Posee el enlace para llamar a los servicios
    */
-  private URL: string = environment.SUPERFAST +  '/comunicacion';
+  private URL: string = environment.HCCAUCHOS+ '/Usuario';
 
   /**
     * Da estado inicial e inyecta variables en UsuarioTransversalService
@@ -22,17 +18,17 @@ export class ComunicacionService {
     */
   constructor(private http: HttpClient) {
 
-
   }
 
   /**
    * Permite obtener los productos del catálogo
    * @returns productos
    */
-  getCatalogo(){
+  getCatalogo() {
 
-    return this.http.get<Producto[]>(this.URL + "/GetmostrarProductoInicio");
+    return this.http.get<ProductoH[]>(this.URL + "/catalogo");
 
   }
 
 }
+

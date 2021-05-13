@@ -23,6 +23,8 @@ import { GenerarTokenRecuperarComponent } from './components/generar-token-recup
 import { HotelesPipe } from './pipes/hoteles.pipe';
 import { ProductoDialogComponent } from './components/producto-dialog/producto-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CatalogoHcCauchosComponent } from './components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
+
 
 @NgModule({
 
@@ -38,14 +40,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     RecuperarContrasenaComponent,
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
-<<<<<<< HEAD
-    HotelesComponent
-=======
+    HotelesComponent,
+    CatalogoHcCauchosComponent,
     HotelesPipe,
     ProductoDialogComponent,
-    
 
->>>>>>> acd6e8960347b3c9d529831ac9b30c2bd2806204
   ],
   imports: [
     BrowserModule,

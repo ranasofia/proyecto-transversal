@@ -1,46 +1,62 @@
+
 mat-toolbar {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 mat-card-title{
-
-  text-align: center;
-  font-size: 40px;
-  margin-bottom: 50px;
+text-align: center;
+font-size: 50px;
+margin-bottom: 50px;
+margin-top: 50px;
+text-shadow: 1px 3px #E91E63;
+align-items: center;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, light;
 
 }
 mat-form-field {
-margin-bottom: 50px ;
+margin-bottom: 500px ;
 }
 
 mat-card-actions{
 
-  text-align: right;
+text-align: right;
 
 }
 
-
 img{
 
-  width: 100%;
-  margin-left: 0.2%;
-  height: 300px;
+width: 100%;
+margin-left: 0.2%;
+height: 300px;
 
 }
 
 .content {
-    padding: 16px;
+  padding: 16px;
 
 }
-
+.barra{
+width: 100px;
+}
 .content > mat-card {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 
 }
 .mat-form-field {
-    display: flex;
-    font-size: 15px;
-    justify-content: center;
-    margin-top: 1px;
-    margin-bottom: 1px;
-  }
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+h1{
+  font-size: 25px;
+  font-family: Arial Narrow Bold;
+  font-style: normal;
+  text-transform: uppercase;
+}
+p{
+  font-size: 15px;
+  font-family: Arial Narrow Bold;
+  font-style: normal;
+}
