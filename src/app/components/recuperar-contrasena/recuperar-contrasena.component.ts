@@ -1,17 +1,22 @@
+import { Router } from '@angular/router';
 import { RecuperarContrasenaService } from './../../_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Usuario } from 'src/app/_model/Usuario';
 
+/**
+ * Decorador de RecuperarContrasenaComponent
+ */
 @Component({
   selector: 'app-recuperar-contrasena',
   templateUrl: './recuperar-contrasena.component.html',
   styleUrls: ['./recuperar-contrasena.component.css']
 })
+/**
+ * Clase de RecuperarContrasenaComponent
+ */
 export class RecuperarContrasenaComponent implements OnInit {
-
   /**
    * Variable de tipo FormGroup que contiene el formulario de Generar Token
    */
@@ -19,19 +24,18 @@ export class RecuperarContrasenaComponent implements OnInit {
   /**
    * Permite mostrar u ocultar el valor del campo de la contraseña
    */
-   hide = true;
+  hide = true;
   /**
    * Permite mostrar u ocultar el valor del campo de repetir contraseña
    */
   hide2 = true;
 
-   /**
-    * Permite configurar las validaciones del formulario
-    * @returns 
-    */
+  /**
+   * Permite configurar las validaciones del formulario
+   * @returns 
+   */
   createFormGroup(){
     return new FormGroup({
-     
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8)
@@ -48,40 +52,48 @@ export class RecuperarContrasenaComponent implements OnInit {
     });
   }
 
-   /**
-   * 
+  /**
+   * Constructor de RecuperarContrasenaComponent
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
-    constructor(private recuperarc:RecuperarContrasenaService,private _snackBar: MatSnackBar) {
-      this.recuperarForm=this.createFormGroup();
-     }
+  constructor(private recuperarc:RecuperarContrasenaService,private _snackBar: MatSnackBar, private router: Router) {
+    this.recuperarForm=this.createFormGroup();
+  }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
   }
 
-token:string;
-private recuperarContraseña(){
+  /**
+   * Permite llevar la recuperación de contraseña
+   */
+  private recuperarContraseña(){
 
   if(this.recuperarForm.valid){
-    var usuario = new Usuario();
+    var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, Contrasena:this.recuperarForm.controls["password"].value};
 
-    usuario.contrasena=this.recuperarForm.controls["password"].value;
-    usuario.token=this.recuperarForm.controls["token"].value;
-
-
-    this.recuperarc.recuperar(usuario).subscribe(data => {
+    this.recuperarc.recuperar(obj).subscribe(data => {
       this._snackBar.open('contraseña actualizada ', 'Cancel  ', {
         duration: 3000
       });
+      this.router.navigate["/login"];
     });
+    
   }
-
 }
 
-  
+onResetForm() {
+  this.recuperarForm.reset();
+}
 
-  recuperar(event: Event): any {
+/**
+  * Permite iniciar el proceso de recuperar contraseña
+  * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
+  */
+recuperar(event: Event): any {
     event.preventDefault();
     this.recuperarContraseña();
   }

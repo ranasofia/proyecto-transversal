@@ -1,31 +1,33 @@
 .recuperar-container {
     background-color: #607D8B;
-    height: 140%;
+    height: 100%;
   }
   
   .recuperar-card {
     min-width: 150px;
-    max-width: 400px;
+    max-width: 530px;
     height: 450px;
-    top: 10%;
+    top: 12%;
     line-height: 70px;
     box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.2);
     background-color: #2F2E41;
   }
   
   .recuperar-full-width {
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
   }
   
   .mat-card-title {
+    text-align: center;
     font-size: 30px;
     text-shadow: 2px 2px #E91E63;
   }
   
   button {
     padding: 5px 60px;
-    margin-left: 27%;
-    margin-top: 10%;
+    margin-left: 34%;
+    margin-top: 4%;
   }
   
   .recuperar-image img {

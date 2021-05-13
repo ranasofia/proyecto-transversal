@@ -38,14 +38,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     RecuperarContrasenaComponent,
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
-<<<<<<< HEAD
-    HotelesComponent
-=======
+    HotelesComponent,
     HotelesPipe,
     ProductoDialogComponent,
     
 
->>>>>>> acd6e8960347b3c9d529831ac9b30c2bd2806204
   ],
   imports: [
     BrowserModule,

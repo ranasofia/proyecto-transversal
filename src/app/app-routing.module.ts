@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
-=======
->>>>>>> acd6e8960347b3c9d529831ac9b30c2bd2806204
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
 import { CatalogoSuperFastComponent } from './components/catalogo-super-fast/catalogo-super-fast.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -15,12 +12,9 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
 
 
 const routes: Routes = [
-<<<<<<< HEAD
   //{path: '', component: CatalogoSuperFastComponent},   
   {path: '', component: RegistroComponent},   
-=======
   {path: '', component: CatalogoSuperFastComponent},
->>>>>>> acd6e8960347b3c9d529831ac9b30c2bd2806204
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path:'recuperarContrasena', component:RecuperarContrasenaComponent},
@@ -29,10 +23,7 @@ const routes: Routes = [
   {path: 'hoteles', component: HotelesComponent},
   {path: '**', component: Not404Component}
 
-<<<<<<< HEAD
   
-=======
->>>>>>> acd6e8960347b3c9d529831ac9b30c2bd2806204
 ];
 
 @NgModule({
