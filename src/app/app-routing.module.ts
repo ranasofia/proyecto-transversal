@@ -14,7 +14,8 @@ import { GuardianService } from './_service/guardian.service';
 
 
 const routes: Routes = [
-  {path: '', component: RegistroComponent},
+
+  {path: '', component: RegistroComponent},   
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
@@ -25,8 +26,7 @@ const routes: Routes = [
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 
-
-
+  
 ];
 
 @NgModule({

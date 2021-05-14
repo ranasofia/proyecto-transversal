@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/_model/Usuario';
 import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./generar-token-recuperar.component.css']
 })
 /**
- * Clase de GenerarTokenRecuperarComponent
+ * Clase que maneja la logica de la interfaz de GenerarTokenRecuperarComponent
  */
 export class GenerarTokenRecuperarComponent implements OnInit {
   /**
@@ -21,6 +22,10 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    */
   generarForm: FormGroup;
 
+  /**
+   * Permite configurar las validaciones del formulario
+   * @returns 
+   */
   createFormGroup(){
     return new FormGroup({
       email: new FormControl('', [
@@ -31,17 +36,23 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   }
 
   /**
-   *
+   * Constructor de GenerarTokenRecuperarComponent
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
-  constructor(private recuperar:RecuperarContrasenaService,private _snackBar: MatSnackBar) {
+  constructor(private recuperar:RecuperarContrasenaService,private _snackBar: MatSnackBar, private router: Router) {
     this.generarForm=this.createFormGroup();
-   }
+  }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
   }
 
+  /**
+   * Permite llevar a cabo generar el token de recuperacion de contraseña
+   */
   private generartoken(){
 
     if(this.generarForm.valid){
@@ -50,25 +61,27 @@ export class GenerarTokenRecuperarComponent implements OnInit {
       usuario.correo=this.generarForm.controls["email"].value;
 
       this.recuperar.generar(usuario).subscribe(data => {
-        this._snackBar.open('Se enviara un token recuperacion a su correo ', 'Cancel  ', {
-          duration: 3000
-        });
-      }, err => {
-
-        if (err.status == 400) {
-
-          this._snackBar.open('El correo no existe verifiquelo', 'Cancel  ', {
+        if(data["mensaje"] == "alert('Recibira un correo con el link para continuar con el proceso')"){
+          this._snackBar.open('Recibira un correo con el link para continuar con el proceso', 'Cancel  ', {
             duration: 3000
           });
-
+          this.router.navigate(['/recuperarContrasena']);
+        }else if(data["mensaje"] == "El usuario no exite o está sancionado, por favor verifique"){
+          this._snackBar.open('El correo no existe o el usuario está sancionado, por favor verifique', 'Cancel  ', {
+            duration: 3000
+          });
+        }else if(data["mensaje"] == "Token Vencido"){
+          this._snackBar.open('Token Vencido', 'Cancel  ', {
+            duration: 3000
+          });
         }
       });
-
     }
-
   }
 
-
+  onResetForm() {
+    this.generarForm.reset();
+  }
 
   /**
    * Permite iniciar el proceso de generar token

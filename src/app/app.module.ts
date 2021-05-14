@@ -38,6 +38,10 @@ import { JwtModule } from '@auth0/angular-jwt';
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
     HotelesComponent,
+    HotelesPipe,
+    ProductoDialogComponent,
+    
+
     CatalogoHcCauchosComponent,
     HotelesPipe,
     ProductoDialogComponent,
