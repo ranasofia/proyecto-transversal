@@ -1,21 +1,22 @@
 <div class="example-container">
-    <mat-toolbar color="primary" class="example-toolbar">
 
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-          <mat-icon *ngIf="sidenav.opened">closed</mat-icon>
-        </button>
-
-        <h1 class="example-app-name">Proyecto Transversal</h1>
-
-        <mat-menu #menu="matMenu"></mat-menu>
-    </mat-toolbar>
-
-    <mat-sidenav-container class="example-sidenav-container">
-      <mat-sidenav #sidenav style="width: 200px">
-        <!--<img src="assets/Logo.png" width="120" style="margin-left: 20px;">-->
-        <mat-divider></mat-divider>
-        <div *ngIf="token == undefined">
+  <mat-toolbar color="primary" class="example-toolbar">
+    
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">closed</mat-icon>
+    </button>
+    
+    <h1 class="example-app-name">Proyecto Transversal</h1>
+    
+    <mat-menu #menu="matMenu"></mat-menu>
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav style="width: 200px">
+      <!--<img src="assets/Logo.png" width="120" style="margin-left: 20px;">-->
+      <mat-divider></mat-divider>
+      <div *ngIf="token == undefined">
         <button mat-menu-item style="cursor: pointer" routerLink="/login" (click)="sidenav.toggle()">
           <mat-icon>perm_identity</mat-icon>
           <span>Login</span>
@@ -24,26 +25,26 @@
           <mat-icon>how_to_reg</mat-icon>
           <span>Registrate</span>
         </button>
-        </div>
-        <div *ngIf="token != undefined">
+      </div>
+      <div *ngIf="token != undefined">
         <button mat-menu-item style="cursor: pointer" routerLink="/mototaxi/historialCliente" (click)="sidenav.toggle()">
-            <mat-icon>two_wheeler</mat-icon>
-            <span>Mototaxi Deluxe</span>
+          <mat-icon>two_wheeler</mat-icon>
+          <span>Mototaxi Deluxe</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item style="cursor: pointer" routerLink="/occibana/hoteles" (click)="sidenav.toggle()">
-            <mat-icon>hotel</mat-icon>
-            <span>Occibana</span>
+          <mat-icon>hotel</mat-icon>
+          <span>Occibana</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item style="cursor: pointer" routerLink="/hccauchos/catalogo" (click)="sidenav.toggle()">
-            <mat-icon>store</mat-icon>
-            <span>HC Cauchos</span>
+          <mat-icon>store</mat-icon>
+          <span>HC Cauchos</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item style="cursor: pointer" routerLink="/superfast/catalogo" (click)="sidenav.toggle()">
-            <mat-icon>shopping_cart</mat-icon>
-            <span>SuperFast</span>
+          <mat-icon>shopping_cart</mat-icon>
+          <span>SuperFast</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="cerrarSesion(); sidenav.toggle()" routerLink="/login">
@@ -51,10 +52,13 @@
           <span>Cerrar Sesion</span>
         </button>
         <mat-divider></mat-divider>
-        </div>
-        <mat-divider></mat-divider>
-      </mat-sidenav>
-      <router-outlet></router-outlet>
-    </mat-sidenav-container>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-sidenav>
+    <div class="loader-container">
+      <mat-progress-bar mode="indeterminate" [color]="color"></mat-progress-bar>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>
 </div>
 

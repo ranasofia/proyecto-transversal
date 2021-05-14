@@ -26,14 +26,7 @@ export class RegistroSFService {
     */
    registrar(usuario: UsuarioSuperfast){
 
-     return this.http.post<string>(this.URL + "/PostInsertar_Usuario", usuario, {
-       headers: {
-
-         'Content-Type': 'application/json'
-
-       }
-
-     });
+     return this.http.post<string>(this.URL + "/PostInsertar_Usuario", usuario);
 
    }
 

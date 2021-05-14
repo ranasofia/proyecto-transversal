@@ -37,27 +37,13 @@ export class RecuperarContrasenaService {
    */
    generar(usuario: Usuario){
 
-    return this.http.post<string>(this.URL + "/generarContraseña", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/generarContraseña", usuario);
 
   }
 
   recuperar(usuario:any){
 
-    return this.http.put(this.URL + "/RecuperarContraseña",usuario,  {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.put(this.URL + "/RecuperarContraseña",usuario);
   }
 
 

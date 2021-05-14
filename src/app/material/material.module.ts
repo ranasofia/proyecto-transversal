@@ -11,7 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -27,8 +27,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatMenuModule,
     MatTableModule,
     MatSortModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatProgressBarModule
   ],
   exports: [
     MatCardModule,
@@ -41,8 +41,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatMenuModule,
     MatTableModule,
     MatSortModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

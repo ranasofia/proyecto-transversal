@@ -36,14 +36,7 @@ export class UsuarioTransversalService {
    */
    registrar(usuario: Usuario){
 
-    return this.http.post<string>(this.URL + "/registro", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/registro", usuario);
 
    }
 
@@ -54,31 +47,13 @@ export class UsuarioTransversalService {
    */
    getToken(usuario: Usuario){
 
-    return this.http.post<string>(this.URL + "/login", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/login", usuario);
 
    }
 
    getUsuario(usuario: Usuario){
 
-    console.log("jjj");
-    console.log(usuario);
-
-    return this.http.post<Usuario>(this.URL + "/mostrarPerfil", usuario,{
-      headers: {
-
-        'Content-Type': 'application/json',
-        'authorization': sessionStorage.getItem(environment.TOKEN)
-
-      }
-
-    });
+    return this.http.post<Usuario>(this.URL + "/mostrarPerfil", usuario);
 
    }
 

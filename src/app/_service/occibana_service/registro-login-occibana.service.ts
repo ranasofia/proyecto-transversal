@@ -33,14 +33,7 @@ export class RegistroLoginOccibanaService {
    */
   registrar(usuario: UsuarioOccibana){
 
-    return this.http.post<string>(this.URL + "/postRegistroUsuario", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/postRegistroUsuario", usuario);
 
   }
 
@@ -51,14 +44,7 @@ export class RegistroLoginOccibanaService {
    */
   getToken(usuario: UsuarioOccibana) {
 
-    return this.http.post<string>(this.URL + "/postIngresoLogin", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/postIngresoLogin", usuario);
   }
 
 }

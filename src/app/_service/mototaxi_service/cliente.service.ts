@@ -33,15 +33,7 @@ export class ClienteService {
    * @returns token
    */
   getToken(cliente: UsuarioMototaxi) {
-
-    return this.http.post<string>(this.URL + "/logincliente", cliente, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/logincliente", cliente);
   }
 
   /**
@@ -52,15 +44,7 @@ export class ClienteService {
    */
   getHistorial(fechaInicio: string, usuario: string){
 
-    return this.http.get<Notificacion[]>(this.URL + "/historial?fechaInicio=" + fechaInicio + "&usuario=" + usuario, {
-      headers: {
-
-        'Content-Type': 'application/json',
-        'authorization': sessionStorage.getItem(environment.TOKEN)
-
-      }
-
-    });
+    return this.http.get<Notificacion[]>(this.URL + "/historial?fechaInicio=" + fechaInicio + "&usuario=" + usuario);
 
   }
 
@@ -71,12 +55,7 @@ export class ClienteService {
    */
   putCerrarSesion(usuario: string){
 
-    return this.http.put(this.URL + "/cerrarSesion?usuario=" + usuario, null,{
-      headers:{
-        'Content-Type': 'application/json',
-        'authorization': sessionStorage.getItem(environment.TOKEN)
-      }
-    });
+    return this.http.put(this.URL + "/cerrarSesion?usuario=" + usuario, null);
   }
 
   /**
@@ -85,24 +64,12 @@ export class ClienteService {
    * @returns mensaje
    */
   deleteEliminarToken(usuario: string){
-    return this.http.delete(this.URL + "/eliminarToken?usuario=" + usuario,{
-      headers:{
-        'Content-Type': 'application/json',
-        'authorization': sessionStorage.getItem(environment.TOKEN)
-      }
-    })
+    return this.http.delete(this.URL + "/eliminarToken?usuario=" + usuario);
   }
 
   registrar(usuario: UsuarioMototaxi){
 
-    return this.http.post<string>(this.URL + "/registrocliente", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/registrocliente", usuario);
 
   }
 

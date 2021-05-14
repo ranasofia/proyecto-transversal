@@ -18,6 +18,8 @@ export class MasterComponent implements OnInit , DoCheck{
    * Variable que alamacena el token que se genera al ingresar al login
    */
   token: string;
+
+  color: string = "warn";
   /**
    * Constructor que inicializa las variables globales de componente
    * @param clienteService

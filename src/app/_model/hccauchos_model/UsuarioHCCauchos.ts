@@ -84,4 +84,8 @@ export class UsuarioHCCauchos {
    */
   aplicacionId: number = 1;
 
+  email:string;
+
+  password: string;
+
 }

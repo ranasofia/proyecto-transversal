@@ -42,10 +42,12 @@ export class Conversion {
     usuarioConvertido.user_id = usuario.idUsuario;
     usuarioConvertido.nombre = usuario.nombre;
     usuarioConvertido.apellido = usuario.apellido;
-    usuarioConvertido.correo = usuario.correo;
-    usuarioConvertido.clave = usuario.contrasena;
+    //usuarioConvertido.correo = usuario.correo;
+    //usuarioConvertido.clave = usuario.contrasena;
     usuarioConvertido.fecha_nacimiento = usuario.fechaNacimiento;
     usuarioConvertido.identificacion = usuario.cedula;
+    usuarioConvertido.email = usuario.correo;
+    usuarioConvertido.password = usuario.contrasena;
 
     return usuarioConvertido;
 
@@ -91,7 +93,7 @@ export class Conversion {
     usuarioConvertido.auditoria = "sistema";
     usuarioConvertido.id_rol = "1";
     usuarioConvertido.aprobacion = "1";
-    usuarioConvertido.aplicacionID = "1";
+    usuarioConvertido.aplicacionid = "1";
 
     return usuarioConvertido;
 

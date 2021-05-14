@@ -30,11 +30,7 @@ export class HotelService {
    * @returns la lista de hoteles
    */
   postListadoHoteles(listaHoteles: HotelPrincipal) {
-    return this.http.post<any>(this.URL + "/postHotelesPrincipal", listaHoteles,  {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return this.http.post<any>(this.URL + "/postHotelesPrincipal", listaHoteles);
   };
 
   /**

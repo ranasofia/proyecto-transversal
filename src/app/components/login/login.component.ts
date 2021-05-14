@@ -148,8 +148,6 @@ export class LoginComponent implements OnInit {
 
         sessionStorage.setItem(environment.TOKEN, data);
         this.router.navigate(['/superfast/catalogo']);
-        localStorage.setItem("correo", usuario.correo);
-        localStorage.setItem("contrasena", usuario.contrasena);
 
       }, err => {
 

@@ -33,14 +33,7 @@ export class LoginHCService {
    */
   getToken(usuario: UsuarioHCCauchos) {
 
-    return this.http.post<string>(this.URL + "/login", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/login", usuario);
   }
 
 }

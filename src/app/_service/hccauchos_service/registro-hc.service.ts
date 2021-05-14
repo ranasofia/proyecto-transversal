@@ -33,14 +33,7 @@ export class RegistroHCService {
    */
   registrar(usuario: UsuarioHCCauchos){
 
-    return this.http.post<string>(this.URL + "/Registro", usuario, {
-      headers: {
-
-        'Content-Type': 'application/json'
-
-      }
-
-    });
+    return this.http.post<string>(this.URL + "/Registro", usuario);
 
   }
 

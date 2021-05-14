@@ -46,7 +46,7 @@ export class UsuarioSuperfast {
   /**
    * Número que indica a qué aplicación le pertenece el usuario
    */
-  aplicacionID: string;
+  aplicacionid: string;
 
 
 }

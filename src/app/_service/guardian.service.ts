@@ -1,3 +1,5 @@
+import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
+import { AdminService } from './superfast_service/admin.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -17,7 +19,14 @@ import { RegistroSFService} from './superfast_service/registro-sf.service';
 })
 export class GuardianService implements CanActivate {
 
-  constructor(private clienteService: ClienteService, private registroHCService: RegistroHCService, private registroLoginOccibanaService: RegistroLoginOccibanaService, private registroSFService: RegistroSFService, private usuarioTransversalService: UsuarioTransversalService, private router: Router) { }
+  constructor(private clienteService: ClienteService, 
+              private registroHCService: RegistroHCService, 
+              private registroLoginOccibanaService: RegistroLoginOccibanaService, 
+              private registroSFService: RegistroSFService,
+              private adminService: AdminService,
+              private usuarioTransversalService: UsuarioTransversalService, 
+              private router: Router,
+              private loginHC: LoginHCService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
@@ -34,8 +43,8 @@ export class GuardianService implements CanActivate {
 
 
     var usuarioIncompleto = new Usuario();
-    usuarioIncompleto.correo = localStorage.getItem("correo");
-    usuarioIncompleto.contrasena = localStorage.getItem("contrasena");
+    usuarioIncompleto.correo = token.email;
+    usuarioIncompleto.usuario = token.name;
 
     var usuarioTransversal = null;
 
@@ -58,7 +67,7 @@ export class GuardianService implements CanActivate {
 
         if (url.toLocaleLowerCase().includes("hccauchos")) {
 
-          servicioConvertido = this.registroHCService;
+          servicioConvertido = this.loginHC;
           usuarioConvertido = Conversion.convertirAHCCauchos(usuarioTransversal);
           cadenaSesion = environment.TOKEN_HCCAUCHOS;
 
@@ -70,7 +79,7 @@ export class GuardianService implements CanActivate {
 
         } else if (url.toLocaleLowerCase().includes("superfast")) {
 
-          servicioConvertido = this.registroSFService;
+          servicioConvertido = this.adminService;
           usuarioConvertido = Conversion.convertirASuperFast(usuarioTransversal);
           cadenaSesion = environment.TOKEN_SUPERFAST;
 
@@ -89,9 +98,27 @@ export class GuardianService implements CanActivate {
         }, err => {
 
           if (err.status == 400 || err.status == 401) {
+            let servicioRegistroConvertido;
+            if (url.toLocaleLowerCase().includes("hccauchos")) {
 
+              servicioRegistroConvertido = this.registroHCService;
+            
+    
+            } else if (url.toLocaleLowerCase().includes("occibana")) {
+    
+              servicioRegistroConvertido = this.registroLoginOccibanaService;
+    
+            } else if (url.toLocaleLowerCase().includes("superfast")) {
+    
+              servicioRegistroConvertido = this.registroSFService;
+    
+            } else if (url.toLocaleLowerCase().includes("mototaxi")) {
+    
+              servicioRegistroConvertido = this.clienteService;
+    
+            }
             console.log(usuarioConvertido);
-            servicioConvertido.registrar(usuarioConvertido).subscribe();
+            servicioRegistroConvertido.registrar(usuarioConvertido).subscribe();
 
             servicioConvertido.getToken(usuarioConvertido).subscribe(data2 => {
 
