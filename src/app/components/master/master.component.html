@@ -55,7 +55,7 @@
       </div>
       <mat-divider></mat-divider>
     </mat-sidenav>
-    <div class="loader-container">
+    <div class="loader-container" [hidden] = "progressBar">
       <mat-progress-bar mode="indeterminate" [color]="color"></mat-progress-bar>
     </div>
     <router-outlet></router-outlet>

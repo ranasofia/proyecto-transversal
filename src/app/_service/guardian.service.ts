@@ -1,3 +1,4 @@
+import { BarraProgresoService } from './barra-progreso.service';
 import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
 import { AdminService } from './superfast_service/admin.service';
 import { Injectable } from '@angular/core';
@@ -26,9 +27,14 @@ export class GuardianService implements CanActivate {
               private adminService: AdminService,
               private usuarioTransversalService: UsuarioTransversalService,
               private router: Router,
-              private loginHC: LoginHCService) { }
+              private loginHC: LoginHCService,
+              private barraProgresoService: BarraProgresoService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  
+    this.barraProgresoService.progressBar.next("1");
+    await this.delay(2000);
+    this.barraProgresoService.progressBar.next("2");
 
     const helper = new JwtHelperService();
     var token = helper.decodeToken(sessionStorage.getItem(environment.TOKEN));

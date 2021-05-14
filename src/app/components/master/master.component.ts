@@ -1,7 +1,8 @@
+import { BarraProgresoService } from './../../_service/barra-progreso.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
-import { Component, OnInit , DoCheck} from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 /**
  * Decorador de Mastercomponent
  */
@@ -13,18 +14,35 @@ import { Component, OnInit , DoCheck} from '@angular/core';
 /**
  * Clase de Mastercomponent
  */
-export class MasterComponent implements OnInit , DoCheck{
+export class MasterComponent implements OnInit, DoCheck {
   /**
    * Variable que alamacena el token que se genera al ingresar al login
    */
   token: string;
 
+  /**
+   * Variable de tipo string en donde se le asigna un color a la barra de progreso
+   */
   color: string = "warn";
+
+  /**
+   * Variable de tipo boolean para manejar la visualización de la barra de progreso
+   */
+  progressBar: boolean = true;
+
   /**
    * Constructor que inicializa las variables globales de componente
    * @param clienteService
    */
-  constructor(private clienteService:ClienteService) { }
+  constructor(private clienteService: ClienteService,private barraProgresoService: BarraProgresoService) {
+    barraProgresoService.progressBar.subscribe(data => {
+      if (data == "1") {
+        this.progressBar = false;
+      }else {
+        this.progressBar = true;
+      }
+    });
+  }
 
   ngOnInit(): void {
 
@@ -33,7 +51,7 @@ export class MasterComponent implements OnInit , DoCheck{
   /**
    * Implementacion que se ejecuta cada vez que se verifican las propiedades de entrada del componente
    */
-  ngDoCheck() : void{
+  ngDoCheck(): void {
 
     this.token = sessionStorage.getItem(environment.TOKEN);
   }
@@ -41,7 +59,7 @@ export class MasterComponent implements OnInit , DoCheck{
   /**
    * Metodo que se encarga de cerrar sesion y eliminar el token
    */
-  cerrarSesion(){
+  cerrarSesion() {
     /**
      * Constante para decodificar el token
      */
