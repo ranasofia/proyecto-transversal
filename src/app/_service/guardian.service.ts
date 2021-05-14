@@ -19,12 +19,12 @@ import { RegistroSFService} from './superfast_service/registro-sf.service';
 })
 export class GuardianService implements CanActivate {
 
-  constructor(private clienteService: ClienteService, 
-              private registroHCService: RegistroHCService, 
-              private registroLoginOccibanaService: RegistroLoginOccibanaService, 
+  constructor(private clienteService: ClienteService,
+              private registroHCService: RegistroHCService,
+              private registroLoginOccibanaService: RegistroLoginOccibanaService,
               private registroSFService: RegistroSFService,
               private adminService: AdminService,
-              private usuarioTransversalService: UsuarioTransversalService, 
+              private usuarioTransversalService: UsuarioTransversalService,
               private router: Router,
               private loginHC: LoginHCService) { }
 
@@ -102,22 +102,22 @@ export class GuardianService implements CanActivate {
             if (url.toLocaleLowerCase().includes("hccauchos")) {
 
               servicioRegistroConvertido = this.registroHCService;
-            
-    
+
+
             } else if (url.toLocaleLowerCase().includes("occibana")) {
-    
+
               servicioRegistroConvertido = this.registroLoginOccibanaService;
-    
+
             } else if (url.toLocaleLowerCase().includes("superfast")) {
-    
+
               servicioRegistroConvertido = this.registroSFService;
-    
+
             } else if (url.toLocaleLowerCase().includes("mototaxi")) {
-    
+
               servicioRegistroConvertido = this.clienteService;
-    
+
             }
-            console.log(usuarioConvertido);
+
             servicioRegistroConvertido.registrar(usuarioConvertido).subscribe();
 
             servicioConvertido.getToken(usuarioConvertido).subscribe(data2 => {

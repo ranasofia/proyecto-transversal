@@ -84,51 +84,6 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
 
-
-    /*
-    var usuario = new Usuario();
-
-    usuario.nombre = "Don";
-    usuario.apellido = "Papa4";
-    usuario.celular = "3133607479";
-    usuario.correo = "donpapa4@gmail.com";
-    usuario.usuario = "El señor don papa 4";
-    usuario.contrasena = "Papaencriptada";
-    usuario.direccion = "Calle don papa";
-    usuario.cedula = "342843218";
-    usuario.fechaNacimiento = "2001-06-24";
-
-    console.log("Obteniendo token general...");
-
-    this.usuarioTransversalService.registrar(usuario).subscribe(data => console.log(data));
-
-
-    this.usuarioTransversalService.getToken(usuario).subscribe(data => {
-      console.log(data)
-      sessionStorage.setItem(environment.TOKEN, data);
-    });
-
-    console.log("Obteniendo usuario general con el token general...")
-
-    //Se llama el método para obtener el usuario y para eso es que obtuvimos el token general
-
-    console.log("Convirtiendo usuario general en usuario de mototaxi...");
-
-    var usuarioMototaxi = Conversion.convertirAMototaxi(usuario);
-
-    this.clienteService.registrar(usuarioMototaxi).subscribe(data => console.log(data));
-
-    console.log("Obteniendo token mototaxi...");
-
-    this.clienteService.getToken(usuarioMototaxi).subscribe(data => console.log(data));
-
-
-    */
-
-    if(sessionStorage.getItem(environment.TOKEN) != undefined){
-
-      this.router.navigate(['/historialCliente']);
-    }
   }
 
   /**

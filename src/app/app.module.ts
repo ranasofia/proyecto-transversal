@@ -22,7 +22,107 @@ import { GenerarTokenRecuperarComponent } from './components/generar-token-recup
 import { HotelesPipe } from './pipes/hoteles.pipe';
 import { ProductoDialogComponent } from './components/producto-dialog/producto-dialog.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { UsuarioTransversalService } from './_service/usuario-transversal.service';
+import { Usuario } from './_model/Usuario';
+import { AdminService } from './_service/superfast_service/admin.service';
+import { Conversion } from './_model/Conversion';
+
+
+export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService) {
+  return {
+    tokenGetter: (request) => {
+
+      let tk: string;
+
+
+      if (!request.url.includes("usuario/login") && !request.url.includes("login/login") && !request.url.includes("cliente/logincliente") && !request.url.includes("registroLogin/postIngresoLogin") && !request.url.includes("Registrar/PostInsertar_Usuario")) {
+
+        const helper = new JwtHelperService();
+
+        let usuarioIncompleto = new Usuario();
+        usuarioIncompleto.correo = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).email;
+        usuarioIncompleto.usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).name;
+
+        if (request.url.includes('www.ubermotosisw.tk/api/usuario')) {
+
+          tk = sessionStorage.getItem(environment.TOKEN);
+
+          if (helper.isTokenExpired(tk)) {
+
+            usuarioTransversalService.getToken(usuarioIncompleto).subscribe(data => {
+
+              sessionStorage.setItem(environment.TOKEN, data);
+              tk = sessionStorage.getItem(environment.TOKEN);
+
+            })
+
+          }
+
+        } else if (request.url.includes('52.67.179.68')) {
+
+          tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
+
+          if (helper.isTokenExpired(tk)) {
+
+            usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+              var usuarioConvertido = Conversion.convertirASuperFast(data);
+
+              adminService.getToken(usuarioConvertido).subscribe(data => {
+
+                sessionStorage.setItem(environment.TOKEN_SUPERFAST, data);
+                tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
+
+              })
+
+            });
+          }
+
+        } else if (request.url.includes('18.224.240.8')) {
+          tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
+        } else if (request.url.includes('ubermotosisw')) {
+          tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+        } else if (request.url.includes('18.230.178.121')) {
+          tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
+        }
+
+      }
+
+      delay(1000);
+
+      return tk != null ? tk : '';
+
+    },
+    allowedDomains: [
+      'www.ubermotosisw.tk',
+      '18.224.240.8',
+      '18.230.178.121:8081',
+      '52.67.179.68:8081',
+    ],
+    disallowedRoutes: [
+      environment.UBER_MOTOS + '/usuario/login',
+      environment.UBER_MOTOS + '/usuario/registro',
+      environment.UBER_MOTOS + '/usuario/registro',
+      environment.HCCAUCHOS + '/login/login',
+      environment.HCCAUCHOS + '/Registro/Registro',
+      environment.HCCAUCHOS + '/Usuario/catalogo',
+      environment.UBER_MOTOS + '/cliente/logincliente',
+      environment.UBER_MOTOS + '/cliente/registrocliente',
+      environment.OCCIBANA + '/registroLogin/registroLogin',
+      environment.OCCIBANA + '/registroLogin/postRegistroUsuario',
+      environment.OCCIBANA + '/listas/postHotelesPrincipal',
+      environment.OCCIBANA + '/listas/getHotelesDestacados',
+      environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
+      environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
+      environment.SUPERFAST + '/admin/login',
+    ]
+  }
+}
+
+export function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 @NgModule({
   declarations: [
@@ -40,14 +140,14 @@ import { JwtModule } from '@auth0/angular-jwt';
     HotelesComponent,
     HotelesPipe,
     ProductoDialogComponent,
-    
-
     CatalogoHcCauchosComponent,
     HotelesPipe,
     ProductoDialogComponent,
     HotelesPipe,
     ProductoDialogComponent,
   ],
+
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -59,56 +159,18 @@ import { JwtModule } from '@auth0/angular-jwt';
     FormsModule,
     MatSnackBarModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: (request) => {
-          console.log('hola');
-          console.log(environment.UBER_MOTOS);
-          
-          let tk: string;
-          console.log('kajk');
 
-          if (request.url.includes('www.ubermotosisw.tk/api/usuario')) {
-            tk = sessionStorage.getItem(environment.TOKEN);
-          } else if (request.url.includes('52.67.179.68')) {
-            tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
-          } else if (request.url.includes('18.224.240.8')) {
-            tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
-          } else if (request.url.includes('ubermotosisw')) {
-            tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
-          } else if (request.url.includes('18.230.178.121')) {
-            tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
-          }
-          console.log(tk);
-          console.log(request);
-
-          return tk != null ? tk : '';
-        },
-        allowedDomains: [
-          'www.ubermotosisw.tk',
-          '18.224.240.8',
-          '18.230.178.121:8081',
-          '52.67.179.68:8081',
-        ],
-        disallowedRoutes: [
-          environment.UBER_MOTOS + '/usuario/login',
-          environment.UBER_MOTOS + '/usuario/registro',
-          environment.HCCAUCHOS + '/login/login',
-          environment.HCCAUCHOS + '/Registro/Registro',
-          environment.HCCAUCHOS + '/Usuario/catalogo',
-          environment.UBER_MOTOS + '/cliente/logincliente',
-          environment.UBER_MOTOS + '/cliente/registrocliente',
-          environment.OCCIBANA + '/registroLogin/registroLogin',
-          environment.OCCIBANA + '/registroLogin/postRegistroUsuario',
-          environment.OCCIBANA + '/listas/postHotelesPrincipal',
-          environment.OCCIBANA + '/listas/getHotelesDestacados',
-          environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
-          environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
-          environment.SUPERFAST + '/admin/login',
-        ],
-      },
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [UsuarioTransversalService, AdminService]
+      }
     }),
   ],
-  providers: [],
+
+
+  providers: [UsuarioTransversalService, AdminService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
