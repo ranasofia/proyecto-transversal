@@ -27,9 +27,10 @@ import { UsuarioTransversalService } from './_service/usuario-transversal.servic
 import { Usuario } from './_model/Usuario';
 import { AdminService } from './_service/superfast_service/admin.service';
 import { Conversion } from './_model/Conversion';
+import { ClienteService } from './_service/mototaxi_service/cliente.service';
 
 
-export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService) {
+export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
   return {
     tokenGetter: (request) => {
 
@@ -83,6 +84,23 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
           tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
         } else if (request.url.includes('ubermotosisw')) {
           tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+
+          if (helper.isTokenExpired(tk)) {
+
+            usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+              var usuarioConvertido = Conversion.convertirAMototaxi(data);
+
+              clienteService.getToken(usuarioConvertido).subscribe(data => {
+
+                sessionStorage.setItem(environment.TOKEN_MOTOTAXI, data);
+                tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+
+              })
+
+            });
+          }
+
         } else if (request.url.includes('18.230.178.121')) {
           tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
         }
@@ -163,13 +181,13 @@ export function delay(ms: number) {
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
-        deps: [UsuarioTransversalService, AdminService]
+        deps: [UsuarioTransversalService, AdminService, ClienteService]
       }
     }),
   ],
 
 
-  providers: [UsuarioTransversalService, AdminService],
+  providers: [UsuarioTransversalService, AdminService, ClienteService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -61,41 +61,29 @@ export class HistorialClienteComponent implements OnInit {
     // variable que obtiene el nombre del usuario a partir del token
     var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
-    var indicador = false;
 
-    /*do {
+    // Método que traer el historial del cliente
+    this.clienteService.getHistorial("", usuario).subscribe(data => {
 
-      // Método que traer el historial del cliente
-      this.clienteService.getHistorial("", usuario).subscribe(data => {
+      this.notificaciones = data;
+      this.dataSource = new MatTableDataSource(this.notificaciones);
+      this.dataSource.sort = this.sort;
 
-        this.notificaciones = data;
-        this.dataSource = new MatTableDataSource(this.notificaciones);
-        this.dataSource.sort = this.sort;
-        indicador = false;
-        // En caso de error
-      }, err => {
+      // En caso de error
+    }, err => {
 
-        //Vencimiento de token por ahora
-        indicador = true;
-        // Error 401
-        if (err.status == 401) {
 
-          /*var cliente = new UsuarioMototaxi(environment.USUARIO, environment.CONTRASENA);
+      // Error 401
+      if (err.status == 401) {
 
-          this.clienteService.getToken(cliente).subscribe(data => {
 
-            sessionStorage.setItem(environment.TOKEN, data);
+      }
 
-          });
+    });
 
-        }
 
-      });
-
-    }
-    while (indicador);
     // Nombres de la columnas de la tabla
-    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];*/
+    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];
 
     this.barraProgresoService.progressBar.next("2");
   }
@@ -107,6 +95,31 @@ export class HistorialClienteComponent implements OnInit {
    */
   dataFilter(filter: string) {
     // Filtrar con cadena de texto convertida en minúsculas
-    this.dataSource.filter = filter.trim().toLocaleLowerCase();
+
+    const helper = new JwtHelperService();
+
+    // variable que obtiene el nombre del usuario a partir del token
+    var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
+
+    this.clienteService.getHistorial("", usuario).subscribe(data => {
+
+      this.notificaciones = data;
+      this.dataSource = new MatTableDataSource(this.notificaciones);
+      this.dataSource.sort = this.sort;
+      this.dataSource.filter = filter.trim().toLocaleLowerCase();
+
+      // En caso de error
+    }, err => {
+
+
+      // Error 401
+      if (err.status == 401) {
+
+
+      }
+
+    });
+
+    //this.dataSource.filter = filter.trim().toLocaleLowerCase();
   }
 }
