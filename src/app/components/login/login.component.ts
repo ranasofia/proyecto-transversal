@@ -1,17 +1,11 @@
-import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
-import { RegistroHCService } from 'src/app/_service/hccauchos_service/registro-hc.service';
-import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
-import { RegistroLoginOccibanaService} from 'src/app/_service/occibana_service/registro-login-occibana.service';
+import { BarraProgresoService } from './../../_service/barra-progreso.service';
 import { UsuarioTransversalService } from 'src/app/_service/usuario-transversal.service';
-import { GuardianService } from 'src/app/_service/guardian.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/_model/Usuario';
-import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
-import {Conversion} from 'src/app/_model/Conversion';
 
 /**
  * Decorador de LoginComponent
@@ -58,6 +52,7 @@ export class LoginComponent implements OnInit {
    * @returns username y password con validaciones requeridas
    */
   createFormGroup() {
+
     return new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -67,6 +62,7 @@ export class LoginComponent implements OnInit {
         Validators.required
       ])
     });
+
   }
 
   /**
@@ -75,7 +71,7 @@ export class LoginComponent implements OnInit {
    * @param clienteService
    */
   constructor(private router: Router, private usuarioTransversalService: UsuarioTransversalService,
-    private registroHCService: RegistroHCService, private loginHCService: LoginHCService,private _snackBar: MatSnackBar, private guardianService: GuardianService) {
+   private _snackBar: MatSnackBar, private barraProgresoService: BarraProgresoService) {
     this.loginForm = this.createFormGroup();
   }
 
@@ -84,6 +80,7 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
 
+   
 
     /*
     var usuario = new Usuario();
@@ -125,17 +122,19 @@ export class LoginComponent implements OnInit {
 
     */
 
-    if(sessionStorage.getItem(environment.TOKEN) != undefined){
-
-      this.router.navigate(['/historialCliente']);
+   if(sessionStorage.getItem(environment.TOKEN) != undefined){
+     
+     this.router.navigate(['/historialCliente']);
     }
+ 
   }
 
   /**
    * Método que valida el formulario, obtiene el token y redirige a la página principal
    */
-  private iniciarSesion(){
+  private iniciarSesion() {
 
+    this.barraProgresoService.progressBar.next("1");
     if (this.loginForm.valid) {
 
       const value = this.loginForm.value;
@@ -147,25 +146,26 @@ export class LoginComponent implements OnInit {
       this.usuarioTransversalService.getToken(usuario).subscribe(data => {
 
         sessionStorage.setItem(environment.TOKEN, data);
+        this.barraProgresoService.progressBar.next("2");
         this.router.navigate(['/superfast/catalogo']);
 
       }, err => {
-
-        if(err.status == 400){
+        this.barraProgresoService.progressBar.next("2");
+        if (err.status == 400) {
 
           this._snackBar.open('El usuario y/o contraseña son incorrectos', 'Cancel  ', {
             duration: 3000
           });
           this.onResetForm();
 
-        }else {
+        } else {
           this.router.navigate([`/error/${err.status}/${err.statusText}`]);
           this.onResetForm();
         }
       });
 
     }
-
+    
   }
 
   /**

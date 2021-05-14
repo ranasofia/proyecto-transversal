@@ -1,3 +1,4 @@
+import { BarraProgresoService } from './../../../_service/barra-progreso.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
@@ -45,13 +46,15 @@ export class HistorialClienteComponent implements OnInit {
    * @param clienteService
    * @param router
    */
-  constructor(private clienteService: ClienteService, private router: Router) { }
+  constructor(private clienteService: ClienteService, private router: Router,
+    private barraProgresoService: BarraProgresoService) { }
 
   /**
    * Implementación que se ejecuta una vez se inicie el HistorialClienteComponent
    */
   ngOnInit(): void {
 
+    this.barraProgresoService.progressBar.next("1");
     // Constante que representa un objeto del módulo JwtHelperServic
     const helper = new JwtHelperService();
 
@@ -93,6 +96,8 @@ export class HistorialClienteComponent implements OnInit {
     while (indicador);
     // Nombres de la columnas de la tabla
     this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];*/
+
+    this.barraProgresoService.progressBar.next("2");
   }
 
   /**
