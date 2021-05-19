@@ -67,6 +67,11 @@ export class ClienteService {
     return this.http.delete(this.URL + "/eliminarToken?usuario=" + usuario);
   }
 
+  /**
+   * Permite registrar a un usuario en la aplicación Mototaxi Delxe
+   * @param usuario variable que posee al usuario con los datos a registrar
+   * @returns mensaje
+   */
   registrar(usuario: UsuarioMototaxi){
 
     return this.http.post<string>(this.URL + "/registrocliente", usuario);

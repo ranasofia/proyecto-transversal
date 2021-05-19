@@ -27,7 +27,7 @@
         </button>
       </div>
       <div *ngIf="token != undefined">
-        <button mat-menu-item style="cursor: pointer" routerLink="/mototaxi/historialCliente" (click)="sidenav.toggle()">
+        <button mat-menu-item style="cursor: pointer" routerLink="/mototaxi/solicitudServicio" (click)="sidenav.toggle()">
           <mat-icon>two_wheeler</mat-icon>
           <span>Mototaxi Deluxe</span>
         </button>
@@ -47,10 +47,26 @@
           <span>SuperFast</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item (click)="cerrarSesion(); sidenav.toggle()" routerLink="/login">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Cerrar Sesion</span>
-        </button>
+        <!--Cerrar Sesión-->
+        <!--<div *ngIf="token1 != undefined">-->
+          <button mat-menu-item (click)="cerrarSesionMt(); sidenav.toggle()" routerLink="/login">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Cerrar Sesion Mt</span>
+          </button>
+        <!--</div>
+        <div *ngIf="token2 != undefined">
+          <button mat-menu-item (click)="cerrarSesionSf(); sidenav.toggle()" routerLink="/login">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Cerrar Sesion Sf</span>
+          </button>
+        </div>
+        <div *ngIf="token3 != undefined">
+          <button mat-menu-item (click)="cerrarSesionOcc(); sidenav.toggle()" routerLink="/login">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Cerrar Sesion Occ</span>
+          </button>
+        </div>-->
+        <!--Cerrar Sesión-->
         <mat-divider></mat-divider>
       </div>
       <mat-divider></mat-divider>

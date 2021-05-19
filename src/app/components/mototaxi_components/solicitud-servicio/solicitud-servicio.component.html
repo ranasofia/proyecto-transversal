@@ -1,0 +1,192 @@
+<h1 class="tituloMototaxi">- BIENVENIDO A MOTOTAXI DELUXE -</h1>
+
+<h2 class="tituloServicio">SOLICITUD DE SERVICIO</h2>
+<div fxLayout="row wrap" fxLayoutGap="16px grid"> 
+    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
+        <table class="tablaRutas">
+            <tr>
+              <th>N°</th><th>Ruta</th><th>Distancia (km)</th>
+            </tr>
+            <tr>
+                <td>1</td><td>Centro - Pilaca & Vic.</td><td>9.5</td>
+            </tr>
+            <tr>
+                <td>2</td><td>Centro - Limonal & Vic.</td><td>6.9</td>
+            </tr>
+            <tr>
+                <td>3</td><td>Centro - La Granja & Vic.</td><td>7.7</td>
+            </tr>
+            <tr>
+                <td>4</td><td>Centro - Mesetas & Vic.</td><td>1.2</td>
+            </tr>
+            <tr>
+                <td>5</td><td>Centro - Santa Ana & Vic.</td><td>9.7</td>
+            </tr>
+            <tr>
+                <td>6</td><td>Centro - Las Mercedes & Vic.</td><td>6.4</td>
+            </tr>
+            <tr>
+                <td>7</td><td>Centro - San Bernardo & Vic.</td><td>12</td>
+            </tr>
+            <tr>
+                <td>8</td><td>Centro - Guane & Vic.</td><td>14</td>
+            </tr>
+            <tr>
+                <td>9</td><td>Pilaca - Limonal & Vic.</td><td>4.3</td>
+            <tr>
+            <tr>
+                <td>10</td><td>Pilaca - La Granja & Vic.</td><td>2.3</td>
+            </tr>
+            <tr>
+                <td>11</td><td>Pilaca - Mesetas & Vic.</td><td>7.9</td>
+            </tr>
+            <tr>
+                <td>12</td><td>Pilaca - Santa Ana & Vic.</td><td>15</td>
+            </tr>
+            <tr>
+                <td>13</td><td>Pilaca - Las Mercedes & Vic.</td><td>11</td>
+            </tr>
+            <tr>
+                <td>14</td><td>Pilaca - San Bernardo & Vic.</td><td>17</td>
+            </tr>
+            <tr>
+                <td>15</td><td>Pilaca - Guane & Vic.</td><td>19</td>
+            </tr>
+            <tr>
+                <td>16</td><td>Limonal - La Granja & Vic.</td><td>3.1</td>
+            </tr>
+            <tr>
+                <td>17</td><td>Limonal - Mesetas & Vic.</td><td>6.9</td>
+            </tr>
+            <tr>
+                <td>18</td><td>Limonal - Santa Ana & Vic.</td><td>12</td>
+            </tr>
+            <tr>
+                <td>19</td><td>Limonal - Las Mercedes & Vic.</td><td>9.3</td>
+            </tr>
+            <tr>
+                <td>20</td><td>Limonal - San Bernardo & Vic.</td><td>14</td>
+            </tr>
+            <tr>
+                <td>21</td><td>Limonal - Guane & Vic.</td><td>17</td>
+            </tr>
+            <tr>
+                <td>22</td><td>La Granja - Mesetas & Vic.</td><td>5.7</td>
+            </tr>
+            <tr>
+                <td>23</td><td>La Granja - Santa Ana & Vic.</td><td>13</td>
+            </tr>
+            <tr>
+                <td>24</td><td>La Granja - Las Mercedes & Vic.</td><td>10</td>
+            </tr>
+            <tr>
+                <td>25</td><td>La Granja - San Bernardo & Vic.</td><td>15</td>
+            </tr>
+            <tr>
+                <td>26</td><td>La Granja - Guane & Vic.</td><td>18</td>
+            </tr>
+            <tr>
+                <td>27</td><td>Mesetas - Santa Ana & Vic.</td><td>8.4</td>
+            </tr>
+            <tr>
+                <td>28</td><td>Mesetas - Las Mercedes & Vic.</td><td>5.2</td>
+            </tr>
+            <tr>
+                <td>29</td><td>Mesetas - San Bernardo & Vic.</td><td>10</td>
+            </tr>
+            <tr>
+                <td>30</td><td>Mesetas - Guane & Vic.</td><td>13</td>
+            </tr>
+            <tr>
+                <td>31</td><td>Santa Ana - Las Mercedes & Vic.</td><td>5</td>
+            </tr>
+            <tr>
+                <td>32</td><td>Santa Ana - San Bernardo & Vic.</td><td>4.6</td>
+            </tr>
+            <tr>
+                <td>33</td><td>Santa Ana - Guane & Vic.</td><td>12</td>
+            </tr>
+            <tr>
+                <td>34</td><td>Las Mercedes - San Bernardo & Vic.</td><td>3.1</td>
+            </tr>
+            <tr>
+                <td>35</td><td>Las Mercedes - Guane & Vic.</td><td>7.7</td>
+            </tr>
+            <tr>
+                <td>36</td><td>San Bernardo - Guane & Vic.</td><td>8.3</td>
+            </tr>
+        </table>
+    </div>
+    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" fxLayout="column" fxLayoutAlign="center center" class="servicio">
+        <h4>Destino</h4>
+        <mat-form-field appearance="fill">
+            <mat-icon matPrefix>location_on</mat-icon>
+          <mat-label>Elige tú destino</mat-label>
+          <mat-select [disabled]="disableSelect.value">
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <h4>Ubicacion</h4>
+        <mat-form-field appearance="fill">
+            <mat-icon matPrefix>sports_score</mat-icon>
+          <mat-label>Elige tú ubicacion</mat-label>
+          <mat-select [disabled]="disableSelect.value">
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <h4>Descripción</h4>
+        <mat-form-field appearance="outline" class="textArea">
+            <mat-icon matPrefix>description</mat-icon>
+            <textarea matInput rows="5"></textarea>
+        </mat-form-field>
+        <div>
+            <button mat-button class="boton">Calcular</button>
+        </div>
+        <br>
+        <h4>Kilometros</h4>
+        <mat-form-field appearance="outline">
+            <mat-icon matPrefix>run_circle</mat-icon>
+            <input type="text" matInput placeholder="Kilometros" disabled>
+        </mat-form-field>
+        <h4>Tarifa</h4>
+        <mat-form-field appearance="outline">
+            <mat-icon matPrefix>paid</mat-icon>
+            <input type="text" matInput placeholder="Tarifa" disabled>
+        </mat-form-field>
+        <h4>Pago</h4>
+        <mat-form-field appearance="fill">
+            <mat-icon matPrefix>credit_card</mat-icon>
+          <mat-label>Elige tú metodo de pago</mat-label>
+          <mat-select [disabled]="disableSelect.value">
+            <mat-option value="option1">Option 1</mat-option>
+            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+            <mat-option value="option3">Option 3</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <div >
+            <button mat-button class="boton" style="position: absolute;top: 177%;left:40%">Guardar</button>
+            <button mat-button class="boton" style="position: absolute;top: 177%;left:50%">Generar Factura</button>
+        </div>
+    </div>
+    <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
+        <table mat-table [dataSource]="dataSource" class="tablaConductor">
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Conductores </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef> Disponibles </th>
+              <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

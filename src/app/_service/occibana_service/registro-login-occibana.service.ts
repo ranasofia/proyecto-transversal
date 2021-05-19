@@ -19,6 +19,7 @@ export class RegistroLoginOccibanaService {
    * Posee el enlace para llamar a los servicios
    */
   private URL: string = environment.OCCIBANA +  '/registroLogin';
+  private URL2: string = environment.OCCIBANA +  '/perfil';
 
   /**
    * Da estado inicial e inyecta variables en ClienteService
@@ -45,6 +46,15 @@ export class RegistroLoginOccibanaService {
   getToken(usuario: UsuarioOccibana) {
 
     return this.http.post<string>(this.URL + "/postIngresoLogin", usuario);
+  }
+
+  /**
+   * Permite cerrar la sesión del usuario realizando las modificaciones de auditoria en la base de datos
+   * @param usuario variable que indica cuál usuario fue el que cerró sesión
+   * @returns mensaje
+   */
+  postCerrarSesion(usuario: UsuarioOccibana){
+    return this.http.post<string>(this.URL2 + "/postCerrarSesion", usuario);
   }
 
 }
