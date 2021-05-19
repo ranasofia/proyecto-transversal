@@ -31,9 +31,9 @@ export class RecuperarContrasenaService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Permite generar el token para recuperacion de contraseña
-   * @param token variable que posee el token
-   * @returns mensaje
+   * Permite generar el token para recuperación de contraseña
+   * @param usuario variable que se utiliza para obtener el correo para la recuperacion
+   * @returns 
    */
    generar(usuario: Usuario){
 
@@ -41,6 +41,11 @@ export class RecuperarContrasenaService {
 
   }
 
+  /**
+   * Permite recuperar la contraseña despues de generar el token
+   * @param usuario variable que se utiliza para obtener el token generado y la nueva contraseña
+   * @returns 
+   */
   recuperar(usuario:any){
 
     return this.http.put(this.URL + "/RecuperarContraseña",usuario);

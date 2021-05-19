@@ -30,7 +30,7 @@ export class UsuarioTransversalService {
    }
 
    /**
-   * Permite registrar a un usuario en la aplicación de HCCauchos
+   * Permite registrar a un usuario en la aplicación local
    * @param usuario variable que posee al usuario con los datos a registrar
    * @returns mensaje
    */
@@ -51,6 +51,11 @@ export class UsuarioTransversalService {
 
    }
 
+   /**
+    * Permite obtener el registro del usuario logueado
+    * @param usuario variable que tiene todos los datos del usuario
+    * @returns 
+    */
    getUsuario(usuario: Usuario){
 
     return this.http.post<Usuario>(this.URL + "/mostrarPerfil", usuario);

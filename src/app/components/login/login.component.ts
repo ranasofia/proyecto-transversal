@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
 
         sessionStorage.setItem(environment.TOKEN, data);
         this.barraProgresoService.progressBar.next("2");
-        this.router.navigate(['/superfast/catalogo']);
+        this.router.navigate(['/mototaxi/solicitudServicio']);
 
       }, err => {
         this.barraProgresoService.progressBar.next("2");
