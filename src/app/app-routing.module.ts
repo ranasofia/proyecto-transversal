@@ -1,3 +1,4 @@
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
@@ -11,6 +12,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HistorialClienteComponent } from './components/mototaxi_components/historial-cliente/historial-cliente.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { GuardianService } from './_service/guardian.service';
+import { registerLocaleData } from '@angular/common';
 
 
 const routes: Routes = [

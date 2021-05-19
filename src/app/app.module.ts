@@ -28,6 +28,7 @@ import { Usuario } from './_model/Usuario';
 import { AdminService } from './_service/superfast_service/admin.service';
 import { Conversion } from './_model/Conversion';
 import { ClienteService } from './_service/mototaxi_service/cliente.service';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
@@ -163,6 +164,7 @@ export function delay(ms: number) {
     ProductoDialogComponent,
     HotelesPipe,
     ProductoDialogComponent,
+    PerfilUsuarioComponent,
   ],
 
 
