@@ -1,0 +1,75 @@
+<h1>BIENVENIDO A OCCIBANA</h1>
+
+<section class="detalle-hotel">
+  <div
+    class="detalle-container"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <!--<ng-container *ngFor="let hotel of hotelesFiltrados">
+              </ng-container>-->
+    <mat-card class="detalle-hotel-card">
+      <mat-card-header>
+        <mat-card-title>{{ hotelSeleccionado.nombre }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="row">
+        <p class="hoteles-card-img">
+          <img
+            mat-card-image
+            src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png"
+          />
+        </p>
+
+        <div class="hoteles-card-descrip">
+          <ul>
+            <li>Municipio: {{ hotelSeleccionado.municipio }}</li>
+
+            <li>Zona: {{ hotelSeleccionado.zona }}</li>
+
+            <li>
+              Precio noche básico: COP {{ hotelSeleccionado.precionoche }}
+            </li>
+
+            <li>
+              Precio noche doble: COP {{ hotelSeleccionado.precioNocheDoble }}
+            </li>
+
+            <li>
+              Precio noche premium: COP
+              {{ hotelSeleccionado.precioNochePremium }}
+            </li>
+
+            <li>Calificación:</li>
+
+            <li>Dirección: {{ hotelSeleccionado.direccion }}</li>
+
+            <li>
+              Descripción y servicios: {{ hotelSeleccionado.descripcion }}
+            </li>
+
+            <li>Condiciones físicas: {{ hotelSeleccionado.condicion }}</li>
+
+            <li>HORARIOS DE REGISTRO</li>
+
+            <li>Check-out: {{ hotelSeleccionado.checkout }}</li>
+
+            <li>Check-in: {{ hotelSeleccionado.checkin }}</li>
+
+            <li>
+              Habitaciones disponibles:
+              {{ hotelSeleccionado.numHabitDisponibles }}
+            </li>
+          </ul>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<section class="panel-detalle-hotel" fxLayoutAlign="center center">
+  <mat-tab-group>
+    <mat-tab label="Descripción y Reservas"> Descripción y reservas </mat-tab>
+    <mat-tab label="Puntuar y Comentar"> Puntuar y comentar </mat-tab>
+    <mat-tab label="Comentarios"> Comentarios </mat-tab>
+  </mat-tab-group>
+</section>

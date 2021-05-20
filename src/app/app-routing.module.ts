@@ -1,3 +1,4 @@
+import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
@@ -27,7 +28,9 @@ const routes: Routes = [
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
     {path: 'historialCliente', component: HistorialClienteComponent}
   ],canActivate:[GuardianService]},
-  {path: 'occibana/hoteles', component: HotelesComponent, canActivate:[GuardianService]},
+  {path: 'occibana/hoteles', component: HotelesComponent, children: [
+    {path: 'detallesHotel', component: DetallesHotelComponent}
+  ], canActivate:[GuardianService]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 

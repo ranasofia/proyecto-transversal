@@ -12,6 +12,8 @@ import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
 })
 export class HotelService {
 
+  hotelSeleccionado: Hotel;
+
   /**
    * Enlace para llamar a los servicios de Occibana
    */

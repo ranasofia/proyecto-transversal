@@ -31,6 +31,7 @@ import { ClienteService } from './_service/mototaxi_service/cliente.service';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
+import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
   return {
@@ -166,7 +167,8 @@ export function delay(ms: number) {
     HotelesPipe,
     ProductoDialogComponent,
     PerfilUsuarioComponent,
-    SolicitudServicioComponent
+    SolicitudServicioComponent,
+    DetallesHotelComponent
   ],
 
 
