@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { Hotel } from 'src/app/_model/occibana_model/Hotel';
 import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
+import { Comentario } from 'src/app/_model/occibana_model/Comentario';
 
 /**
  * Decorador de Injectable
@@ -41,6 +42,15 @@ export class HotelService {
    */
   getHotelesDestacados() {
     return this.http.get<Hotel[]>(this.URL + "/getHotelesDestacados");
+  }
+
+  /**
+   * Metodo que obtiene el listado de comentarios que posee un hotel
+   * @param hotel 
+   * @returns 
+   */
+  postObtenerComentarios(hotel: Hotel) {
+    return this.http.post<Comentario[]>(this.URL + "/postObtenerComentarios", hotel);
   }
 
 }
