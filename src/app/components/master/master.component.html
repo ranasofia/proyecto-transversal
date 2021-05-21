@@ -47,26 +47,10 @@
           <span>SuperFast</span>
         </button>
         <mat-divider></mat-divider>
-        <!--Cerrar Sesión-->
-        <!--<div *ngIf="token1 != undefined">-->
-          <button mat-menu-item (click)="cerrarSesionMt(); sidenav.toggle()" routerLink="/login">
+          <button mat-menu-item (click)="cerrarSesion(); sidenav.toggle()" routerLink="/login">
             <mat-icon>exit_to_app</mat-icon>
-            <span>Cerrar Sesion Mt</span>
+            <span>Cerrar Sesion</span>
           </button>
-        <!--</div>
-        <div *ngIf="token2 != undefined">
-          <button mat-menu-item (click)="cerrarSesionSf(); sidenav.toggle()" routerLink="/login">
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Cerrar Sesion Sf</span>
-          </button>
-        </div>
-        <div *ngIf="token3 != undefined">
-          <button mat-menu-item (click)="cerrarSesionOcc(); sidenav.toggle()" routerLink="/login">
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Cerrar Sesion Occ</span>
-          </button>
-        </div>-->
-        <!--Cerrar Sesión-->
         <mat-divider></mat-divider>
       </div>
       <mat-divider></mat-divider>
@@ -77,4 +61,3 @@
     <router-outlet></router-outlet>
   </mat-sidenav-container>
 </div>
-

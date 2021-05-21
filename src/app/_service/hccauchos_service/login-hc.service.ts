@@ -36,4 +36,13 @@ export class LoginHCService {
     return this.http.post<string>(this.URL + "/login", usuario);
   }
 
+  /**
+   * Permite cerrar la sesión del usuario realizando las modificaciones de auditoria en la base de datos
+   * @param usuario variable que indica cuál usuario fue el que cerró sesión
+   * @returns mensaje
+   */
+  putCerrarSesion(usuario: UsuarioHCCauchos){
+
+    return this.http.put(this.URL + "/cerrarsesion", usuario);
+  }
 }

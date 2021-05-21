@@ -13,22 +13,18 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./solicitud-servicio.component.css']
 })
 export class SolicitudServicioComponent implements OnInit {
-
   /**
    * Indica cuantas columnas tiene la grilla en la que se posiciona cada producto
    */
   gridColumns = 3;
-
   /**
    * Objeto de tipo de array de la clase Conductor
    */
   conductor: Conductor[];
-
   /**
    * Objeto que instancia una tabla de Angular Material cuyo tipo de dato es Conductor
    */
-   dataSource = new MatTableDataSource<Conductor>();
-
+  dataSource = new MatTableDataSource<Conductor>();
   /**
    * Objeto array de tipo string el cual representa las columnas de la tabla
    */
@@ -65,5 +61,4 @@ export class SolicitudServicioComponent implements OnInit {
 
     this.barraProgresoService.progressBar.next("2");
   }
-
 }
