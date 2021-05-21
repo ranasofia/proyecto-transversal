@@ -19,7 +19,6 @@ import { CatalogoSuperFastComponent } from './components/superfast_components/ca
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
-import { HotelesPipe } from './pipes/hoteles.pipe';
 import { ProductoDialogComponent } from './components/producto-dialog/producto-dialog.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -160,12 +159,9 @@ export function delay(ms: number) {
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
     HotelesComponent,
-    HotelesPipe,
     ProductoDialogComponent,
     CatalogoHcCauchosComponent,
-    HotelesPipe,
     ProductoDialogComponent,
-    HotelesPipe,
     ProductoDialogComponent,
     PerfilUsuarioComponent,
     SolicitudServicioComponent,
