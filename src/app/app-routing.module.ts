@@ -25,18 +25,11 @@ const routes: Routes = [
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
-<<<<<<< HEAD
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
-  {path: 'occibana/hoteles', component: HotelesComponent, canActivate:[GuardianService]},
-=======
-  {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
-    {path: 'historialCliente', component: HistorialClienteComponent}
-  ],canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel', component: DetallesHotelComponent}
   ], canActivate:[GuardianService]},
->>>>>>> ec44748a8cbea21acc7ade2ac9f32ad82985d29e
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 

@@ -43,6 +43,6 @@ export class LoginHCService {
    */
   putCerrarSesion(usuario: UsuarioHCCauchos){
 
-    return this.http.put(this.URL + "/cerrarsesion", usuario);
+    return this.http.put(this.URL + "/cerrarcesion", usuario);
   }
 }

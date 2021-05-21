@@ -1,3 +1,4 @@
+import { UsuarioHCCauchos } from './../../_model/hccauchos_model/UsuarioHCCauchos';
 import { LoginHCService } from './../../_service/hccauchos_service/login-hc.service';
 import { UsuarioOccibana } from './../../_model/occibana_model/UsuarioOccibana';
 import { RegistroLoginOccibanaService } from './../../_service/occibana_service/registro-login-occibana.service';
@@ -124,10 +125,11 @@ export class MasterComponent implements OnInit, DoCheck {
       /**
         * Variable que decodifica el toquen y captura el usuario logueado
         */
-      var nombreHcCauchos = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN_HCCAUCHOS))["nameid"];
+      var nombreHcCauchos = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN_HCCAUCHOS)).nameid;
+      var usuarioHc = new UsuarioHCCauchos();
+      usuarioHc.user_id = nombreHcCauchos;
       //Metodo que cierra sesion en HC Cauchos
-      this.loginHCService.putCerrarSesion(nombreHcCauchos).subscribe();
-      console.log(nombreHcCauchos);
+      this.loginHCService.putCerrarSesion(usuarioHc).subscribe();
       console.log("HC Cauchos Cerró Sesion");
       //Remueve el token de la sesion
       sessionStorage.removeItem(environment.TOKEN_HCCAUCHOS);

@@ -111,7 +111,6 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       }
 
       delay(1000);
-
       return tk != null ? tk : '';
 
     },
@@ -128,6 +127,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
       environment.HCCAUCHOS + '/Usuario/catalogo',
+      environment.HCCAUCHOS + '/login/cerrarcesion',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',
       environment.OCCIBANA + '/registroLogin/registroLogin',
@@ -137,6 +137,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
       environment.SUPERFAST + '/admin/login',
+      environment.SUPERFAST + '/CerrarSession/PostPage_Load'
     ]
   }
 }
