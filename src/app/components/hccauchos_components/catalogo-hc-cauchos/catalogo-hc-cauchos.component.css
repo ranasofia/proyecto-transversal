@@ -3,7 +3,7 @@ mat-toolbar {
     justify-content: space-between;
 }
 
-mat-card-title{
+mat-card-title{ 
   text-align: center;
   font-size: 50px;
   margin-bottom: 50px;

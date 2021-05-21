@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit } from '@angular/core';
 import { Hotel } from 'src/app/_model/occibana_model/Hotel';
@@ -44,7 +44,11 @@ export class HotelesComponent implements OnInit {
    * @param hotelesService Instancia de HotelService
    * @param router  Instancia de Router
    */
-  constructor(private hotelesService: HotelService, private router: Router) { }
+  constructor(
+    private hotelesService: HotelService, 
+    private router: Router,
+    public route: ActivatedRoute
+    ) { }
 
   /**
    * Implementación que se ejecuta una vez se inicie el HotelesComponent
@@ -85,6 +89,11 @@ export class HotelesComponent implements OnInit {
     dataSource.filter = hotelFiltred.trim().toLocaleLowerCase();
 
     this.hotelesFiltrados = dataSource.filteredData;
+  }
+
+  verDetalleHotel(hotelSelect: Hotel): void {
+    this.hotelesService.hotelSeleccionado = hotelSelect;
+    this.router.navigate(['occibana/hoteles/detallesHotel'])
   }
 
 }

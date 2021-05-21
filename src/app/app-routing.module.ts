@@ -1,3 +1,5 @@
+import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
@@ -12,19 +14,29 @@ import { Routes, RouterModule } from '@angular/router';
 import { HistorialClienteComponent } from './components/mototaxi_components/historial-cliente/historial-cliente.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { GuardianService } from './_service/guardian.service';
+import { registerLocaleData } from '@angular/common';
 
 
 const routes: Routes = [
 
-  {path: '', component: RegistroComponent},   
+  {path: '', component: PerfilUsuarioComponent},   
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
+<<<<<<< HEAD
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, canActivate:[GuardianService]},
+=======
+  {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
+    {path: 'historialCliente', component: HistorialClienteComponent}
+  ],canActivate:[GuardianService]},
+  {path: 'occibana/hoteles', component: HotelesComponent, children: [
+    {path: 'detallesHotel', component: DetallesHotelComponent}
+  ], canActivate:[GuardianService]},
+>>>>>>> ec44748a8cbea21acc7ade2ac9f32ad82985d29e
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 

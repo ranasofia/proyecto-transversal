@@ -19,7 +19,6 @@ import { CatalogoSuperFastComponent } from './components/superfast_components/ca
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
-import { HotelesPipe } from './pipes/hoteles.pipe';
 import { ProductoDialogComponent } from './components/producto-dialog/producto-dialog.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -28,7 +27,11 @@ import { Usuario } from './_model/Usuario';
 import { AdminService } from './_service/superfast_service/admin.service';
 import { Conversion } from './_model/Conversion';
 import { ClienteService } from './_service/mototaxi_service/cliente.service';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
+import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
+import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
   return {
@@ -156,14 +159,14 @@ export function delay(ms: number) {
     GenerarTokenRecuperarComponent,
     CatalogoSuperFastComponent,
     HotelesComponent,
-    HotelesPipe,
     ProductoDialogComponent,
     CatalogoHcCauchosComponent,
-    HotelesPipe,
     ProductoDialogComponent,
-    HotelesPipe,
     ProductoDialogComponent,
-    SolicitudServicioComponent
+    PerfilUsuarioComponent,
+    SolicitudServicioComponent,
+    DetallesHotelComponent,
+    HccauchosCarritoComponent
   ],
 
 
