@@ -1,3 +1,4 @@
+import { UsuarioTransversalService } from './../../../_service/usuario-transversal.service';
 import { BarraProgresoService } from './../../../_service/barra-progreso.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -8,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { Usuario } from 'src/app/_model/Usuario';
 
 /**
  * Decorador de HistorialClienteComponent
@@ -22,15 +24,17 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
  * Clase de HistorialClienteComponent
  */
 export class HistorialClienteComponent implements OnInit {
+  usuario:Usuario[];
+  dataSource = new MatTableDataSource<Usuario>();
 
   /**
    * Objeto de tipo de array de la clase Notificacion
    */
-  notificaciones: Notificacion[];
+  //notificaciones: Notificacion[];
   /**
    * Objeto que instancia una tabla de Angular Material cuyo tipo de dato es Notificacion
    */
-  dataSource = new MatTableDataSource<Notificacion>();
+  //dataSource = new MatTableDataSource<Notificacion>();
   /**
    * Objeto array de tipo string el cual representa las columnas de la tabla
    */
@@ -47,7 +51,7 @@ export class HistorialClienteComponent implements OnInit {
    * @param router
    */
   constructor(private clienteService: ClienteService, private router: Router,
-    private barraProgresoService: BarraProgresoService) { }
+    private barraProgresoService: BarraProgresoService,private usuarioTransversal: UsuarioTransversalService) { }
 
   /**
    * Implementación que se ejecuta una vez se inicie el HistorialClienteComponent
@@ -59,11 +63,11 @@ export class HistorialClienteComponent implements OnInit {
     const helper = new JwtHelperService();
 
     // variable que obtiene el nombre del usuario a partir del token
-    var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
+    //var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
 
     // Método que traer el historial del cliente
-    this.clienteService.getHistorial("", usuario).subscribe(data => {
+    /*this.clienteService.getHistorial("", usuario).subscribe(data => {
 
       this.notificaciones = data;
       this.dataSource = new MatTableDataSource(this.notificaciones);
@@ -83,7 +87,15 @@ export class HistorialClienteComponent implements OnInit {
 
 
     // Nombres de la columnas de la tabla
-    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];
+    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];*/
+    
+    this.usuarioTransversal.getMostrarRegistros().subscribe(data=>{
+       this.usuario=data;
+       this.dataSource=new MatTableDataSource(this.usuario);
+    });
+    
+    this.displayedColumns=['nombre','apellido','celular','correo','usuario','contrasena','fechaNacimiento','direccion','cedula'];
+
 
     this.barraProgresoService.progressBar.next("2");
   }
@@ -93,7 +105,7 @@ export class HistorialClienteComponent implements OnInit {
    * que se obtiene a partir del input de búsqueda
    * @param filter cadena de texto de llega desde el input de búsqueda
    */
-  dataFilter(filter: string) {
+  /*dataFilter(filter: string) {
     // Filtrar con cadena de texto convertida en minúsculas
 
     const helper = new JwtHelperService();
@@ -121,5 +133,5 @@ export class HistorialClienteComponent implements OnInit {
     });
 
     //this.dataSource.filter = filter.trim().toLocaleLowerCase();
-  }
+  }*/
 }

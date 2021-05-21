@@ -1,62 +1,62 @@
 
 <div class="recuperar-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
-    <!--Imagen-->
-  <div class="recuperar-image">
-    <img src="assets/images/login.svg">
-  </div>
+  <!--Imagen-->
+<div class="recuperar-image">
+  <img src="assets/images/login.svg">
+</div>
 
-  <form [formGroup]="recuperarForm" (ngSubmit)="recuperar($event)">
-    <mat-card class="recuperar-card" fxLayout="column" fxLayoutAlign="center center">
-      <!--Cabecera de la card-->
-      <mat-card-header>
-        <mat-card-title> CAMBIAR CONTRASEÑA </mat-card-title>
-      </mat-card-header>
-      <!--Contenido de la card-->
-      <mat-card-content>
-            <!--Input correo electrónico-->
+<form [formGroup]="recuperarForm" (ngSubmit)="recuperar($event)">
+  <mat-card class="recuperar-card" fxLayout="column" fxLayoutAlign="center center">
+    <!--Cabecera de la card-->
+    <mat-card-header>
+      <mat-card-title> CAMBIAR CONTRASEÑA </mat-card-title>
+    </mat-card-header>
+    <!--Contenido de la card-->
+    <mat-card-content>
+          <!--Input correo electrónico-->
 
-            <mat-form-field appearance="outline" class="recuperar-full-width">
-              <input type="text" matInput placeholder="Token" formControlName="token">
-              <mat-icon matPrefix>vpn_key</mat-icon>
+          <mat-form-field appearance="outline" class="recuperar-full-width">
+            <input type="text" matInput placeholder="Token" formControlName="token">
+            <mat-icon matPrefix>vpn_key</mat-icon>
 
-              <mat-error *ngIf="recuperarForm.controls.token.hasError('required')">
+            <mat-error *ngIf="recuperarForm.controls.token.hasError('required')">
+                Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="recuperar-full-width">
+              <mat-label> Contraseña </mat-label>
+              <input [type]="hide ? 'password' : 'text'" matInput
+                  formControlName="password" placeholder="Contraseña">
+              <mat-icon matPrefix>lock_outline</mat-icon>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+             <mat-error *ngIf="recuperarForm.controls.password.hasError('required')">
                   Este campo es<strong> obligatorio</strong>
               </mat-error>
-            </mat-form-field>
+              <mat-error *ngIf="recuperarForm.controls.password.hasError('minlength')">
+                Debe tener como mínimo 8 caracteres
+            </mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline" class="recuperar-full-width">
-                <mat-label> Contraseña </mat-label>
-                <input [type]="hide ? 'password' : 'text'" matInput
-                    formControlName="password" placeholder="Contraseña">
-                <mat-icon matPrefix>lock_outline</mat-icon>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-               <mat-error *ngIf="recuperarForm.controls.password.hasError('required')">
-                    Este campo es<strong> obligatorio</strong>
-                </mat-error>
-                <mat-error *ngIf="recuperarForm.controls.password.hasError('minlength')">
-                  Debe tener como mínimo 8 caracteres
+          <mat-form-field appearance="outline" class="recuperar-full-width">
+              <mat-label> Repita su contraseña </mat-label>
+              <input [type]="hide2 ? 'password' : 'text'" matInput
+                  formControlName="validacionContrasena" placeholder="Repita su contraseña">
+              <mat-icon matPrefix>lock_outline</mat-icon>
+              <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="recuperarForm.controls.validacionContrasena.hasError('required')">
+                  Este campo es<strong> obligatorio</strong>
               </mat-error>
-            </mat-form-field>
+              <mat-error *ngIf="recuperarForm.controls.validacionContrasena.hasError('minlength')">
+                Debe tener como mínimo 8 caracteres
+            </mat-error>
+              <mat-error *ngIf="recuperarForm.controls.validacionContrasena.hasError('verificacionClave')">
+                Las contraseñas no coinciden
+            </mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline" class="recuperar-full-width">
-                <mat-label> Repita su contraseña </mat-label>
-                <input [type]="hide2 ? 'password' : 'text'" matInput
-                    formControlName="validacionContrasena" placeholder="Repita su contraseña">
-                <mat-icon matPrefix>lock_outline</mat-icon>
-                <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-error *ngIf="recuperarForm.controls.validacionContrasena.hasError('required')">
-                    Este campo es<strong> obligatorio</strong>
-                </mat-error>
-                <mat-error *ngIf="recuperarForm.controls.validacionContrasena.hasError('minlength')">
-                  Debe tener como mínimo 8 caracteres
-              </mat-error>
-                <mat-error *ngIf="recuperarForm.controls.validacionContrasena.hasError('verificacionClave')">
-                  Las contraseñas no coinciden
-              </mat-error>
-            </mat-form-field>
-
-          <button mat-raised-button color="primary">Enviar</button>
-      </mat-card-content>
-    </mat-card>
-  </form>
+        <button mat-raised-button color="primary">Enviar</button>
+    </mat-card-content>
+  </mat-card>
+</form>
 </div>
