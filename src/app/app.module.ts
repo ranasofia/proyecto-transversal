@@ -32,6 +32,7 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
 
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
+import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
   return {
@@ -168,7 +169,8 @@ export function delay(ms: number) {
     ProductoDialogComponent,
     PerfilUsuarioComponent,
     SolicitudServicioComponent,
-    DetallesHotelComponent
+    DetallesHotelComponent,
+    HccauchosCarritoComponent
   ],
 
 
