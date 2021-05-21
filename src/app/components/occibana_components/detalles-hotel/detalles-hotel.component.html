@@ -39,7 +39,7 @@
               {{ hotelSeleccionado.precioNochePremium }}
             </li>
 
-            <li>Calificación:</li>
+            <li>Calificación:</li>  
 
             <li>Dirección: {{ hotelSeleccionado.direccion }}</li>
 
@@ -68,8 +68,63 @@
 
 <section class="panel-detalle-hotel" fxLayoutAlign="center center">
   <mat-tab-group>
-    <mat-tab label="Descripción y Reservas"> Descripción y reservas </mat-tab>
-    <mat-tab label="Puntuar y Comentar"> Puntuar y comentar </mat-tab>
-    <mat-tab label="Comentarios"> Comentarios </mat-tab>
+    <mat-tab label="Descripción y Reservas">
+      <h2>¡Que esperas para reservar tu hotel en este instante!</h2>
+      <h3>Habitaciones</h3>
+      <mat-accordion class="seccion-reservas" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Personal data </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon>local_hotel</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <p>Número de personas:</p>
+          <p>Número de camas:</p>
+          <p>Baños por habitación:</p>
+          <p>Precio por noche: COP </p>
+
+          <button mat-flat-button color="warn">¡RESERVAR AHORA!</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-tab>
+
+    <mat-tab label="Puntuar y Comentar"> 
+      <h2>{{ hotelSeleccionado.nombre }}</h2>
+      <h3>{{ nombreUsuario }}</h3>
+
+      <h2>Calificación</h2>
+
+      <h2>Opinión</h2>
+      <mat-form-field>
+        <mat-label>Escriba aquí el comentario</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+
+    </mat-tab>
+
+    <mat-tab label="Comentarios">
+      <h2>{{ hotelSeleccionado.nombre }}</h2>
+      <h3>Comentarios recientes</h3>
+      <ng-container *ngFor="let comentario of comentarios">
+        <mat-accordion class="seccion-comentarios" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ comentario.nombre_usuario }}
+              </mat-panel-title>
+              <mat-panel-description>
+                <mat-icon>comment</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p>{{ comentario.fecha_comentario }}</p>
+            <p>{{ comentario.comentario }}</p>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
+    </mat-tab>
   </mat-tab-group>
 </section>
