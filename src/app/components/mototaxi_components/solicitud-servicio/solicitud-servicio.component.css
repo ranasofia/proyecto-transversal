@@ -62,3 +62,17 @@
 .textArea{
     width: 400px;
 }
+
+.botonGuardar{
+    background-color: burlywood;
+    color:black;
+    position: absolute;
+    left: 40%;
+}
+
+.botonFactura{
+    background-color: burlywood;
+    color:black;
+    position: absolute;
+    left: 50%;
+}

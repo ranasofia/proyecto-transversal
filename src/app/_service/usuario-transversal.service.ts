@@ -98,4 +98,6 @@ export class UsuarioTransversalService {
     return this.http.put(this.URL+"/eliminar?idUsuario="+idUsuario,null);
    }
 
+   
+
 }
