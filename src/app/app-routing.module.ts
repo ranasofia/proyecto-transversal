@@ -1,3 +1,5 @@
+import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
@@ -30,6 +32,9 @@ const routes: Routes = [
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel', component: DetallesHotelComponent}
   ], canActivate:[GuardianService]},
+  {path: 'usuarios', component: UsuariosComponent, children: [
+    {path: 'accionesUsuarios', component: FormularioUsuariosComponent}
+  ]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 
