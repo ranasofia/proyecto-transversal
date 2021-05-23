@@ -1,4 +1,4 @@
 export class Tarifa{
-    destino:number;
-    ubicacion:number;
+    kilometro: number;
+    tarifa: number;
 }

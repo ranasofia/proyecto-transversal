@@ -14,9 +14,13 @@
   
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav style="width: 200px">
-      <!--<img src="assets/Logo.png" width="120" style="margin-left: 20px;">-->
       <mat-divider></mat-divider>
       <div *ngIf="token == undefined">
+        <br>
+        <div>
+          <mat-label class="user">Bienvenido</mat-label>
+        </div>
+        <br>
         <button mat-menu-item style="cursor: pointer" routerLink="/login" (click)="sidenav.toggle()">
           <mat-icon>perm_identity</mat-icon>
           <span>Login</span>
@@ -27,6 +31,14 @@
         </button>
       </div>
       <div *ngIf="token != undefined">
+        <br>
+        <div>
+          <img src="assets/images/user.png" class="imagen">
+        </div>
+        <div>
+          <mat-label class="user">{{user}}</mat-label>
+        </div>
+        <br>
         <button mat-menu-item style="cursor: pointer" routerLink="/mototaxi/solicitudServicio" (click)="sidenav.toggle()">
           <mat-icon>two_wheeler</mat-icon>
           <span>Mototaxi Deluxe</span>

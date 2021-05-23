@@ -10,6 +10,7 @@ import { FormControl, FormGroup ,FormGroupDirective,NgForm,Validators} from '@an
 import { Destino } from 'src/app/_model/mototaxi_model/Destino';
 import { Pago } from 'src/app/_model/mototaxi_model/Pago';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Tarifa } from 'src/app/_model/mototaxi_model/Tarifa';
 
 @Component({
   selector: 'app-solicitud-servicio',
@@ -26,21 +27,28 @@ export class SolicitudServicioComponent implements OnInit {
    */
   conductor: Conductor[];
   /**
+   * Objeto que instancia una tabla de Angular Material cuyo tipo de dato es Conductor
+   */
+  dataSource = new MatTableDataSource<Conductor>();
+  /**
+   * Objeto array de tipo string el cual representa las columnas de la tabla
+   */
+  displayedColumns: string[];
+  /**
    * objeto que inicializa las variables del los select
    */
   selectDestino:Destino={id:0,lugarDestino:'',lugarUbicacion:''};
   selectUbicacion:Destino={id:0,lugarDestino:'',lugarUbicacion:''};
   selectPago:Pago={id:0,descripcion:''};
-/**
- * objeto de tipo de array de la clase Destino
- */
+  /**
+    * objeto de tipo de array de la clase Destino
+    */
   destino:Destino[];
   ubicacion:Destino[];
- /**
- * objeto de tipo de array de la clase Pago
- */
+  /**
+    * objeto de tipo de array de la clase Pago
+    */
   pago:Pago[];
-
   /**
    * Variable que almacena el resultado de kilometro
    */
@@ -49,34 +57,24 @@ export class SolicitudServicioComponent implements OnInit {
    * Variable que almacena el resultado de tarifa
    */
   tarifa:number;
-  /**
-   * Objeto que instancia una tabla de Angular Material cuyo tipo de dato es Conductor
-   */
-  dataSource = new MatTableDataSource<Conductor>();
 
-  /**
-   * Objeto array de tipo string el cual representa las columnas de la tabla
-   */
-  displayedColumns: string[];
+  formCalcular= new FormGroup({
+    destino1: new FormControl('', [
+      Validators.required,
+    ]),
+    ubicacion1: new FormControl('', [
+      Validators.required,
+    ]),
+    descripcion:new FormControl,
+  });
 
+  formSolicitar = new FormGroup({
+    pag: new FormControl('', [
+      Validators.required,
+    ])
+  });
 
-    formCalcular= new FormGroup({
-      destino1: new FormControl('', [
-        Validators.required,
-      ] ),
-      ubicacion1: new FormControl('', [
-        Validators.required,
-      ] ),
-      descripcion:new FormControl,
-    });
-
-    formSolicitar = new FormGroup({
-      kil: new FormControl,
-      taf: new FormControl,
-      pag: new FormControl('', [
-        Validators.required,
-      ])
-    })
+  disableSelect = new FormControl(false);
 
   /**
   * Permite indicar el número de columnas de la grilla según el caso
@@ -85,19 +83,12 @@ export class SolicitudServicioComponent implements OnInit {
     this.gridColumns = this.gridColumns === 3 ? 4 : 3;
   }
 
-  disableSelect = new FormControl(false);
-
   constructor(private servicioSolicitudService: ServicioSolicitudService,
     private barraProgresoService:BarraProgresoService,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.barraProgresoService.progressBar.next("1");
-    // Constante que representa un objeto del módulo JwtHelperServic
-    const helper = new JwtHelperService();
-
-    // variable que obtiene el nombre del usuario a partir del token
-    var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
     //Metodo que traer el listado de conductores disponibles
     this.servicioSolicitudService.getConductoresDisponibles().subscribe(data => {
@@ -110,69 +101,58 @@ export class SolicitudServicioComponent implements OnInit {
 
     this.servicioSolicitudService.getDestino().subscribe(data=>{
       this.destino=data;
-   
     });
     
     this.servicioSolicitudService.getUbicacion().subscribe(data=>{
       this.ubicacion=data;
-   
     });
 
     this.servicioSolicitudService.getPago().subscribe(data=>{
       this.pago=data;
-   
     });
 
     this.barraProgresoService.progressBar.next("2");
   }
 
-  calcular(values){
-    var obj = {Destino:values.destino1,Ubicacion:values.ubicacion1};
+  calcular(){
+    if(this.formCalcular.valid){
+      var obj = {Destino:this.formCalcular.controls["destino1"].value,
+                Ubicacion:this.formCalcular.controls["ubicacion1"].value};
 
-    this.servicioSolicitudService.postCalcular(obj).subscribe(data => {
-      this.kilometros = data["kilometros"];
-      this.tarifa = data["pago"];
-    });
-  }
-
-  solicitarServicio(values){
-    //if (this.formCalcular.valid && this.formSolicitar.valid) {
-    var notificacion = new Notificacion();
-
-    notificacion.idDestino = values.destino1;
-    notificacion.idUbicacion = values.ubicacion1;
-    notificacion.descripcionServicio = values.descripcion;
-    notificacion.kilometro = values.kil;
-    notificacion.tarifa = values.taf;
-    notificacion.pago = values.pag;
-
-    this.servicioSolicitudService.postSolicitarServicio(notificacion).subscribe(data => {
-      console.log(notificacion);
-      this._snackBar.open('Por favor espera a que uno de nuestros conductores acepte tu solictud, Recibirá un correo notificando su servicio', 'Cancel  ', {
-        duration: 3000
+      this.servicioSolicitudService.postCalcular(obj).subscribe(data => {
+        this.kilometros = data["kilometros"];
+        this.tarifa = data["pago"];
       });
-      this.onResetForm();
-    });
-  //}
+    }
   }
 
-  /**
-   * Método que borra las cadenas de texto del formulario de solicitud servicio
-   */
-   onResetForm() {
-    this.formCalcular.reset();
-    this.formSolicitar.reset();
-  }
+  solicitarServicio(){
+    // Constante que representa un objeto del módulo JwtHelperServic
+    const helper = new JwtHelperService();
 
-  /**
-   * Permite iniciar el proceso de solicitud servicio
-   * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
-   */
-   solicitar(event: Event): any {
-    event.preventDefault();
+    // variable que obtiene el nombre del usuario a partir del token
+    var user = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
+    if(this.formSolicitar.valid){
+      var obj = {idDestino:this.formCalcular.controls["destino1"].value,
+                idUbicacion:this.formCalcular.controls["ubicacion1"].value,
+                descripcionServicio:this.formCalcular.controls["descripcion"].value,
+                kilometros:this.kilometros,
+                tarifa:this.tarifa,
+                pago:this.formSolicitar.controls["pag"].value,
+                usuario:user};
 
-    this.solicitarServicio(event);
-
+      this.servicioSolicitudService.postSolicitarServicio(obj).subscribe(data => {
+        this._snackBar.open('Por favor espera a que uno de nuestros conductores acepte tu solictud, Recibirá un correo notificando su servicio', 'Cancel  ', {
+          duration: 5000
+        });
+      }, err => {
+        if(err.status == 400){
+          this._snackBar.open('Ya realizó un servicio con estos datos o faltan por ingresar, verifique', 'Cancel', {
+            duration: 3000
+          });
+        }
+      });
+    }
   }
 }
 

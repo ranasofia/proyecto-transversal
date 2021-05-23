@@ -37,10 +37,10 @@ export class ServicioSolicitudService {
     return this.http.get<Conductor[]>(this.URL + "/conductoresDisponibles");
   }
 
- /**
-  * Permite obtener el listado de destino 
-  * @returns 
-  */
+  /**
+    * Permite obtener el listado de destino 
+    * @returns 
+    */
   getDestino(){
     return this.http.get<Destino[]>(this.URL+"/destinos");
   }
@@ -52,7 +52,6 @@ export class ServicioSolicitudService {
   getUbicacion(){
     return this.http.get<Destino[]>(this.URL+"/ubicaciones");
   }
-
 
   /**
    * Permite obtener lel listado de pago
@@ -76,8 +75,7 @@ export class ServicioSolicitudService {
    * @param notificacion Objeto que contiene todos los atributos de notificacion
    * @returns 
    */
-  postSolicitarServicio(notificacion: Notificacion){
+  postSolicitarServicio(notificacion: any){
     return this.http.post(this.URL + "/solicitudServicio", notificacion);
   }
-
 }
