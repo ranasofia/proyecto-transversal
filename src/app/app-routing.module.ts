@@ -1,3 +1,5 @@
+import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
+import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
@@ -19,7 +21,7 @@ import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
 
-  {path: '', component: PerfilUsuarioComponent},   
+  {path: '', component: HccauchosCarritoComponent},   
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
