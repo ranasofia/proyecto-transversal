@@ -1,4 +1,3 @@
-import { TablaUsuario, TablaUsuarioComponent } from './components/usuarios/tabla-usuario/tabla-usuario.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
@@ -24,7 +23,7 @@ import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
 
-  {path: '', component: TablaUsuarioComponent},   
+  {path: '', component: UsuariosComponent},   
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
@@ -36,7 +35,8 @@ const routes: Routes = [
     {path: 'detallesHotel', component: DetallesHotelComponent}
   ], canActivate:[GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
-    {path: 'accionesUsuarios', component: FormularioUsuariosComponent}
+    {path: 'registrar', component: FormularioUsuariosComponent},
+    {path: 'modificar/:id', component: FormularioUsuariosComponent}
   ]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}

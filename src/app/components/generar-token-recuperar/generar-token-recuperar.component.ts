@@ -59,28 +59,19 @@ export class GenerarTokenRecuperarComponent implements OnInit {
       var usuario=new Usuario();
 
       usuario.correo=this.generarForm.controls["email"].value;
-
       this.recuperar.generar(usuario).subscribe(data => {
-        if(data["mensaje"] == "alert('Recibira un correo con el link para continuar con el proceso')"){
-          this._snackBar.open('Recibira un correo con el link para continuar con el proceso', 'Cancel  ', {
-            duration: 3000
+          this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+            duration: 5000
           });
           this.router.navigate(['/recuperarContrasena']);
-        }else if(data["mensaje"] == "El usuario no exite o está sancionado, por favor verifique"){
-          this._snackBar.open('El correo no existe o el usuario está sancionado, por favor verifique', 'Cancel  ', {
-            duration: 3000
-          });
-        }else if(data["mensaje"] == "Token Vencido"){
-          this._snackBar.open('Token Vencido', 'Cancel  ', {
-            duration: 3000
+      }, err =>{
+        if(err.status == 400){
+          this._snackBar.open('No exite un usuario con este correo está inactivo o el token ha vencido, por favor verifique', 'Cancel  ', {
+            duration: 5000
           });
         }
       });
     }
-  }
-
-  onResetForm() {
-    this.generarForm.reset();
   }
 
   /**

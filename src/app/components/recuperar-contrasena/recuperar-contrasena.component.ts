@@ -76,7 +76,7 @@ export class RecuperarContrasenaComponent implements OnInit {
     var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, Contrasena:this.recuperarForm.controls["password"].value};
 
     this.recuperarc.recuperar(obj).subscribe(data => {
-      this._snackBar.open('contraseña actualizada ', 'Cancel  ', {
+      this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
         duration: 3000
       });
       this.router.navigate(['/login']);

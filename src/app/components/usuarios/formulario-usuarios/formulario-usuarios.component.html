@@ -1,1 +1,113 @@
-<p>fomulario-usuarios works!</p>
+<div class="formuser-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
+    <form [formGroup]="userForm" (ngSubmit)="aceptar($event)">
+        <mat-card class="userForm-card" fxLayout="column" fxLayoutAlign="center center">
+            <!--Cabecera de la card-->
+            <mat-card-header>
+                <mat-card-title> FORMULARIO DE USUARIO </mat-card-title>
+            </mat-card-header>
+
+            <!--Contenido de la card-->
+            <mat-card-content>
+                <input type="hidden" name="id" formControlName="id"/>
+
+                <div class="userForm-image">
+                    <img src="assets/images/userForm.svg" />
+                </div>
+
+                <div>
+                    <mat-form-field class="userForm-full-width">
+                        <input type="text" matInput placeholder="Nombre" required formControlName="nombre" />
+                        <mat-icon matPrefix>portrait</mat-icon>
+                        <mat-error *ngIf="userForm.controls.nombre.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <input type="text" matInput placeholder="Apellido" required formControlName="apellido" />
+                        <mat-icon matPrefix>portrait</mat-icon>
+                        <mat-error *ngIf="userForm.controls.apellido.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <mat-label> Correo electrónico </mat-label>
+                        <input type="email" matInput placeholder="Ingresa tu correo" required formControlName="email" />
+                        <mat-icon matPrefix>contact_mail</mat-icon>
+                        <mat-error *ngIf="
+                userForm.controls.email.hasError('email') &&
+                !userForm.controls.email.hasError('required')
+              ">
+                            Digita un correo electrónico válido
+                        </mat-error>
+                        <mat-error *ngIf="userForm.controls.email.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <input type="text" matInput placeholder="Usuario" required formControlName="username" />
+                        <mat-icon matPrefix>account_circle</mat-icon>
+                        <mat-error *ngIf="userForm.controls.username.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <input type="date" matInput placeholder="Fecha de nacimiento" required
+                            formControlName="fechaNacimiento" />
+                        <mat-icon matPrefix>date_range</mat-icon>
+                        <mat-error *ngIf="userForm.controls.fechaNacimiento.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                        <mat-error *ngIf="userForm.controls.fechaNacimiento.hasError('edadValida')">
+                            La edad mínima debe ser 15 años
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <input type="text" matInput placeholder="Identificación" required
+                            formControlName="identificacion" />
+                        <mat-icon matPrefix>badge</mat-icon>
+                        <mat-error *ngIf="userForm.controls.identificacion.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                        <mat-error *ngIf="userForm.controls.identificacion.hasError('minlength')">
+                            Debe tener como mínimo 5 números
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <input type="text" matInput placeholder="Celular" required formControlName="celular" />
+                        <mat-icon matPrefix>phone</mat-icon>
+                        <mat-error *ngIf="userForm.controls.celular.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                        <mat-error *ngIf="userForm.controls.celular.hasError('minlength')">
+                            Debe tener como mínimo 7 números
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="userForm-full-width">
+                        <input type="text" matInput placeholder="Dirección" required formControlName="direccion" />
+                        <mat-icon matPrefix>home</mat-icon>
+                        <mat-error *ngIf="userForm.controls.direccion.hasError('required')">
+                            Este campo es<strong> obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button color="primary">
+                    ACEPTAR
+                    <mat-icon matPrefix>done</mat-icon>
+                </button>
+
+                <button mat-raised-button routerLink="/usuarios">
+                    CANCELAR
+                    <mat-icon matPrefix>close</mat-icon>
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

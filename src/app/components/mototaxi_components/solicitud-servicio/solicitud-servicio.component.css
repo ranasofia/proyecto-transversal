@@ -61,6 +61,7 @@
 
 .textArea{
     width: 400px;
+    font-size: 15px;
 }
 
 .botonGuardar{
@@ -75,4 +76,41 @@
     color:black;
     position: absolute;
     left: 50%;
+}
+
+.text{
+    font-size: 15px;
+    text-align: center;
+}
+
+.imagen{
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    width: 18%;
+    height: auto;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.buttonHistorial {
+    background-color:burlywood;
+    display: flex;
+    justify-content: center;
+    margin-right: 8px;
+    position: absolute;
+    top: 8%;
+    left: 85%;
+    width: 70px;
+    height: 70px;
+}
+
+.fab{
+    margin-top: -6.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px !important;
+    width: 50px !important;
+    font-size: 50px !important;
 }

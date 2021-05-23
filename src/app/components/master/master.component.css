@@ -22,3 +22,19 @@
     z-index: 99;
     color: aliceblue;
 }
+
+.imagen{
+    width: 120px;
+    margin-left: 35px;
+}
+
+.user{
+    font-family: cursive;
+    font-size: x-large;
+    font-style: unset;
+    font-weight: bold;
+    text-shadow: 7px 4px 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

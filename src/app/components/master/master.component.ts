@@ -28,6 +28,7 @@ export class MasterComponent implements OnInit, DoCheck {
   token2: string;
   token3: string;
   token4: string;
+  user: any;
 
   /**
    * Variable de tipo string en donde se le asigna un color a la barra de progreso
@@ -59,14 +60,24 @@ export class MasterComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-
   }
 
   /**
    * Implementacion que se ejecuta cada vez que se verifican las propiedades de entrada del componente
    */
-  ngDoCheck(): void {
+  ngDoCheck(): void {   
     this.token = sessionStorage.getItem(environment.TOKEN);
+
+    if(this.token != undefined){
+      /**
+        * Constante para decodificar el token
+        */
+      const HELPER = new JwtHelperService(); 
+      /**
+        * Variable que decodifica el toquen y captura el usuario logueado
+        */
+      this.user = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
+    }
     this.token1 = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
     this.token2 = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
     this.token3 = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
@@ -81,7 +92,7 @@ export class MasterComponent implements OnInit, DoCheck {
      * Constante para decodificar el token
      */
     const HELPER = new JwtHelperService();  
-
+    
     if(this.token1 != undefined){
       /**
         * Variable que decodifica el toquen y captura el usuario logueado
