@@ -1,3 +1,4 @@
+<div [hidden]="route.children.length !== 0">
 <h1 class="titulo"> Tabla usuario </h1>
 
 <mat-form-field>
@@ -77,3 +78,5 @@
 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
+<router-outlet></router-outlet>
