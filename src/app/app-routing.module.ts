@@ -35,7 +35,8 @@ const routes: Routes = [
     {path: 'detallesHotel', component: DetallesHotelComponent}
   ], canActivate:[GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
-    {path: 'accionesUsuarios', component: FormularioUsuariosComponent}
+    {path: 'registrar', component: FormularioUsuariosComponent},
+    {path: 'modificar/:id', component: FormularioUsuariosComponent}
   ]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
