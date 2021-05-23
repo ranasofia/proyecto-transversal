@@ -35,85 +35,131 @@ import { HccauchosCarritoComponent } from './components/hccauchos_componets/hcca
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
+import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
+import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
 
-export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
+export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
+  adminService: AdminService,
+  clienteService: ClienteService,
+  loginHCService: LoginHCService,
+  registroLoginOccibanaService: RegistroLoginOccibanaService) {
   return {
-    tokenGetter: (request) => {
+    tokenGetter: async (request) => {
 
       let tk: string;
 
+      const helper = new JwtHelperService();
 
-      if (!request.url.includes("usuario/login") && !request.url.includes("login/login") && !request.url.includes("cliente/logincliente") && !request.url.includes("registroLogin/postIngresoLogin") && !request.url.includes("Registrar/PostInsertar_Usuario")) {
+      let usuarioIncompleto = new Usuario();
+      usuarioIncompleto.correo = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).email;
+      usuarioIncompleto.usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).name;
 
-        const helper = new JwtHelperService();
+      if (request.url.includes('www.ubermotosisw.tk/api/usuario')) {
 
-        let usuarioIncompleto = new Usuario();
-        usuarioIncompleto.correo = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).email;
-        usuarioIncompleto.usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).name;
+        tk = sessionStorage.getItem(environment.TOKEN);
 
-        if (request.url.includes('www.ubermotosisw.tk/api/usuario')) {
+        /*if (helper.isTokenExpired(tk)) {
 
-          tk = sessionStorage.getItem(environment.TOKEN);
+          usuarioTransversalService.getToken(usuarioIncompleto).subscribe(data => {
 
-          if (helper.isTokenExpired(tk)) {
+            sessionStorage.setItem(environment.TOKEN, data);
+            tk = sessionStorage.getItem(environment.TOKEN);
 
-            usuarioTransversalService.getToken(usuarioIncompleto).subscribe(data => {
+          })
 
-              sessionStorage.setItem(environment.TOKEN, data);
-              tk = sessionStorage.getItem(environment.TOKEN);
+        }*/
+
+      } else if (request.url.includes('52.67.179.68')) {
+
+        tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
+
+        if (helper.isTokenExpired(tk)) {
+
+          usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+            var usuarioConvertido = Conversion.convertirASuperFast(data);
+
+            adminService.getToken(usuarioConvertido).subscribe(data => {
+
+              sessionStorage.setItem(environment.TOKEN_SUPERFAST, data);
+              tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
 
             })
 
-          }
-
-        } else if (request.url.includes('52.67.179.68')) {
-
-          tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
-
-          if (helper.isTokenExpired(tk)) {
-
-            usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
-
-              var usuarioConvertido = Conversion.convertirASuperFast(data);
-
-              adminService.getToken(usuarioConvertido).subscribe(data => {
-
-                sessionStorage.setItem(environment.TOKEN_SUPERFAST, data);
-                tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
-
-              })
-
-            });
-          }
-
-        } else if (request.url.includes('18.224.240.8')) {
-          tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
-        } else if (request.url.includes('ubermotosisw')) {
-          tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
-
-          if (helper.isTokenExpired(tk)) {
-
-            usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
-
-              var usuarioConvertido = Conversion.convertirAMototaxi(data);
-
-              clienteService.getToken(usuarioConvertido).subscribe(data => {
-
-                sessionStorage.setItem(environment.TOKEN_MOTOTAXI, data);
-                tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
-
-              })
-
-            });
-          }
-
-        } else if (request.url.includes('18.230.178.121')) {
-          tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
+          });
         }
 
+      } else if (request.url.includes('18.224.240.8')) {
+
+        tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
+
+        if (helper.isTokenExpired(tk)) {
+
+          usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+            var usuarioConvertido = Conversion.convertirAHCCauchos(data);
+
+              loginHCService.getToken(usuarioConvertido).subscribe(data => {
+
+              sessionStorage.setItem(environment.TOKEN_HCCAUCHOS, data);
+              tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
+
+            })
+
+          });
+        }
+
+      } else if (request.url.includes('ubermotosisw')) {
+        tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+
+        if (helper.isTokenExpired(tk)) {
+
+          usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+            var usuarioConvertido = Conversion.convertirAMototaxi(data);
+
+            clienteService.getToken(usuarioConvertido).subscribe(data => {
+
+              sessionStorage.setItem(environment.TOKEN_MOTOTAXI, data);
+              tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+
+            })
+
+          });
+        }
+
+      } else if (request.url.includes('18.230.178.121')) {
+        tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
+
+        if (helper.isTokenExpired(tk)) {
+
+          usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+            var usuarioConvertido = Conversion.convertirAOccibana(data);
+
+              registroLoginOccibanaService.getToken(usuarioConvertido).subscribe(data => {
+
+              sessionStorage.setItem(environment.TOKEN_OCCIBANA, data);
+              tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
+
+            })
+
+          });
+        }
       }
 
-      delay(1000);
+
+      for (var i = 0; i < 10; i++) {
+
+        if(tk != undefined){
+
+          break;
+
+        }
+
+        await delay(300);
+
+      }
       return tk != null ? tk : '';
 
     },
@@ -194,14 +240,14 @@ export function delay(ms: number) {
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
-        deps: [UsuarioTransversalService, AdminService, ClienteService]
+        deps: [UsuarioTransversalService, AdminService, ClienteService, LoginHCService, RegistroLoginOccibanaService]
       }
     }),
     NgbModule
   ],
 
 
-  providers: [UsuarioTransversalService, AdminService, ClienteService],
+  providers: [UsuarioTransversalService, AdminService, ClienteService, LoginHCService, RegistroLoginOccibanaService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

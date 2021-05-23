@@ -31,7 +31,7 @@ export class GuardianService implements CanActivate {
               private barraProgresoService: BarraProgresoService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-  
+
     this.barraProgresoService.progressBar.next("1");
     await this.delay(2000);
     this.barraProgresoService.progressBar.next("2");
@@ -60,7 +60,7 @@ export class GuardianService implements CanActivate {
 
     });
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 1; i <= 100; i++) {
 
       await this.delay(300);
 
@@ -109,7 +109,6 @@ export class GuardianService implements CanActivate {
 
               servicioRegistroConvertido = this.registroHCService;
 
-
             } else if (url.toLocaleLowerCase().includes("occibana")) {
 
               servicioRegistroConvertido = this.registroLoginOccibanaService;
@@ -136,7 +135,7 @@ export class GuardianService implements CanActivate {
 
         })
 
-        for (var j = 0; j < 3; j++) {
+        for (var j = 1; j <= 100; j++) {
 
           await this.delay(300);
 
@@ -146,7 +145,7 @@ export class GuardianService implements CanActivate {
 
           }
 
-          if (i == 2) {
+          if (j == 100) {
 
             this.router.navigate(['login']);
 
@@ -158,7 +157,7 @@ export class GuardianService implements CanActivate {
 
       }
 
-      if (i == 2) {
+      if (i == 100) {
 
         this.router.navigate(['login']);
 
