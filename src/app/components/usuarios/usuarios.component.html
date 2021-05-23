@@ -1,4 +1,79 @@
-<div [hidden]="route.children.length !== 0">
-    <p>AQUI VA LA TABLA DE USUARIOS</p>
-</div>
-<router-outlet></router-outlet>
+<h1 class="titulo"> Tabla usuario </h1>
+
+<mat-form-field>
+  <mat-icon matPrefix>search</mat-icon>
+  <input type="text" placeholder="Buscar " matInput (keyup)="dataFilter($event.target.value)">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="encabezado">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="conductor">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Conductor </th>
+    <td mat-cell *matCellDef="let element"> {{element.conductor}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <!--<ng-container matColumnDef="nombreCl">
+    <th mat-header-cell *matHeaderCellDef> Nombre Cliente </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombreCl}} </td>
+  </ng-container>-->
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+    <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="celular">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Celular </th>
+    <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="correo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+    <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="usuario">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+    <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fechaNacimiento">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de nacimiento </th>
+    <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento | date:'dd-MM-yyyy'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="direccion">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+    <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cedula">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cedúla </th>
+    <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+    <mat-cell *matCellDef="let num of [1,2]">
+        <button mat-button color="primary"  >
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button color="accent">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-cell>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

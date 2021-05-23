@@ -83,10 +83,11 @@ export class UsuarioTransversalService {
    /**
     * Permite modificar los registros del usuario
     * @param idUsuario variabe que especifica el usuario a modificar 
+    * @param usuario objeto de la clase 
     * @returns 
     */
-   putModificarRegistro(idUsuario:number){
-     return this.http.put(this.URL+"/actualizarPerfil?idUsuario="+idUsuario,null);
+   putModificarRegistro(idUsuario:number,usuario:Usuario){
+     return this.http.put(this.URL+"/actualizarRegistro?idUsuario="+idUsuario,usuario);
    }
 
    /**

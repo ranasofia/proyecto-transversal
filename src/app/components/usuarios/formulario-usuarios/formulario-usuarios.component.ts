@@ -1,3 +1,5 @@
+import { BarraProgresoService } from './../../../_service/barra-progreso.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from './../../../_model/Usuario';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioTransversalService } from './../../../_service/usuario-transversal.service';
@@ -8,40 +10,63 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-formulario-usuarios',
   templateUrl: './formulario-usuarios.component.html',
-  styleUrls: ['./formulario-usuarios.component.css']
+  styleUrls: ['./formulario-usuarios.component.css'],
 })
 export class FormularioUsuariosComponent implements OnInit {
-
+  
   /**
- * Variable que indica el formulario del usuario
- */
+   * Variable que indica el formulario del usuario
+   */
   userForm: FormGroup;
 
+  /**
+   * Variable que almacena el id de usuario que se va a editar
+   */
   idUsuario: number;
 
+  /**
+   * Variable que valida que si está editando o registrando a un usuario
+   */
   isEdicion: boolean;
 
+  /**
+   * Variable que almacena el objeto de usuario cargado
+   */
   usuario: Usuario;
 
+  /**
+   * Constructor que incializa los servicios 
+   * @param trasversalService 
+   * @param router 
+   * @param route 
+   * @param snackBar 
+   * @param barraProgreso 
+   */
   constructor(
     private trasversalService: UsuarioTransversalService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private barraProgreso: BarraProgresoService
+  ) {
 
+  }
+
+  /**
+   * Implementación que se ejecuta una vez se inicia el FormularioUsuariosComponent
+   */
   ngOnInit(): void {
     this.userForm = this.createFormGroup();
-
-    this.route.params.subscribe(params => {
+    // Toma el id que viene desde la url
+    this.route.params.subscribe((params) => {
       let id = params.id;
 
       this.isEdicion = params.id != null;
-
-      if(this.isEdicion) {
+      // En caso de edición, se manda el id que viene desde la url
+      if (this.isEdicion) {
         this.obtenerUsuario(id);
       }
-
-    })
+    });
   }
 
   /**
@@ -50,102 +75,166 @@ export class FormularioUsuariosComponent implements OnInit {
    */
   createFormGroup() {
     return new FormGroup({
-
       id: new FormControl(),
-      
-      nombre: new FormControl('', [
-        Validators.required
-      ]),
-      apellido: new FormControl('', [
-        Validators.required
-      ]),
-      email: new FormControl('', [
+
+      nombre: new FormControl(
+        '', [
+          Validators.required
+        ]),
+      apellido: new FormControl(
+        '', [
+          Validators.required
+        ]),
+      email: new FormControl(
+        '', [
+          Validators.required, 
+          Validators.email
+        ]),
+      username: new FormControl(
+        '', [
+          Validators.required
+        ]),
+      fechaNacimiento: new FormControl(
+        '', [
         Validators.required,
-        Validators.email
+        ValidacionesPropias.edadValida,
       ]),
-      username: new FormControl('', [
-        Validators.required
-      ]),
-      fechaNacimiento: new FormControl('', [
+      identificacion: new FormControl(
+        '', [
         Validators.required,
-        ValidacionesPropias.edadValida
+        Validators.minLength(5),
       ]),
-      identificacion: new FormControl('', [
+      celular: new FormControl(
+        '', [
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(7),
       ]),
-      celular: new FormControl('', [
-        Validators.required,
-        Validators.minLength(7)
-      ]),
-      direccion: new FormControl('', [
-        Validators.required
-      ]),
+      direccion: new FormControl(
+        '', [
+          Validators.required
+        ]),
     });
   }
 
+  /**
+   * Método que carga el objeto usuario con los datos que vienen del formulario
+   */
   cargarDatosUsuario(): void {
-    let usuario: Usuario
+    let usuario: Usuario;
     usuario.idUsuario = null;
     usuario.nombre = this.userForm.value['nombre'];
     usuario.apellido = this.userForm.value['apellido'];
     usuario.cedula = this.userForm.value['celular'];
     usuario.correo = this.userForm.value['email'];
     usuario.usuario = this.userForm.value['username'];
-    usuario.contrasena = "123456";
+    usuario.contrasena = '123456';
     usuario.fechaNacimiento = this.userForm.value['fechaNacimiento'];
     usuario.direccion = this.userForm.value['direccion'];
     usuario.cedula = this.userForm.value['identificacion'];
 
+    // Si esta editando un usuario
     if (this.isEdicion) {
-      this.editarUsuario(usuario.idUsuario);
+      this.editarUsuario(usuario.idUsuario, usuario);
     } else {
+      // Si está registrando a un usuario nuevo
       this.registrarUsuario(usuario);
     }
   }
 
   /**
- * 
- * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
- */
+   *
+   * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
+   */
   aceptar(event: Event): any {
     event.preventDefault();
     this.cargarDatosUsuario();
   }
 
+  /**
+   * Método que obtiene el usuario por medio de su id y lo cargar en el formulario
+   * @param idUsuario 
+   */
   obtenerUsuario(idUsuario: number): void {
+    this.barraProgreso.progressBar.next("1");
     this.trasversalService.getMostrarUsuario(idUsuario).subscribe(
-      data => {
-        this.usuario = data as Usuario
+      (data) => {
+        this.usuario = data as Usuario;
         this.userForm = new FormGroup({
-          //Cargar los datos del formulario a editar
+          id: new FormControl(this.usuario.idUsuario),
+
+          nombre: new FormControl(this.usuario.nombre, [Validators.required]),
+          apellido: new FormControl(this.usuario.apellido, [Validators.required]),
+          email: new FormControl(this.usuario.correo, [Validators.required, Validators.email]),
+          username: new FormControl(this.usuario.usuario, [Validators.required]),
+          fechaNacimiento: new FormControl(this.usuario.fechaNacimiento, [
+            Validators.required,
+            ValidacionesPropias.edadValida,
+          ]),
+          identificacion: new FormControl(this.usuario.cedula, [
+            Validators.required,
+            Validators.minLength(5),
+          ]),
+          celular: new FormControl(this.usuario.celular, [
+            Validators.required,
+            Validators.minLength(7),
+          ]),
+          direccion: new FormControl(this.usuario.direccion, [Validators.required]),
+        });
+        this.barraProgreso.progressBar.next("2");
+      },
+      (err) => {
+        this.barraProgreso.progressBar.next("2");
+        this.snackBar.open('Ocurrió un error al cargar al usuario', 'Cerrar', {
+          duration: 3000
         })
-      }, 
-      err => {
-
       }
-    )
+    );
   }
 
+  /**
+   * Método que registra a un nuevo usuario 
+   * @param usuarioNuevo 
+   */
   registrarUsuario(usuarioNuevo: Usuario): void {
+    this.barraProgreso.progressBar.next("1");
     this.trasversalService.registrar(usuarioNuevo).subscribe(
-      data => {
-
+      (data) => {
+        this.snackBar.open('Usuario creado satisfactoriamente', 'Cerrar', {
+          duration: 3000
+        })
+        this.barraProgreso.progressBar.next("2");
+        this.router.navigate(['registrar']);
       },
-      error => {
-
+      (error) => {
+        this.barraProgreso.progressBar.next("2");
+        this.snackBar.open('Ocurrió un error al registrar al usuario', 'Cerrar', {
+          duration: 3000
+        })
       }
-    )
+    );
   }
 
-  editarUsuario(idUsuario: number): void {
-    this.trasversalService.putModificarRegistro(idUsuario).subscribe(
-      data => {
-
+  /**
+   * Método que edita la información de un usuario
+   * @param idUsuario 
+   * @param usuario 
+   */
+  editarUsuario(idUsuario: number, usuario: Usuario): void {
+    this.barraProgreso.progressBar.next("1");
+    this.trasversalService.putModificarRegistro(idUsuario, usuario).subscribe(
+      (data) => {
+        this.snackBar.open('El usuario ha sido editado satisfacotriamente', 'Cerrar', {
+          duration: 3000
+        })
+        this.barraProgreso.progressBar.next("2");
+        this.router.navigate(['registrar']);
       },
-      error => {
-
+      (error) => {
+        this.barraProgreso.progressBar.next("2");
+        this.snackBar.open('Ocurrió un error al editar al usuario', 'Cerrar', {
+          duration: 3000
+        })
       }
-    )
+    );
   }
 }
