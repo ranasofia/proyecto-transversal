@@ -59,10 +59,15 @@
           <span>SuperFast</span>
         </button>
         <mat-divider></mat-divider>
+        <button mat-menu-item style="cursor: pointer" routerLink="/usuarios" (click)="sidenav.toggle()">
+          <mat-icon>people</mat-icon>
+          <span>Nuestros usuarios</span>
+        </button>
+        <mat-divider></mat-divider>
           <button mat-menu-item (click)="cerrarSesion(); sidenav.toggle()" routerLink="/login">
             <mat-icon>exit_to_app</mat-icon>
             <span>Cerrar Sesion</span>
-          </button>
+          </button> 
         <mat-divider></mat-divider>
       </div>
       <mat-divider></mat-divider>

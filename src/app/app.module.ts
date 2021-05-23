@@ -29,10 +29,12 @@ import { AdminService } from './_service/superfast_service/admin.service';
 import { Conversion } from './_model/Conversion';
 import { ClienteService } from './_service/mototaxi_service/cliente.service';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
-
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
+import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
   return {
@@ -170,7 +172,10 @@ export function delay(ms: number) {
     PerfilUsuarioComponent,
     SolicitudServicioComponent,
     DetallesHotelComponent,
-    HccauchosCarritoComponent
+    HccauchosCarritoComponent,
+    SuperfastCarritoComponent,
+    UsuariosComponent,
+    FormularioUsuariosComponent
   ],
 
 

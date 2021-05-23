@@ -1,0 +1,128 @@
+h2{
+ font-size: 50px;
+ margin-top: 5%;
+ margin-bottom: 3%;
+ text-align: center;
+ text-shadow: 2px 2px #E91E63;
+}
+.carrito-container{
+    width: 100%;
+    height: 600px;
+ 
+}
+.boton-vaciar button{
+    width: 30%;
+    margin-left: 35%;
+    text-align: center;
+    height: 50px;
+}
+.card-producto{
+    display: flex;
+    width: 70%;
+    height: 350px;
+    background-color:grey;
+    margin-left: 15%;
+    margin-top: 2%;
+    border-radius: 15px;
+}
+
+.img-producto{
+    display: flex;
+    width: 40%;
+    height: 350px;
+
+
+}
+.img-producto img{
+    text-align: center;
+    width: 80%;
+    height: 250px;
+    margin-top: 12%;
+    margin-left: 10%;
+    border: solid;
+    border-color: black;
+
+}
+.descripcion-producto{
+
+    flex-wrap: wrap;
+    width: 100%;
+    height: 300px;
+
+}
+.btn-productos{
+    width: 100%;
+    height: 50px;
+
+    text-align: right;
+}
+.btn-productos .modificar{
+    margin-right: 5%;
+}
+.btn-productos .cancelar{
+    margin-right: 10%;
+    background-color: orangered;
+}
+.producto{
+
+padding-top: 2%;
+font-size: 16px;
+font-weight: bold;
+
+}
+.producto h2{
+    font-size: 40px;
+}
+
+.container-descripcion{
+    width: 60%;
+   
+}
+.mat-form-field{
+    height: 20px;
+}
+@media (max-width: 805px){
+.card-producto{
+    height: 550px;
+    
+}
+.img-producto img{
+    width: 100%;
+    height: 180px;
+    margin-left: 75%;
+}.card-producto{
+  
+    text-align: left;
+}
+.descripcion-producto{
+    width: 110%;
+padding-top: 80%;
+text-align: left;
+
+margin-left: -35%;
+}.btn-productos{
+
+    margin-left: -40%;
+    margin-top: -20%;
+}
+.producto{
+    font-size: 10px;
+    font-weight: bold;
+    
+    }
+    .producto h2{
+        font-size: 30px;
+    }
+    
+}
+@media (max-width: 610px){
+    .descripcion-producto{
+    
+    padding-top: 90%;
+    
+}
+.btn-productos{
+
+    margin-left: -30%;
+}
+}
