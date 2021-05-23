@@ -1,7 +1,11 @@
+import { Notificacion } from './../../_model/mototaxi_model/Notificacion';
 import { Conductor } from './../../_model/mototaxi_model/Conductor';
+import { Destino } from './../../_model/mototaxi_model/Destino';
+import { Pago } from './../../_model/mototaxi_model/Pago';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Tarifa } from './../../_model/mototaxi_model/Tarifa';
 
 /**
  * Decorador de ClienteService
@@ -32,4 +36,48 @@ export class ServicioSolicitudService {
   getConductoresDisponibles(){
     return this.http.get<Conductor[]>(this.URL + "/conductoresDisponibles");
   }
+
+ /**
+  * Permite obtener el listado de destino 
+  * @returns 
+  */
+  getDestino(){
+    return this.http.get<Destino[]>(this.URL+"/destinos");
+  }
+  
+  /**
+   * Permite obtener el listado de Ubicacion
+   * @returns 
+   */
+  getUbicacion(){
+    return this.http.get<Destino[]>(this.URL+"/ubicaciones");
+  }
+
+
+  /**
+   * Permite obtener lel listado de pago
+   * @returns 
+   */
+  getPago(){
+    return this.http.get<Pago[]>(this.URL+"/metodoPago");
+  }
+
+  /**
+   * Permite calcular la tarifa y los kilometros del servicios 
+   * @param tarifa Obtiene el destino y la ubicacion
+   * @returns 
+   */
+  postCalcular(tarifa:any){
+    return this.http.post(this.URL+"/tarifas",tarifa);
+  }
+
+  /**
+   * Permite solicitar un servicio
+   * @param notificacion Objeto que contiene todos los atributos de notificacion
+   * @returns 
+   */
+  postSolicitarServicio(notificacion: Notificacion){
+    return this.http.post(this.URL + "/solicitudServicio", notificacion);
+  }
+
 }

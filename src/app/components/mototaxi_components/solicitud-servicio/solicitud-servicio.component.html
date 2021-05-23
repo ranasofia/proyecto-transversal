@@ -119,58 +119,62 @@
     </div>
     <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" fxLayout="column" fxLayoutAlign="center center" class="servicio">
         <h4>Destino</h4>
-        <mat-form-field appearance="fill">
+        <mat-form-field  [formGroup]="formCalcular" appearance="fill">
             <mat-icon matPrefix>location_on</mat-icon>
           <mat-label>Elige tú destino</mat-label>
-          <mat-select [disabled]="disableSelect.value">
-            <mat-option value="option1">Option 1</mat-option>
-            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-            <mat-option value="option3">Option 3</mat-option>
+          <mat-select matSelect  formControlName="destino1" [(ngModel)]="selectDestino.id" >
+            <mat-option *ngFor="let des of destino" value ={{des.id}}>{{des.lugarDestino}}</mat-option>
           </mat-select>
+          <mat-error *ngIf="formCalcular.controls.destino1.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+        </mat-error>
         </mat-form-field>
         <h4>Ubicacion</h4>
-        <mat-form-field appearance="fill">
+        <mat-form-field  [formGroup]="formCalcular" appearance="fill">
             <mat-icon matPrefix>sports_score</mat-icon>
           <mat-label>Elige tú ubicacion</mat-label>
-          <mat-select [disabled]="disableSelect.value">
-            <mat-option value="option1">Option 1</mat-option>
-            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-            <mat-option value="option3">Option 3</mat-option>
+          <mat-select  matSelect formControlName="ubicacion1"   [(ngModel)]="selectUbicacion.id">
+            <mat-option *ngFor="let ubi of ubicacion" value ={{ubi.id}}>{{ubi.lugarUbicacion}}</mat-option>
           </mat-select>
+          <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+        </mat-error>
         </mat-form-field>
         <h4>Descripción</h4>
-        <mat-form-field appearance="outline" class="textArea">
+        <mat-form-field [formGroup]="formCalcular" appearance="outline" class="textArea">
             <mat-icon matPrefix>description</mat-icon>
-            <textarea matInput rows="5"></textarea>
+            <textarea matInput formControlName="descripcion"  rows="5"></textarea>
         </mat-form-field>
         <div>
-            <button mat-button class="boton">Calcular</button>
+            <button mat-button class="boton" (click)="calcular(formCalcular.value)">Calcular</button>
+            
         </div>
         <br>
         <h4>Kilometros</h4>
-        <mat-form-field appearance="outline">
+        <mat-form-field [formGroup]="formSolicitar" appearance="outline">
             <mat-icon matPrefix>run_circle</mat-icon>
-            <input type="text" matInput placeholder="Kilometros" disabled>
+            <input type="text" matInput formControlName="kil" placeholder="Kilometros" disabled>{{this.kilometros}}
         </mat-form-field>
         <h4>Tarifa</h4>
-        <mat-form-field appearance="outline">
+        <mat-form-field [formGroup]="formSolicitar" appearance="outline">
             <mat-icon matPrefix>paid</mat-icon>
-            <input type="text" matInput placeholder="Tarifa" disabled>
+            <input type="text" matInput formControlName="taf" placeholder="Tarifa" disabled>{{this.tarifa}}
         </mat-form-field>
         <h4>Pago</h4>
-        <mat-form-field appearance="fill">
+        <mat-form-field [formGroup]="formSolicitar" appearance="fill">
             <mat-icon matPrefix>credit_card</mat-icon>
           <mat-label>Elige tú metodo de pago</mat-label>
-          <mat-select [disabled]="disableSelect.value">
-            <mat-option value="option1">Option 1</mat-option>
-            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-            <mat-option value="option3">Option 3</mat-option>
+          <mat-select formControlName="pag" [(ngModel)]="selectPago.id">
+            <mat-option *ngFor="let pag of pago" value ={{pag.id}}>{{pag.descripcion}}</mat-option>
           </mat-select>
+          <mat-error *ngIf="formSolicitar.controls.pag.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+        </mat-error>
         </mat-form-field>
         <br>
         <div >
-            <button mat-button class="boton" style="position: absolute;top: 177%;left:40%">Guardar</button>
-            <button mat-button class="boton" style="position: absolute;top: 177%;left:50%">Generar Factura</button>
+            <button mat-button class="botonGuardar" (clic)="solicitarServicio(formSolicitar.value)">Guardar</button>
+            <button mat-button class="botonFactura">Generar Factura</button>
         </div>
     </div>
     <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">

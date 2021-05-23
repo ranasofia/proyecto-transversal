@@ -1,5 +1,7 @@
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
+import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
@@ -27,12 +29,14 @@ const routes: Routes = [
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
-  {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
-    {path: 'historialCliente', component: HistorialClienteComponent}
-  ],canActivate:[GuardianService]},
+  {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, canActivate:[GuardianService]},
+  {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel', component: DetallesHotelComponent}
   ], canActivate:[GuardianService]},
+  {path: 'usuarios', component: UsuariosComponent, children: [
+    {path: 'accionesUsuarios', component: FormularioUsuariosComponent}
+  ]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 

@@ -1,7 +1,8 @@
+import { Usuario } from './../_model/Usuario';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../_model/Usuario';
+
 
 /**
  * Decorador de UsuarioTransversalService
@@ -61,5 +62,42 @@ export class UsuarioTransversalService {
     return this.http.post<Usuario>(this.URL + "/mostrarPerfil", usuario);
 
    }
+
+   /**
+    * permite obtener los registros del los usuarios
+    * @returns 
+    */
+   getMostrarRegistros(){
+     return this.http.get<Usuario[]>(this.URL+"/registros");
+   }
+
+   /**
+    * Permite obtener el registro del usuario 
+    * @param idUsuario variable que permite traer los datos de un usuario
+    * @returns 
+    */
+   getMostrarUsuario(idUsuario:number){
+     return this.http.get(this.URL+"/mostrarDatos?idUsuario="+idUsuario);
+   }
+
+   /**
+    * Permite modificar los registros del usuario
+    * @param idUsuario variabe que especifica el usuario a modificar 
+    * @returns 
+    */
+   putModificarRegistro(idUsuario:number){
+     return this.http.put(this.URL+"/actualizarPerfil?idUsuario="+idUsuario,null);
+   }
+
+   /**
+    * Permite eliminar un registro usuario (cambia a estado inactivo)
+    * @param idUsuario variable que especifica el usuario a eliminar 
+    * @returns 
+    */
+   putEliminarRegistro(idUsuario:number){
+    return this.http.put(this.URL+"/eliminar?idUsuario="+idUsuario,null);
+   }
+
+   
 
 }

@@ -2,6 +2,7 @@ import { environment } from 'src/environments/environment';
 import { MasterComponent } from './components/master/master.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,12 +29,13 @@ import { AdminService } from './_service/superfast_service/admin.service';
 import { Conversion } from './_model/Conversion';
 import { ClienteService } from './_service/mototaxi_service/cliente.service';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
-
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { TablaUsuarioComponent } from './components/tabla-usuario/tabla-usuario.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService, adminService: AdminService, clienteService: ClienteService) {
   return {
@@ -113,7 +115,6 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       }
 
       delay(1000);
-
       return tk != null ? tk : '';
 
     },
@@ -130,6 +131,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
       environment.HCCAUCHOS + '/Usuario/catalogo',
+      environment.HCCAUCHOS + '/login/cerrarcesion',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',
       environment.OCCIBANA + '/registroLogin/registroLogin',
@@ -139,6 +141,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
       environment.SUPERFAST + '/admin/login',
+      environment.SUPERFAST + '/CerrarSession/PostPage_Load'
     ]
   }
 }
@@ -170,7 +173,9 @@ export function delay(ms: number) {
     DetallesHotelComponent,
     HccauchosCarritoComponent,
     SuperfastCarritoComponent,
-    TablaUsuarioComponent
+    TablaUsuarioComponent,
+    UsuariosComponent,
+    FormularioUsuariosComponent
   ],
 
 
@@ -192,6 +197,7 @@ export function delay(ms: number) {
         deps: [UsuarioTransversalService, AdminService, ClienteService]
       }
     }),
+    NgbModule
   ],
 
 
