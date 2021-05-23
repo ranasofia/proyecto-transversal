@@ -1,1 +1,48 @@
-<p>hccauchos-carrito works!</p>
+<h2> -- CARRITO DE COMPRAS HCCAUCHOS -- </h2>
+<div class="carrito-container">
+    <div class="boton-vaciar">
+        <button mat-raised-button color="primary">
+            <mat-icon matPrefix>delete</mat-icon>
+            VACIAR CARRITO
+        </button>
+    </div>
+    <ng-container *ngFor="let num of [1,2,3,4]">
+        <div class="card-producto">
+            <div class=img-producto>
+                <img mat-card-image src="assets/images/caucho.jpg">
+            </div>
+            <div class="container-descripcion">
+                <div class="descripcion-producto">
+                   
+                    <div class="producto">
+                        <h2> PRODUCTO </h2>
+                      STOCK: 
+                        <mat-form-field>
+                            <input type="text" class="columna1" matInput>
+                        </mat-form-field>
+                        <br>
+                        CANTIDAD PEDIDA: 
+                        <mat-form-field>
+                            <input type="text" class="columna1" matInput>
+                        </mat-form-field>
+                        <br>
+                        PRECIO UNITARIO: 
+                        <mat-form-field>
+                            <input type="text" class="columna1" matInput>
+                        </mat-form-field>
+                        <br>
+                        PRECIO TOTAL: 
+                        <mat-form-field>
+                            <input type="text" class="columna1" matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="btn-productos">
+                    <button mat-raised-button color="primary" class= "modificar"> MODIFICAR </button>
+                    <button mat-raised-button color="primary" class = "cancelar"> CANCELAR </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+</div>

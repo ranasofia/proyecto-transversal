@@ -1,0 +1,36 @@
+<h2> -- CARRITO DE COMPRA -- </h2>
+<div class="carrito-container">
+    <div class="boton-vaciar">
+        <button mat-raised-button color="primary">
+            <mat-icon matPrefix>delete</mat-icon>
+            VACIAR CARRITO
+        </button>
+    </div>
+    <ng-container *ngFor="let num of [1,2,3,4]">
+        <div class="card-producto">
+
+            <div class=img-producto>
+                <img mat-card-image src="assets/images/caucho.jpg">
+            </div>
+            <div class="descripcion-producto">
+                <h1> PRODUCTO </h1>
+                <!-- <li>DESCRIPCIÓN: </li>-->
+                
+                <p></p>
+                <li>CANTIDAD: </li>
+                <p></p>
+                <li>ESPECIFICACIÓN: </li>
+                <p></p>
+                <li>VALOR UNITARIO: </li>
+                <p></p>
+                <li>SUBTOTAL: </li>
+                <mat-icon matPrefix>info</mat-icon>
+            </div>
+
+            <div class="btn-productos">
+                <button class="modificar" mat-raised-button color="primary"> MODIFICAR </button>
+                <button class="cancelar" mat-raised-button color="primary"> CANCELAR </button>
+            </div>
+
+        </div>
+    </ng-container>

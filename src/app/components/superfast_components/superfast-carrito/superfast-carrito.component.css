@@ -1,0 +1,87 @@
+h2{
+    font-size: 50px;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    text-align: center;
+    text-shadow: 2px 2px #E91E63;
+   }
+   .carrito-container{
+       width: 100%;
+       height: 600px;
+    
+   }
+   .boton-vaciar button{
+       width: 30%;
+       margin-left: 35%;
+       text-align: center;
+       height: 50px;
+   }
+   .card-producto{
+       display: flex;
+       width: 70%;
+       height: 350px;
+       background-color:grey;
+       margin-left: 15%;
+       margin-top: 2%;
+       border-radius: 15px;
+   }
+   
+   .img-producto{
+       display: flex;
+       width: 30%;
+       height: 300px;
+       margin-left: -10% ;
+       margin-top:5% ;
+    
+   }
+   .img-producto img{
+       width: 400%;
+       height: 250px;
+       margin-left: 190%;
+       margin-right: 20%;
+       margin-top: 10%;
+       border-radius: 8px;
+       border:solid;
+       border-color:black;
+       
+   }
+   .descripcion-producto{
+       display: flex;
+       width: 80%;
+       flex-direction: column;
+       height: 200px;
+       margin-left: 40%;
+       margin-top: 5%;
+       font-size: 18px;
+   }
+   .descripcion-producto h1{
+       width: 100%;
+       margin-left: 70%;
+       font-size: 40px;
+       margin-bottom: 20%;
+       font-weight: bold;
+       text-shadow: 2px 2px #E91E63;
+   }
+   .btn-productos{
+   
+       width: 120%;
+       height: 50px;
+       margin-top:     32%;
+       margin-right: 10%;
+   
+       
+   }
+   .btn-productos .modificar{
+       width: 45%;
+       height: 40px;
+       border-radius: 2px;
+       margin-right: 10%;
+   
+   }
+   .btn-productos .cancelar{
+       width: 45%;
+       height: 40px;
+       border-radius: 2px;
+       background-color: orangered;
+   }
+   
