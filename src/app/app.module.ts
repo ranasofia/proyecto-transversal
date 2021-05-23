@@ -33,7 +33,7 @@ import { SolicitudServicioComponent } from './components/mototaxi_components/sol
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
-import { TablaUsuarioComponent } from './components/tabla-usuario/tabla-usuario.component';
+import { TablaUsuarioComponent } from './components/usuarios/tabla-usuario/tabla-usuario.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
 
