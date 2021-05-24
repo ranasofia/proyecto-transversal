@@ -1,8 +1,8 @@
-import { Usuario } from "./Usuario";
-import { UsuarioHCCauchos } from "./hccauchos_model/UsuarioHCCauchos";
-import { UsuarioMototaxi } from "./mototaxi_model/UsuarioMototaxi";
-import { UsuarioOccibana } from "./occibana_model/UsuarioOccibana";
-import { UsuarioSuperfast } from "./superfast_model/UsuarioSuperfast";
+import { Usuario } from "src/app/_model/transversal_model/Usuario";
+import { UsuarioHCCauchos } from "src/app/_model/hccauchos_model/UsuarioHCCauchos";
+import { UsuarioMototaxi } from "src/app/_model/mototaxi_model/UsuarioMototaxi";
+import { UsuarioOccibana } from "src/app/_model/occibana_model/UsuarioOccibana";
+import { UsuarioSuperfast } from "src/app/_model/superfast_model/UsuarioSuperfast";
 
 /**
  * Clase que convierte a un usuario general en un usuario en específico de acuerdo a la aplicación

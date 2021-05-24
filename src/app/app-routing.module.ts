@@ -1,30 +1,34 @@
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
-import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
-import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { HccauchosCarritoComponent } from './components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';
+import { FormularioUsuariosComponent } from './components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
+import { UsuariosComponent } from './components/transversal_components/usuarios/usuarios.component';
 import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
-import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+import { PerfilUsuarioComponent } from './components/transversal_components/perfil-usuario/perfil-usuario.component';
 import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
 import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
-import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
-import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
+import { RecuperarContrasenaComponent } from './components/transversal_components/recuperar-contrasena/recuperar-contrasena.component';
+import { GenerarTokenRecuperarComponent } from './components/transversal_components/generar-token-recuperar/generar-token-recuperar.component';
 import { CatalogoSuperFastComponent } from './components/superfast_components/catalogo-super-fast/catalogo-super-fast.component';
-import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroComponent } from './components/transversal_components/registro/registro.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { Not404Component } from './pages/not404/not404.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/transversal_components/login/login.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HistorialClienteComponent } from './components/mototaxi_components/historial-cliente/historial-cliente.component';
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
-import { GuardianService } from './_service/guardian.service';
+import { GuardianService } from 'src/app/_service/utilidades/guardian.service';
 import { registerLocaleData } from '@angular/common';
 
 
 const routes: Routes = [
 
+<<<<<<< HEAD
   {path: '', component: UsuariosComponent},  
+=======
+  {path: '', component: RegistroComponent},
+>>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
@@ -43,7 +47,7 @@ const routes: Routes = [
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 
-  
+
 ];
 
 @NgModule({

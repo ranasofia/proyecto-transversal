@@ -1,6 +1,6 @@
 import { ProductoH } from 'src/app/_model/hccauchos_model/ProductoH';
 import { Component, OnInit } from '@angular/core';
-import { ProductoDialogComponent } from 'src/app/components/producto-dialog/producto-dialog.component';
+import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { MatDialog } from '@angular/material/dialog';

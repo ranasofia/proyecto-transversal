@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Conductor } from './../../../_model/mototaxi_model/Conductor';
 import { environment } from './../../../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BarraProgresoService } from './../../../_service/barra-progreso.service';
+import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
 import { ServicioSolicitudService } from './../../../_service/mototaxi_service/servicio-solicitud.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup ,FormGroupDirective,NgForm,Validators} from '@angular/forms';
@@ -102,7 +102,7 @@ export class SolicitudServicioComponent implements OnInit {
     this.servicioSolicitudService.getDestino().subscribe(data=>{
       this.destino=data;
     });
-    
+
     this.servicioSolicitudService.getUbicacion().subscribe(data=>{
       this.ubicacion=data;
     });

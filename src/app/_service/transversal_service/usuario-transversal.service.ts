@@ -1,4 +1,4 @@
-import { Usuario } from './../_model/Usuario';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -55,7 +55,7 @@ export class UsuarioTransversalService {
    /**
     * Permite obtener el registro del usuario logueado
     * @param usuario variable que tiene todos los datos del usuario
-    * @returns 
+    * @returns
     */
    getUsuario(usuario: Usuario){
 
@@ -65,16 +65,16 @@ export class UsuarioTransversalService {
 
    /**
     * permite obtener los registros del los usuarios
-    * @returns 
+    * @returns
     */
    getMostrarRegistros(){
      return this.http.get<Usuario[]>(this.URL+"/registros");
    }
 
    /**
-    * Permite obtener el registro del usuario 
+    * Permite obtener el registro del usuario
     * @param idUsuario variable que permite traer los datos de un usuario
-    * @returns 
+    * @returns
     */
    getMostrarUsuario(idUsuario:number){
      return this.http.get(this.URL+"/mostrarDatos?idUsuario="+idUsuario);
@@ -82,9 +82,9 @@ export class UsuarioTransversalService {
 
    /**
     * Permite modificar los registros del usuario
-    * @param idUsuario variabe que especifica el usuario a modificar 
-    * @param usuario objeto de la clase 
-    * @returns 
+    * @param idUsuario variabe que especifica el usuario a modificar
+    * @param usuario objeto de la clase
+    * @returns
     */
    putModificarRegistro(idUsuario:number,usuario:Usuario){
      return this.http.put(this.URL+"/actualizarRegistro?idUsuario="+idUsuario,usuario);
@@ -92,13 +92,13 @@ export class UsuarioTransversalService {
 
    /**
     * Permite eliminar un registro usuario (cambia a estado inactivo)
-    * @param idUsuario variable que especifica el usuario a eliminar 
-    * @returns 
+    * @param idUsuario variable que especifica el usuario a eliminar
+    * @returns
     */
    putEliminarRegistro(idUsuario:number){
     return this.http.put(this.URL+"/eliminar?idUsuario="+idUsuario,null);
    }
 
-   
+
 
 }

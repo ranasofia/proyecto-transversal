@@ -1,29 +1,30 @@
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from 'src/environments/environment';
-import { MasterComponent } from './components/master/master.component';
+import { MasterComponent } from 'src/app/components/transversal_components/master/master.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { HistorialClienteComponent } from './components/mototaxi_components/historial-cliente/historial-cliente.component';
-import { Not404Component } from './pages/not404/not404.component';
-import { Error500Component } from './pages/error500/error500.component';
+import { AppComponent } from 'src/app/app.component';
+import { LoginComponent } from 'src/app/components/transversal_components/login/login.component';
+import { HistorialClienteComponent } from 'src/app/components/mototaxi_components/historial-cliente/historial-cliente.component';
+import { Not404Component } from 'src/app/pages/not404/not404.component';
+import { Error500Component } from 'src/app/pages/error500/error500.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RegistroComponent } from './components/registro/registro.component';
-import { CatalogoSuperFastComponent } from './components/superfast_components/catalogo-super-fast/catalogo-super-fast.component';
-import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
-import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
-import { GenerarTokenRecuperarComponent } from './components/generar-token-recuperar/generar-token-recuperar.component';
-import { ProductoDialogComponent } from './components/producto-dialog/producto-dialog.component';
-import { CatalogoHcCauchosComponent } from './components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
+import { RegistroComponent } from 'src/app/components/transversal_components/registro/registro.component';
+import { CatalogoSuperFastComponent } from 'src/app/components/superfast_components/catalogo-super-fast/catalogo-super-fast.component';
+import { HotelesComponent } from 'src/app/components/occibana_components/hoteles/hoteles.component';
+import { RecuperarContrasenaComponent } from 'src/app/components/transversal_components/recuperar-contrasena/recuperar-contrasena.component';
+import { GenerarTokenRecuperarComponent } from 'src/app/components/transversal_components/generar-token-recuperar/generar-token-recuperar.component';
+import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
+import { CatalogoHcCauchosComponent } from 'src/app/components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+<<<<<<< HEAD
 import { UsuarioTransversalService } from './_service/usuario-transversal.service';
 import { Usuario } from './_model/Usuario';
 import { AdminService } from './_service/superfast_service/admin.service';
@@ -39,6 +40,24 @@ import { FormularioUsuariosComponent } from './components/usuarios/formulario-us
 import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
 import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+=======
+import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
+import { AdminService } from 'src/app/_service/superfast_service/admin.service';
+import { Conversion } from 'src/app/_model/utilidades/Conversion';
+import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
+import { PerfilUsuarioComponent } from 'src/app/components/transversal_components/perfil-usuario/perfil-usuario.component';
+import { SolicitudServicioComponent } from 'src/app/components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
+import { DetallesHotelComponent } from 'src/app/components/occibana_components/detalles-hotel/detalles-hotel.component';
+import { HccauchosCarritoComponent } from 'src/app/components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';
+import { SuperfastCarritoComponent } from 'src/app/components/superfast_components/superfast-carrito/superfast-carrito.component';
+import { UsuariosComponent } from 'src/app/components/transversal_components/usuarios/usuarios.component';
+import { FormularioUsuariosComponent } from 'src/app/components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
+import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
+import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
+import { DatePipe } from '@angular/common';
+import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
+>>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -60,16 +79,19 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
 
         tk = sessionStorage.getItem(environment.TOKEN);
 
-        /*if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tk)) {
 
-          usuarioTransversalService.getToken(usuarioIncompleto).subscribe(data => {
+          var usuarioLogin = new Usuario();
+          usuarioLogin.correo = usuarioIncompleto.correo;
+          usuarioLogin.contrasena = sessionStorage.getItem("clave");
+          usuarioTransversalService.getToken(usuarioLogin).subscribe(data => {
 
             sessionStorage.setItem(environment.TOKEN, data);
             tk = sessionStorage.getItem(environment.TOKEN);
 
           })
 
-        }*/
+        }
 
       } else if (request.url.includes('52.67.179.68')) {
 
@@ -224,7 +246,11 @@ export function delay(ms: number) {
     SuperfastCarritoComponent,
     UsuariosComponent,
     FormularioUsuariosComponent,
+<<<<<<< HEAD
     FacturaComponent
+=======
+    DialogEliminarComponent
+>>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
   ],
 
 
@@ -251,7 +277,7 @@ export function delay(ms: number) {
   ],
 
 
-  providers: [UsuarioTransversalService, AdminService, ClienteService, LoginHCService, RegistroLoginOccibanaService],
+  providers: [UsuarioTransversalService, AdminService, ClienteService, LoginHCService, RegistroLoginOccibanaService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {

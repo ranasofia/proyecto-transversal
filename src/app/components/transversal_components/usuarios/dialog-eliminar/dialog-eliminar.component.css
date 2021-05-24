@@ -1,0 +1,54 @@
+.contenedorPrincipal{
+  width: 100%;
+}
+
+.contenedorMensaje{
+  height: 50px;
+}
+
+.contenedorBotones{
+
+  display: flex;
+  height: 60px;
+
+}
+
+.contenedorBotonSi{
+
+  width: 50%;
+
+}
+
+.contenedorBotonNo{
+
+  width: 50%;
+
+}
+
+.subcontenedorBotonSi{
+
+  margin-top: 10%;
+  margin-left: 20%;
+
+}
+
+.subcontenedorBotonNo{
+
+  margin-top: 10%;
+  margin-left: 20%;
+
+}
+
+.botonSi{
+
+  width: 80%;
+  height: 60px;
+
+}
+
+.botonNo{
+
+  width: 80%;
+  height: 60px;
+
+}

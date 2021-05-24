@@ -1,18 +1,18 @@
-import { BarraProgresoService } from './utilidades/barra-progreso.service';
+import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
 import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
-import { AdminService } from './superfast_service/admin.service';
+import { AdminService } from 'src/app/_service/superfast_service/admin.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { ClienteService } from './mototaxi_service/cliente.service';
-import { Conversion } from 'src/app/_model/Conversion';
+import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
+import { Conversion } from 'src/app/_model/utilidades/Conversion';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { UsuarioTransversalService } from './usuario-transversal.service';
-import { Usuario } from '../_model/Usuario';
-import { RegistroHCService } from './hccauchos_service/registro-hc.service';
-import { RegistroLoginOccibanaService } from './occibana_service/registro-login-occibana.service';
-import { RegistroSFService} from './superfast_service/registro-sf.service';
+import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
+import { RegistroHCService } from 'src/app/_service/hccauchos_service/registro-hc.service';
+import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
+import { RegistroSFService} from 'src/app/_service/superfast_service/registro-sf.service';
 
 
 @Injectable({

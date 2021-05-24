@@ -22,11 +22,18 @@
       text-align: center;
   }
   .mat-table{
-   
+
       width: 90%;
       text-align: left;
       margin-left: 5%;
   }
+
+  .mat-paginator{
+    width: 89.95%;
+    min-width: 946px;
+    margin-left: 5%;
+  }
+
   .mat-form-field {
     display: flex;
     justify-content: center;

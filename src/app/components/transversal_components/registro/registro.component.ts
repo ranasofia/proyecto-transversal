@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/_model/Usuario';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
-import { UsuarioTransversalService } from 'src/app/_service/usuario-transversal.service';
+import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**

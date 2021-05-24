@@ -1,11 +1,11 @@
-import { BarraProgresoService } from './../../_service/barra-progreso.service';
-import { UsuarioTransversalService } from 'src/app/_service/usuario-transversal.service';
+import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
+import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { Usuario } from 'src/app/_model/Usuario';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 
 /**
  * Decorador de LoginComponent
@@ -95,6 +95,7 @@ export class LoginComponent implements OnInit {
       var usuario = new Usuario();
       usuario.correo = value.email;
       usuario.contrasena = value.password;
+      sessionStorage.setItem("clave", usuario.contrasena);
 
       this.usuarioTransversalService.getToken(usuario).subscribe(data => {
 

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
+import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
@@ -32,7 +32,7 @@ export class RecuperarContrasenaComponent implements OnInit {
 
   /**
    * Permite configurar las validaciones del formulario
-   * @returns 
+   * @returns
    */
   createFormGroup(){
     return new FormGroup({
@@ -81,7 +81,7 @@ export class RecuperarContrasenaComponent implements OnInit {
       });
       this.router.navigate(['/login']);
     });
-    
+
   }
 }
 
