@@ -37,7 +37,7 @@ import { UsuariosComponent } from 'src/app/components/transversal_components/usu
 import { FormularioUsuariosComponent } from 'src/app/components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
 import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
 import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
@@ -253,7 +253,13 @@ export function delay(ms: number) {
   ],
 
 
-  providers: [UsuarioTransversalService, AdminService, ClienteService, LoginHCService, RegistroLoginOccibanaService, DatePipe],
+  providers: [UsuarioTransversalService,
+    AdminService,
+    ClienteService,
+    LoginHCService,
+    RegistroLoginOccibanaService,
+    DatePipe,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {

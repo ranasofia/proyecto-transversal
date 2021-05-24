@@ -87,7 +87,7 @@ export class MasterComponent implements OnInit, DoCheck {
   /**
    * Metodo que se encarga de cerrar sesion y eliminar el token
    */
-  cerrarSesion() {
+  async cerrarSesion() {
     /**
      * Constante para decodificar el token
      */
@@ -147,7 +147,7 @@ export class MasterComponent implements OnInit, DoCheck {
 
     }
 
-    this.delay(1000);
+    await this.delay(1000);
     //Remueve el token de la sesion
     sessionStorage.removeItem(environment.TOKEN);
     sessionStorage.removeItem("clave");
