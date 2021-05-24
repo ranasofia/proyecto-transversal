@@ -1,4 +1,4 @@
-import { BarraProgresoService } from './../../../_service/barra-progreso.service';
+import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'

@@ -50,7 +50,7 @@
 
   <ng-container matColumnDef="fechaNacimiento">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de nacimiento </th>
-    <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento | date:'dd-MM-yyyy'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento | date:'dd-MM-yyyy':'UTC'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="direccion">
@@ -65,11 +65,11 @@
 
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
-    <mat-cell *matCellDef="let num of [1,2]">
-        <button mat-button color="primary"  >
+    <mat-cell *matCellDef="let element">
+        <button mat-button color="primary" [routerLink]="['/usuarios/modificar/',element.idUsuario]">
             <mat-icon>edit</mat-icon>
         </button>
-        <button mat-button color="accent">
+        <button mat-button color="accent" (click)="openDialog(element.idUsuario)">
             <mat-icon>delete</mat-icon>
         </button>
     </mat-cell>
@@ -77,6 +77,16 @@
 
 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
 </table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+<button mat-fab color="accent" style="float: right" routerLink="/usuarios/registrar">
+  <mat-icon>create</mat-icon>
+</button>
+
 </div>
-<router-outlet></router-outlet>
+
+
+<router-outlet (deactivate)="onDeactivate($event)"></router-outlet>

@@ -15,6 +15,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatProgressBarModule,
     MatSelectModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatPaginatorModule
   ],
   exports: [
     MatCardModule,
@@ -51,7 +53,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatProgressBarModule,
     MatSelectModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule { }

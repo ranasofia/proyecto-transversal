@@ -30,7 +30,7 @@ export class UsuarioHCCauchos {
   /**
    * Es la fecha de nacimiento del usuario
    */
-  fecha_nacimiento: string;
+  fecha_nacimiento: Date;
   /**
    * Es el número de documento de identidad del usuario
    */

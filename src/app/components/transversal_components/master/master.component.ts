@@ -1,9 +1,9 @@
-import { UsuarioHCCauchos } from './../../_model/hccauchos_model/UsuarioHCCauchos';
-import { LoginHCService } from './../../_service/hccauchos_service/login-hc.service';
-import { UsuarioOccibana } from './../../_model/occibana_model/UsuarioOccibana';
-import { RegistroLoginOccibanaService } from './../../_service/occibana_service/registro-login-occibana.service';
-import { AdminService } from './../../_service/superfast_service/admin.service';
-import { BarraProgresoService } from './../../_service/barra-progreso.service';
+import { UsuarioHCCauchos } from '../../../_model/hccauchos_model/UsuarioHCCauchos';
+import { LoginHCService } from '../../../_service/hccauchos_service/login-hc.service';
+import { UsuarioOccibana } from '../../../_model/occibana_model/UsuarioOccibana';
+import { RegistroLoginOccibanaService } from '../../../_service/occibana_service/registro-login-occibana.service';
+import { AdminService } from '../../../_service/superfast_service/admin.service';
+import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
@@ -49,7 +49,7 @@ export class MasterComponent implements OnInit, DoCheck {
               private adminService: AdminService,
               private registroLoginOccibanaService: RegistroLoginOccibanaService,
               private loginHCService: LoginHCService) {
-                
+
     barraProgresoService.progressBar.subscribe(data => {
       if (data == "1") {
         this.progressBar = false;
@@ -65,14 +65,14 @@ export class MasterComponent implements OnInit, DoCheck {
   /**
    * Implementacion que se ejecuta cada vez que se verifican las propiedades de entrada del componente
    */
-  ngDoCheck(): void {   
+  ngDoCheck(): void {
     this.token = sessionStorage.getItem(environment.TOKEN);
 
     if(this.token != undefined){
       /**
         * Constante para decodificar el token
         */
-      const HELPER = new JwtHelperService(); 
+      const HELPER = new JwtHelperService();
       /**
         * Variable que decodifica el toquen y captura el usuario logueado
         */
@@ -91,8 +91,8 @@ export class MasterComponent implements OnInit, DoCheck {
     /**
      * Constante para decodificar el token
      */
-    const HELPER = new JwtHelperService();  
-    
+    const HELPER = new JwtHelperService();
+
     if(this.token1 != undefined){
       /**
         * Variable que decodifica el toquen y captura el usuario logueado
@@ -109,7 +109,7 @@ export class MasterComponent implements OnInit, DoCheck {
     if (this.token2 != undefined){
       /**
         * Variable que decodifica el toquen y captura el usuario logueado
-        */     
+        */
       var nombreSuperFast = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN_SUPERFAST))["nameid"];
       //Metodo que cierra sesion en SuperFast
       this.adminService.postCerrarSesion(nombreSuperFast).subscribe();
@@ -144,12 +144,13 @@ export class MasterComponent implements OnInit, DoCheck {
       console.log("HC Cauchos Cerró Sesion");
       //Remueve el token de la sesion
       sessionStorage.removeItem(environment.TOKEN_HCCAUCHOS);
-      
+
     }
-    
+
     this.delay(1000);
     //Remueve el token de la sesion
     sessionStorage.removeItem(environment.TOKEN);
+    sessionStorage.removeItem("clave");
   }
 
   delay(ms: number) {

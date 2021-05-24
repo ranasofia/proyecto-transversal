@@ -34,7 +34,7 @@ export class Usuario {
   /**
    * Es la fecha de nacimiento del usuario
    */
-  fechaNacimiento: string;
+  fechaNacimiento: Date;
   /**
    * Es la dirección de domicilio del usuario
    */

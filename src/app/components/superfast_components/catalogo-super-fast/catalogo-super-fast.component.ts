@@ -1,4 +1,4 @@
-import { ProductoDialogComponent } from 'src/app/components/producto-dialog/producto-dialog.component';
+import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionService } from 'src/app/_service/superfast_service/comunicacion.service';

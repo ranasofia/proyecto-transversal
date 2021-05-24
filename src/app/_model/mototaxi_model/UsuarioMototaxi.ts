@@ -22,7 +22,7 @@ export class UsuarioMototaxi {
     /**
      * Variable de tipo string que representa la fecha de nacimiento del cliente
      */
-    fechaDeNacimiento: string;
+    fechaDeNacimiento: Date;
 
     /**
      * Variable de tipo string que representa el correo

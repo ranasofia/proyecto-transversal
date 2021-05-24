@@ -1,10 +1,8 @@
-import { Usuario } from 'src/app/_model/Usuario';
-
-
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { TokenRecuperacion } from '../_model/TokenRecuperacion';
+import { TokenRecuperacion } from 'src/app/_model/transversal_model/TokenRecuperacion';
 
 /**
  * Decorador de RecuperarContrasenaService
@@ -23,7 +21,7 @@ export class RecuperarContrasenaService {
    * Posee el enlace para llamar a los servicios
    */
     private URL: string = environment.UBER_MOTOS +  '/usuario';
-    
+
     /**
    * Da estado inicial e inyecta variables en ClienteService
    * @param http variable que se inyecta para poder hacer las peticiones http
@@ -33,7 +31,7 @@ export class RecuperarContrasenaService {
   /**
    * Permite generar el token para recuperación de contraseña
    * @param usuario variable que se utiliza para obtener el correo para la recuperacion
-   * @returns 
+   * @returns
    */
    generar(usuario: Usuario){
 
@@ -44,7 +42,7 @@ export class RecuperarContrasenaService {
   /**
    * Permite recuperar la contraseña despues de generar el token
    * @param usuario variable que se utiliza para obtener el token generado y la nueva contraseña
-   * @returns 
+   * @returns
    */
   recuperar(usuario:any){
 

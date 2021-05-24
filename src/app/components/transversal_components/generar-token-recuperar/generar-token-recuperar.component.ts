@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/_model/Usuario';
-import { RecuperarContrasenaService } from 'src/app/_service/recuperar-contrasena.service';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
+import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -24,7 +24,7 @@ export class GenerarTokenRecuperarComponent implements OnInit {
 
   /**
    * Permite configurar las validaciones del formulario
-   * @returns 
+   * @returns
    */
   createFormGroup(){
     return new FormGroup({
