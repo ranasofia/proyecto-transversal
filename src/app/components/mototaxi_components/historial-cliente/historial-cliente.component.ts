@@ -1,13 +1,18 @@
+<<<<<<< HEAD
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HistorialService } from './../../../_service/mototaxi_service/historial.service';
+import { BarraProgresoService } from './../../../_service/barra-progreso.service';
+=======
 import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
 import { Router } from '@angular/router';
+>>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
-import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 /**
  * Decorador de HistorialClienteComponent
@@ -35,55 +40,53 @@ export class HistorialClienteComponent implements OnInit {
    * Objeto array de tipo string el cual representa las columnas de la tabla
    */
   displayedColumns: string[];
-
   /**
    * Decorador de ViewChild el cual permite visualizar el ordenamiento de cada columna en la tabla
    */
   @ViewChild(MatSort) sort: MatSort;
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   /**
    * Constructor que iniciliza las variables globales de HistorialClienteComponent
    * @param clienteService
    * @param router
    */
-  constructor(private clienteService: ClienteService, private router: Router,
-    private barraProgresoService: BarraProgresoService) { }
+  constructor(private historial: HistorialService,
+              private barraProgresoService: BarraProgresoService,
+              private _snackBar: MatSnackBar) { }
 
   /**
    * Implementación que se ejecuta una vez se inicie el HistorialClienteComponent
    */
   ngOnInit(): void {
-
     this.barraProgresoService.progressBar.next("1");
-    // Constante que representa un objeto del módulo JwtHelperServic
+    /**
+      * Constante para decodificar el token
+      */
     const helper = new JwtHelperService();
-
-    // variable que obtiene el nombre del usuario a partir del token
+    /**
+      * Variable que decodifica el toquen y captura el usuario logueado
+      */
     var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
-
     // Método que traer el historial del cliente
-    this.clienteService.getHistorial("", usuario).subscribe(data => {
-
+    this.historial.getHistorial("", usuario).subscribe(data => {
       this.notificaciones = data;
-      this.dataSource = new MatTableDataSource(this.notificaciones);
-      this.dataSource.sort = this.sort;
-
-      // En caso de error
-    }, err => {
-
-
-      // Error 401
-      if (err.status == 401) {
-
-
+      if(this.notificaciones != undefined){
+        this.dataSource = new MatTableDataSource(this.notificaciones);
+        this.dataSource.paginator = this.paginator;
+        //this.dataSource.sort = this.sort;
       }
-
+      /*if(this.notificaciones == undefined){
+        this._snackBar.open('No hay datos en el historial para mostrar, te invitamos a solicitar un servicio', 'Cancel  ', {
+          duration: 5000
+        });
+      }*/
     });
-
-
+    
     // Nombres de la columnas de la tabla
-    this.displayedColumns = ['conductor', 'ubicacion', 'destino', 'tarifa'];
+    this.displayedColumns = ['soy','conductor', 'destino', 'ubicacion', 'tarifa', 'fechaCarrera', 'comentario', 'comentar','conversacion','conversar'];
 
     this.barraProgresoService.progressBar.next("2");
   }
@@ -94,18 +97,20 @@ export class HistorialClienteComponent implements OnInit {
    * @param filter cadena de texto de llega desde el input de búsqueda
    */
   dataFilter(filter: string) {
-    // Filtrar con cadena de texto convertida en minúsculas
-
+    /**
+      * Constante para decodificar el token
+      */
     const helper = new JwtHelperService();
-
-    // variable que obtiene el nombre del usuario a partir del token
+    /**
+      * Variable que decodifica el toquen y captura el usuario logueado
+      */
     var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
-    this.clienteService.getHistorial("", usuario).subscribe(data => {
+    this.historial.getHistorial("", usuario).subscribe(data => {
 
       this.notificaciones = data;
       this.dataSource = new MatTableDataSource(this.notificaciones);
-      this.dataSource.sort = this.sort;
+      //this.dataSource.sort = this.sort;
       this.dataSource.filter = filter.trim().toLocaleLowerCase();
 
       // En caso de error

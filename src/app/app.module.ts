@@ -1,3 +1,4 @@
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from 'src/environments/environment';
 import { MasterComponent } from 'src/app/components/transversal_components/master/master.component';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,23 @@ import { GenerarTokenRecuperarComponent } from 'src/app/components/transversal_c
 import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
 import { CatalogoHcCauchosComponent } from 'src/app/components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+<<<<<<< HEAD
+import { UsuarioTransversalService } from './_service/usuario-transversal.service';
+import { Usuario } from './_model/Usuario';
+import { AdminService } from './_service/superfast_service/admin.service';
+import { Conversion } from './_model/Conversion';
+import { ClienteService } from './_service/mototaxi_service/cliente.service';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
+import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
+import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
+import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
+import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
+import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
+import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+=======
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { AdminService } from 'src/app/_service/superfast_service/admin.service';
@@ -39,6 +57,7 @@ import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.serv
 import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
+>>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -227,7 +246,11 @@ export function delay(ms: number) {
     SuperfastCarritoComponent,
     UsuariosComponent,
     FormularioUsuariosComponent,
+<<<<<<< HEAD
+    FacturaComponent
+=======
     DialogEliminarComponent
+>>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
   ],
 
 
@@ -241,6 +264,7 @@ export function delay(ms: number) {
     FlexLayoutModule,
     FormsModule,
     MatSnackBarModule,
+    MatPaginatorModule,
     JwtModule.forRoot({
 
       jwtOptionsProvider: {
