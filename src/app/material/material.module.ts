@@ -11,10 +11,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSelectModule} from '@angular/material/select';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -34,7 +34,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatProgressBarModule,
     MatSelectModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   exports: [
     MatCardModule,

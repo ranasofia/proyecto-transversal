@@ -1,11 +1,9 @@
-import { Notificacion } from './../../_model/mototaxi_model/Notificacion';
 import { Conductor } from './../../_model/mototaxi_model/Conductor';
 import { Destino } from './../../_model/mototaxi_model/Destino';
 import { Pago } from './../../_model/mototaxi_model/Pago';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Tarifa } from './../../_model/mototaxi_model/Tarifa';
 
 /**
  * Decorador de ClienteService

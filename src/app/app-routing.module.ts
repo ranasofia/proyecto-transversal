@@ -1,3 +1,4 @@
+import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_componets/hccauchos-carrito/hccauchos-carrito.component';
 import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
@@ -23,13 +24,14 @@ import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
 
-  {path: '', component: UsuariosComponent},   
+  {path: '', component: UsuariosComponent},  
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
-  {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, canActivate:[GuardianService]},
+  {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
+    {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel', component: DetallesHotelComponent}

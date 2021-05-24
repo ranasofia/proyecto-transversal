@@ -1,5 +1,4 @@
 import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
-import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -34,18 +33,6 @@ export class ClienteService {
    */
   getToken(cliente: UsuarioMototaxi) {
     return this.http.post<string>(this.URL + "/logincliente", cliente);
-  }
-
-  /**
-   * Permite obtener el historial de los viajes realizados por el usuario dada una fecha
-   * @param fechaInicio variable que permite indica la fecha inicio por la cual se deben filtrar los registros
-   * @param usuario variable que indica el usuario del cual se debe obtener el historial de viajes
-   * @returns historial
-   */
-  getHistorial(fechaInicio: string, usuario: string){
-
-    return this.http.get<Notificacion[]>(this.URL + "/historial?fechaInicio=" + fechaInicio + "&usuario=" + usuario);
-
   }
 
   /**

@@ -1,3 +1,4 @@
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from 'src/environments/environment';
 import { MasterComponent } from './components/master/master.component';
 import { NgModule } from '@angular/core';
@@ -37,6 +38,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { FormularioUsuariosComponent } from './components/usuarios/formulario-usuarios/formulario-usuarios.component';
 import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
 import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
+import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -221,7 +223,8 @@ export function delay(ms: number) {
     HccauchosCarritoComponent,
     SuperfastCarritoComponent,
     UsuariosComponent,
-    FormularioUsuariosComponent
+    FormularioUsuariosComponent,
+    FacturaComponent
   ],
 
 
@@ -235,6 +238,7 @@ export function delay(ms: number) {
     FlexLayoutModule,
     FormsModule,
     MatSnackBarModule,
+    MatPaginatorModule,
     JwtModule.forRoot({
 
       jwtOptionsProvider: {

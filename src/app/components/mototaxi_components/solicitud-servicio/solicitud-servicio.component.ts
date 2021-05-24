@@ -1,4 +1,4 @@
-import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
+import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Conductor } from './../../../_model/mototaxi_model/Conductor';
 import { environment } from './../../../../environments/environment';
@@ -10,7 +10,6 @@ import { FormControl, FormGroup ,FormGroupDirective,NgForm,Validators} from '@an
 import { Destino } from 'src/app/_model/mototaxi_model/Destino';
 import { Pago } from 'src/app/_model/mototaxi_model/Pago';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Tarifa } from 'src/app/_model/mototaxi_model/Tarifa';
 
 @Component({
   selector: 'app-solicitud-servicio',
@@ -84,8 +83,9 @@ export class SolicitudServicioComponent implements OnInit {
   }
 
   constructor(private servicioSolicitudService: ServicioSolicitudService,
-    private barraProgresoService:BarraProgresoService,
-    private _snackBar: MatSnackBar) { }
+              private barraProgresoService:BarraProgresoService,
+              private _snackBar: MatSnackBar,
+              public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.barraProgresoService.progressBar.next("1");
