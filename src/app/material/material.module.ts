@@ -11,18 +11,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-<<<<<<< HEAD
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatExpansionModule } from '@angular/material/expansion';
-=======
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
->>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
 
 @NgModule({
   declarations: [],
@@ -43,10 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatTabsModule,
     MatExpansionModule,
-<<<<<<< HEAD
-=======
     MatPaginatorModule
->>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
   ],
   exports: [
     MatCardModule,

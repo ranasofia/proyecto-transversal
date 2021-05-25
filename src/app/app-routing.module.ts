@@ -24,11 +24,7 @@ import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
 
-<<<<<<< HEAD
-  {path: '', component: UsuariosComponent},  
-=======
   {path: '', component: RegistroComponent},
->>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
