@@ -66,7 +66,13 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
 
           var usuarioLogin = new Usuario();
           usuarioLogin.correo = usuarioIncompleto.correo;
-          usuarioLogin.contrasena = sessionStorage.getItem("clave");
+
+          var CryptoJS = require("crypto-js");
+          var bytes = CryptoJS.AES.decrypt(sessionStorage.getItem("clave"), 'proyectoTransversal');
+          var passwordDecrypt = bytes.toString(CryptoJS.enc.Utf8);
+
+          usuarioLogin.contrasena = passwordDecrypt;
+
           usuarioTransversalService.getToken(usuarioLogin).subscribe(data => {
 
             sessionStorage.setItem(environment.TOKEN, data);

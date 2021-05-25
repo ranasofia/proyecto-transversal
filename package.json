@@ -28,6 +28,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "bootstrap": "^4.5.0",
+    "crypto-js": "^3.3.0",
     "moment": "^2.29.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
