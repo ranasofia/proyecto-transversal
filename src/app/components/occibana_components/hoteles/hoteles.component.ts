@@ -80,7 +80,7 @@ export class HotelesComponent implements OnInit {
   }
 
   /**
-   * Método que realiza el filtro de los hoteles desde el umpu de búsqueda
+   * Método que realiza el filtro de los hoteles desde el input de búsqueda
    * @param hotelFiltred lo que llega del input
    */
   hotelesFilter(hotelFiltred: string) {
@@ -89,11 +89,6 @@ export class HotelesComponent implements OnInit {
     dataSource.filter = hotelFiltred.trim().toLocaleLowerCase();
 
     this.hotelesFiltrados = dataSource.filteredData;
-  }
-
-  verDetalleHotel(hotelSelect: Hotel): void {
-    this.hotelesService.hotelSeleccionado = hotelSelect;
-    this.router.navigate(['occibana/hoteles/detallesHotel'])
   }
 
 }
