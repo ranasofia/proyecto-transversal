@@ -20,6 +20,7 @@ export class ServicioSolicitudService {
    * Posee el enlace para llamar a los servicios
    */
   private URL: string = environment.UBER_MOTOS +  '/cliente';
+  private URL2: string = environment.UBER_MOTOS + '/reportes';
 
   /**
    * Da estado inicial e inyecta variables en ClienteService
@@ -75,5 +76,14 @@ export class ServicioSolicitudService {
    */
   postSolicitarServicio(notificacion: any){
     return this.http.post(this.URL + "/solicitudServicio", notificacion);
+  }
+
+  /**
+   * Permite mostrar la factura del servicio solicitado
+   * @param usuario 
+   * @returns 
+   */
+  getFactura(usuario: string){
+    return this.http.get(this.URL2 + "/facturaCliente?usuario=" + usuario);
   }
 }
