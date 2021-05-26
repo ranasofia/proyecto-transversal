@@ -35,9 +35,8 @@ const routes: Routes = [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
-    {path: 'detallesHotel/:id', component: DetallesHotelComponent, children: [
-      {path: 'resevarHabitacion/:id', component: ReservaHabitacionComponent}
-    ]}
+    {path: 'detallesHotel/:id', component: DetallesHotelComponent},
+    {path: 'resevarHabitacion/:id', component: ReservaHabitacionComponent}
   ], canActivate:[GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
     {path: 'registrar', component: FormularioUsuariosComponent},

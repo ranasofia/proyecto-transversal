@@ -86,7 +86,7 @@
             <p>Baños por habitación: {{ habitacion.numbanio }}</p>
             <p>Precio por noche: COP {{ habitacion.precio }}</p>
 
-            <button mat-flat-button color="warn" [routerLink]="['/occibana/hoteles/detallesHotel/resevarHabitacion', habitacion.id]" >¡RESERVAR AHORA!</button>
+            <button mat-flat-button color="warn" [routerLink]="['/occibana/hoteles/resevarHabitacion', habitacion.id]" >¡RESERVAR AHORA!</button>
           </mat-expansion-panel>
         </mat-accordion>
       </ng-container>
