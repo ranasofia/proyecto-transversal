@@ -41,6 +41,7 @@ import { RegistroLoginOccibanaService } from './_service/occibana_service/regist
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
+import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -236,7 +237,8 @@ export function delay(ms: number) {
     UsuariosComponent,
     FormularioUsuariosComponent,
     FacturaComponent,
-    DialogEliminarComponent
+    DialogEliminarComponent,
+    ReservaHabitacionComponent
   ],
 
 
