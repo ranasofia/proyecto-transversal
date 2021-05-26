@@ -34,7 +34,7 @@ const routes: Routes = [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
-    {path: 'detallesHotel', component: DetallesHotelComponent}
+    {path: 'detallesHotel/:id', component: DetallesHotelComponent}
   ], canActivate:[GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
     {path: 'registrar', component: FormularioUsuariosComponent},

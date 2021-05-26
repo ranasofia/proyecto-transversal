@@ -35,7 +35,7 @@
                         </p>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-button (click)="verDetalleHotel(hotel)">¡Ver más!</button>
+                        <button mat-button [routerLink]="['/occibana/hoteles/detallesHotel', hotel.idhotel]">¡Ver más!</button>
                     </mat-card-actions>
                 </mat-card>
             </ng-container>

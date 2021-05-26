@@ -16,7 +16,7 @@
         <p class="hoteles-card-img">
           <img
             mat-card-image
-            src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png"
+            src="{{ hotelSeleccionado.imagen }}"
           />
         </p>
 
@@ -39,7 +39,9 @@
               {{ hotelSeleccionado.precioNochePremium }}
             </li>
 
-            <li>Calificación:</li>  
+            <li>Calificación promedio:
+              <ngb-rating [(rate)]="hotelSeleccionado.promediocalificacion"></ngb-rating>
+            </li>  
 
             <li>Dirección: {{ hotelSeleccionado.direccion }}</li>
 
@@ -70,38 +72,39 @@
   <mat-tab-group>
     <mat-tab label="Descripción y Reservas">
       <h2>¡Que esperas para reservar tu hotel en este instante!</h2>
-      <h3>Habitaciones</h3>
+      <h3>Habitaciones disponibles: </h3>
+      <ng-container *ngFor="let habitacion of habitaciones">
       <mat-accordion class="seccion-reservas" multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title> Personal data </mat-panel-title>
-            <mat-panel-description>
-              <mat-icon>local_hotel</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <p>Número de personas:</p>
-          <p>Número de camas:</p>
-          <p>Baños por habitación:</p>
-          <p>Precio por noche: COP </p>
-
-          <button mat-flat-button color="warn">¡RESERVAR AHORA!</button>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-tab>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> {{habitacion.tipo}} </mat-panel-title>
+              <mat-panel-description>
+                <mat-icon>local_hotel</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <p>Número de personas: {{ habitacion.numpersonas }}</p>
+            <p>Número de camas: {{ habitacion.numcamas }}</p>
+            <p>Baños por habitación: {{ habitacion.numbanio }}</p>
+            <p>Precio por noche: COP {{ habitacion.precio }}</p>
+            
+            <button mat-flat-button color="warn">¡RESERVAR AHORA!</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
+      </mat-tab>
 
     <mat-tab label="Puntuar y Comentar"> 
       <h2>{{ hotelSeleccionado.nombre }}</h2>
       <h3>{{ nombreUsuario }}</h3>
 
-      <h2>Calificación</h2>
-
-      <h2>Opinión</h2>
+      <h2>Déjanos tu calificación</h2>
+      <h2>Déjanos tu Opinión</h2>
       <mat-form-field>
         <mat-label>Escriba aquí el comentario</mat-label>
         <textarea matInput></textarea>
       </mat-form-field>
-
+      <button mat-flat-button color="primary">ENVIAR</button>
     </mat-tab>
 
     <mat-tab label="Comentarios">
