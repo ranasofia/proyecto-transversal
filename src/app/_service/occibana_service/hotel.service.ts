@@ -32,7 +32,7 @@ export class HotelService {
    * @returns la lista de hoteles
    */
   postListadoHoteles(listaHoteles: HotelPrincipal) {
-    return this.http.post<any>(this.URL + "/postHotelesPrincipal", listaHoteles);
+    return this.http.post<any>(this.URL + '/postHotelesPrincipal', listaHoteles);
   };
 
   /**
@@ -40,7 +40,7 @@ export class HotelService {
    * @returns
    */
   getHotelesDestacados() {
-    return this.http.get<Hotel[]>(this.URL + "/getHotelesDestacados");
+    return this.http.get<Hotel[]>(this.URL + '/getHotelesDestacados');
   }
 
   /**
@@ -49,7 +49,7 @@ export class HotelService {
    * @returns 
    */
   postObtenerComentarios(hotel: Hotel) {
-    return this.http.post<Comentario[]>(this.URL + "/postObtenerComentarios", hotel);
+    return this.http.post<Comentario[]>(this.URL + '/postObtenerComentarios', hotel);
   }
 
   /**
@@ -58,7 +58,7 @@ export class HotelService {
    * @returns 
    */
   postHabitacionesHotel(idHotel: number) {
-    return this.http.post<Habitacion[]>(this.URL + "/postHabitacionesHotel", {
+    return this.http.post<Habitacion[]>(this.URL + '/postHabitacionesHotel', {
       "idHotel": idHotel
     });
   }

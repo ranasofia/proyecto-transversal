@@ -10,7 +10,7 @@ import { Comentario } from 'src/app/_model/occibana_model/Comentario';
 import * as moment from 'moment';
 import { Habitacion } from 'src/app/_model/occibana_model/Habitacion';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -30,7 +30,14 @@ export class DetallesHotelComponent implements OnInit {
 
   helper: any = new JwtHelperService();
 
-  nombreUsuario: string
+  nombreUsuario: string;
+
+  value = 1;
+
+  /**
+   * Variable que indica el formulario para el comentario
+   */
+  comentarioF: FormGroup;
 
   constructor(
     private serviceHotel: HotelService,
@@ -38,20 +45,21 @@ export class DetallesHotelComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private configRating: NgbRatingConfig
-    
+
   ) {
     configRating.readonly = true;
     configRating.max = 5;
+    this.comentarioF = this.createFormGroup();
   }
-  
+
 
   /**
    * Implementación que se ejecuta una vez se inicie el DetallesHotelComponent
    */
   ngOnInit(): void {
-    this.route.params.subscribe( data => {
-      let id = data.id
 
+    this.route.params.subscribe(data => {
+      let id = data.id
       this.panelHotelService.postInformacionHotel(id).subscribe(
         (data) => {
           this.hotelSeleccionado = data
@@ -69,17 +77,31 @@ export class DetallesHotelComponent implements OnInit {
 
   }
 
+  /**
+   * Método que se encarga de configurar las validaciones del formulario comentario
+   * @returns grupoFormulario
+   */
+  createFormGroup() {
+    return new FormGroup({
+
+      comentario: new FormControl(
+        '', [
+        Validators.required
+      ])
+    })
+  }
+
   obtenerComentariosHotel(): void {
     this.serviceHotel.postObtenerComentarios(this.hotelSeleccionado).subscribe(
       data => {
         this.comentarios = data
         for (var i = 0; i < this.comentarios.length; i++) {
-          this.comentarios[i].fecha_comentario = moment().locale('es').calendar()  
+          this.comentarios[i].fecha_comentario = moment().locale('es').calendar()
         }
       },
       err => {
         console.log('Ha ocurrido un error');
-        
+
       }
     )
   }
@@ -95,6 +117,14 @@ export class DetallesHotelComponent implements OnInit {
       }
 
     )
+  }
+
+  cargarComentario() {
+
+  }
+
+  comentarYcalificar(event: Event) {
+
   }
 
 }
