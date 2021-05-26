@@ -95,6 +95,10 @@ export class GuardianService implements CanActivate {
           usuarioConvertido = Conversion.convertirAMototaxi(usuarioTransversal);
           cadenaSesion = environment.TOKEN_MOTOTAXI;
 
+        }else{
+
+          return true;
+
         }
 
         servicioConvertido.getToken(usuarioConvertido).subscribe(data => {

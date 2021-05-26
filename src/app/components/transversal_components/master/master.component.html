@@ -1,17 +1,17 @@
 <div class="example-container">
 
   <mat-toolbar color="primary" class="example-toolbar">
-    
+
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
       <mat-icon *ngIf="sidenav.opened">closed</mat-icon>
     </button>
-    
+
     <h1 class="example-app-name">Proyecto Transversal</h1>
-    
+
     <mat-menu #menu="matMenu"></mat-menu>
   </mat-toolbar>
-  
+
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav style="width: 200px">
       <mat-divider></mat-divider>
@@ -64,10 +64,15 @@
           <span>Nuestros usuarios</span>
         </button>
         <mat-divider></mat-divider>
+        <button mat-menu-item style="cursor: pointer" routerLink="/perfil" (click)="sidenav.toggle()">
+          <mat-icon>people</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <mat-divider></mat-divider>
           <button mat-menu-item (click)="cerrarSesion(); sidenav.toggle()" routerLink="/login">
             <mat-icon>exit_to_app</mat-icon>
             <span>Cerrar Sesion</span>
-          </button> 
+          </button>
         <mat-divider></mat-divider>
       </div>
       <mat-divider></mat-divider>

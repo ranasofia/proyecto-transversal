@@ -100,5 +100,14 @@ export class UsuarioTransversalService {
    }
 
 
+   /**
+    * Permite cambiar la información del usuario
+    * @param nombreUsuario es el nombre de usuario del usuario al cual se le va a actualizar la información de perfil
+    * @param usuario es el objeto que tiene los datos para actualizar la información del usuario
+    * @returns respuesta
+    */
+   actualizarPerfil(nombreUsuario: string, usuario: Usuario){
+     return this.http.put(this.URL + "/actualizarPerfil?usuario=" + nombreUsuario, usuario);
+   }
 
 }

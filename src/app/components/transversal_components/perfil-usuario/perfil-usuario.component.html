@@ -1,62 +1,121 @@
 <div class="titulo" fxLayoutAlign="center">
-    PERFIL
+  PERFIL
 </div>
 <div class="perfil-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
 
-    <div class="form">
-        <div class="forma3">
-            <img src="assets/images/caucho.jpg">
+  <div class="form">
 
-            <button mat-raised-button color="primary">ACTUALIZAR
-                <mat-icon class="icono" matPrefix>check_circle</mat-icon>
-            </button>
-        </div>
 
-        <div class="form1">
+    <form [formGroup]="perfilForm" (ngSubmit)="actualizarPerfil($event)">
+      <div class="forma3">
+        <img style="background-color: white;" src="assets/images/profile.svg">
 
-            <mat-form-field>
-                <mat-icon matPrefix>person</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="ID USUARIO: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>badge</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="NOMBRE: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>badge</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="APELLIDO: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>email</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="CORREO: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>password</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="CONTRASEÑA: ">
-            </mat-form-field>
-        </div>
-        <div class="form2">
-            <mat-form-field>
-                <mat-icon matPrefix>call</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="CELULAR: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>face</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="USUARIO: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>event</mat-icon>
-                <input type="date" class="columna1" matInput placeholder="FECHA DE NACIMIENTO: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>description</mat-icon>
-                <input type="number" class="columna1" matInput placeholder="DOCUMENTO: ">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-icon matPrefix>home</mat-icon>
-                <input type="text" class="columna1" matInput placeholder="DIRECCIÓN: ">
-            </mat-form-field>
-        </div>
+        <button mat-raised-button color="primary">ACTUALIZAR
+          <mat-icon class="icono" matPrefix>check_circle</mat-icon>
+        </button>
+      </div>
+      <div class="form1">
+        <mat-form-field>
+          <mat-icon matPrefix>badge</mat-icon>
+          <input type="text" class="columna1" matInput placeholder="NOMBRE: " formControlName="nombre">
+          <mat-error *ngIf="perfilForm.controls.nombre.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>badge</mat-icon>
+          <input type="text" class="columna1" matInput placeholder="APELLIDO: " formControlName="apellido">
+          <mat-error *ngIf="perfilForm.controls.apellido.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>email</mat-icon>
+          <input type="text" class="columna1" matInput placeholder="CORREO: " formControlName="correo">
+          <mat-error
+            *ngIf="perfilForm.controls.correo.hasError('email') && !perfilForm.controls.correo.hasError('required')">
+            Digita un correo electrónico válido...
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.correo.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>password</mat-icon>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <input [type]="hide ? 'password' : 'text'" class="columna1" matInput placeholder="CONTRASEÑA: "
+            formControlName="password">
+          <mat-error *ngIf="perfilForm.controls.password.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.password.hasError('minlength')">
+            Debe tener como mínimo 8 caracteres
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>password</mat-icon>
+          <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <input [type]="hide2 ? 'password' : 'text'"  class="columna1" matInput placeholder="REPETIR CONTRASEÑA: "
+            formControlName="claveVerificar">
+          <mat-error *ngIf="perfilForm.controls.claveVerificar.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.claveVerificar.hasError('minlength')">
+            Debe tener como mínimo 8 caracteres
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.claveVerificar.hasError('verificacionClave')">
+            Las contraseñas no coinciden
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form2">
+        <mat-form-field>
+          <mat-icon matPrefix>call</mat-icon>
+          <input type="text" class="columna1" matInput placeholder="CELULAR: " formControlName="celular">
+          <mat-error *ngIf="perfilForm.controls.celular.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.celular.hasError('minlength')">
+            Debe tener como mínimo 7 números
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>face</mat-icon>
+          <input type="text" class="columna1" matInput placeholder="USUARIO: " formControlName="nombreUsuario">
+          <mat-error *ngIf="perfilForm.controls.nombreUsuario.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>event</mat-icon>
+          <input type="date" class="columna1" matInput placeholder="FECHA DE NACIMIENTO: "
+            formControlName="fechaNacimiento">
+          <mat-error *ngIf="perfilForm.controls.fechaNacimiento.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.fechaNacimiento.hasError('edadValida')">
+            Debe tener al menos 15 años
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>description</mat-icon>
+          <input type="number" class="columna1" matInput placeholder="DOCUMENTO: " formControlName="documento">
+          <mat-error *ngIf="perfilForm.controls.documento.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="perfilForm.controls.documento.hasError('minlength')">
+            Debe tener como mínimo 5 números
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>home</mat-icon>
+          <input type="text" class="columna1" matInput placeholder="DIRECCIÓN: " formControlName="direccion">
+          <mat-error *ngIf="perfilForm.controls.direccion.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
 
-    </div>
+  </div>
 </div>

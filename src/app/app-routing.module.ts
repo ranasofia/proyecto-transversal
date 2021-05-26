@@ -40,6 +40,7 @@ const routes: Routes = [
     {path: 'registrar', component: FormularioUsuariosComponent},
     {path: 'modificar/:id', component: FormularioUsuariosComponent}
   ]},
+  {path: 'perfil', component: PerfilUsuarioComponent, canActivate:[GuardianService]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 

@@ -65,5 +65,15 @@ export class ClienteService {
 
   }
 
+  /**
+   * Permite cambiar los datos del usuario
+   * @param nombreUsuario nombre de usuario para identificar a qué usuario se le cambia la información
+   * @param usuario objeto que posee los datos actualizados del usuario
+   * @returns mensaje
+   */
+  actualizarPerfil(nombreUsuario: string, usuario: Object){
+    return this.http.put(this.URL + "/actualizarDatos?usuario=" + nombreUsuario, usuario);
+  }
+
 
 }
