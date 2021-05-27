@@ -141,6 +141,8 @@ export class GuardianService implements CanActivate {
 
         for (var j = 1; j <= 100; j++) {
 
+
+
           await this.delay(300);
 
           if (sessionStorage.getItem(cadenaSesion) != undefined) {

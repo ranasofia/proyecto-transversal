@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionService } from 'src/app/_service/superfast_service/comunicacion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Producto } from 'src/app/_model/superfast_model/Producto';
+import { InicioService } from 'src/app/_service/superfast_service/inicio.service';
 
 /**
  * Decorador de CatalogoSuperFastComponent
@@ -72,7 +73,7 @@ export class CatalogoSuperFastComponent implements OnInit {
    * @param comunicacionService objeto que permite usar los servicios relacionados con los productos
    * @param dialog componente que se muestra como pestaña modal
    */
-  constructor(private comunicacionService: ComunicacionService, private dialog: MatDialog) {
+  constructor(private comunicacionService: ComunicacionService, private dialog: MatDialog, private inicioService: InicioService) {
 
     this.formatoMoneda = new Intl.NumberFormat('es-ES');
 
@@ -104,8 +105,10 @@ export class CatalogoSuperFastComponent implements OnInit {
   /**
    * Método que abre la pestaña modal
    */
-  openDialog() {
-    this.dialog.open(ProductoDialogComponent);
+  openDialog(producto: Producto) {
+    this.dialog.open(ProductoDialogComponent, {
+      data:{producto: producto}
+    });
   }
 
 }

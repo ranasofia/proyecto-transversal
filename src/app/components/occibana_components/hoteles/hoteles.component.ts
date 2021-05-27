@@ -45,7 +45,7 @@ export class HotelesComponent implements OnInit {
    * @param router  Instancia de Router
    */
   constructor(
-    private hotelesService: HotelService, 
+    private hotelesService: HotelService,
     private router: Router,
     public route: ActivatedRoute
     ) { }

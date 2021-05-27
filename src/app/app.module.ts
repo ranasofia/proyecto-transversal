@@ -52,6 +52,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
     tokenGetter: async (request) => {
 
       let tk: string;
+      let tokenAntes: string;
 
       const helper = new JwtHelperService();
 
@@ -61,9 +62,9 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
 
       if (request.url.includes('www.ubermotosisw.tk/api/usuario')) {
 
-        tk = sessionStorage.getItem(environment.TOKEN);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           var usuarioLogin = new Usuario();
           usuarioLogin.correo = usuarioIncompleto.correo;
@@ -81,13 +82,17 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
 
           })
 
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('52.67.179.68')) {
 
-        tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -101,13 +106,17 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('18.224.240.8')) {
 
-        tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -121,12 +130,16 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('ubermotosisw')) {
-        tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -140,12 +153,16 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('18.230.178.121')) {
-        tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -159,13 +176,17 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
       }
 
 
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < 100; i++) {
 
-        if(tk != undefined){
+        if(tk != "" && tk != undefined){
 
           break;
 
@@ -174,6 +195,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
         await delay(300);
 
       }
+
       return tk != null ? tk : '';
 
     },
@@ -195,12 +217,15 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.HCCAUCHOS + '/login/cerrarcesion',
       environment.HCCAUCHOS + '/Usuario/editarcorreo',
       environment.HCCAUCHOS + '/Usuario/modificarclave',
+      environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
+      environment.HCCAUCHOS + '/Usuario/AgregarAlCarrito',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',
       environment.OCCIBANA + '/registroLogin/registroLogin',
       environment.OCCIBANA + '/registroLogin/postRegistroUsuario',
       environment.OCCIBANA + '/listas/postHotelesPrincipal',
       environment.OCCIBANA + '/listas/getHotelesDestacados',
+      environment.OCCIBANA + "/registroLogin/postIngresoLogin",
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
       environment.SUPERFAST + '/admin/login',

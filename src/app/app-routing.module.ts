@@ -30,6 +30,7 @@ const routes: Routes = [
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
+  {path: 'superfast/carrito', component: SuperfastCarritoComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},

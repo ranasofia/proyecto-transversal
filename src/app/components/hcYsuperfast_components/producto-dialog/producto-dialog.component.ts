@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Producto } from 'src/app/_model/superfast_model/Producto';
+import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfast';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
+import { InicioService } from 'src/app/_service/superfast_service/inicio.service';
+import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
+import { environment } from 'src/environments/environment';
 
 /**
  * Decorador de ProductoDialogComponent
@@ -23,7 +32,10 @@ export class ProductoDialogComponent implements OnInit {
   /**
    * Constructor de ProductoDialogComponent
    */
-  constructor() {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {producto: Producto},
+  private usuarioTransversalService: UsuarioTransversalService,
+  private inicioService: InicioService,
+  private _snackBar: MatSnackBar) {
 
     this.productoForm = this.createFormGroup();
 
@@ -57,6 +69,34 @@ export class ProductoDialogComponent implements OnInit {
    */
   enviarACarrito(event: Event): void{
 
+      const HELPER = new JwtHelperService();
+
+      let usuarioSuperfast = new UsuarioSuperfast();
+
+      let tokenGeneral = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN));
+      let tokenSuperfast = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN_SUPERFAST));
+
+      usuarioSuperfast.id = tokenSuperfast.nameid;
+
+      let usuarioIncompleto = new Usuario();
+      usuarioIncompleto.correo = tokenGeneral.email;
+      usuarioIncompleto.usuario = tokenGeneral.name;
+
+      this.usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+        usuarioSuperfast.direccion = data.direccion;
+        usuarioSuperfast.telefono = data.celular;
+        this.data.producto.cantidad = this.productoForm.controls["cantidad"].value;
+
+        this.inicioService.agregarAlCarrito(usuarioSuperfast, this.data.producto, this.productoForm.controls["especificaciones"].value).subscribe(data => {
+
+          this._snackBar.open('Producto agregado al carrito con éxito', 'Cancel  ', {
+            duration: 3000
+          });
+
+        });
+
+      })
 
   }
 

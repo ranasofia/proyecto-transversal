@@ -335,6 +335,11 @@ export class PerfilUsuarioComponent implements OnInit {
             duration: 3000
           });
 
+          let CryptoJS = require("crypto-js");
+          let claveEncriptada = CryptoJS.AES.encrypt(usuarioActualizado.contrasena, 'proyectoTransversal')
+
+          sessionStorage.setItem("clave", claveEncriptada);
+
           this.router.navigate(["/usuarios"]);
 
         })

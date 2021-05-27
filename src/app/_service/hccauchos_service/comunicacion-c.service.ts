@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ProductoH } from 'src/app/_model/hccauchos_model/ProductoH';
 import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
+import { Carro } from 'src/app/_model/hccauchos_model/Carro';
+import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
+
 /**
  * Decorador de ComunicacionCService
  */
@@ -52,6 +55,18 @@ export class ComunicacionCService {
   cambiarClave(usuario: UsuarioHCCauchos){
 
     return this.http.put<string>(this.URL + "/modificarclave", usuario);
+
+  }
+
+  agregarAlCarrito(carro: Carro){
+
+    return this.http.post<string>(this.URL + "/AgregarAlCarrito", carro);
+
+  }
+
+  getCarrito(idUsuario: number){
+
+    return this.http.get<Pedido[]>(this.URL + "/ObtenerCarrito/" + idUsuario);
 
   }
 
