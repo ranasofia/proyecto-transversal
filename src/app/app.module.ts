@@ -214,7 +214,6 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
       environment.HCCAUCHOS + '/Usuario/catalogo',
-      environment.HCCAUCHOS + '/login/cerrarcesion',
       environment.HCCAUCHOS + '/Usuario/editarcorreo',
       environment.HCCAUCHOS + '/Usuario/modificarclave',
       environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
