@@ -1,66 +1,68 @@
 <h1>BIENVENIDO A OCCIBANA</h1>
 
 <section class="detalle-hotel">
-  <div
-    class="detalle-container"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-  >
+  <div class="detalle-container" fxLayoutAlign="center center">
     <mat-card class="detalle-hotel-card">
-      <mat-card-header>
-        <mat-card-title>{{ hotelSeleccionado.nombre }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content fxLayout="row">
+      <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+        <div>
+          <mat-card-title>{{ hotelSeleccionado.nombre }}</mat-card-title>
+          <strong>Calificación promedio:</strong>
+          <br />
+          <ngb-rating [(rate)]="hotelSeleccionado.promediocalificacion">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
+        </div>
+
         <p class="hoteles-card-img">
           <img mat-card-image src="{{ hotelSeleccionado.imagen }}" />
         </p>
+      </mat-card-header>
+      <mat-card-content fxLayoutAlign="center">
+        <ul>
+          <li><strong>Municipio:</strong> {{ hotelSeleccionado.municipio }}</li>
 
-        <div class="hoteles-card-descrip">
-          <ul>
-            <li>Municipio: {{ hotelSeleccionado.municipio }}</li>
+          <li><strong>Zona:</strong> {{ hotelSeleccionado.zona }}</li>
 
-            <li>Zona: {{ hotelSeleccionado.zona }}</li>
+          <li>
+            <strong>Precio noche básico: COP </strong
+            >{{ hotelSeleccionado.precionoche }}
+          </li>
 
-            <li>
-              Precio noche básico: COP {{ hotelSeleccionado.precionoche }}
-            </li>
+          <li>
+            <strong>Precio noche doble: COP</strong>
+            {{ hotelSeleccionado.precioNocheDoble }}
+          </li>
 
-            <li>
-              Precio noche doble: COP {{ hotelSeleccionado.precioNocheDoble }}
-            </li>
+          <li>
+            <strong>Precio noche premium: COP</strong>
+            {{ hotelSeleccionado.precioNochePremium }}
+          </li>
 
-            <li>
-              Precio noche premium: COP
-              {{ hotelSeleccionado.precioNochePremium }}
-            </li>
+          <li><strong>Dirección:</strong> {{ hotelSeleccionado.direccion }}</li>
 
-            <li>
-              Calificación promedio:
-              <ngb-rating
-                [(rate)]="hotelSeleccionado.promediocalificacion"
-              ></ngb-rating>
-            </li>
+          <li>
+            <strong>Descripción y servicios:</strong>
+            {{ hotelSeleccionado.descripcion }}
+          </li>
 
-            <li>Dirección: {{ hotelSeleccionado.direccion }}</li>
+          <li>
+            <strong>Condiciones físicas:</strong>
+            {{ hotelSeleccionado.condicion }}
+          </li>
 
-            <li>
-              Descripción y servicios: {{ hotelSeleccionado.descripcion }}
-            </li>
+          <li><strong>HORARIOS DE REGISTRO</strong></li>
 
-            <li>Condiciones físicas: {{ hotelSeleccionado.condicion }}</li>
+          <li><strong>Check-out:</strong> {{ hotelSeleccionado.checkout }}</li>
 
-            <li>HORARIOS DE REGISTRO</li>
+          <li><strong>Check-in:</strong> {{ hotelSeleccionado.checkin }}</li>
 
-            <li>Check-out: {{ hotelSeleccionado.checkout }}</li>
-
-            <li>Check-in: {{ hotelSeleccionado.checkin }}</li>
-
-            <li>
-              Habitaciones disponibles:
-              {{ hotelSeleccionado.numHabitDisponibles }}
-            </li>
-          </ul>
-        </div>
+          <li>
+            <strong> Habitaciones disponibles:</strong>
+            {{ hotelSeleccionado.numHabitDisponibles }}
+          </li>
+        </ul>
       </mat-card-content>
     </mat-card>
   </div>
@@ -75,18 +77,38 @@
         <mat-accordion class="seccion-reservas" multi>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title> {{ habitacion.tipo }} </mat-panel-title>
+              <mat-panel-title class="title">
+                {{ habitacion.tipo }}
+              </mat-panel-title>
               <mat-panel-description>
                 <mat-icon>local_hotel</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <p>Número de personas: {{ habitacion.numpersonas }}</p>
-            <p>Número de camas: {{ habitacion.numcamas }}</p>
-            <p>Baños por habitación: {{ habitacion.numbanio }}</p>
-            <p>Precio por noche: COP {{ habitacion.precio }}</p>
+            <div fxLayout="row">
+              <p>
+                <strong>Número de personas:</strong>
+                {{ habitacion.numpersonas }}
+              </p>
+              <p><strong>Número de camas:</strong> {{ habitacion.numcamas }}</p>
+              <p>
+                <strong>Baños por habitación:</strong> {{ habitacion.numbanio }}
+              </p>
+              <p>
+                <strong>Precio por noche: COP</strong> {{ habitacion.precio }}
+              </p>
 
-            <button mat-flat-button color="warn" [routerLink]="['/occibana/hoteles/resevarHabitacion', habitacion.id]" >¡RESERVAR AHORA!</button>
+              <button
+                mat-flat-button
+                color="warn"
+                [routerLink]="[
+                  '/occibana/hoteles/resevarHabitacion',
+                  habitacion.id
+                ]"
+              >
+                ¡RESERVAR AHORA!
+              </button>
+            </div>
           </mat-expansion-panel>
         </mat-accordion>
       </ng-container>
@@ -94,38 +116,49 @@
 
     <mat-tab label="Puntuar y Comentar">
       <h2>{{ hotelSeleccionado.nombre }}</h2>
-      <h3>{{ nombreUsuario }}</h3>
 
-      <h2>Déjanos tu calificación</h2>
-      <mat-slider
-        thumbLabel
-        [(ngModel)]="value"
-        tickInterval="1"
-        step="1"
-        min="1"
-        max="5"
-        aria-label="units"
-      ></mat-slider>
+      <div class="seccion-comentar" fxLayout="column">
+        <h3>{{ nombreUsuario }} déjanos tu calificación:</h3>
+        <mat-slider
+          thumbLabel
+          [(ngModel)]="value"
+          tickInterval="1"
+          step="1"
+          min="1"
+          max="5"
+          aria-label="units"
+        ></mat-slider>
 
-      <ngb-rating [(rate)]="value"></ngb-rating>
+        <ngb-rating [(rate)]="value">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
 
-      <form [formGroup]="comentarioF" (ngSubmit)="comentarYcalificar($event)">
-        <h2>Déjanos tu Opinión</h2>
+        <br />
 
-        <mat-form-field class="comentario-full-width">
-          <textarea matInput type="text" required formControlName="comentario">
-          Escriba aquí su opinión sobre el hotel...
-        </textarea
-          >
-          <mat-error
-            *ngIf="comentarioF.controls.comentario.hasError('required')"
-          >
-            Este campo es<strong> obligatorio</strong>
-          </mat-error>
-        </mat-form-field>
+        <form [formGroup]="comentarioF" (ngSubmit)="comentarYcalificar($event)">
+          <h3>{{ nombreUsuario }} déjanos tu opinión:</h3>
 
-        <button mat-flat-button color="primary">ENVIAR</button>
-      </form>
+          <mat-form-field class="comentario-full-width">
+            <textarea
+              matInput
+              type="text"
+              required
+              formControlName="comentario"
+              placeholder="Escribe aquí..."
+            >
+            </textarea>
+            <mat-error
+              *ngIf="comentarioF.controls.comentario.hasError('required')"
+            >
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <button mat-flat-button color="primary">ENVIAR</button>
+        </form>
+      </div>
     </mat-tab>
 
     <mat-tab label="Comentarios">

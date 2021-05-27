@@ -20,8 +20,12 @@ export class ComentarioService {
     this.URL = environment.OCCIBANA + '/comentarCalificar';
   }
 
-  postComentar(comentario: Calificacion) {
-    return this.http.post(this.URL + '/postComentar', comentario );
+  postComentar(idUsuario: number, comentario: string, idHotel: number) {
+    return this.http.post(this.URL + '/postComentar', {
+      "IdSession": idUsuario,
+      "Comentario": comentario,
+      "IdHotelSession": idHotel
+    });
   }
 
   postCalificar(calificacion : Calificacion) {

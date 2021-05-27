@@ -226,9 +226,13 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.OCCIBANA + '/listas/postHotelesPrincipal',
       environment.OCCIBANA + '/listas/getHotelesDestacados',
       environment.OCCIBANA + "/registroLogin/postIngresoLogin",
+      environment.OCCIBANA + '/listas/postObtenerComentarios',
+      environment.OCCIBANA + '/listas/postHabitacionesHotel',
+      environment.OCCIBANA + '/panelHotel/postInformacionDelHotel',
+      environment.OCCIBANA + '/panelHotel/postInformacionDelHabitacion',
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
-      environment.SUPERFAST + '/admin/login',
+      environment.SUPERFAST + '/admin/login'
     ]
   }
 }

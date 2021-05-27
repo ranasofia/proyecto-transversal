@@ -1,10 +1,12 @@
 <div [hidden]="route.children.length !== 0">
 
-    <h1>BIENVENIDO A OCCIBANA</h1>
+    <div class="occibana-image"  fxLayoutAlign="center">
+        <img src="assets/images/occibana.png" />
+    </div>
 
     <section class="filter" fxLayoutAlign="center">
         <mat-form-field class="hotel-filter">
-            <mat-label>¿Busca algún hotel en específico?</mat-label>
+            <mat-label>¿Buscas algún hotel en específico?</mat-label>
             <mat-icon matPrefix>search</mat-icon>
             <input matInput type="text" placeholder="Buscar hotel" (keyup)="hotelesFilter($event.target.value)">
         </mat-form-field>
@@ -12,7 +14,7 @@
 
     <section class="hoteles">
 
-        <h2>Hoteles Destacados</h2>
+        <h2>HOTELES DESTACADOS</h2>
 
         <div class="hoteles-container" fxLayout="column" fxLayoutAlign="center center">
             <ng-container *ngFor="let hotel of hotelesFiltrados">
