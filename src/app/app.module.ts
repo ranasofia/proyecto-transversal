@@ -42,6 +42,7 @@ import { FacturaComponent } from './components/mototaxi_components/factura/factu
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
+import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -267,7 +268,8 @@ export function delay(ms: number) {
     FormularioUsuariosComponent,
     FacturaComponent,
     DialogEliminarComponent,
-    ReservaHabitacionComponent
+    ReservaHabitacionComponent,
+    ComentarComponent
   ],
 
 
