@@ -21,7 +21,7 @@ import { CatalogoSuperFastComponent } from 'src/app/components/superfast_compone
 import { HotelesComponent } from 'src/app/components/occibana_components/hoteles/hoteles.component';
 import { RecuperarContrasenaComponent } from 'src/app/components/transversal_components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from 'src/app/components/transversal_components/generar-token-recuperar/generar-token-recuperar.component';
-import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
+import { ProductoDialogComponent } from 'src/app/components/superfast_components/producto-dialog/producto-dialog.component';
 import { CatalogoHcCauchosComponent } from 'src/app/components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';

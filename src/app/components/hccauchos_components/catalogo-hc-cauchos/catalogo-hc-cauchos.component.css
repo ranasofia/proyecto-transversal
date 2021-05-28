@@ -3,7 +3,7 @@ mat-toolbar {
     justify-content: space-between;
 }
 
-mat-card-title{ 
+mat-card-title{
   text-align: center;
   font-size: 50px;
   margin-bottom: 50px;
@@ -26,11 +26,7 @@ mat-form-field {
 margin-bottom: 500px ;
 }
 
-mat-card-actions{
 
-  text-align: right;
-
-}
 
 img{
 
@@ -49,6 +45,19 @@ img{
     margin-bottom: 16px;
 
 }
+
+
+.contenedorAgregar{
+  display: flex;
+  justify-content: center;
+}
+
+.contenedorCampoCantidad{
+
+  margin: 4%;
+
+}
+
 .mat-form-field {
     display: flex;
     font-size: 15px;

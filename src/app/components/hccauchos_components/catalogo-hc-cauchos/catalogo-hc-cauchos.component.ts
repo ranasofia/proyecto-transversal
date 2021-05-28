@@ -1,9 +1,12 @@
 import { ProductoH } from 'src/app/_model/hccauchos_model/ProductoH';
 import { Component, OnInit } from '@angular/core';
-import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Carro } from 'src/app/_model/hccauchos_model/Carro';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 /**
  * Decorador de CatalogoHcCauchosComponet
  */
@@ -43,6 +46,8 @@ import { MatDialog } from '@angular/material/dialog';
      */
     productosFiltrados: ProductoH[];
 
+    cantidad: number;
+
     /**
      * Permite filtrar los productos a mostrar
      * @param filter variabe que posee la palabra clave por la que se filtra
@@ -71,7 +76,7 @@ import { MatDialog } from '@angular/material/dialog';
      * @param comunicacionService objeto que permite usar los servicios relacionados con los productos
      * @param dialog componente que se muestra como pestaña modal
      */
-    constructor(private comunicacionService: ComunicacionCService, private dialog: MatDialog) {
+    constructor(private comunicacionService: ComunicacionCService, private dialog: MatDialog, private _snackBar: MatSnackBar) {
 
       this.formatoMoneda = new Intl.NumberFormat('es-ES');
 
@@ -100,11 +105,35 @@ import { MatDialog } from '@angular/material/dialog';
 
     }
 
-    /**
-     * Método que abre la pestaña modal
-     */
-    openDialog() {
-      this.dialog.open(ProductoDialogComponent);
+
+    agregarAlCarrito(cantidad: number, producto: ProductoH){
+
+      if(cantidad != null && cantidad > 0){
+
+        let carro = new Carro();
+        carro.producto_id = producto.id;
+        carro.cantidad = cantidad;
+        carro.precio = producto.precio;
+        carro.total = producto.precio*cantidad;
+
+        let HELPER = new JwtHelperService();
+        let tokenHCCauchos = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN_HCCAUCHOS));
+        let idUsuario = tokenHCCauchos.nameid;
+
+        carro.user_id = idUsuario;
+
+        this.comunicacionService.agregarAlCarrito(carro).subscribe(data => {
+
+          this._snackBar.open('Producto agregado con éxito al carrito', 'Cancel  ', {
+            duration: 5000
+          });
+
+          this.ngOnInit();
+
+        });
+
+      }
+
     }
 
   }
