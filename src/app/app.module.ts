@@ -43,6 +43,7 @@ import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/commo
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
 import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
+import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -269,7 +270,8 @@ export function delay(ms: number) {
     FacturaComponent,
     DialogEliminarComponent,
     ReservaHabitacionComponent,
-    ComentarComponent
+    ComentarComponent,
+    ConversarComponent
   ],
 
 
