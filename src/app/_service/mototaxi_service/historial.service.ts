@@ -1,4 +1,4 @@
-import { Notificacion } from './../../_model/mototaxi_model/Notificacion';
+import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,6 +18,8 @@ export class HistorialService {
    * Posee el enlace para llamar a los servicios
    */
   private URL: string  = environment.UBER_MOTOS + '/cliente';
+  private URL2: string = environment.UBER_MOTOS + '/usuario';
+
   
   /**
    * Da estado inicial e inyecta variables en ClienteService
@@ -32,8 +34,25 @@ export class HistorialService {
    * @returns historial
    */
    getHistorial(fechaInicio: string, usuario: string){
-
     return this.http.get<Notificacion[]>(this.URL + "/historial?fechaInicio=" + fechaInicio + "&usuario=" + usuario);
+  }
 
+  /**
+   * Permite realizar un comentario al conductor sobre algún servicio realizado
+   * @param idNotificacion variable que especifica el id del registro
+   * @param comentario variable que contiene el comentario realizado
+   * @returns 
+   */
+  putComentar(idNotificacion:number,comentario:any){
+    return this.http.put(this.URL+"/comentarServicio?idNotificacion="+idNotificacion, comentario);
+  }
+
+  /**
+   * Permite traer los datos de un registro del historial
+   * @param idNotificacion variable que especifica el id del registro
+   * @returns datos del registro
+   */
+  getDatosRegistro(idNotificacion: number){
+    return this.http.get(this.URL2 + "/datosRegistro?idNotificacion=" + idNotificacion);
   }
 }

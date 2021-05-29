@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HistorialService } from 'src/app/_service/mototaxi_service/historial.service';
 import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
@@ -50,12 +50,14 @@ export class HistorialClienteComponent implements OnInit {
    */
   constructor(private historial: HistorialService,
               private barraProgresoService: BarraProgresoService,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              public route: ActivatedRoute) { }
 
   /**
    * Implementación que se ejecuta una vez se inicie el HistorialClienteComponent
    */
   ngOnInit(): void {
+
     this.barraProgresoService.progressBar.next("1");
     /**
       * Constante para decodificar el token
@@ -85,6 +87,15 @@ export class HistorialClienteComponent implements OnInit {
     this.displayedColumns = ['soy','conductor', 'destino', 'ubicacion', 'tarifa', 'fechaCarrera', 'comentario', 'comentar','conversacion','conversar'];
 
     this.barraProgresoService.progressBar.next("2");
+  }
+  /**
+   * Método que se ejecuta cuando un componente hijo deja de estar activo
+   * @param event variable que posee todos los datos del evento
+   */
+   onDeactivate(event) {
+
+    this.ngOnInit();
+
   }
 
   /**
