@@ -24,22 +24,46 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class DetallesHotelComponent implements OnInit {
 
+  /**
+   * Representan los datos cargados de todos lo comentarios
+   */
   dataComentarios: MatTableDataSource<Comentario>;
 
+  /**
+   * Representa la información del hotel seleccionado
+   */
   hotelSeleccionado: Hotel;
 
+  /**
+   * Representa la lista de comentario que tiene un hotel
+   */
   comentarios: Comentario[];
 
+  /**
+   * Representa la lista de habitación que tiene un hotel
+   */
   habitaciones: Habitacion[];
 
+  /**
+   * Carga el token para decodificarlo
+   */
   helper: any = new JwtHelperService();
 
+  /**
+   * Representa el nombre del usuario de la sesión
+   */
   nombreUsuario: string;
 
   value = 1;
 
+  /**
+   * Representa el id del hotel seleccionado
+   */
   idHotel: number;
 
+  /**
+   * Representa el id de usuario de la sesión
+   */
   idUsuario: number;
 
   /**
@@ -47,6 +71,17 @@ export class DetallesHotelComponent implements OnInit {
    */
   comentarioF: FormGroup;
 
+  /**
+   * Constructor sobrecargado de componente de detalles del hotel
+   * @param serviceHotel 
+   * @param panelHotelService 
+   * @param route 
+   * @param router 
+   * @param configRating 
+   * @param perfilService 
+   * @param comentarioService 
+   * @param barraProgreso 
+   */
   constructor(
     private serviceHotel: HotelService,
     private panelHotelService: PanelHotelService,
@@ -104,6 +139,9 @@ export class DetallesHotelComponent implements OnInit {
     })
   }
 
+  /**
+   * Método que carga los datos del usuario de la sesión
+   */
   cargarDatosPerfil() {
     this.perfilService.postCargaDatosPerfil(this.nombreUsuario).subscribe(
       data => {
@@ -115,6 +153,9 @@ export class DetallesHotelComponent implements OnInit {
     )
   }
 
+  /**
+   * Método que obtiene la lida de comentarios que tiene un hotel
+   */
   obtenerComentariosHotel(): void {
     this.serviceHotel.postObtenerComentarios(this.hotelSeleccionado).subscribe(
       data => {
@@ -129,6 +170,10 @@ export class DetallesHotelComponent implements OnInit {
     )
   }
 
+  /**
+   * Método que obtiene la lista de habitaciones que tiene disponibles un hotel
+   * @param idHotel 
+   */
   obtenerHabitacionesHotel(idHotel: number): void {
     this.serviceHotel.postHabitacionesHotel(idHotel).subscribe(
       data => {
@@ -142,6 +187,9 @@ export class DetallesHotelComponent implements OnInit {
     )
   }
 
+  /**
+   * Método que crea un comentario nuevo a un hotel
+   */
   cargarComentario() {
     let comentario = this.comentarioF.value['comentario'];
     this.barraProgreso.progressBar.next("1");
@@ -157,6 +205,10 @@ export class DetallesHotelComponent implements OnInit {
     )
   }
 
+  /**
+   * Método que carga los datos que vienen del formulario
+   * @param event 
+   */
   comentarYcalificar(event: Event) {
     this.cargarComentario();
   }
