@@ -16,5 +16,6 @@ export class DetallePedido{
   compras1: Pedido[];
   idpedido: number;
   nombre_aliado: string;
+  imagen_producto1: string;
 
 }
