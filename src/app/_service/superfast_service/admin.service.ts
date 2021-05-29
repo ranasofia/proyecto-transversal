@@ -10,6 +10,7 @@ export class AdminService {
 
   private URL: string = environment.SUPERFAST +  '/admin';
   private URL2: string = environment.SUPERFAST + '/CerrarSession';
+  private URL3: string = environment.SUPERFAST + '/GenerarToken';
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +30,14 @@ export class AdminService {
    */
   postCerrarSesion(usuario: UsuarioSuperfast){
     return this.http.post(this.URL2 + "/PostPage_Load?usuario1=" + usuario, null);
+  }
+
+  /**
+   * Permite generar el token para recuperación de contraseña
+   * @param correo variable recibe el correo del usuario para recuperar
+   * @returns
+   */
+  getGenerarContraseña(correo:string){
+    return this.http.get(this.URL3 + "/GetGenerarToken?correo=" + correo);
   }
 }
