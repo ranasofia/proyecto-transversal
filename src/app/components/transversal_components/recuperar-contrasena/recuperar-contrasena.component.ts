@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/_service/superfast_service/admin.service';
 import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
 import { Router } from '@angular/router';
 import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
@@ -31,6 +32,9 @@ export class RecuperarContrasenaComponent implements OnInit {
    */
   hide2 = true;
 
+  /**
+   * variable que contiene el token de recuperacion
+   */
   token: string;
 
   /**
@@ -63,7 +67,8 @@ export class RecuperarContrasenaComponent implements OnInit {
   constructor(private recuperarc:RecuperarContrasenaService,
               private _snackBar: MatSnackBar, 
               private router: Router,
-              private clienteService: ClienteService) {
+              private clienteService: ClienteService,
+              private adminService:AdminService) {
     this.recuperarForm=this.createFormGroup();
   }
 
@@ -94,7 +99,9 @@ export class RecuperarContrasenaComponent implements OnInit {
 
 //
 recuperarContraseñaSuperFast(){
-
+  var contraseña = {Token: this.recuperarForm.controls["token"].value, 
+  NuevaContrasenia: this.recuperarForm.controls["password"]};
+ this.adminService.postRecuperarContraseña(contraseña)
 }
 //
 recuperarContraseñaMototaxi(){

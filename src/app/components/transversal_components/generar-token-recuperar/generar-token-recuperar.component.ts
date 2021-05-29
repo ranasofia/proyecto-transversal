@@ -24,8 +24,14 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    */
   generarForm: FormGroup;
 
+  /**
+   * variable que contiene el correo 
+   */
   correo: string;
 
+  /**
+   * variable que contiene el usuario 
+   */
   user: string;
 
   /**

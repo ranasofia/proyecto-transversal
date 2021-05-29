@@ -77,14 +77,30 @@ export class ClienteService {
     return this.http.put(this.URL + "/actualizarDatos?usuario=" + nombreUsuario, usuario);
   }
 
+  /**
+   * Permite traer todo el registro de un usuario
+   * @param correo variable que trae los datos del usuario
+   * @returns 
+   */
   getDatosRecuperar(correo: string){
     return this.http.get(this.URL2 + '/datosRecuperar?correo=' + correo);
   }
 
+  /**
+   * Permite generar el token para recuperar la contraseña
+   * @param usuario variable que identifica el usuario 
+   * @returns 
+   */
   getGenerarContraseña(usuario: string){
     return this.http.post(this.URL + "/generarContraseña", usuario);
   }
 
+  /**
+   * Permite cambiar la contraseña
+   * @param token variable que permite recuperar la contraseña
+   * @param contrasena variable que contien la contraseña nueva
+   * @returns 
+   */
   putRecuperarContraseña(token: string, contrasena:any){
     return this.http.put(this.URL + "/RecuperarContraseña?tokenRecibido=" + token, contrasena);
   }
