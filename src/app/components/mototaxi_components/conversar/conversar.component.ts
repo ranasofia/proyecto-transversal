@@ -8,31 +8,56 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
+/**
+ * Decorador de ConversarComponent
+ */
 @Component({
   selector: 'app-conversar',
   templateUrl: './conversar.component.html',
   styleUrls: ['./conversar.component.css']
 })
 export class ConversarComponent implements OnInit {
+  /**
+   * Se declara el formulario de comentario
+   */
+  formConversar:FormGroup;
+  /**
+   * Variable que captura el idNotificación
+   */
+  id:number;
+  /**
+   * Variable que captura el nombre del cliente
+   */
+  cliente: string;
+  /**
+   * Variable que captura el nombre del conductor
+   */
+  conductor: string;
 
- formConversar:FormGroup;
- conductor:string;
- cliente:string;
- id:number;
-
-  constructor(private historial:HistorialService,private route: ActivatedRoute,private barraProgreso: BarraProgresoService,private snackBar: MatSnackBar, private routeer: Router) { }
+  /**
+   * Constructor de ConversarComponent
+   * @param historial 
+   * @param route 
+   * @param barraProgreso 
+   * @param snackBar 
+   * @param routeer 
+   */
+  constructor(private historial:HistorialService,
+              private route: ActivatedRoute,
+              private barraProgreso: BarraProgresoService,
+              private snackBar: MatSnackBar, 
+              private routeer: Router) { }
 
   /**
    * Método que se encarga de configurar las validaciones del formulario de usuario
    * @returns grupoFormulario
    */
-   createFormGroup() {
+  createFormGroup() {
     return new FormGroup({
       id: new FormControl(),
-      conversar: new FormControl(
-        '', [Validators.required]),
-      });
-    }
+      conversar: new FormControl('', [Validators.required]),
+    });
+  }
 
   ngOnInit(): void {
     this.formConversar=this.createFormGroup();
@@ -46,6 +71,12 @@ export class ConversarComponent implements OnInit {
     });
   }
 
+  /**
+   * Metodo que permite conversar con el conductor del servicio
+   * @param idNotificacion 
+   * @param usuario 
+   * @param conversar 
+   */
   conversar(idNotificacion:number,usuario:string,conversar:any){
     this.barraProgreso.progressBar.next("1");
     this.historial.putConversar(idNotificacion,usuario,conversar).subscribe(data=>{
@@ -62,15 +93,18 @@ export class ConversarComponent implements OnInit {
     });
   }
 
+  /**
+   * Metodo que llama conversar y asigna los atributos
+   */
   cargarConversacion(){
-      /**
+    /**
       * Constante para decodificar el token
       */
-       const helper = new JwtHelperService();
-       /**
-         * Variable que decodifica el toquen y captura el usuario logueado
-         */
-       var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
+    const helper = new JwtHelperService();
+    /**
+      * Variable que decodifica el toquen y captura el usuario logueado
+      */
+    var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
     let notificacion:Notificacion;
     notificacion=new Notificacion();

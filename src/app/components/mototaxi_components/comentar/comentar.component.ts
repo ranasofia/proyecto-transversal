@@ -5,35 +5,57 @@ import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 
+/**
+ * Decorador de ComentarComponent
+ */
 @Component({
   selector: 'app-comentar',
   templateUrl: './comentar.component.html',
   styleUrls: ['./comentar.component.css']
 })
 export class ComentarComponent implements OnInit {
-
+  /**
+   * Se declara el formulario de comentario
+   */
   FormComentar:FormGroup;
+  /**
+   * Variable que captura el idNotificación
+   */
   id:number;
+  /**
+   * Variable que captura el nombre del cliente
+   */
   cliente: string;
+  /**
+   * Variable que captura el nombre del conductor
+   */
   conductor: string;
 
-  constructor(private historial:HistorialService,private route: ActivatedRoute,private barraProgreso: BarraProgresoService,private snackBar: MatSnackBar, private routeer: Router) { 
-  
-  }
+  /**
+   * Constructor de ComentarComponent
+   * @param historial 
+   * @param route 
+   * @param barraProgreso 
+   * @param snackBar 
+   * @param routeer 
+   */
+  constructor(private historial:HistorialService,
+              private route: ActivatedRoute,
+              private barraProgreso: BarraProgresoService,
+              private snackBar: MatSnackBar, 
+              private routeer: Router) {}
 
   /**
    * Método que se encarga de configurar las validaciones del formulario de usuario
    * @returns grupoFormulario
    */
-   createFormGroup() {
+  createFormGroup() {
     return new FormGroup({
       id: new FormControl(),
-      comentario: new FormControl(
-        '', [Validators.required]),
-      });
-    }
+      comentario: new FormControl('', [Validators.required]),
+    });
+  }
 
   ngOnInit(): void {
     this.FormComentar=this.createFormGroup();
@@ -47,6 +69,11 @@ export class ComentarComponent implements OnInit {
     });
   }
 
+  /**
+   * Metodo que permite comentar el servicio
+   * @param idNotificacion 
+   * @param comentario 
+   */
   comentar(idNotificacion:number,comentario:any){
     this.barraProgreso.progressBar.next("1");
     this.historial.putComentar(idNotificacion,comentario).subscribe(data=>{
@@ -63,6 +90,9 @@ export class ComentarComponent implements OnInit {
     });
   }
 
+  /**
+   * Metodo que llama comentar y asigna los atributos
+   */
   cargarComentario(){
     let notificacion:Notificacion;
     notificacion=new Notificacion();
