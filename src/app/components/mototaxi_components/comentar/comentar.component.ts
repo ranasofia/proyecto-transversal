@@ -40,6 +40,10 @@ export class ComentarComponent implements OnInit {
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
       this.id=params.id;
+      this.historial.getDatosRegistro(this.id).subscribe(data => {
+        this.cliente = data["nombreCl"];
+        this.conductor = data["conductor"];
+      })
     });
   }
 
