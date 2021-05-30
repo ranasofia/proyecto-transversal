@@ -1,7 +1,9 @@
+import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
+import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
 import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
 import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
-import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';
 import { FormularioUsuariosComponent } from './components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
@@ -23,7 +25,6 @@ import { HistorialClienteComponent } from './components/mototaxi_components/hist
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { GuardianService } from 'src/app/_service/utilidades/guardian.service';
 import { registerLocaleData } from '@angular/common';
-
 
 const routes: Routes = [
 
@@ -51,8 +52,6 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilUsuarioComponent, canActivate:[GuardianService]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
-
-
 ];
 
 @NgModule({

@@ -1,4 +1,3 @@
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from 'src/environments/environment';
 import { MasterComponent } from 'src/app/components/transversal_components/master/master.component';
 import { NgModule } from '@angular/core';
@@ -39,11 +38,13 @@ import { FormularioUsuariosComponent } from 'src/app/components/transversal_comp
 import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
 import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
 import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
 import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
+import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -267,11 +268,14 @@ export function delay(ms: number) {
     SuperfastCarritoComponent,
     UsuariosComponent,
     FormularioUsuariosComponent,
+    DialogEliminarComponent,
+    PaginaPrincipalComponent,
     FacturaComponent,
     DialogEliminarComponent,
     ReservaHabitacionComponent,
     ComentarComponent,
-    ConversarComponent
+    ConversarComponent,
+    FacturasComponent
   ],
 
 
@@ -285,7 +289,6 @@ export function delay(ms: number) {
     FlexLayoutModule,
     FormsModule,
     MatSnackBarModule,
-    MatPaginatorModule,
     JwtModule.forRoot({
 
       jwtOptionsProvider: {
