@@ -20,27 +20,31 @@ import { CatalogoSuperFastComponent } from 'src/app/components/superfast_compone
 import { HotelesComponent } from 'src/app/components/occibana_components/hoteles/hoteles.component';
 import { RecuperarContrasenaComponent } from 'src/app/components/transversal_components/recuperar-contrasena/recuperar-contrasena.component';
 import { GenerarTokenRecuperarComponent } from 'src/app/components/transversal_components/generar-token-recuperar/generar-token-recuperar.component';
-import { ProductoDialogComponent } from 'src/app/components/hcYsuperfast_components/producto-dialog/producto-dialog.component';
+import { ProductoDialogComponent } from 'src/app/components/superfast_components/producto-dialog/producto-dialog.component';
 import { CatalogoHcCauchosComponent } from 'src/app/components/hccauchos_components/catalogo-hc-cauchos/catalogo-hc-cauchos.component';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
-import { AdminService } from 'src/app/_service/superfast_service/admin.service';
+import { AdminService } from './_service/superfast_service/admin.service';
 import { Conversion } from 'src/app/_model/utilidades/Conversion';
-import { ClienteService } from 'src/app/_service/mototaxi_service/cliente.service';
+import { ClienteService } from './_service/mototaxi_service/cliente.service';
 import { PerfilUsuarioComponent } from 'src/app/components/transversal_components/perfil-usuario/perfil-usuario.component';
-import { SolicitudServicioComponent } from 'src/app/components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
-import { DetallesHotelComponent } from 'src/app/components/occibana_components/detalles-hotel/detalles-hotel.component';
+import { SolicitudServicioComponent } from './components/mototaxi_components/solicitud-servicio/solicitud-servicio.component';
+import { DetallesHotelComponent } from './components/occibana_components/detalles-hotel/detalles-hotel.component';
 import { HccauchosCarritoComponent } from 'src/app/components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';
-import { SuperfastCarritoComponent } from 'src/app/components/superfast_components/superfast-carrito/superfast-carrito.component';
+import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { UsuariosComponent } from 'src/app/components/transversal_components/usuarios/usuarios.component';
 import { FormularioUsuariosComponent } from 'src/app/components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
-import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
-import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
-import { DatePipe } from '@angular/common';
+import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
+import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
+import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
+import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
+import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
+import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
-import { FacturaComponent } from './components/superfast_components/factura/factura.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -51,6 +55,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
     tokenGetter: async (request) => {
 
       let tk: string;
+      let tokenAntes: string;
 
       const helper = new JwtHelperService();
 
@@ -60,13 +65,19 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
 
       if (request.url.includes('www.ubermotosisw.tk/api/usuario')) {
 
-        tk = sessionStorage.getItem(environment.TOKEN);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           var usuarioLogin = new Usuario();
           usuarioLogin.correo = usuarioIncompleto.correo;
-          usuarioLogin.contrasena = sessionStorage.getItem("clave");
+
+          var CryptoJS = require("crypto-js");
+          var bytes = CryptoJS.AES.decrypt(sessionStorage.getItem("clave"), 'proyectoTransversal');
+          var passwordDecrypt = bytes.toString(CryptoJS.enc.Utf8);
+
+          usuarioLogin.contrasena = passwordDecrypt;
+
           usuarioTransversalService.getToken(usuarioLogin).subscribe(data => {
 
             sessionStorage.setItem(environment.TOKEN, data);
@@ -74,13 +85,17 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
 
           })
 
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('52.67.179.68')) {
 
-        tk = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_SUPERFAST);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -94,13 +109,17 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('18.224.240.8')) {
 
-        tk = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_HCCAUCHOS);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -114,12 +133,16 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('ubermotosisw')) {
-        tk = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_MOTOTAXI);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -133,12 +156,16 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
 
       } else if (request.url.includes('18.230.178.121')) {
-        tk = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
+        tokenAntes = sessionStorage.getItem(environment.TOKEN_OCCIBANA);
 
-        if (helper.isTokenExpired(tk)) {
+        if (helper.isTokenExpired(tokenAntes)) {
 
           usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
 
@@ -152,13 +179,17 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
             })
 
           });
+        }else{
+
+          tk = tokenAntes;
+
         }
       }
 
 
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < 100; i++) {
 
-        if(tk != undefined){
+        if(tk != "" && tk != undefined){
 
           break;
 
@@ -167,6 +198,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
         await delay(300);
 
       }
+
       return tk != null ? tk : '';
 
     },
@@ -185,17 +217,24 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
       environment.HCCAUCHOS + '/Usuario/catalogo',
-      environment.HCCAUCHOS + '/login/cerrarcesion',
+      environment.HCCAUCHOS + '/Usuario/editarcorreo',
+      environment.HCCAUCHOS + '/Usuario/modificarclave',
+      environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
+      environment.HCCAUCHOS + '/Usuario/AgregarAlCarrito',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',
       environment.OCCIBANA + '/registroLogin/registroLogin',
       environment.OCCIBANA + '/registroLogin/postRegistroUsuario',
       environment.OCCIBANA + '/listas/postHotelesPrincipal',
       environment.OCCIBANA + '/listas/getHotelesDestacados',
+      environment.OCCIBANA + "/registroLogin/postIngresoLogin",
+      environment.OCCIBANA + '/listas/postObtenerComentarios',
+      environment.OCCIBANA + '/listas/postHabitacionesHotel',
+      environment.OCCIBANA + '/panelHotel/postInformacionDelHotel',
+      environment.OCCIBANA + '/panelHotel/postInformacionDelHabitacion',
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
-      environment.SUPERFAST + '/admin/login',
-      environment.SUPERFAST + '/CerrarSession/PostPage_Load'
+      environment.SUPERFAST + '/admin/login'
     ]
   }
 }
@@ -231,7 +270,12 @@ export function delay(ms: number) {
     FormularioUsuariosComponent,
     DialogEliminarComponent,
     PaginaPrincipalComponent,
-    FacturaComponent
+    FacturaComponent,
+    DialogEliminarComponent,
+    ReservaHabitacionComponent,
+    ComentarComponent,
+    ConversarComponent,
+    FacturasComponent
   ],
 
 
@@ -257,7 +301,13 @@ export function delay(ms: number) {
   ],
 
 
-  providers: [UsuarioTransversalService, AdminService, ClienteService, LoginHCService, RegistroLoginOccibanaService, DatePipe],
+  providers: [UsuarioTransversalService,
+    AdminService,
+    ClienteService,
+    LoginHCService,
+    RegistroLoginOccibanaService,
+    DatePipe,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {

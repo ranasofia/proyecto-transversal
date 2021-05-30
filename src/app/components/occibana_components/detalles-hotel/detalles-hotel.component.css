@@ -8,7 +8,7 @@ h1 {
   -webkit-text-stroke-width: 1.5px;
   -moz-text-stroke-color: #000000;
   -webkit-text-stroke-color: #ffffff;
-  text-shadow: 6.5px 5px #4d089a;
+  text-shadow: 6.5px 5px #000000;
 }
 
 .detalle-container {
@@ -16,7 +16,8 @@ h1 {
 }
 
 .detalle-hotel-card {
-  width: 1000px;
+  width: 800px;
+  background-color: #12213baf;
   transition: all 200ms ease;
 }
 
@@ -27,14 +28,20 @@ h1 {
   cursor: pointer;
 }
 
-.hoteles-card-img {
-  max-width: 300px;
+.mat-card-title {
+  font-size: 27px;
+  font-style: italic;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
 }
 
-mat-card-title {
-  text-align: center;
-  letter-spacing: 3px;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+.hoteles-card-img img {
+  width: 300px;
+  margin: 10px 20px;
+}
+
+.hoteles-card-img img:hover {
+  filter: saturate(200%);
 }
 
 ul {
@@ -42,13 +49,73 @@ ul {
   font-size: 16px;
   font-style: italic;
   list-style: none;
+  color: #8f8f8f;
+  line-height: 30px;
 }
 
-li {
-  padding: 5px 30px;
+.star {
+  font-size: 2rem;
+  color: #8f8f8f;
+  letter-spacing: 10px;
+}
+
+.filled {
+  color: #ffff00;
 }
 
 mat-tab-group {
   margin-top: 70px;
   width: 70%;
+}
+
+.panel-detalle-hotel h2 {
+  margin-top: 30px;
+  height: 80px;
+  font: bold italic large serif;
+  font-size: 35px;
+  color: #f44336;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.panel-detalle-hotel h3 {
+  font: bold italic large serif;
+  font-size: 22px;
+  color: #ffffff;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.mat-expansion-panel-header .title {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0a1931af;
+}
+
+.seccion-reservas .mat-expansion-panel {
+  background-color: #3d84b8;
+  margin-bottom: 50px;
+}
+
+.seccion-reservas p {
+  font-size: 20px;
+  line-height: 25px;
+  color: #c9c9c9;
+}
+
+.seccion-reservas button {
+  height: 40px;
+  width: 200px;
+  margin-right: 50px;
+}
+
+.mat-slider {
+  width: 180px;
+}
+
+.seccion-comentar button {
+  height: 40px;
+  width: 160px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

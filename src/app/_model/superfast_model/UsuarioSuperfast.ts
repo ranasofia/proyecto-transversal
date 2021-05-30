@@ -4,6 +4,10 @@
 export class UsuarioSuperfast {
 
   /**
+   * Es el número identificador del usuario
+   */
+  id: number
+  /**
    * Es el nombre o nombres del usuario
    */
   nombre: string;

@@ -1,3 +1,5 @@
+import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
+import { AdminService } from './../../../_service/superfast_service/admin.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
@@ -23,6 +25,16 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   generarForm: FormGroup;
 
   /**
+   * variable que contiene el correo 
+   */
+  correo: string;
+
+  /**
+   * variable que contiene el usuario 
+   */
+  user: string;
+
+  /**
    * Permite configurar las validaciones del formulario
    * @returns
    */
@@ -40,7 +52,11 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
-  constructor(private recuperar:RecuperarContrasenaService,private _snackBar: MatSnackBar, private router: Router) {
+  constructor(private recuperar:RecuperarContrasenaService,
+              private _snackBar: MatSnackBar, 
+              private router: Router,
+              private adminService: AdminService,
+              private clienteService: ClienteService) {
     this.generarForm=this.createFormGroup();
   }
 
@@ -72,6 +88,28 @@ export class GenerarTokenRecuperarComponent implements OnInit {
         }
       });
     }
+  }
+
+  //
+  generarTokenSuperFast(){
+    this.correo = this.generarForm.controls["email"].value;
+    this.adminService.getGenerarContraseña(this.correo);
+  }
+  //
+  generarTokenMototaxi(){
+    this.correo = this.generarForm.controls["email"].value;
+    this.clienteService.getDatosRecuperar(this.correo).subscribe(data=>{
+      this.user = data["usuario"];
+    });
+    this.clienteService.getGenerarContraseña(this.user);
+  }
+  //
+  generarTokenOccibana(){
+
+  }
+  //
+  generarTokenHcCauchos(){
+    
   }
 
   /**

@@ -95,12 +95,15 @@ export class LoginComponent implements OnInit {
       var usuario = new Usuario();
       usuario.correo = value.email;
       usuario.contrasena = value.password;
-      sessionStorage.setItem("clave", usuario.contrasena);
+
+      var cryptoJS = require("crypto-js");
+      var passwordEncrypt = cryptoJS.AES.encrypt(usuario.contrasena, 'proyectoTransversal');
 
       this.usuarioTransversalService.getToken(usuario).subscribe(data => {
 
         sessionStorage.setItem(environment.TOKEN, data);
         this.barraProgresoService.progressBar.next("2");
+        sessionStorage.setItem("clave", passwordEncrypt);
         this.router.navigate(['/mototaxi/solicitudServicio']);
 
       }, err => {

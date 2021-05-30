@@ -1,5 +1,9 @@
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
-import { FacturaComponent } from './components/superfast_components/factura/factura.component';
+import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
+import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
+import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
+import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';
 import { FormularioUsuariosComponent } from './components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
@@ -23,22 +27,29 @@ import { GuardianService } from 'src/app/_service/utilidades/guardian.service';
 import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
-  {path: '', component: FacturaComponent},
+
+  {path: '', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
+  {path: 'superfast/carrito', component: SuperfastCarritoComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
+  {path: 'hccauchos/carrito', component: HccauchosCarritoComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
-  {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, canActivate:[GuardianService]},
+  {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, children: [
+    {path:'comentar/:id',component:ComentarComponent}, 
+    {path:'conversar/:id',component:ConversarComponent}], canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
-    {path: 'detallesHotel', component: DetallesHotelComponent}
-  ], canActivate:[GuardianService]},
+    {path: 'detallesHotel/:id', component: DetallesHotelComponent},
+    {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent}
+  ], canActivate: [GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
     {path: 'registrar', component: FormularioUsuariosComponent},
     {path: 'modificar/:id', component: FormularioUsuariosComponent}
   ]},
+  {path: 'perfil', component: PerfilUsuarioComponent, canActivate:[GuardianService]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
 ];

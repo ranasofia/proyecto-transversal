@@ -1,0 +1,110 @@
+<div class="occibana-image" fxLayoutAlign="center">
+  <img src="assets/images/occibana.png" />
+</div>
+
+<section class="reservar">
+  <h1>BIENVENIDO {{ usuario?.nombre + " " + usuario?.apellido }}</h1>
+  <h2>HOTEL: {{ informacionHotel?.nombre }}</h2>
+  <h2>ZONA DE RESERVAS</h2>
+
+  <!--Formulario datos del viaje para reservar-->
+  <form>
+    <h2>FECHA DE LLEGADA Y SALIDA:</h2>
+    <mat-form-field appearance="fill" class="example-form-field">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="rangePicker">
+        <input matStartDate placeholder="Start date" />
+        <input matEndDate placeholder="End date" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+      <mat-date-range-picker #rangePicker>
+        <mat-date-range-picker>
+          <button mat-button matDateRangePickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDateRangePickerApply>
+            Apply
+          </button>
+        </mat-date-range-picker>
+      </mat-date-range-picker>
+    </mat-form-field>
+    <h2>CONSULTAR DISPONIBILIDAD</h2>
+    <ul>
+      <li>Número de personas:</li>
+      <li>Disponibilidad:</li>
+    </ul>
+    <button mat-raised-button color="accent">BUSCAR DISPONIBILIDAD</button>
+  </form>
+
+  <!--Formulario datos personales para reservar-->
+  <form [formGroup]="reservaForm">
+    <mat-card class="reserva-usuario-card" fxLayoutAlign="center center">
+      <!--Cabecera de la card-->
+      <mat-card-header>
+        <mat-card-title>
+          ¡Para llevar a cabo tu reserva, déjanos saber algunos de tus
+          datos!</mat-card-title>
+      </mat-card-header>
+
+      <!--Contenido de la card-->
+      <mat-card-content>
+        <div>
+          <mat-form-field class="reservaForm-full-width">
+            <input type="text" matInput placeholder="Nombre" required formControlName="nombre" />
+            <mat-icon matPrefix>portrait</mat-icon>
+            <mat-error *ngIf="reservaForm.controls.nombre.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="reservaForm-full-width">
+            <input type="text" matInput placeholder="Apellido" required formControlName="apellido" />
+            <mat-icon matPrefix>portrait</mat-icon>
+            <mat-error *ngIf="reservaForm.controls.apellido.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="reservaForm-full-width">
+            <mat-label> Correo electrónico </mat-label>
+            <input type="email" matInput placeholder="Ingresa tu correo" required formControlName="email" />
+            <mat-icon matPrefix>contact_mail</mat-icon>
+            <mat-error *ngIf="
+                reservaForm.controls.email.hasError('email') &&
+                !reservaForm.controls.email.hasError('required')
+              ">
+              Digita un correo electrónico válido
+            </mat-error>
+            <mat-error *ngIf="reservaForm.controls.email.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="reservaForm-full-width">
+            <mat-label> Confirmar correo electrónico </mat-label>
+            <input type="email" matInput placeholder="Ingresa tu correo" required formControlName="email" />
+            <mat-icon matPrefix>contact_mail</mat-icon>
+            <mat-error *ngIf="
+                reservaForm.controls.email.hasError('email') &&
+                !reservaForm.controls.email.hasError('required')
+              ">
+              Digita un correo electrónico válido
+            </mat-error>
+            <mat-error *ngIf="reservaForm.controls.email.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <h2>Precio por noche: COP</h2>
+          <mat-radio-group aria-label="MEDIO DE PAGO:">
+            <mat-radio-button value="1">Efectivo</mat-radio-button>
+            <mat-radio-button value="2">Tarjeta</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <button mat-raised-button color="primary">
+          CONFIRMAR RESERVA
+          <mat-icon matPrefix>done</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</section>

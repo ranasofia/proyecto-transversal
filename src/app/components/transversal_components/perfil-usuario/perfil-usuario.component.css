@@ -4,10 +4,10 @@
   height: 600px;
   flex-direction: column;
 }
- 
- 
+
+
 .titulo{
- 
+
   height: 50px;
   margin-top: 2%;
   text-align: center;
@@ -19,8 +19,8 @@
   width: 30%;
   display: flex;
   flex-direction: column;
-  
-  
+
+
 }
 .form{
   background-color:#2F2E41;
@@ -33,16 +33,22 @@
   border-radius: 15px;
 
 }
+
+form{
+
+  display: flex;
+
+}
 .mat-form-field{
   display: flex;
-  
+
 }
 .form1{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin-left: 10%;
-  
+
 }
 .form1 mat-icon{
   margin-bottom: -35%;
@@ -53,8 +59,8 @@
   flex-direction: column;
   justify-content: space-evenly;
   margin-left: 15%;
-  
-  
+
+
 }
 .form2 mat-icon{
   margin-bottom: -35%;
@@ -83,7 +89,7 @@
   border-radius: 10px;
   border: solid;
   border-color: black;
- 
+
 }
 .forma3 button{
 
@@ -103,28 +109,35 @@
     .forma3 button {
       font-size: 10px;
     }
-   
-    
+
+
   }
-  @media (max-width: 955px) {
+  @media (max-width: 1133px) {
     .perfil-container{
       display: block;
-    height: 1190px;
+    height: 1300px;
     }
     .form{
     display: block;
+    height: 1250px;
+
+  }
+  form{
+
+    display: block;
     height: 1150px;
+
   }
   .form1{
     display: block;
     margin-left: 33%;
-  
+
     align-items: center;
   }
   .form2{
     display: block;
     margin-left: 33%;
-   
+
   }
   .forma3{
     display: block;
@@ -137,23 +150,23 @@
     width: 100%;
     margin-bottom: 5%;
   }
-  
+
   .form2 mat-icon{
     display: none;
   }
   .form1 mat-icon{
-    
+
     display: none;
   }.mat-form-field{
     display: block;
     width: 50%;
    margin-right: 5%;
   }
-  
-  
+
+
     }
- 
-    
+
+
 
 
 

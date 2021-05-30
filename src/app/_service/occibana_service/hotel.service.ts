@@ -1,3 +1,4 @@
+import { Habitacion } from './../../_model/occibana_model/Habitacion';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
@@ -12,8 +13,6 @@ import { Comentario } from 'src/app/_model/occibana_model/Comentario';
   providedIn: 'root'
 })
 export class HotelService {
-
-  hotelSeleccionado: Hotel;
 
   /**
    * Enlace para llamar a los servicios de Occibana
@@ -33,7 +32,7 @@ export class HotelService {
    * @returns la lista de hoteles
    */
   postListadoHoteles(listaHoteles: HotelPrincipal) {
-    return this.http.post<any>(this.URL + "/postHotelesPrincipal", listaHoteles);
+    return this.http.post<any>(this.URL + '/postHotelesPrincipal', listaHoteles);
   };
 
   /**
@@ -41,7 +40,7 @@ export class HotelService {
    * @returns
    */
   getHotelesDestacados() {
-    return this.http.get<Hotel[]>(this.URL + "/getHotelesDestacados");
+    return this.http.get<Hotel[]>(this.URL + '/getHotelesDestacados');
   }
 
   /**
@@ -50,7 +49,18 @@ export class HotelService {
    * @returns 
    */
   postObtenerComentarios(hotel: Hotel) {
-    return this.http.post<Comentario[]>(this.URL + "/postObtenerComentarios", hotel);
+    return this.http.post<Comentario[]>(this.URL + '/postObtenerComentarios', hotel);
   }
 
+  /**
+   * Método que obtiene el listado de las habitaciones de un hotel
+   * @param idHotel 
+   * @returns 
+   */
+  postHabitacionesHotel(idHotel: number) {
+    return this.http.post<Habitacion[]>(this.URL + '/postHabitacionesHotel', {
+      "idHotel": idHotel
+    });
+  }
+  
 }

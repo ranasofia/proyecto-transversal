@@ -15,12 +15,12 @@ const ELEMENT_DATA: Factura[] = [
   {nombre_producto: 'cualquiera', cantidad: 2}
 ];
 @Component({
-  selector: 'app-factura',
-  templateUrl: './factura.component.html',
-  styleUrls: ['./factura.component.css']
+  selector: 'app-facturas',
+  templateUrl: './facturas.component.html',
+  styleUrls: ['./facturas.component.css']
 })
 
-export class FacturaComponent implements OnInit {
+export class FacturasComponent implements OnInit {
   displayedColumns: string[] = ['nombre_producto','cantidad','valor_unitario','valor_total'];
   /**
    * Es el origen de datos de la tabla

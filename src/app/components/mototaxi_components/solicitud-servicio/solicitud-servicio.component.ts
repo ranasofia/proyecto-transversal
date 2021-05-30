@@ -11,11 +11,15 @@ import { Destino } from 'src/app/_model/mototaxi_model/Destino';
 import { Pago } from 'src/app/_model/mototaxi_model/Pago';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * Decorador de SolicitudServicioComponent
+ */
 @Component({
   selector: 'app-solicitud-servicio',
   templateUrl: './solicitud-servicio.component.html',
   styleUrls: ['./solicitud-servicio.component.css']
 })
+
 export class SolicitudServicioComponent implements OnInit {
   /**
    * Indica cuantas columnas tiene la grilla en la que se posiciona cada producto
@@ -114,6 +118,9 @@ export class SolicitudServicioComponent implements OnInit {
     this.barraProgresoService.progressBar.next("2");
   }
 
+  /**
+   * Metodo que calcula la tarifa y pago del servicio
+   */
   calcular(){
     if(this.formCalcular.valid){
       var obj = {Destino:this.formCalcular.controls["destino1"].value,
@@ -126,6 +133,9 @@ export class SolicitudServicioComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo que permite solicitar el servicio
+   */
   solicitarServicio(){
     // Constante que representa un objeto del módulo JwtHelperServic
     const helper = new JwtHelperService();
@@ -145,14 +155,23 @@ export class SolicitudServicioComponent implements OnInit {
         this._snackBar.open('Por favor espera a que uno de nuestros conductores acepte tu solictud, Recibirá un correo notificando su servicio', 'Cancel  ', {
           duration: 5000
         });
+        this.onResetForm();
       }, err => {
         if(err.status == 400){
-          this._snackBar.open('Ya realizó un servicio con estos datos o faltan por ingresar, verifique', 'Cancel', {
+          this._snackBar.open('Faltan datos por ingresar, verifique', 'Cancel', {
             duration: 3000
           });
         }
       });
     }
+  }
+
+  /**
+   * Metodo que reinicia los componentes del form
+   */
+  onResetForm() {
+    this.formCalcular.reset();
+    this.formSolicitar.reset();
   }
 }
 

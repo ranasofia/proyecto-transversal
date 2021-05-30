@@ -16,6 +16,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [],
@@ -36,7 +41,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatTabsModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatPaginatorModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatNativeDateModule
+   
   ],
   exports: [
     MatCardModule,
@@ -54,7 +65,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatTabsModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }
