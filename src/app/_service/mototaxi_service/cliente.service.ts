@@ -1,3 +1,4 @@
+import { Usuario } from './../../_model/transversal_model/Usuario';
 import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +19,7 @@ export class ClienteService {
    * Posee el enlace para llamar a los servicios
    */
   private URL: string = environment.UBER_MOTOS +  '/cliente';
+  private URL2: string = environment.UBER_MOTOS + '/usuario';
 
   /**
    * Da estado inicial e inyecta variables en ClienteService
@@ -75,5 +77,31 @@ export class ClienteService {
     return this.http.put(this.URL + "/actualizarDatos?usuario=" + nombreUsuario, usuario);
   }
 
+  /**
+   * Permite traer todo el registro de un usuario
+   * @param correo variable que trae los datos del usuario
+   * @returns 
+   */
+  getDatosRecuperar(correo: string){
+    return this.http.get(this.URL2 + '/datosRecuperar?correo=' + correo);
+  }
 
+  /**
+   * Permite generar el token para recuperar la contraseña
+   * @param usuario variable que identifica el usuario 
+   * @returns 
+   */
+  getGenerarContraseña(usuario: string){
+    return this.http.post(this.URL + "/generarContraseña", usuario);
+  }
+
+  /**
+   * Permite cambiar la contraseña
+   * @param token variable que permite recuperar la contraseña
+   * @param contrasena variable que contien la contraseña nueva
+   * @returns 
+   */
+  putRecuperarContraseña(token: string, contrasena:any){
+    return this.http.put(this.URL + "/RecuperarContraseña?tokenRecibido=" + token, contrasena);
+  }
 }

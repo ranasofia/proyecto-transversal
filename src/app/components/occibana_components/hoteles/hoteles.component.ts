@@ -11,14 +11,13 @@ import { HotelService } from 'src/app/_service/occibana_service/hotel.service';
 @Component({
   selector: 'app-hoteles',
   templateUrl: './hoteles.component.html',
-  styleUrls: ['./hoteles.component.css']
+  styleUrls: ['./hoteles.component.css'],
 })
 
 /**
  * Clase del componente de hoteles
  */
 export class HotelesComponent implements OnInit {
-
   /**
    * Variable de tipo HotelPrincipal
    */
@@ -32,7 +31,7 @@ export class HotelesComponent implements OnInit {
   /**
    * Componente de Angular material que se usa para realizar el filtro de los hoteles
    */
-  dataSource : MatTableDataSource<HotelPrincipal>;
+  dataSource: MatTableDataSource<HotelPrincipal>;
 
   /**
    * Array de tipo hotel que almacena todos los hoteles filtrados
@@ -48,7 +47,7 @@ export class HotelesComponent implements OnInit {
     private hotelesService: HotelService,
     private router: Router,
     public route: ActivatedRoute
-    ) { }
+  ) {}
 
   /**
    * Implementación que se ejecuta una vez se inicie el HotelesComponent
@@ -60,35 +59,37 @@ export class HotelesComponent implements OnInit {
   /**
    * Método que hace llamado al método postListadoHoteles de HotelService
    */
-  listadoHoteles() {
-    this.hotelesService.postListadoHoteles(this.hotelesPrincipales).subscribe(data => {
-      this.hotel = data;
-      this.hotelesFiltrados = data;
-      for (var i = 0; i < this.hotel.length; i++) {
-        // Traida de imágenes del servicio
-        var longitud = this.hotelesFiltrados[i].imagen.length;
-        this.hotelesFiltrados[i].imagen = "https://www.occibanaisw.tk/" + this.hotelesFiltrados[i].imagen.substring(1, longitud);
-
+  listadoHoteles(): void {
+    this.hotelesService.postListadoHoteles(this.hotelesPrincipales).subscribe(
+      (data) => {
+        this.hotel = data;
+        this.hotelesFiltrados = data;
+        for (let i = 0; i < this.hotel.length; i++) {
+          // Traida de imágenes del servicio
+          const longitud = this.hotelesFiltrados[i].imagen.length;
+          this.hotelesFiltrados[i].imagen =
+            'https://www.occibanaisw.tk/' +
+            this.hotelesFiltrados[i].imagen.substring(1, longitud);
+        }
+      },
+      // Error
+      (err) => {
+        if (err === 401) {
+          this.router.navigate(['/error/:401/:Error en el servidor']);
+        }
       }
-    },
-    // Error
-    err => {
-      if (err == 401) {
-        this.router.navigate(['/error/:401/:Error en el servidor'])
-      }
-    });
+    );
   }
 
   /**
    * Método que realiza el filtro de los hoteles desde el input de búsqueda
    * @param hotelFiltred lo que llega del input
    */
-  hotelesFilter(hotelFiltred: string) {
-    let dataSource = new MatTableDataSource(this.hotel);
+  hotelesFilter(hotelFiltred: string): void {
+    const dataSource = new MatTableDataSource(this.hotel);
 
     dataSource.filter = hotelFiltred.trim().toLocaleLowerCase();
 
     this.hotelesFiltrados = dataSource.filteredData;
   }
-
 }

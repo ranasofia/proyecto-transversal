@@ -1,0 +1,10 @@
+.occibana-image {
+    background: linear-gradient(#12213b, #303030);
+  }
+  
+  .occibana-image img {
+    margin-top: 30px;
+    width: 50%;
+    border-radius: 20px;
+  }
+  

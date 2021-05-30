@@ -44,7 +44,7 @@ export class HistorialClienteComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   /**
-   * Constructor que iniciliza las variables globales de HistorialClienteComponent
+   * Constructor de HistorialClienteComponent
    * @param clienteService
    * @param router
    */
@@ -53,11 +53,7 @@ export class HistorialClienteComponent implements OnInit {
               private _snackBar: MatSnackBar,
               public route: ActivatedRoute) { }
 
-  /**
-   * Implementación que se ejecuta una vez se inicie el HistorialClienteComponent
-   */
   ngOnInit(): void {
-
     this.barraProgresoService.progressBar.next("1");
     /**
       * Constante para decodificar el token
@@ -74,13 +70,7 @@ export class HistorialClienteComponent implements OnInit {
       if(this.notificaciones != undefined){
         this.dataSource = new MatTableDataSource(this.notificaciones);
         this.dataSource.paginator = this.paginator;
-        //this.dataSource.sort = this.sort;
       }
-      /*if(this.notificaciones == undefined){
-        this._snackBar.open('No hay datos en el historial para mostrar, te invitamos a solicitar un servicio', 'Cancel  ', {
-          duration: 5000
-        });
-      }*/
     });
 
     // Nombres de la columnas de la tabla
@@ -88,14 +78,13 @@ export class HistorialClienteComponent implements OnInit {
 
     this.barraProgresoService.progressBar.next("2");
   }
+
   /**
    * Método que se ejecuta cuando un componente hijo deja de estar activo
    * @param event variable que posee todos los datos del evento
    */
    onDeactivate(event) {
-
     this.ngOnInit();
-
   }
 
   /**
@@ -114,24 +103,9 @@ export class HistorialClienteComponent implements OnInit {
     var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
 
     this.historial.getHistorial("", usuario).subscribe(data => {
-
       this.notificaciones = data;
       this.dataSource = new MatTableDataSource(this.notificaciones);
-      //this.dataSource.sort = this.sort;
       this.dataSource.filter = filter.trim().toLocaleLowerCase();
-
-      // En caso de error
-    }, err => {
-
-
-      // Error 401
-      if (err.status == 401) {
-
-
-      }
-
     });
-
-    //this.dataSource.filter = filter.trim().toLocaleLowerCase();
   }
 }

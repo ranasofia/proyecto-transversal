@@ -1,1 +1,108 @@
-<p>reserva-habitacion works!</p>
+<div class="occibana-image" fxLayoutAlign="center">
+  <img src="assets/images/occibana.png" />
+</div>
+
+<section class="reservar">
+  <h1>BIENVENIDO {{ usuario?.nombre + " " + usuario?.apellido }}</h1>
+  <h2>HOTEL: {{ informacionHotel?.nombre }}</h2>
+  <h2>ZONA DE RESERVAS</h2>
+
+  <!--Formulario datos del viaje para reservar-->
+  <form [formGroup]="rangoFechas" (ngSubmit)="onDisponibilidad($event)">
+    <h2>FECHA DE LLEGADA Y SALIDA:</h2>
+    <mat-form-field appearance="fill" class="example-form-field" >
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input  [rangePicker]="rangePicker">
+        <input matStartDate formControlName="fechaLlegada" required placeholder="Fecha de llegada" />
+        <input matEndDate formControlName="fechaSalida" required placeholder="Fecha de salida" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+      <mat-date-range-picker #rangePicker>
+        <mat-date-range-picker>
+        </mat-date-range-picker>
+      </mat-date-range-picker>
+      <mat-error *ngIf="rangoFechas.controls.fechaLlegada.hasError('required')">Fecha de llegada requerida</mat-error>
+      <mat-error *ngIf="rangoFechas.controls.fechaSalida.hasError('required')">Fecha de salida requerida</mat-error>
+    </mat-form-field>
+    <h2>CONSULTAR DISPONIBILIDAD</h2>
+    <ul>
+      <li>Número de personas: {{ informacionHabitacion?.numpersonas }}</li>
+    </ul>
+    <button mat-raised-button color="accent">BUSCAR DISPONIBILIDAD</button>
+  </form>
+
+  <!--Formulario datos personales para reservar-->
+  <form [formGroup]="reservaForm" (ngSubmit)="onSubmit($event)">
+    <mat-card class="reserva-usuario-card" fxLayoutAlign="center center">
+      <!--Cabecera de la card-->
+      <mat-card-header>
+        <mat-card-title>
+          ¡Para llevar a cabo tu reserva, déjanos saber algunos de tus
+          datos!</mat-card-title>
+      </mat-card-header>
+
+      <!--Contenido de la card-->
+      <mat-card-content>
+        <div>
+          <mat-form-field class="reservaForm-full-width">
+            <input type="text" matInput placeholder="Nombre" required formControlName="nombre" />
+            <mat-icon matPrefix>portrait</mat-icon>
+            <mat-error *ngIf="reservaForm.controls.nombre.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="reservaForm-full-width">
+            <input type="text" matInput placeholder="Apellido" required formControlName="apellido" />
+            <mat-icon matPrefix>portrait</mat-icon>
+            <mat-error *ngIf="reservaForm.controls.apellido.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="reservaForm-full-width">
+            <mat-label> Correo electrónico </mat-label>
+            <input type="email" matInput placeholder="Ingresa tu correo" required formControlName="email" />
+            <mat-icon matPrefix>contact_mail</mat-icon>
+            <mat-error *ngIf="
+                reservaForm.controls.email.hasError('email') &&
+                !reservaForm.controls.email.hasError('required')
+              ">
+              Digita un correo electrónico válido
+            </mat-error>
+            <mat-error *ngIf="reservaForm.controls.email.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="reservaForm-full-width">
+            <mat-label> Confirmar correo electrónico </mat-label>
+            <input type="email" matInput placeholder="Ingresa tu correo" required formControlName="email" />
+            <mat-icon matPrefix>contact_mail</mat-icon>
+            <mat-error *ngIf="
+                reservaForm.controls.email.hasError('email') &&
+                !reservaForm.controls.email.hasError('required')
+              ">
+              Digita un correo electrónico válido
+            </mat-error>
+            <mat-error *ngIf="reservaForm.controls.email.hasError('required')">
+              Este campo es<strong> obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <h2>Precio por noche: COP</h2>
+          <mat-radio-group aria-label="MEDIO DE PAGO:" [(ngModel)]="medioPagoSeleccionado" [ngModelOptions]="{standalone: true}">
+            <mat-radio-button class="example-radio-button" *ngFor="let mediopago of mediosPago" [value]="mediopago">
+              {{ mediopago }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <button mat-raised-button [disabled]="isDisabled" color="primary">
+          CONFIRMAR RESERVA
+          <mat-icon matPrefix>done</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</section>

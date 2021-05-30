@@ -16,10 +16,21 @@ export class ComentarioService {
    */
   private URL: string;
 
+  /**
+   * Constructor sobre cargado del servicio de PanelHotelService
+   * @param http 
+   */
   constructor(private http: HttpClient) {
     this.URL = environment.OCCIBANA + '/comentarCalificar';
   }
 
+  /**
+   * Método que crea un comentario a un hotel
+   * @param idUsuario 
+   * @param comentario 
+   * @param idHotel 
+   * @returns 
+   */
   postComentar(idUsuario: number, comentario: string, idHotel: number) {
     return this.http.post(this.URL + '/postComentar', {
       "IdSession": idUsuario,
@@ -28,6 +39,11 @@ export class ComentarioService {
     });
   }
 
+  /**
+   * Método que crea una calificación a un hotel
+   * @param calificacion 
+   * @returns 
+   */
   postCalificar(calificacion : Calificacion) {
     return this.http.post(this.URL + '/postCalificar', calificacion );
   }
