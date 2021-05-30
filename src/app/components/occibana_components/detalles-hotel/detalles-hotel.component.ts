@@ -153,7 +153,7 @@ export class DetallesHotelComponent implements OnInit {
 
         for (let i = 0; i < this.comentarios.length; i++) {
           this.comentarios[i].fecha_comentario = moment()
-            .locale('es')
+            .locale('es') 
             .calendar();
         }
       },

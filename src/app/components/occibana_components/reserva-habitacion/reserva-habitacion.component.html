@@ -8,34 +8,31 @@
   <h2>ZONA DE RESERVAS</h2>
 
   <!--Formulario datos del viaje para reservar-->
-  <form>
+  <form [formGroup]="rangoFechas" (ngSubmit)="onDisponibilidad($event)">
     <h2>FECHA DE LLEGADA Y SALIDA:</h2>
-    <mat-form-field appearance="fill" class="example-form-field">
+    <mat-form-field appearance="fill" class="example-form-field" >
       <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="rangePicker">
-        <input matStartDate placeholder="Start date" />
-        <input matEndDate placeholder="End date" />
+      <mat-date-range-input  [rangePicker]="rangePicker">
+        <input matStartDate formControlName="fechaLlegada" required placeholder="Fecha de llegada" />
+        <input matEndDate formControlName="fechaSalida" required placeholder="Fecha de salida" />
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
       <mat-date-range-picker #rangePicker>
         <mat-date-range-picker>
-          <button mat-button matDateRangePickerCancel>Cancel</button>
-          <button mat-raised-button color="primary" matDateRangePickerApply>
-            Apply
-          </button>
         </mat-date-range-picker>
       </mat-date-range-picker>
+      <mat-error *ngIf="rangoFechas.controls.fechaLlegada.hasError('required')">Fecha de llegada requerida</mat-error>
+      <mat-error *ngIf="rangoFechas.controls.fechaSalida.hasError('required')">Fecha de salida requerida</mat-error>
     </mat-form-field>
     <h2>CONSULTAR DISPONIBILIDAD</h2>
     <ul>
-      <li>Número de personas:</li>
-      <li>Disponibilidad:</li>
+      <li>Número de personas: {{ informacionHabitacion?.numpersonas }}</li>
     </ul>
     <button mat-raised-button color="accent">BUSCAR DISPONIBILIDAD</button>
   </form>
 
   <!--Formulario datos personales para reservar-->
-  <form [formGroup]="reservaForm">
+  <form [formGroup]="reservaForm" (ngSubmit)="onSubmit($event)">
     <mat-card class="reserva-usuario-card" fxLayoutAlign="center center">
       <!--Cabecera de la card-->
       <mat-card-header>
@@ -94,13 +91,14 @@
           </mat-form-field>
 
           <h2>Precio por noche: COP</h2>
-          <mat-radio-group aria-label="MEDIO DE PAGO:">
-            <mat-radio-button value="1">Efectivo</mat-radio-button>
-            <mat-radio-button value="2">Tarjeta</mat-radio-button>
+          <mat-radio-group aria-label="MEDIO DE PAGO:" [(ngModel)]="medioPagoSeleccionado" [ngModelOptions]="{standalone: true}">
+            <mat-radio-button class="example-radio-button" *ngFor="let mediopago of mediosPago" [value]="mediopago">
+              {{ mediopago }}
+            </mat-radio-button>
           </mat-radio-group>
         </div>
 
-        <button mat-raised-button color="primary">
+        <button mat-raised-button [disabled]="isDisabled" color="primary">
           CONFIRMAR RESERVA
           <mat-icon matPrefix>done</mat-icon>
         </button>
