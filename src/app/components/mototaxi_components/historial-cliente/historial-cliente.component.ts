@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HistorialService } from './../../../_service/mototaxi_service/historial.service';
-import { BarraProgresoService } from './../../../_service/barra-progreso.service';
-=======
 import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
 import { Router } from '@angular/router';
->>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';

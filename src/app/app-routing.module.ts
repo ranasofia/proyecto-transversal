@@ -1,4 +1,5 @@
-import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
+import { FacturaComponent } from './components/superfast_components/factura/factura.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';
 import { FormularioUsuariosComponent } from './components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
@@ -21,14 +22,8 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
 import { GuardianService } from 'src/app/_service/utilidades/guardian.service';
 import { registerLocaleData } from '@angular/common';
 
-
 const routes: Routes = [
-
-<<<<<<< HEAD
-  {path: '', component: UsuariosComponent},  
-=======
-  {path: '', component: RegistroComponent},
->>>>>>> da4dc4614757338f77fc39d8d37efd2c36235ac2
+  {path: '', component: FacturaComponent},
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
@@ -46,8 +41,6 @@ const routes: Routes = [
   ]},
   {path: 'error/:status/:statusText', component: Error500Component},
   {path: '**', component: Not404Component}
-
-
 ];
 
 @NgModule({
