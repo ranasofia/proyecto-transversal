@@ -7,7 +7,7 @@
       <mat-icon *ngIf="sidenav.opened">closed</mat-icon>
     </button>
 
-    <h1 class="example-app-name">Proyecto Transversal</h1>
+    <h1 class="example-app-name"[routerLink]="['']">Proyecto Transversal</h1>
 
     <mat-menu #menu="matMenu"></mat-menu>
   </mat-toolbar>
@@ -25,7 +25,7 @@
           <mat-icon>perm_identity</mat-icon>
           <span>Login</span>
         </button>
-        <button mat-menu-item style="cursor: pointer" routerLink="" (click)="sidenav.toggle()">
+        <button mat-menu-item style="cursor: pointer" routerLink="/registro" (click)="sidenav.toggle()">
           <mat-icon>how_to_reg</mat-icon>
           <span>Registrate</span>
         </button>

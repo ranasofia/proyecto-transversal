@@ -29,8 +29,9 @@ import { HistorialComprasComponent } from './components/superfast_components/his
 
 const routes: Routes = [
 
-  {path: '', component: RegistroComponent},
+  {path: '', component: PaginaPrincipalComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
