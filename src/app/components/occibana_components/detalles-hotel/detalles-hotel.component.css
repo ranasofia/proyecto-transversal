@@ -94,6 +94,7 @@ mat-tab-group {
 
 .seccion-reservas .mat-expansion-panel {
   background-color: #3d84b8;
+  margin-bottom: 50px;
 }
 
 .seccion-reservas p {

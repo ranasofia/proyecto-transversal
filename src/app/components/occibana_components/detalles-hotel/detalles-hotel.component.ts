@@ -1,6 +1,5 @@
 import { BarraProgresoService } from './../../../_service/utilidades/barra-progreso.service';
 import { ComentarioService } from './../../../_service/occibana_service/comentario.service';
-import { UsuarioOccibana } from './../../../_model/occibana_model/UsuarioOccibana';
 import { DatosPerfilService } from './../../../_service/occibana_service/datos-perfil.service';
 import { PanelHotelService } from './../../../_service/occibana_service/panel-hotel.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,51 +15,44 @@ import { Habitacion } from 'src/app/_model/occibana_model/Habitacion';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
-
 @Component({
   selector: 'app-detalles-hotel',
   templateUrl: './detalles-hotel.component.html',
-  styleUrls: ['./detalles-hotel.component.css']
+  styleUrls: ['./detalles-hotel.component.css'],
 })
 export class DetallesHotelComponent implements OnInit {
-
   /**
    * Representan los datos cargados de todos lo comentarios
    */
   dataComentarios: MatTableDataSource<Comentario>;
 
   /**
-   * Representa la información del hotel seleccionado
-   */
-  hotelSeleccionado: Hotel;
-
-  /**
    * Representa la lista de comentario que tiene un hotel
    */
   comentarios: Comentario[];
-
+  
   /**
    * Representa la lista de habitación que tiene un hotel
    */
   habitaciones: Habitacion[];
-
+  
   /**
    * Carga el token para decodificarlo
    */
   helper: any = new JwtHelperService();
-
+  
   /**
    * Representa el nombre del usuario de la sesión
    */
   nombreUsuario: string;
 
   value = 1;
-
+  
   /**
    * Representa el id del hotel seleccionado
    */
   idHotel: number;
-
+  
   /**
    * Representa el id de usuario de la sesión
    */
@@ -70,17 +62,14 @@ export class DetallesHotelComponent implements OnInit {
    * Variable que indica el formulario para el comentario
    */
   comentarioF: FormGroup;
+  
+  /**
+   * Representa la información del hotel seleccionado
+   */
+  hotelSeleccionado?: Hotel;
 
   /**
    * Constructor sobrecargado de componente de detalles del hotel
-   * @param serviceHotel 
-   * @param panelHotelService 
-   * @param route 
-   * @param router 
-   * @param configRating 
-   * @param perfilService 
-   * @param comentarioService 
-   * @param barraProgreso 
    */
   constructor(
     private serviceHotel: HotelService,
@@ -97,60 +86,61 @@ export class DetallesHotelComponent implements OnInit {
     this.comentarioF = this.createFormGroup();
   }
 
-
   /**
    * Implementación que se ejecuta una vez se inicie el DetallesHotelComponent
    */
   ngOnInit(): void {
-    this.barraProgreso.progressBar.next("1");
-    this.route.params.subscribe(data => {
-      this.idHotel = data.id
-      this.panelHotelService.postInformacionHotel(this.idHotel).subscribe(
-        (data) => {
-          this.hotelSeleccionado = data
-          this.hotelSeleccionado.imagen = "https://www.occibanaisw.tk/" + this.hotelSeleccionado.imagen
-          this.obtenerComentariosHotel();
-          this.obtenerHabitacionesHotel(this.idHotel);
-          let token = this.helper.decodeToken(sessionStorage.getItem(environment.TOKEN))
-          this.nombreUsuario = token.name
-          this.cargarDatosPerfil()
-          this.barraProgreso.progressBar.next("2");
-        },
-        (error) => {
-          this.barraProgreso.progressBar.next("2");
-          this.router.navigate[('/occibana/hoteles')]
-        }
-      )
-    })
 
+    this.route.params.subscribe((data) => {
+      this.idHotel = data.id;
+    });
+    this.cargarDatosHotel();
   }
 
+  cargarDatosHotel(): void {
+    this.barraProgreso.progressBar.next('1');
+    this.panelHotelService.postInformacionHotel(this.idHotel).subscribe(
+      (datos) => {
+        this.hotelSeleccionado = datos;
+        this.hotelSeleccionado.imagen =
+          'https://www.occibanaisw.tk/' + this.hotelSeleccionado.imagen;
+        this.obtenerComentariosHotel();
+        this.obtenerHabitacionesHotel(this.idHotel);
+        const token = this.helper.decodeToken(
+          sessionStorage.getItem(environment.TOKEN)
+        );
+        this.nombreUsuario = token.name;
+        this.cargarDatosPerfil();
+        this.barraProgreso.progressBar.next('2');
+      },
+      (error) => {
+        this.barraProgreso.progressBar.next('2');
+        return this.router.navigate['/occibana/hoteles'];
+      }
+    );
+  }
   /**
    * Método que se encarga de configurar las validaciones del formulario comentario
    * @returns grupoFormulario
    */
-  createFormGroup() {
+  createFormGroup(): FormGroup {
     return new FormGroup({
-
-      comentario: new FormControl(
-        '', [
-        Validators.required
-      ])
-    })
+      comentario: new FormControl('', [Validators.required]),
+    });
   }
 
   /**
    * Método que carga los datos del usuario de la sesión
    */
-  cargarDatosPerfil() {
+  cargarDatosPerfil(): void {
     this.perfilService.postCargaDatosPerfil(this.nombreUsuario).subscribe(
-      data => {
-        this.idUsuario = data.datos.id
+      (data) => {
+        this.idUsuario = data.datos.id;
       },
-      error => {
-        this.router.navigate[('/occibana/hoteles')]
+      (error) => {
+        return this.router.navigate['/occibana/hoteles'];
       }
-    )
+    );
   }
 
   /**
@@ -158,59 +148,59 @@ export class DetallesHotelComponent implements OnInit {
    */
   obtenerComentariosHotel(): void {
     this.serviceHotel.postObtenerComentarios(this.hotelSeleccionado).subscribe(
-      data => {
-        this.comentarios = data
-        for (var i = 0; i < this.comentarios.length; i++) {
-          this.comentarios[i].fecha_comentario = moment().locale('es').calendar()
+      (data) => {
+        this.comentarios = data;
+
+        for (let i = 0; i < this.comentarios.length; i++) {
+          this.comentarios[i].fecha_comentario = moment()
+            .locale('es')
+            .calendar();
         }
       },
-      err => {
-        this.router.navigate[('/occibana/hoteles')]
+      (err) => {
+        return this.router.navigate['/occibana/hoteles'];
       }
-    )
+    );
   }
 
   /**
    * Método que obtiene la lista de habitaciones que tiene disponibles un hotel
-   * @param idHotel 
    */
   obtenerHabitacionesHotel(idHotel: number): void {
     this.serviceHotel.postHabitacionesHotel(idHotel).subscribe(
-      data => {
+      (data) => {
         this.habitaciones = data;
-
       },
-      err => {
-        this.router.navigate[('/occibana/hoteles')]
+      (err) => {
+        return this.router.navigate['/occibana/hoteles'];
       }
-
-    )
+    );
   }
 
   /**
    * Método que crea un comentario nuevo a un hotel
    */
-  cargarComentario() {
-    let comentario = this.comentarioF.value['comentario'];
-    this.barraProgreso.progressBar.next("1");
-    this.comentarioService.postComentar(this.idUsuario, comentario, this.idHotel).subscribe(
-      data => {
-        console.log(data);
-        this.barraProgreso.progressBar.next("2");
-      },
-      error => {
-        this.barraProgreso.progressBar.next("2");
-        console.log(error);
-      }
-    )
+  cargarComentario(): void {
+    const comentario = this.comentarioF.value('comentario');
+    this.barraProgreso.progressBar.next('1');
+    this.comentarioService
+      .postComentar(this.idUsuario, comentario, this.idHotel)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.barraProgreso.progressBar.next('2');
+        },
+        (error) => {
+          this.barraProgreso.progressBar.next('2');
+          console.log(error);
+        }
+      );
   }
 
   /**
    * Método que carga los datos que vienen del formulario
-   * @param event 
    */
-  comentarYcalificar(event: Event) {
+  comentarYcalificar(event: Event): void {
     this.cargarComentario();
   }
-
 }

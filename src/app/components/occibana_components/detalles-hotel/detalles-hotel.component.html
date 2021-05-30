@@ -5,7 +5,7 @@
     <mat-card class="detalle-hotel-card">
       <mat-card-header fxLayout="row" fxLayoutAlign="center center">
         <div>
-          <mat-card-title>{{ hotelSeleccionado.nombre }}</mat-card-title>
+          <mat-card-title>{{ hotelSeleccionado?.nombre }}</mat-card-title>
           <strong>Calificación promedio:</strong>
           <br />
           <ngb-rating [(rate)]="hotelSeleccionado.promediocalificacion">
@@ -16,51 +16,51 @@
         </div>
 
         <p class="hoteles-card-img">
-          <img mat-card-image src="{{ hotelSeleccionado.imagen }}" />
+          <img mat-card-image src="{{ hotelSeleccionado?.imagen }}" />
         </p>
       </mat-card-header>
       <mat-card-content fxLayoutAlign="center">
         <ul>
-          <li><strong>Municipio:</strong> {{ hotelSeleccionado.municipio }}</li>
+          <li><strong>Municipio:</strong> {{ hotelSeleccionado?.municipio }}</li>
 
-          <li><strong>Zona:</strong> {{ hotelSeleccionado.zona }}</li>
+          <li><strong>Zona:</strong> {{ hotelSeleccionado?.zona }}</li>
 
           <li>
             <strong>Precio noche básico: COP </strong
-            >{{ hotelSeleccionado.precionoche }}
+            >{{ hotelSeleccionado?.precionoche }}
           </li>
 
           <li>
             <strong>Precio noche doble: COP</strong>
-            {{ hotelSeleccionado.precioNocheDoble }}
+            {{ hotelSeleccionado?.precioNocheDoble }}
           </li>
 
           <li>
             <strong>Precio noche premium: COP</strong>
-            {{ hotelSeleccionado.precioNochePremium }}
+            {{ hotelSeleccionado?.precioNochePremium }}
           </li>
 
-          <li><strong>Dirección:</strong> {{ hotelSeleccionado.direccion }}</li>
+          <li><strong>Dirección:</strong> {{ hotelSeleccionado?.direccion }}</li>
 
           <li>
             <strong>Descripción y servicios:</strong>
-            {{ hotelSeleccionado.descripcion }}
+            {{ hotelSeleccionado?.descripcion }}
           </li>
 
           <li>
             <strong>Condiciones físicas:</strong>
-            {{ hotelSeleccionado.condicion }}
+            {{ hotelSeleccionado?.condicion }}
           </li>
 
           <li><strong>HORARIOS DE REGISTRO</strong></li>
 
-          <li><strong>Check-out:</strong> {{ hotelSeleccionado.checkout }}</li>
+          <li><strong>Check-out:</strong> {{ hotelSeleccionado?.checkout }}</li>
 
-          <li><strong>Check-in:</strong> {{ hotelSeleccionado.checkin }}</li>
+          <li><strong>Check-in:</strong> {{ hotelSeleccionado?.checkin }}</li>
 
           <li>
             <strong> Habitaciones disponibles:</strong>
-            {{ hotelSeleccionado.numHabitDisponibles }}
+            {{ hotelSeleccionado?.numHabitDisponibles }}
           </li>
         </ul>
       </mat-card-content>
@@ -102,7 +102,7 @@
                 mat-flat-button
                 color="warn"
                 [routerLink]="[
-                  '/occibana/hoteles/resevarHabitacion',
+                  '/occibana/hoteles/reservaHabitacion',
                   habitacion.id
                 ]"
               >
@@ -115,7 +115,7 @@
     </mat-tab>
 
     <mat-tab label="Puntuar y Comentar">
-      <h2>{{ hotelSeleccionado.nombre }}</h2>
+      <h2>{{ hotelSeleccionado?.nombre }}</h2>
 
       <div class="seccion-comentar" fxLayout="column">
         <h3>{{ nombreUsuario }} déjanos tu calificación:</h3>
@@ -162,7 +162,7 @@
     </mat-tab>
 
     <mat-tab label="Comentarios">
-      <h2>{{ hotelSeleccionado.nombre }}</h2>
+      <h2>{{ hotelSeleccionado?.nombre }}</h2>
       <h3>Comentarios recientes</h3>
       <ng-container *ngFor="let comentario of comentarios">
         <mat-accordion class="seccion-comentarios" multi>

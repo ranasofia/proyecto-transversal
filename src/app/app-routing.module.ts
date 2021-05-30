@@ -40,8 +40,8 @@ const routes: Routes = [
     {path:'comentar/:id',component:ComentarComponent}], canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel/:id', component: DetallesHotelComponent},
-    {path: 'resevarHabitacion/:id', component: ReservaHabitacionComponent}
-  ], canActivate:[GuardianService]},
+    {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent}
+  ], canActivate: [GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
     {path: 'registrar', component: FormularioUsuariosComponent},
     {path: 'modificar/:id', component: FormularioUsuariosComponent}
