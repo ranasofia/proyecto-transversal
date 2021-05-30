@@ -1,0 +1,65 @@
+<div style="float: right ">
+  <button mat-fab color="accent" routerLink="/superfast/catalogo" style="margin-right: 5px;">
+    <mat-icon>inventory_2</mat-icon>
+  </button>
+  <button mat-fab color="accent" routerLink="/superfast/carrito">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</div>
+
+<br>
+
+<h1 class="titulo"> Historial de compras </h1>
+
+<mat-form-field>
+  <mat-icon matPrefix>search</mat-icon>
+  <input type="text" placeholder="Buscar " matInput (keyup)="dataFilter($event.target.value)">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="encabezado">
+
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="nombreprodet">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombreprodet}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="especprodaliado">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+    <td mat-cell *matCellDef="let element"> {{element.especprodaliado}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="imagen_producto1">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+    <td mat-cell *matCellDef="let element"> <img style="width: 100px; height: 100px;" src="{{element.imagen_producto1}}"> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cantidad">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+    <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Especificación </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="v_unitario">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor unitario </th>
+    <td mat-cell *matCellDef="let element"> ${{element.v_unitario}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="v_total">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor total </th>
+    <td mat-cell *matCellDef="let element"> ${{element.v_total}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

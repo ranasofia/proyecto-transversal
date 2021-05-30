@@ -114,6 +114,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         carro.producto_id = producto.id;
         carro.cantidad = cantidad;
         carro.precio = producto.precio;
+        carro.imagen = producto.imagen;
         carro.total = producto.precio*cantidad;
 
         let HELPER = new JwtHelperService();
