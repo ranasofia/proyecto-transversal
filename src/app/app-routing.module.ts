@@ -1,3 +1,4 @@
+import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
 import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, children: [
-    {path:'comentar/:id',component:ComentarComponent}], canActivate:[GuardianService]},
+    {path:'comentar/:id',component:ComentarComponent}, 
+    {path:'conversar/:id',component:ConversarComponent}], canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel/:id', component: DetallesHotelComponent},
     {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent}

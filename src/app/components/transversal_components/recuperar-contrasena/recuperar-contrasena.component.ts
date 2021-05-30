@@ -1,3 +1,5 @@
+import { AdminService } from 'src/app/_service/superfast_service/admin.service';
+import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
 import { Router } from '@angular/router';
 import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
 import { Component, OnInit } from '@angular/core';
@@ -31,6 +33,11 @@ export class RecuperarContrasenaComponent implements OnInit {
   hide2 = true;
 
   /**
+   * variable que contiene el token de recuperacion
+   */
+  token: string;
+
+  /**
    * Permite configurar las validaciones del formulario
    * @returns
    */
@@ -57,7 +64,11 @@ export class RecuperarContrasenaComponent implements OnInit {
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
-  constructor(private recuperarc:RecuperarContrasenaService,private _snackBar: MatSnackBar, private router: Router) {
+  constructor(private recuperarc:RecuperarContrasenaService,
+              private _snackBar: MatSnackBar, 
+              private router: Router,
+              private clienteService: ClienteService,
+              private adminService:AdminService) {
     this.recuperarForm=this.createFormGroup();
   }
 
@@ -73,7 +84,8 @@ export class RecuperarContrasenaComponent implements OnInit {
   private recuperarContraseña(){
 
   if(this.recuperarForm.valid){
-    var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, Contrasena:this.recuperarForm.controls["password"].value};
+    var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, 
+              Contrasena:this.recuperarForm.controls["password"].value};
 
     this.recuperarc.recuperar(obj).subscribe(data => {
       this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
@@ -83,6 +95,29 @@ export class RecuperarContrasenaComponent implements OnInit {
     });
 
   }
+}
+
+//
+recuperarContraseñaSuperFast(){
+  var contraseña = {Token: this.recuperarForm.controls["token"].value, 
+  NuevaContrasenia: this.recuperarForm.controls["password"]};
+ this.adminService.postRecuperarContraseña(contraseña)
+}
+//
+recuperarContraseñaMototaxi(){
+  this.token = this.recuperarForm.controls["token"].value;
+  var contraseña = {Contrasena: this.recuperarForm.controls["password"], 
+                    ContrasenaConfirmada: this.recuperarForm.controls["validacionContrasena"]};
+  
+  this.clienteService.putRecuperarContraseña(this.token, contraseña);
+}
+//
+recuperarContraseñaOccibana(){
+
+}
+//
+recuperarContraseñaHcCauchos(){
+  
 }
 
 onResetForm() {

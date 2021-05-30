@@ -5,7 +5,7 @@ import { ServicioSolicitudService } from './../../../_service/mototaxi_service/s
 import { Component, OnInit } from '@angular/core';
 
 /**
- * Decorador de HistorialClienteComponent
+ * Decorador de FacturaComponent
  */
 @Component({
   selector: 'app-factura',
@@ -44,7 +44,7 @@ export class FacturaComponent implements OnInit {
   pago: string;
   
   /**
-   * Constructor que iniciliza las variables globales de FacturaComponent
+   * Constructor de FacturaComponent
    * @param servicioSolicitudService 
    * @param barraProgresoService 
    */
@@ -72,8 +72,5 @@ export class FacturaComponent implements OnInit {
       this.pago = data["metodoPago"];
       this.barraProgresoService.progressBar.next("2");
     });
-
-    
   }
-
 }

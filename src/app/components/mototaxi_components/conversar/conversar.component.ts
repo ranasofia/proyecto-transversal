@@ -1,24 +1,26 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
 import { HistorialService } from 'src/app/_service/mototaxi_service/historial.service';
 import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
-import { Notificacion } from 'src/app/_model/mototaxi_model/Notificacion';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 /**
- * Decorador de ComentarComponent
+ * Decorador de ConversarComponent
  */
 @Component({
-  selector: 'app-comentar',
-  templateUrl: './comentar.component.html',
-  styleUrls: ['./comentar.component.css']
+  selector: 'app-conversar',
+  templateUrl: './conversar.component.html',
+  styleUrls: ['./conversar.component.css']
 })
-export class ComentarComponent implements OnInit {
+export class ConversarComponent implements OnInit {
   /**
    * Se declara el formulario de comentario
    */
-  FormComentar:FormGroup;
+  formConversar:FormGroup;
   /**
    * Variable que captura el idNotificación
    */
@@ -33,7 +35,7 @@ export class ComentarComponent implements OnInit {
   conductor: string;
 
   /**
-   * Constructor de ComentarComponent
+   * Constructor de ConversarComponent
    * @param historial 
    * @param route 
    * @param barraProgreso 
@@ -44,7 +46,7 @@ export class ComentarComponent implements OnInit {
               private route: ActivatedRoute,
               private barraProgreso: BarraProgresoService,
               private snackBar: MatSnackBar, 
-              private routeer: Router) {}
+              private routeer: Router) { }
 
   /**
    * Método que se encarga de configurar las validaciones del formulario de usuario
@@ -53,12 +55,12 @@ export class ComentarComponent implements OnInit {
   createFormGroup() {
     return new FormGroup({
       id: new FormControl(),
-      comentario: new FormControl('', [Validators.required]),
+      conversar: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit(): void {
-    this.FormComentar=this.createFormGroup();
+    this.formConversar=this.createFormGroup();
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
       this.id=params.id;
@@ -70,44 +72,54 @@ export class ComentarComponent implements OnInit {
   }
 
   /**
-   * Metodo que permite comentar el servicio
+   * Metodo que permite conversar con el conductor del servicio
    * @param idNotificacion 
-   * @param comentario 
+   * @param usuario 
+   * @param conversar 
    */
-  comentar(idNotificacion:number,comentario:any){
+  conversar(idNotificacion:number,usuario:string,conversar:any){
     this.barraProgreso.progressBar.next("1");
-    this.historial.putComentar(idNotificacion,comentario).subscribe(data=>{
-      this.snackBar.open('El comentario a sido enviado', 'Cerrar', {
+    this.historial.putConversar(idNotificacion,usuario,conversar).subscribe(data=>{
+      this.snackBar.open('El mensaje a sido enviado', 'Cerrar', {
         duration: 3000
       })
       this.barraProgreso.progressBar.next("2");
       this.routeer.navigate(['/mototaxi/historialCliente']);
     },err => {
         this.barraProgreso.progressBar.next("2");
-        this.snackBar.open('error al comentar', 'Cancel', {
+        this.snackBar.open('error al conversar', 'Cancel', {
           duration: 3000
         })
     });
   }
 
   /**
-   * Metodo que llama comentar y asigna los atributos
+   * Metodo que llama conversar y asigna los atributos
    */
-  cargarComentario(){
+  cargarConversacion(){
+    /**
+      * Constante para decodificar el token
+      */
+    const helper = new JwtHelperService();
+    /**
+      * Variable que decodifica el toquen y captura el usuario logueado
+      */
+    var usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN))["name"];
+
     let notificacion:Notificacion;
     notificacion=new Notificacion();
     notificacion.id=this.id;
-    var comentario = {ComentarioDeCliente: this.FormComentar.value["comentario"]};
-    this.comentar(notificacion.id,comentario);
+    var conversacion = {Conversacion: this.formConversar.value["conversar"]};
+    this.conversar(notificacion.id,usuario,conversacion);
   }
 
   /**
    *
    * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
    */
-   aceptar(event: Event): any {
+    aceptar(event: Event): any {
     event.preventDefault();
-    this.cargarComentario();
+    this.cargarConversacion();
   }
 
 }

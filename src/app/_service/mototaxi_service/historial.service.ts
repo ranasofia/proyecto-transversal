@@ -55,4 +55,16 @@ export class HistorialService {
   getDatosRegistro(idNotificacion: number){
     return this.http.get(this.URL2 + "/datosRegistro?idNotificacion=" + idNotificacion);
   }
+
+  /**
+   * Permite realizar una conversacion con el conductor sobre algún servicio realizado
+   * @param idNotificacion ariable que especifica el id del registro
+   * @param usuario variable que indica el usuario 
+   * @param conversar  variable que contiene la conversacion
+   * @returns 
+   */
+  putConversar(idNotificacion:number,usuario:string,conversar:any){
+    return this.http.put(this.URL+"/conversar?idNotificacion="+idNotificacion+"&usuario="+usuario,conversar);
+  }
+
 }
