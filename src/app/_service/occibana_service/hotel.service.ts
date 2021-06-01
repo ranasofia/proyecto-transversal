@@ -73,4 +73,13 @@ export class HotelService {
   reservaUsuario(usuario: UsuarioOccibana) {
     return this.http.post<Reserva[]>(this.URL + '/postMostrarMisreservas', usuario);
   }
+
+  /**
+   * Método que cancela una reserva hecha por el usuario
+   * @param idReserva 
+   * @returns 
+   */
+  cancelarReserva(idReserva: number) {
+    return this.http.post<any>(this.URL + '/postCancelarMireserva', idReserva);
+  }
 }

@@ -47,6 +47,9 @@ import { ConversarComponent } from './components/mototaxi_components/conversar/c
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
 import { HistorialComprasComponent } from './components/superfast_components/historial-compras/historial-compras.component';
 import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
+import { DialogComentarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-comentar/dialog-comentar.component';
+import { DialogCalificarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-calificar/dialog-calificar.component';
+import { DialogCancelarReservaComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-cancelar-reserva/dialog-cancelar-reserva.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -230,6 +233,8 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.OCCIBANA + "/registroLogin/postIngresoLogin",
       environment.OCCIBANA + '/listas/postObtenerComentarios',
       environment.OCCIBANA + '/listas/postHabitacionesHotel',
+      environment.OCCIBANA + '/panelHotel/postReservarHospedaje',
+      environment.OCCIBANA + '/panelHotel/postBuscarDisponibilidadHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHabitacion',
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
@@ -277,7 +282,10 @@ export function delay(ms: number) {
     ConversarComponent,
     FacturasComponent,
     HistorialComprasComponent,
-    MisReservasComponent
+    MisReservasComponent,
+    DialogComentarComponent,
+    DialogCalificarComponent,
+    DialogCancelarReservaComponent
   ],
 
 
