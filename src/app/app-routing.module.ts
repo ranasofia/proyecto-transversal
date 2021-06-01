@@ -1,3 +1,4 @@
+import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
@@ -46,7 +47,9 @@ const routes: Routes = [
     {path:'conversar/:id',component:ConversarComponent}], canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel/:id', component: DetallesHotelComponent},
-    {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent}
+    {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent, children: [
+      {path: 'misReservas', component: MisReservasComponent}
+    ]}
   ], canActivate: [GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
     {path: 'registrar', component: FormularioUsuariosComponent},

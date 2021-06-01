@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Reserva } from './../../../_model/occibana_model/Reserva';
 import { UsuarioOccibana } from './../../../_model/occibana_model/UsuarioOccibana';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { environment } from './../../../../environments/environment.prod';
+import { environment } from './../../../../environments/environment';
 import { DatosPerfilService } from './../../../_service/occibana_service/datos-perfil.service';
 import { Habitacion } from './../../../_model/occibana_model/Habitacion';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -63,12 +63,12 @@ export class ReservaHabitacionComponent implements OnInit {
   /**
    * Almacena la fecha de llegada que se digita para buscar disponibilidad
    */
-  fechaLlegada: string;
+  fechaLlegada: Date;
 
   /**
    * Almacena la fecha de salida que se digita para buscar disponibilidad
    */
-  fechaSalida: string;
+  fechaSalida: Date;
 
   /**
    *
@@ -84,11 +84,11 @@ export class ReservaHabitacionComponent implements OnInit {
    */
   constructor(
     private panelHotelService: PanelHotelService,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private perfilService: DatosPerfilService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private barraProgreso: BarraProgresoService
+    private barraProgreso: BarraProgresoService,
   ) {}
 
   /**
@@ -183,8 +183,8 @@ export class ReservaHabitacionComponent implements OnInit {
     this.panelHotelService
       .buscarDisponibilidad(
         this.informacionHotel.idhotel,
-        this.fechaSalida,
-        this.fechaLlegada,
+        this.fechaSalida.toJSON(),
+        this.fechaLlegada.toJSON(),
         this.informacionHabitacion
       )
       .subscribe((data) => {
@@ -197,7 +197,11 @@ export class ReservaHabitacionComponent implements OnInit {
           this.isDisabled = false;
         }
         this.barraProgreso.progressBar.next('2');
-      });
+      },
+      (error) => {
+        this.barraProgreso.progressBar.next('2');
+      }
+      );
   }
 
   onDisponibilidad(event: Event): void {
@@ -212,10 +216,8 @@ export class ReservaHabitacionComponent implements OnInit {
 
     reserva.idusuario = this.usuario.id;
     reserva.numpersona = this.informacionHabitacion.numpersonas.toString();
-    reserva.fecha_llegada = this.fechaLlegada;
-    reserva.fecha_llegada = moment().format();
-    reserva.fecha_salida = this.fechaSalida;
-    reserva.fecha_salida = moment().format();
+    reserva.fecha_llegada = this.fechaLlegada.toJSON();
+    reserva.fecha_salida = this.fechaSalida.toJSON();
     reserva.nombre = this.usuario.nombre;
     reserva.apellido = this.usuario.apellido;
     reserva.correo = this.usuario.correo;
@@ -231,6 +233,9 @@ export class ReservaHabitacionComponent implements OnInit {
           duration: 2000,
         });
         this.barraProgreso.progressBar.next('2');
+      },
+      (error) => {
+        this.barraProgreso.progressBar.next('2');
       });
   }
 
@@ -240,5 +245,9 @@ export class ReservaHabitacionComponent implements OnInit {
   onSubmit(event: Event): void {
     event.preventDefault();
     this.realizarReserva();
+  }
+
+  onMisReservas(): void {
+    this.router.navigate(['/occibana/hoteles/reservaHabitacion/' + this.informacionHabitacion?.id, 'misReservas']);
   }
 }

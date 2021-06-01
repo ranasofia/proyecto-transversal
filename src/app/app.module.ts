@@ -46,6 +46,7 @@ import { ComentarComponent } from './components/mototaxi_components/comentar/com
 import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
 import { HistorialComprasComponent } from './components/superfast_components/historial-compras/historial-compras.component';
+import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -275,7 +276,8 @@ export function delay(ms: number) {
     ComentarComponent,
     ConversarComponent,
     FacturasComponent,
-    HistorialComprasComponent
+    HistorialComprasComponent,
+    MisReservasComponent
   ],
 
 

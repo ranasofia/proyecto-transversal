@@ -35,9 +35,8 @@
 
 .disponibilidad {
   background-color: #12213b83;
-  width: 40%;
-  height: 550px;
   line-height: 80px;
+  padding: 10px 10px 10px 10px;
 }
 
 .disponibilidad button{
@@ -47,6 +46,4 @@
 
 .reservar-ahora {
   text-align: center;
-  width: 30%;
-  display: inline-block;
 }
