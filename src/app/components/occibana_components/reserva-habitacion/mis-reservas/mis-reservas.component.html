@@ -1,1 +1,45 @@
-<p>mis-reservas works!</p>
+<h1>MIS RESERVAS</h1>
+<div class="mis-reservas-container">
+  <div fxLayout="row wrap" fxLayoutGap="18px grid">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let reserva of reservas"
+    >
+      <mat-card class="mis-reservas-card">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title>Reserva a nombre de </mat-card-title>
+          <mat-card-subtitle>{{
+            usuario.nombre + " " + usuario.apellido
+          }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <ul>
+            <li>Hotel:</li>
+            <li>Número de personas: {{ reserva.numpersona }}</li>
+            <li>Fecha llegada: {{ reserva.fecha_llegada }}</li>
+            <li>Fecha salida: {{ reserva.fecha_salida }}</li>
+            <li>Correo: {{ reserva.correo }}</li>
+            <li>Medio de pago: {{ reserva.mediopago }}</li>
+            <li>Calificación: {{ reserva.calificacion }}</li>
+            <li>Comentario: {{ reserva.comentario }}</li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions style="overflow: hidden">
+          <button mat-mini-fab color="primary">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent">
+            <mat-icon>start_purple500</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent">
+            <mat-icon>add_comment</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.mis-reservas-container {
+  width: 95%;
+  margin: 5% 2% 5% 2%;
+}
+
+h1 {
+  margin-top: 50px;
+  text-align: center;
+  font: bold;
+  font-size: 50px;
+  color: transparent;
+  -moz-text-stroke-width: 1.5px;
+  -webkit-text-stroke-width: 1.5px;
+  -moz-text-stroke-color: #000000;
+  -webkit-text-stroke-color: #ffffff;
+  text-shadow: 6.5px 5px #000000;
+}
+
+.header-image {
+  background-image: url("../../../../../assets/images/reserva.png");
+  background-size: cover;
+}
+
+button {
+  float: right;
+}

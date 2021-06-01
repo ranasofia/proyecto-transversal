@@ -25,6 +25,8 @@ export class MisReservasComponent implements OnInit {
 
   reservas: any;
 
+  gridColumns = 3;
+
   constructor(
     private router: Router,
     private perfilService: DatosPerfilService,
@@ -60,5 +62,9 @@ export class MisReservasComponent implements OnInit {
         this.reservas = data;
       }
     })
+  }
+
+  toggleGridColumns() {
+    this.gridColumns = this.gridColumns === 3 ? 4 : 3;
   }
 }
