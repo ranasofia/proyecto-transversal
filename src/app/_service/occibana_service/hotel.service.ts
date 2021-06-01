@@ -80,6 +80,6 @@ export class HotelService {
    * @returns 
    */
   cancelarReserva(idReserva: number) {
-    return this.http.post<any>(this.URL + '/postCancelarMireserva', idReserva);
+    return this.http.post<any>(this.URL + '/postCancelarMireserva', {idReserva: idReserva});
   }
 }

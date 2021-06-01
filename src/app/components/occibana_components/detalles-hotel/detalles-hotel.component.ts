@@ -150,12 +150,6 @@ export class DetallesHotelComponent implements OnInit {
     this.serviceHotel.postObtenerComentarios(this.hotelSeleccionado).subscribe(
       (data) => {
         this.comentarios = data;
-
-        for (let i = 0; i < this.comentarios.length; i++) {
-          this.comentarios[i].fecha_comentario = moment()
-            .locale('es') 
-            .calendar();
-        }
       },
       (err) => {
         return this.router.navigate['/occibana/hoteles'];
@@ -176,31 +170,5 @@ export class DetallesHotelComponent implements OnInit {
       }
     );
   }
-
-  /**
-   * Método que crea un comentario nuevo a un hotel
-   */
-  cargarComentario(): void {
-    const comentario = this.comentarioF.value('comentario');
-    this.barraProgreso.progressBar.next('1');
-    this.comentarioService
-      .postComentar(this.idUsuario, comentario, this.idHotel)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.barraProgreso.progressBar.next('2');
-        },
-        (error) => {
-          this.barraProgreso.progressBar.next('2');
-          console.log(error);
-        }
-      );
-  }
-
-  /**
-   * Método que carga los datos que vienen del formulario
-   */
-  comentarYcalificar(event: Event): void {
-    this.cargarComentario();
-  }
+  
 }

@@ -124,56 +124,6 @@
         </ng-container>
       </mat-tab>
 
-      <mat-tab label="Puntuar y Comentar">
-        <h2>{{ hotelSeleccionado?.nombre }}</h2>
-
-        <div class="seccion-comentar" fxLayout="column">
-          <h3>{{ nombreUsuario }} déjanos tu calificación:</h3>
-          <mat-slider
-            thumbLabel
-            [(ngModel)]="value"
-            tickInterval="1"
-            step="1"
-            min="1"
-            max="5"
-            aria-label="units"
-          ></mat-slider>
-
-          <ngb-rating [(rate)]="value">
-            <ng-template let-fill="fill" let-index="index">
-              <span class="star" [class.filled]="fill === 100">&#9733;</span>
-            </ng-template>
-          </ngb-rating>
-
-          <br />
-
-          <form
-            [formGroup]="comentarioF"
-            (ngSubmit)="comentarYcalificar($event)"
-          >
-            <h3>{{ nombreUsuario }} déjanos tu opinión:</h3>
-
-            <mat-form-field class="comentario-full-width">
-              <textarea
-                matInput
-                type="text"
-                required
-                formControlName="comentario"
-                placeholder="Escribe aquí..."
-              >
-              </textarea>
-              <mat-error
-                *ngIf="comentarioF.controls.comentario.hasError('required')"
-              >
-                Este campo es<strong> obligatorio</strong>
-              </mat-error>
-            </mat-form-field>
-            <br />
-            <button mat-flat-button color="primary">ENVIAR</button>
-          </form>
-        </div>
-      </mat-tab>
-
       <mat-tab label="Comentarios">
         <h2>{{ hotelSeleccionado?.nombre }}</h2>
         <h3>Comentarios recientes</h3>
@@ -189,7 +139,7 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
 
-              <p>{{ comentario.fecha_comentario }}</p>
+              <p>{{ comentario.fecha_comentario | date:'dd-MM-yyyy':'UTC' }}</p>
               <p>{{ comentario.comentario }}</p>
             </mat-expansion-panel>
           </mat-accordion>

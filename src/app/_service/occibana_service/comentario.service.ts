@@ -44,7 +44,12 @@ export class ComentarioService {
    * @param calificacion 
    * @returns 
    */
-  postCalificar(calificacion : Calificacion) {
-    return this.http.post(this.URL + '/postCalificar', calificacion );
+  postCalificar(idUsuario: number, idReserva: number, idHotel: number, calificacion: number) {
+    return this.http.post<Calificacion>(this.URL + '/postCalificar', {
+      "IdSession": idUsuario,
+      "IdReserva": idReserva,
+      "IdHotelSession": idHotel,
+      "Calificacion": calificacion
+    });
   }
 }

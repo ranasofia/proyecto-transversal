@@ -16,11 +16,26 @@ h1 {
   text-shadow: 6.5px 5px #000000;
 }
 
+.mis-reservas-card {
+  background-color: #12213b;
+}
+
 .header-image {
   background-image: url("../../../../../assets/images/reserva.png");
   background-size: cover;
 }
 
-button {
+.mat-card-actions button {
+  margin-left: 10px;
   float: right;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #8f8f8f;
+  letter-spacing: 5px;
+}
+
+.filled {
+  color: #ffff00;
 }

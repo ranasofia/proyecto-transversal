@@ -21,8 +21,12 @@ export class DialogCancelarReservaComponent implements OnInit {
 
   cancelarReservas(): void {
     this.hotelService.cancelarReserva(this.data.id).subscribe(data => {
-      this._snackBar.open(data.mensaje, 'OK', {
-        duration: 2500
+      let message: string;
+      if(data.mensaje == "No es posible cancelar la reserva") {
+        message = "No es posible cancelar una reserva que no se encuentra vigente"
+      }
+      this._snackBar.open(message, 'OK', {
+        duration: 3500
       });
     })
   }

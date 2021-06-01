@@ -1,1 +1,38 @@
-<p>dialog-calificar works!</p>
+<mat-dialog-content>
+  A continuación, realice una calificación del servicio:
+</mat-dialog-content>
+<br />
+<div class="form-group" fxLayout="column" fxLayoutAlign="center center">
+  <mat-slider
+    thumbLabel
+    [(ngModel)]="value"
+    tickInterval="1"
+    step="1"
+    min="0"
+    max="5"
+    aria-label="units"
+  ></mat-slider>
+  <ngb-rating [(rate)]="value" [formControl]="rate">
+    <ng-template let-fill="fill" let-index="index">
+      <span class="star" [class.filled]="fill === 100">&#9733;</span>
+    </ng-template>
+  </ngb-rating>
+  <br />
+  <div class="form-text small">
+    <div *ngIf="rate.valid" class="text-success">Gracias!</div>
+    <div *ngIf="rate.invalid" class="text-danger">
+      Se requiere una calificación!
+    </div>
+  </div>
+</div>
+<mat-dialog-actions fxLayoutAlign="center">
+  <button
+    mat-raised-button
+    mat-dialog-close
+    color="primary"
+    (click)="calificar()"
+  >
+    Calificar
+  </button>
+  <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+</mat-dialog-actions>
