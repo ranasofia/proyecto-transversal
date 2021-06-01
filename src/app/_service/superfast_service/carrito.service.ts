@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfast';
+import { DetallePedido } from 'src/app/_model/superfast_model/DetallePedido';
+import { Pedido } from 'src/app/_model/superfast_model/Pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,7 @@ import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfas
 export class CarritoService {
 
   private URL: string = environment.SUPERFAST +  '/Carrito';
+  private pedidosFactura: Pedido[];
 
   constructor(private http: HttpClient) { }
 
@@ -25,4 +28,17 @@ export class CarritoService {
     return this.http.put<string>(this.URL + "/ComprarProductosCarrito", usuarioAuxiliar);
 
   }
+
+  setPedidosFactura(pedidos: Pedido[]){
+
+    this.pedidosFactura = pedidos;
+
+  }
+
+  getPedidosFactura(){
+
+    return this.pedidosFactura;
+
+  }
+
 }

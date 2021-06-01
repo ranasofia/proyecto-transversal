@@ -71,7 +71,7 @@
       <div class="form2">
         <mat-form-field>
           <mat-icon matPrefix>call</mat-icon>
-          <input type="text" class="columna1" matInput placeholder="CELULAR: " formControlName="celular">
+          <input type="text" class="columna1" matInput placeholder="CELULAR: " formControlName="celular" (keydown)="validacionesPropias.soloNumeros($event)">
           <mat-error *ngIf="perfilForm.controls.celular.hasError('required')">
             Este campo es<strong> obligatorio</strong>
           </mat-error>
@@ -99,7 +99,7 @@
         </mat-form-field>
         <mat-form-field>
           <mat-icon matPrefix>description</mat-icon>
-          <input type="number" class="columna1" matInput placeholder="DOCUMENTO: " formControlName="documento">
+          <input type="number" class="columna1" matInput placeholder="DOCUMENTO: " formControlName="documento" (keydown)="validacionesPropias.soloNumeros($event)">
           <mat-error *ngIf="perfilForm.controls.documento.hasError('required')">
             Este campo es<strong> obligatorio</strong>
           </mat-error>

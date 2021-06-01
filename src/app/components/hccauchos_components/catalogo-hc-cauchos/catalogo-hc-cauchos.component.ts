@@ -7,6 +7,7 @@ import { Carro } from 'src/app/_model/hccauchos_model/Carro';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 /**
  * Decorador de CatalogoHcCauchosComponet
  */
@@ -47,6 +48,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     productosFiltrados: ProductoH[];
 
     cantidad: number;
+
+    validacionesPropias = new ValidacionesPropias();
 
     /**
      * Permite filtrar los productos a mostrar

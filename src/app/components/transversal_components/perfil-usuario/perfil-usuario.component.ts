@@ -50,6 +50,8 @@ export class PerfilUsuarioComponent implements OnInit {
    */
   usuario: Usuario;
 
+  validacionesPropias=  new ValidacionesPropias();
+
   /**
    * Constructor de PerfilUsuarioComponent
    * @param comunicacionCService objeto que permite usar los servicios de usuarios de HCCauchos

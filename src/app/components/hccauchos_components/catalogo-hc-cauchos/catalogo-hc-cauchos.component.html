@@ -46,7 +46,7 @@
           <div class="contenedorAgregar">
             <div>
               <div class="contenedorCampoCantidad">
-                <input matInput type="number" min="0" placeholder="Cantidad" #cantidad>
+                <input matInput type="number" min="0" placeholder="Cantidad" (keydown)="validacionesPropias.soloNumeros($event)">
               </div>
             </div>
 

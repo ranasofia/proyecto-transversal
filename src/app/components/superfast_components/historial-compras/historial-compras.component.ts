@@ -67,6 +67,8 @@ export class HistorialComprasComponent implements OnInit {
 
       });
 
+      detalles = detalles.reverse();
+
       this.dataSource = new MatTableDataSource(detalles);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

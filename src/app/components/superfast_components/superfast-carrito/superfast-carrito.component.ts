@@ -9,6 +9,7 @@ import { CarritoService } from 'src/app/_service/superfast_service/carrito.servi
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-superfast-carrito',
@@ -21,7 +22,8 @@ export class SuperfastCarritoComponent implements OnInit {
     private pedidosClienteService: PedidosClienteService,
     private _snackBar: MatSnackBar,
     private carritoService: CarritoService,
-    private usuarioTransversalService: UsuarioTransversalService) { }
+    private usuarioTransversalService: UsuarioTransversalService,
+    private router: Router) { }
 
   pedidos: Pedido[];
 
@@ -98,7 +100,9 @@ export class SuperfastCarritoComponent implements OnInit {
           duration: 3000
         });
 
-        this.ngOnInit();
+        this.carritoService.setPedidosFactura(this.pedidos);
+
+        this.router.navigate(['/superfast/facturas']);
 
       });
 

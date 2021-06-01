@@ -1,20 +1,20 @@
 <div class="registro-container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
-    <!--Imagen-->
-    <div class="registro-image">
-        <img src="assets/images/login.svg">
-    </div>
+  <!--Imagen-->
+  <div class="registro-image">
+    <img src="assets/images/login.svg">
+  </div>
 
-    <form [formGroup]="registroForm" (ngSubmit)="registro($event)">
-        <mat-card class="registro-card" fxLayout="column" fxLayoutAlign="center center">
-            <!--Cabecera de la card-->
-            <mat-card-header>
-                <mat-card-title> REGISTRO </mat-card-title>
-            </mat-card-header>
-            <!--Contenido de la card-->
-            <mat-card-content>
-                <!--Input correo electrónico-->
+  <form [formGroup]="registroForm" (ngSubmit)="registro($event)">
+    <mat-card class="registro-card" fxLayout="column" fxLayoutAlign="center center">
+      <!--Cabecera de la card-->
+      <mat-card-header>
+        <mat-card-title> REGISTRO </mat-card-title>
+      </mat-card-header>
+      <!--Contenido de la card-->
+      <mat-card-content>
+        <!--Input correo electrónico-->
 
-                <!--<mat-label> Correo electrónico </mat-label>
+        <!--<mat-label> Correo electrónico </mat-label>
                   <input [(ngModel)]="nombreUsuario" type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
                   <mat-icon matPrefix>mail_outline</mat-icon>
                   <mat-error *ngIf="registroForm.controls.email.hasError('email') && !registroForm.controls.email.hasError('required')">
@@ -24,130 +24,129 @@
                       Este campo es<strong> obligatorio</strong>
                   </mat-error>-->
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="text" matInput placeholder="Nombre" formControlName="nombre">
-                    <mat-icon matPrefix>face</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="text" matInput placeholder="Nombre" formControlName="nombre">
+          <mat-icon matPrefix>face</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.nombre.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                </mat-form-field>
+          <mat-error *ngIf="registroForm.controls.nombre.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="text" matInput placeholder="Apellido" formControlName="apellido" >
-                    <mat-icon matPrefix>face</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="text" matInput placeholder="Apellido" formControlName="apellido">
+          <mat-icon matPrefix>face</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.apellido.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                </mat-form-field>
+          <mat-error *ngIf="registroForm.controls.apellido.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <mat-label> Correo electrónico </mat-label>
-                    <input type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
-                    <mat-icon matPrefix>mail_outline</mat-icon>
-                    <mat-error
-                        *ngIf="registroForm.controls.email.hasError('email') && !registroForm.controls.email.hasError('required')">
-                        Digita un correo electrónico válido...
-                    </mat-error>
-                    <mat-error *ngIf="registroForm.controls.email.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                </mat-form-field>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <mat-label> Correo electrónico </mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
+          <mat-icon matPrefix>mail_outline</mat-icon>
+          <mat-error
+            *ngIf="registroForm.controls.email.hasError('email') && !registroForm.controls.email.hasError('required')">
+            Digita un correo electrónico válido...
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.email.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="text" matInput placeholder="Usuario" formControlName="username">
-                    <mat-icon matPrefix>person</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="text" matInput placeholder="Usuario" formControlName="username">
+          <mat-icon matPrefix>person</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.username.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                </mat-form-field>
+          <mat-error *ngIf="registroForm.controls.username.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <mat-label> Contraseña </mat-label>
-                    <input [type]="hide ? 'password' : 'text'" matInput
-                        formControlName="password" placeholder="Contraseña">
-                    <mat-icon matPrefix>lock_outline</mat-icon>
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-error *ngIf="registroForm.controls.password.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                    <mat-error *ngIf="registroForm.controls.password.hasError('minlength')">
-                      Debe tener como mínimo 8 caracteres
-                  </mat-error>
-                </mat-form-field>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <mat-label> Contraseña </mat-label>
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" placeholder="Contraseña">
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="registroForm.controls.password.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.password.hasError('minlength')">
+            Debe tener como mínimo 8 caracteres
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <mat-label> Repita su contraseña </mat-label>
-                    <input [type]="hide2 ? 'password' : 'text'" matInput
-                        formControlName="validacionContrasena" placeholder="Repita su contraseña">
-                    <mat-icon matPrefix>lock_outline</mat-icon>
-                    <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                    <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('minlength')">
-                      Debe tener como mínimo 8 caracteres
-                  </mat-error>
-                    <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('verificacionClave')">
-                      Las contraseñas no coinciden
-                  </mat-error>
-                </mat-form-field>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <mat-label> Repita su contraseña </mat-label>
+          <input [type]="hide2 ? 'password' : 'text'" matInput formControlName="validacionContrasena"
+            placeholder="Repita su contraseña">
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('minlength')">
+            Debe tener como mínimo 8 caracteres
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.validacionContrasena.hasError('verificacionClave')">
+            Las contraseñas no coinciden
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="date" matInput placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
-                    <mat-icon matPrefix>event</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="date" matInput placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
+          <mat-icon matPrefix>event</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.fechaNacimiento.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                    <mat-error *ngIf="registroForm.controls.fechaNacimiento.hasError('edadValida')">
-                      Debe tener al menos 15 años
-                  </mat-error>
-                </mat-form-field>
+          <mat-error *ngIf="registroForm.controls.fechaNacimiento.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.fechaNacimiento.hasError('edadValida')">
+            Debe tener al menos 15 años
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="text" matInput placeholder="Identificación" formControlName="identificacion">
-                    <mat-icon matPrefix>badge</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="text" matInput placeholder="Identificación" formControlName="identificacion" (keydown)="validacionesPropias.soloNumeros($event)">
+          <mat-icon matPrefix>badge</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.identificacion.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                    <mat-error *ngIf="registroForm.controls.identificacion.hasError('minlength')">
-                      Debe tener como mínimo 5 números
-                  </mat-error>
-                </mat-form-field>
+          <mat-error *ngIf="registroForm.controls.identificacion.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.identificacion.hasError('minlength')">
+            Debe tener como mínimo 5 números
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="text" matInput placeholder="Celular" formControlName="celular">
-                    <mat-icon matPrefix>call</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="text" matInput placeholder="Celular" formControlName="celular" (keydown)="validacionesPropias.soloNumeros($event)">
+          <mat-icon matPrefix>call</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.celular.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                    <mat-error *ngIf="registroForm.controls.celular.hasError('minlength')">
-                      Debe tener como mínimo 7 números
-                  </mat-error>
-                </mat-form-field>
+          <mat-error *ngIf="registroForm.controls.celular.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="registroForm.controls.celular.hasError('minlength')">
+            Debe tener como mínimo 7 números
+          </mat-error>
+        </mat-form-field>
 
-                <mat-form-field appearance="outline" class="registro-full-width">
-                    <input type="text" matInput placeholder="Dirección" formControlName="direccion">
-                    <mat-icon matPrefix>home</mat-icon>
+        <mat-form-field appearance="outline" class="registro-full-width">
+          <input type="text" matInput placeholder="Dirección" formControlName="direccion">
+          <mat-icon matPrefix>home</mat-icon>
 
-                    <mat-error *ngIf="registroForm.controls.direccion.hasError('required')">
-                        Este campo es<strong> obligatorio</strong>
-                    </mat-error>
-                </mat-form-field>
-
+          <mat-error *ngIf="registroForm.controls.direccion.hasError('required')">
+            Este campo es<strong> obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
 
 
 
-                <button mat-raised-button color="primary">Registrarse</button>
+
+        <button mat-raised-button color="primary">Registrarse</button>
 
 
 
-            </mat-card-content>
-        </mat-card>
-    </form>
+      </mat-card-content>
+    </mat-card>
+  </form>
 </div>

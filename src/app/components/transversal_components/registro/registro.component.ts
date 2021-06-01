@@ -32,6 +32,8 @@ export class RegistroComponent implements OnInit {
    */
   hide2 = true;
 
+  validacionesPropias = new ValidacionesPropias();
+
   /**
    * Permite configurar las validaciones del formulario
    * @returns grupoFormulario
@@ -71,7 +73,7 @@ export class RegistroComponent implements OnInit {
       ]),
       celular: new FormControl('', [
         Validators.required,
-        Validators.minLength(7)
+        Validators.minLength(7),
       ]),
       direccion: new FormControl('', [
         Validators.required
@@ -144,5 +146,7 @@ export class RegistroComponent implements OnInit {
     this.registrar();
 
   }
+
+
 
 }
