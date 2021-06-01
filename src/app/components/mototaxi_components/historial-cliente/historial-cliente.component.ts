@@ -54,7 +54,6 @@ export class HistorialClienteComponent implements OnInit {
               public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.barraProgresoService.progressBar.next("1");
     /**
       * Constante para decodificar el token
       */
@@ -66,10 +65,12 @@ export class HistorialClienteComponent implements OnInit {
 
     // Método que traer el historial del cliente
     this.historial.getHistorial("", usuario).subscribe(data => {
+      this.barraProgresoService.progressBar.next("1");
       this.notificaciones = data;
       if(this.notificaciones != undefined){
         this.dataSource = new MatTableDataSource(this.notificaciones);
         this.dataSource.paginator = this.paginator;
+        this.barraProgresoService.progressBar.next("2");
       }
     });
 

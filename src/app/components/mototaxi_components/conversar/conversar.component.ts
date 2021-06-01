@@ -63,10 +63,12 @@ export class ConversarComponent implements OnInit {
     this.formConversar=this.createFormGroup();
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
+      this.barraProgreso.progressBar.next("1");
       this.id=params.id;
       this.historial.getDatosRegistro(this.id).subscribe(data => {
         this.cliente = data["nombreCl"];
         this.conductor = data["conductor"];
+        this.barraProgreso.progressBar.next("2");
       })
     });
   }

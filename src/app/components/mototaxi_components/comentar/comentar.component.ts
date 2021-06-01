@@ -31,6 +31,10 @@ export class ComentarComponent implements OnInit {
    * Variable que captura el nombre del conductor
    */
   conductor: string;
+  /**
+   * Variable que captura el comentario del cliente
+   */
+  comentarioDeCliente: string;
 
   /**
    * Constructor de ComentarComponent
@@ -61,10 +65,13 @@ export class ComentarComponent implements OnInit {
     this.FormComentar=this.createFormGroup();
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
+      this.barraProgreso.progressBar.next("1");
       this.id=params.id;
       this.historial.getDatosRegistro(this.id).subscribe(data => {
         this.cliente = data["nombreCl"];
         this.conductor = data["conductor"];
+        this.comentarioDeCliente = data["comentarioDeCliente"];
+        this.barraProgreso.progressBar.next("2");
       })
     });
   }
@@ -98,7 +105,14 @@ export class ComentarComponent implements OnInit {
     notificacion=new Notificacion();
     notificacion.id=this.id;
     var comentario = {ComentarioDeCliente: this.FormComentar.value["comentario"]};
-    this.comentar(notificacion.id,comentario);
+
+    if(this.comentarioDeCliente == undefined){
+      this.comentar(notificacion.id,comentario);
+    }else if(this.comentarioDeCliente != undefined){
+      this.snackBar.open('Ya ha realizado un comentario a este servicio', 'Cerrar', {
+        duration: 3000
+      })
+    }
   }
 
   /**
