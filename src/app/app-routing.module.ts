@@ -31,7 +31,7 @@ import { HistorialComprasComponent } from './components/superfast_components/his
 const routes: Routes = [
 
 
-  
+
   {path: '', component: PaginaPrincipalComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
@@ -39,11 +39,8 @@ const routes: Routes = [
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'superfast/carrito', component: SuperfastCarritoComponent, canActivate:[GuardianService]},
-<<<<<<< HEAD
   {path: 'superfast/facturas', component: FacturasComponent, canActivate:[GuardianService]},
-=======
   {path: 'superfast/historial', component: HistorialComprasComponent, canActivate:[GuardianService]},
->>>>>>> fca75d063c711a8ef2f436817ddcd986a737c25a
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/carrito', component: HccauchosCarritoComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
