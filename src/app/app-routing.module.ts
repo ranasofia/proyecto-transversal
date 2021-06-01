@@ -28,12 +28,14 @@ import { registerLocaleData } from '@angular/common';
 
 const routes: Routes = [
 
+
   {path: '', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'superfast/carrito', component: SuperfastCarritoComponent, canActivate:[GuardianService]},
+  {path: 'superfast/facturas', component: FacturasComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/carrito', component: HccauchosCarritoComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [

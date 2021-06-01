@@ -1,26 +1,50 @@
+<div ID="content" class="content">
 <div class="titulo2">
-  <h1 class="titulo"> Tabla usuario </h1>
- 
+  <h1> - FACTURA DE PAGO - </h1>
+  <mat-form-field data-html2canvas-ignore="true"> 
+    <mat-icon matPrefix>search</mat-icon>
+    <input type="text" placeholder="Buscar " matInput (keyup)="dataFilter($event.target.value)">
+  </mat-form-field>
 </div>
-<div id="prueba" class="prueba">
+<div class="prueba">
   <div>
     <div class="tabla">
-      <table class="default">
-        
-          <tr>
-          <td>Celda 2</td>
-          <td>Celda 3</td>
-        </tr>
-        
+      <table class="tabla2">
         <tr>
-          <td>Celda 4</td>
-          <td>Celda 5</td>
-          <td>Celda 6</td>
+          <th scope="col">Nombre producto</th>
+          <th scope="col">Precio unitario</th>
+          <th scope="col">Unidades</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+        <tr>
+          <td> Pollo asado</td>
+          <td>14000</td>
+          <td>1</td>
+          <td>14000</td>
+        </tr>
+        <tr>
+          <td>Hamburguesa</td>
+          <td>2.50</td>
+          <td>5</td>
+          <td>12.50</td>
+        </tr>
+        <tr>
+          <td>Reproductor de radio &amp; control remoto</td>
+          <td>12.99</td>
+          <td>1</td>
+          <td>12.99</td>
+        </tr>
+        <tr>
+          <th scope="row">TOTAL</th>
+          <td>-</td>
+          <td>-</td>
+          <td><strong>207.51</strong></td>
         </tr>
       </table>
     </div>
   </div>
 </div>
-<div>
-  <button (click)="export()">Click me</button>
+</div>
+<div class = "btn">
+  <button mat-raised-button color="primary" (click)="export()"> DESCARGAR </button>
 </div>
