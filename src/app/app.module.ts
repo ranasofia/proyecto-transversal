@@ -1,3 +1,4 @@
+import { ServerErrorInterceptorService } from './_service/utilidades/server-error-interceptor.service';
 import { environment } from 'src/environments/environment';
 import { MasterComponent } from 'src/app/components/transversal_components/master/master.component';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from 'src/app/app.component';
 import { LoginComponent } from 'src/app/components/transversal_components/login/login.component';
@@ -317,7 +318,8 @@ export function delay(ms: number) {
     LoginHCService,
     RegistroLoginOccibanaService,
     DatePipe,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptorService, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {

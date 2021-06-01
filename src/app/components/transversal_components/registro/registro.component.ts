@@ -118,7 +118,7 @@ export class RegistroComponent implements OnInit {
         this._snackBar.open('Usuario registrado exitosamente', 'Cancel  ', {
           duration: 3000
         });
-      }, err => {
+      }/*, err => {
 
         if (err.status == 400) {
 
@@ -128,7 +128,7 @@ export class RegistroComponent implements OnInit {
 
         }
 
-      });
+      }*/);
 
     }
 

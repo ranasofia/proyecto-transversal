@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("clave", passwordEncrypt);
         this.router.navigate(['/mototaxi/solicitudServicio']);
 
-      }, err => {
+      }/*, err => {
         this.barraProgresoService.progressBar.next("2");
         if (err.status == 400) {
 
@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([`/error/${err.status}/${err.statusText}`]);
           this.onResetForm();
         }
-      });
+      }*/);
 
     }
 
