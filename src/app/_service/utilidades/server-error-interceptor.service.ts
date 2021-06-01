@@ -80,6 +80,17 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         this.snackBar.open('Revise las entradas', 'Cerrar  ', {
           duration: 3000
         });
+      }else if(err.status == 400 && err.error.message === "usuario no existe"){
+        //FacturaComponent: factura cliente
+        this.snackBar.open('usuario no existe', 'Cerrar  ', {
+          duration: 3000
+        });
+      } else if(err.status == 400 && err.error.message === "no ha ingresado ningun dato "){
+        //SolicitudServicioComponent: solicitar servicio
+        this.snackBar.open('no ha ingresado ningun dato', 'Cerrar  ', {
+          duration: 3000
+        });
+
       }else if(err.status == 404){
         this.router.navigate([`/error/${err.status}/Recurso no encontrado`]);
       }else if(err.status == 500){

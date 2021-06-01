@@ -80,13 +80,7 @@ export class GenerarTokenRecuperarComponent implements OnInit {
             duration: 5000
           });
           this.router.navigate(['/recuperarContrasena']);
-      }/*, err =>{
-        if(err.status == 400){
-          this._snackBar.open('No exite un usuario con este correo está inactivo o el token ha vencido, por favor verifique', 'Cancel  ', {
-            duration: 5000
-          });
-        }
-      }*/);
+      });
     }
   }
 

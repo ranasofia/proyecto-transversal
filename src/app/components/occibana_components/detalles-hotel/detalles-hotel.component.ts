@@ -112,11 +112,11 @@ export class DetallesHotelComponent implements OnInit {
         this.nombreUsuario = token.name;
         this.cargarDatosPerfil();
         this.barraProgreso.progressBar.next('2');
-      },
+      },/*
       (error) => {
         this.barraProgreso.progressBar.next('2');
         return this.router.navigate['/occibana/hoteles'];
-      }
+      }*/
     );
   }
   /**
@@ -136,10 +136,10 @@ export class DetallesHotelComponent implements OnInit {
     this.perfilService.postCargaDatosPerfil(this.nombreUsuario).subscribe(
       (data) => {
         this.idUsuario = data.datos.id;
-      },
+      }/*,
       (error) => {
         return this.router.navigate['/occibana/hoteles'];
-      }
+      }*/
     );
   }
 
@@ -150,10 +150,10 @@ export class DetallesHotelComponent implements OnInit {
     this.serviceHotel.postObtenerComentarios(this.hotelSeleccionado).subscribe(
       (data) => {
         this.comentarios = data;
-      },
+      }/*,
       (err) => {
         return this.router.navigate['/occibana/hoteles'];
-      }
+      }*/
     );
   }
 
@@ -164,10 +164,10 @@ export class DetallesHotelComponent implements OnInit {
     this.serviceHotel.postHabitacionesHotel(idHotel).subscribe(
       (data) => {
         this.habitaciones = data;
-      },
+      }/*,
       (err) => {
         return this.router.navigate['/occibana/hoteles'];
-      }
+      }*/
     );
   }
   
