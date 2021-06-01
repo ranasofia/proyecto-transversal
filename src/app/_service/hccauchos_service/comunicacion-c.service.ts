@@ -70,5 +70,17 @@ export class ComunicacionCService {
 
   }
 
+  eliminarPedidoCarrito(idPedido: number){
+
+    return this.http.get<string>(this.URL + "/EliminarItemCarrito?id_carrito=" + idPedido);
+
+  }
+
+  eliminarCarrito(idUsuario: number){
+
+    return this.http.get<string>(this.URL + "/EliminarCarrito?user_id=" + idUsuario);
+
+  }
+
 }
 

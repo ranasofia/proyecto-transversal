@@ -24,7 +24,7 @@ export class Habitacion {
     /**
      * Variable de tipo number que representa el id del hotel
      */
-    public idHotel: number,
+    public idhotel: number,
 
     /**
      * Variable de tipo string que representa el tipo habitación

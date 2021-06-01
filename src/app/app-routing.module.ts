@@ -1,3 +1,4 @@
+import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
 import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
 import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
@@ -25,27 +26,36 @@ import { HistorialClienteComponent } from './components/mototaxi_components/hist
 import { HotelesComponent } from './components/occibana_components/hoteles/hoteles.component';
 import { GuardianService } from 'src/app/_service/utilidades/guardian.service';
 import { registerLocaleData } from '@angular/common';
+import { HistorialComprasComponent } from './components/superfast_components/historial-compras/historial-compras.component';
 
 const routes: Routes = [
 
 
-  {path: '', component: RegistroComponent},
+  
+  {path: '', component: PaginaPrincipalComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent},
   {path: 'generarTokenRecuperar', component: GenerarTokenRecuperarComponent},
   {path: 'recuperarContrasena', component:RecuperarContrasenaComponent},
   {path: 'superfast/catalogo', component: CatalogoSuperFastComponent, canActivate:[GuardianService]},
   {path: 'superfast/carrito', component: SuperfastCarritoComponent, canActivate:[GuardianService]},
+<<<<<<< HEAD
   {path: 'superfast/facturas', component: FacturasComponent, canActivate:[GuardianService]},
+=======
+  {path: 'superfast/historial', component: HistorialComprasComponent, canActivate:[GuardianService]},
+>>>>>>> fca75d063c711a8ef2f436817ddcd986a737c25a
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/carrito', component: HccauchosCarritoComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, children: [
-    {path:'comentar/:id',component:ComentarComponent}, 
+    {path:'comentar/:id',component:ComentarComponent},
     {path:'conversar/:id',component:ConversarComponent}], canActivate:[GuardianService]},
   {path: 'occibana/hoteles', component: HotelesComponent, children: [
     {path: 'detallesHotel/:id', component: DetallesHotelComponent},
-    {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent}
+    {path: 'reservaHabitacion/:id', component: ReservaHabitacionComponent, children: [
+      {path: 'misReservas', component: MisReservasComponent}
+    ]}
   ], canActivate: [GuardianService]},
   {path: 'usuarios', component: UsuariosComponent, children: [
     {path: 'registrar', component: FormularioUsuariosComponent},

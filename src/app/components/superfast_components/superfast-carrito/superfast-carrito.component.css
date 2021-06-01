@@ -62,12 +62,24 @@ h2{
        margin-right: 10%;
        background-color: orangered;
    }
+   .contenedorBotonComprar{
+
+    width: 100%;
+    text-align: center;
+
+   }
+
+   .subcontenedorBoton{
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+   }
    .producto{
 
    padding-top: 1%;
    font-size: 14px;
    font-weight: bold;
-
    }
    .producto h2{
        font-size: 40px;

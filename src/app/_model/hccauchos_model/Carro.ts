@@ -5,5 +5,6 @@ export class Carro{
   precio: number;
   total: number;
   user_id: number;
+  imagen: string;
 
 }

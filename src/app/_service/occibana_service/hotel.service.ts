@@ -1,3 +1,4 @@
+import { Reserva } from './../../_model/occibana_model/Reserva';
 import { Habitacion } from './../../_model/occibana_model/Habitacion';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -5,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Hotel } from 'src/app/_model/occibana_model/Hotel';
 import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
 import { Comentario } from 'src/app/_model/occibana_model/Comentario';
+import { UsuarioOccibana } from 'src/app/_model/occibana_model/UsuarioOccibana';
 
 /**
  * Decorador de Injectable
@@ -45,8 +47,8 @@ export class HotelService {
 
   /**
    * Metodo que obtiene el listado de comentarios que posee un hotel
-   * @param hotel 
-   * @returns 
+   * @param hotel
+   * @returns
    */
   postObtenerComentarios(hotel: Hotel) {
     return this.http.post<Comentario[]>(this.URL + '/postObtenerComentarios', hotel);
@@ -54,13 +56,30 @@ export class HotelService {
 
   /**
    * Método que obtiene el listado de las habitaciones de un hotel
-   * @param idHotel 
-   * @returns 
+   * @param idHotel
+   * @returns
    */
   postHabitacionesHotel(idHotel: number) {
     return this.http.post<Habitacion[]>(this.URL + '/postHabitacionesHotel', {
       "idHotel": idHotel
     });
   }
-  
+
+  /**
+   * Método que obtiene todas las reservas que tiene el usuario
+   * @param usuario
+   * @returns
+   */
+  reservaUsuario(usuario: UsuarioOccibana) {
+    return this.http.post<Reserva[]>(this.URL + '/postMostrarMisreservas', usuario);
+  }
+
+  /**
+   * Método que cancela una reserva hecha por el usuario
+   * @param idReserva 
+   * @returns 
+   */
+  cancelarReserva(idReserva: number) {
+    return this.http.post<any>(this.URL + '/postCancelarMireserva', idReserva);
+  }
 }

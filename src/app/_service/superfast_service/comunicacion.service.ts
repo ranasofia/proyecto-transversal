@@ -43,4 +43,10 @@ export class ComunicacionService {
 
   }
 
+  getHistorialCompras(usuario: UsuarioSuperfast){
+
+    return this.http.post<Pedido[]>(this.URL + "/PostObtenerComprasUsuario", usuario)
+
+  }
+
 }

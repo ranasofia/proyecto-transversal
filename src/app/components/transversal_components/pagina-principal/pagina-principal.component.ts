@@ -10,19 +10,19 @@ export class PaginaPrincipalComponent implements OnInit {
 
   imagenes:any[]=[
     {name:'SUPERFAST',
-    img:'assets/images/superfast.png',
+    img:'assets/images/Superfast slider.jpg',
     },
     {
       name:'MOTOTAXI DELUXE',
-      img:'assets/images/mototaxi.png',
+      img:'assets/images/Mototaxi slider.jpg',
     },
     {
       name:'HCCAUCHOS',
-      img:'assets/images/hccauchos.png',
+      img:'assets/images/Hccauchos slider.jpg',
     },
     {
       name:'OCCIBANA',
-      img:'assets/images/occibana.png',
+      img:'assets/images/Occibana slider.jpg',
     }
   ];
 

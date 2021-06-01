@@ -52,8 +52,42 @@ export class PanelHotelService {
    * @param reserva 
    * @returns 
    */
-  postReservarHospedaje(reserva: Reserva) {
-    return this.http.post<string>(this.URL + '/postReservarHospedaje', reserva);
+  postReservarHospedaje(reserva: Reserva, usuario: string) {
+    return this.http.post<string>(this.URL + '/postReservarHospedaje', {
+      "UsuarioSession": usuario,
+      "IdDelHotelSession": reserva.idhotel,
+      "Nombre": reserva.nombre,
+      "Apellido": reserva.apellido,
+      "IdHabitacion": reserva.id_habitacion,
+      "FechaLlegada": reserva.fecha_llegada,
+      "Fechasalida": reserva.fecha_salida,
+      "NumPersonas": reserva.numpersona,
+      "ModoDePago": reserva.mediopago,
+      "PrecioNoche": reserva.precioNoche
+    });
+  }
+
+  /**
+   * 
+   * @param idHotel 
+   * @param fechaSalida 
+   * @param fechaLlegada 
+   * @param habitacion 
+   * @returns 
+   */
+  buscarDisponibilidad(
+    idHotel: number,
+    fechaSalida: string,
+    fechaLlegada: string,
+    habitacion: Habitacion
+    ) {
+      return this.http.post<any>(this.URL + '/postBuscarDisponibilidadHotel', {
+        "IdDelHotelSession": idHotel,
+        "FechaLlegada": fechaLlegada,
+        "FechaSalida": fechaSalida,
+        "NumeroDePersonas": habitacion.numpersonas, 
+        "HabitacionIdSession": habitacion.id
+      })
   }
   
 }

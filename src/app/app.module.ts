@@ -45,6 +45,11 @@ import { ReservaHabitacionComponent } from './components/occibana_components/res
 import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
 import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
+import { HistorialComprasComponent } from './components/superfast_components/historial-compras/historial-compras.component';
+import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
+import { DialogComentarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-comentar/dialog-comentar.component';
+import { DialogCalificarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-calificar/dialog-calificar.component';
+import { DialogCancelarReservaComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-cancelar-reserva/dialog-cancelar-reserva.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -216,11 +221,9 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.UBER_MOTOS + '/usuario/RecuperarContraseña',
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
-      environment.HCCAUCHOS + '/Usuario/catalogo',
       environment.HCCAUCHOS + '/Usuario/editarcorreo',
       environment.HCCAUCHOS + '/Usuario/modificarclave',
       environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
-      environment.HCCAUCHOS + '/Usuario/AgregarAlCarrito',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',
       environment.OCCIBANA + '/registroLogin/registroLogin',
@@ -230,6 +233,8 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.OCCIBANA + "/registroLogin/postIngresoLogin",
       environment.OCCIBANA + '/listas/postObtenerComentarios',
       environment.OCCIBANA + '/listas/postHabitacionesHotel',
+      environment.OCCIBANA + '/panelHotel/postReservarHospedaje',
+      environment.OCCIBANA + '/panelHotel/postBuscarDisponibilidadHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHabitacion',
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
@@ -275,7 +280,12 @@ export function delay(ms: number) {
     ReservaHabitacionComponent,
     ComentarComponent,
     ConversarComponent,
-    FacturasComponent
+    FacturasComponent,
+    HistorialComprasComponent,
+    MisReservasComponent,
+    DialogComentarComponent,
+    DialogCalificarComponent,
+    DialogCancelarReservaComponent
   ],
 
 
