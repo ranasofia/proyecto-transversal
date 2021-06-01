@@ -71,14 +71,7 @@ export class HotelesComponent implements OnInit {
             'https://www.occibanaisw.tk/' +
             this.hotelesFiltrados[i].imagen.substring(1, longitud);
         }
-      },
-      // Error
-      (err) => {
-        if (err === 401) {
-          this.router.navigate(['/error/:401/:Error en el servidor']);
-        }
-      }
-    );
+      });
   }
 
   /**

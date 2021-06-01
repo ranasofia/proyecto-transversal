@@ -156,12 +156,6 @@ export class SolicitudServicioComponent implements OnInit {
           duration: 5000
         });
         this.onResetForm();
-      }, err => {
-        if(err.status == 400){
-          this._snackBar.open('Faltan datos por ingresar, verifique', 'Cancel', {
-            duration: 3000
-          });
-        }
       });
     }
   }

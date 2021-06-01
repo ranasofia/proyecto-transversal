@@ -197,10 +197,10 @@ export class ReservaHabitacionComponent implements OnInit {
           this.isDisabled = false;
         }
         this.barraProgreso.progressBar.next('2');
-      },
+      }/*,
       (error) => {
         this.barraProgreso.progressBar.next('2');
-      }
+      }*/
       );
   }
 

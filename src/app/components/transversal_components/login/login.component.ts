@@ -106,19 +106,6 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("clave", passwordEncrypt);
         this.router.navigate(['/mototaxi/solicitudServicio']);
 
-      }, err => {
-        this.barraProgresoService.progressBar.next("2");
-        if (err.status == 400) {
-
-          this._snackBar.open('El usuario y/o contraseña son incorrectos', 'Cancel  ', {
-            duration: 3000
-          });
-          this.onResetForm();
-
-        } else {
-          this.router.navigate([`/error/${err.status}/${err.statusText}`]);
-          this.onResetForm();
-        }
       });
 
     }

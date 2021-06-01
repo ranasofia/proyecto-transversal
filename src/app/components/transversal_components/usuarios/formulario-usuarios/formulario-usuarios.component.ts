@@ -188,14 +188,7 @@ export class FormularioUsuariosComponent implements OnInit {
           direccion: new FormControl(this.usuario.direccion, [Validators.required]),
         });
         this.barraProgreso.progressBar.next("2");
-      },
-      (err) => {
-        this.barraProgreso.progressBar.next("2");
-        this.snackBar.open('Ocurrió un error al cargar al usuario', 'Cerrar', {
-          duration: 3000
-        })
-      }
-    );
+      });
   }
 
   /**
@@ -211,14 +204,7 @@ export class FormularioUsuariosComponent implements OnInit {
         })
         this.barraProgreso.progressBar.next("2");
         this.router.navigate(['/usuarios']);
-      },
-      (error) => {
-        this.barraProgreso.progressBar.next("2");
-        this.snackBar.open('Ocurrió un error al registrar al usuario', 'Cerrar', {
-          duration: 3000
-        })
-      }
-    );
+      });
   }
 
   /**
@@ -235,13 +221,6 @@ export class FormularioUsuariosComponent implements OnInit {
         })
         this.barraProgreso.progressBar.next("2");
         this.router.navigate(['/usuarios']);
-      },
-      (error) => {
-        this.barraProgreso.progressBar.next("2");
-        this.snackBar.open('Ocurrió un error al editar al usuario', 'Cerrar', {
-          duration: 3000
-        })
-      }
-    );
+      });
   }
 }

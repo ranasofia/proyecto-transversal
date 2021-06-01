@@ -38,9 +38,6 @@ export class DialogCalificarComponent implements OnInit {
         this._snackBar.open(data.mensaje, 'OK', {
           duration: 3500
         });
-      },
-      (err) => {
-        console.log('Error');
       }
     )
   }

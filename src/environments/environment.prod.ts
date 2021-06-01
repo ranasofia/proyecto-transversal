@@ -8,5 +8,6 @@ export const environment = {
   TOKEN_HCCAUCHOS: 'access_token_hc',
   TOKEN_SUPERFAST: 'access_token_sf',
   TOKEN_OCCIBANA: 'access_token_occ',
-  TOKEN_MOTOTAXI: 'access_token_mt'
+  TOKEN_MOTOTAXI: 'access_token_mt',
+  REINTENTOS: 1
 };

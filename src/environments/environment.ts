@@ -13,6 +13,7 @@ export const environment = {
   TOKEN_SUPERFAST: 'access_token_sf',
   TOKEN_OCCIBANA: 'access_token_occ',
   TOKEN_MOTOTAXI: 'access_token_mt',
+  REINTENTOS: 1
 };
 
 /*

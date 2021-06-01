@@ -87,11 +87,6 @@ export class ConversarComponent implements OnInit {
       })
       this.barraProgreso.progressBar.next("2");
       this.routeer.navigate(['/mototaxi/historialCliente']);
-    },err => {
-        this.barraProgreso.progressBar.next("2");
-        this.snackBar.open('error al conversar', 'Cancel', {
-          duration: 3000
-        })
     });
   }
 
