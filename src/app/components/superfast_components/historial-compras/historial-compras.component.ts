@@ -9,11 +9,18 @@ import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfas
 import { ComunicacionService } from 'src/app/_service/superfast_service/comunicacion.service';
 import { environment } from 'src/environments/environment';
 
+/**
+ * Decorador de HistorialcComprasComponent
+ */
 @Component({
   selector: 'app-historial-compras',
   templateUrl: './historial-compras.component.html',
   styleUrls: ['./historial-compras.component.css']
 })
+
+/**
+ * Clase que maneja la lógica del historial de compras
+ */
 export class HistorialComprasComponent implements OnInit {
 
   /**

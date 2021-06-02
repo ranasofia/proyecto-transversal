@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 /**
- * Decorador de CatalogoHcCauchosComponet
+ * Decorador de CatalogoHcCauchosComponent
  */
 @Component({
   selector: 'app-catalogo-hc-cauchos',
@@ -108,7 +108,11 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
     }
 
-
+    /**
+     * Permite agregar un pedido al carrito
+     * @param cantidad variable que indica el número de existencias a agregar al carrito
+     * @param producto objeto que posee el producto a agregar al carrito
+     */
     agregarAlCarrito(cantidad: number, producto: ProductoH){
 
       if(cantidad != null && cantidad > 0){

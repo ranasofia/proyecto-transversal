@@ -3,6 +3,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
 import { ServicioSolicitudService } from './../../../_service/mototaxi_service/servicio-solicitud.service';
 import { Component, OnInit } from '@angular/core';
+import * as html2pdf from 'html2pdf.js';
 
 /**
  * Decorador de FacturaComponent
@@ -42,11 +43,11 @@ export class FacturaComponent implements OnInit {
    * Variable que obtiene el metodo de pago de la carrera
    */
   pago: string;
-  
+
   /**
    * Constructor de FacturaComponent
-   * @param servicioSolicitudService 
-   * @param barraProgresoService 
+   * @param servicioSolicitudService
+   * @param barraProgresoService
    */
   constructor(private servicioSolicitudService: ServicioSolicitudService,
               private barraProgresoService: BarraProgresoService) { }
@@ -72,5 +73,18 @@ export class FacturaComponent implements OnInit {
       this.pago = data["metodoPago"];
       this.barraProgresoService.progressBar.next("2");
     });
+  }
+
+  export() {
+
+    const options = {
+      filename: "FacturaMototaxi.pdf",
+      image: { type: 'jpeg' },
+      html2canvas: {scale: 2},
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait'}
+    };
+    const content: Element = document.getElementById('content');
+    html2pdf().from(content).set(options).save();
+
   }
 }

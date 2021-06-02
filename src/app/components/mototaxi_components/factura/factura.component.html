@@ -4,7 +4,7 @@
 <button mat-fab class="buttonHistorial" title="Historial Cliente" routerLink="/mototaxi/historialCliente">
     <img src="assets/images/historial2.png" class="fabh">
 </button>
-<div class="formuser-container" fxLayout fxLayout.xs="column" fxLayoutAlign="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
+<div ID="content" class="formuser-container" fxLayout fxLayout.xs="column" fxLayoutAlign="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
     <mat-card class="card" fxLayout="column" fxLayoutAlign="center center">
         <mat-card-content>
             <div>
@@ -46,4 +46,8 @@
             </div>
         </mat-card-content>
     </mat-card>
+</div>
+
+<div class="btn">
+  <button mat-raised-button color="primary" (click)="export()"> DESCARGAR </button>
 </div>

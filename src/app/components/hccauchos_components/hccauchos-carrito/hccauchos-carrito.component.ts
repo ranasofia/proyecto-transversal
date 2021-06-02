@@ -6,18 +6,36 @@ import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCaucho
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { environment } from 'src/environments/environment';
 
+/**
+ * Decorador de HccauchosCarritoComponent
+ */
 @Component({
   selector: 'app-hccauchos-carrito',
   templateUrl: './hccauchos-carrito.component.html',
   styleUrls: ['./hccauchos-carrito.component.css']
 })
+
+/**
+ * Clase que mabneja la lógica del carrito
+ */
 export class HccauchosCarritoComponent implements OnInit {
 
+  /**
+   * Constructor de HccauchosCarritoComponent
+   * @param comunicacionCService objeto que se inyecta para poder usar los servicios del carrito
+   * @param _snackBar objeto que se inyecta para mostrar mensajes que comuniquen información al usuario
+   */
   constructor(private comunicacionCService: ComunicacionCService,
     private _snackBar: MatSnackBar) { }
 
+  /**
+   * Son los pedidos del carrito
+   */
   pedidos: Pedido[];
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
 
     const HELPER = new JwtHelperService();
@@ -33,6 +51,10 @@ export class HccauchosCarritoComponent implements OnInit {
 
   }
 
+  /**
+   * Permite cancelar un pedido
+   * @param idPedido indica el pedido a cancelar
+   */
   cancelarPedido(idPedido: number){
 
     this.comunicacionCService.eliminarPedidoCarrito(idPedido).subscribe(data => {
@@ -47,6 +69,9 @@ export class HccauchosCarritoComponent implements OnInit {
 
   }
 
+  /**
+   * Permite limpiar todo el carrito
+   */
   vaciarCarrito(){
 
     const HELPER = new JwtHelperService();

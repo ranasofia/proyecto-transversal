@@ -58,24 +58,44 @@ export class ComunicacionCService {
 
   }
 
+  /**
+   * Permite agregar existencias al carrito
+   * @param carro objeto que posee los datos del artículo a agregar al carrito
+   * @returns mensaje
+   */
   agregarAlCarrito(carro: Carro){
 
     return this.http.post<string>(this.URL + "/AgregarAlCarrito", carro);
 
   }
 
+  /**
+   * Permite obtener los artículos en el carrito de un usuario en específico
+   * @param idUsuario variable que indica el usuario del cual se desea obtener el carrito
+   * @returns carrito
+   */
   getCarrito(idUsuario: number){
 
     return this.http.get<Pedido[]>(this.URL + "/ObtenerCarrito/" + idUsuario);
 
   }
 
+  /**
+   * Permite eliminar un pedido en específico del carrito
+   * @param idPedido variable que indica el pedido que se eliminará del carrito
+   * @returns mensaje
+   */
   eliminarPedidoCarrito(idPedido: number){
 
     return this.http.get<string>(this.URL + "/EliminarItemCarrito?id_carrito=" + idPedido);
 
   }
 
+  /**
+   * Permite eliminar todos los pedidos del carrito
+   * @param idUsuario variable que indica el usuario del cual se eliminará el carrito
+   * @returns mensaje
+   */
   eliminarCarrito(idUsuario: number){
 
     return this.http.get<string>(this.URL + "/EliminarCarrito?user_id=" + idUsuario);

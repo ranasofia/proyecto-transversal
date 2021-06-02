@@ -60,6 +60,11 @@ export class ValidacionesPropias {
 
   }
 
+  /**
+   * Es el método valida que solo se puden escribir números positivos en un campo de texto
+   * @param event variable que posee los datos del evento desencadenado
+   * @returns permisoEvento
+   */
   soloNumeros(event: KeyboardEvent){
 
     if(event.key != "1" &&

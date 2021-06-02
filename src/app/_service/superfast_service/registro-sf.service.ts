@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfast';
 
+/**
+ * Decorador de RegistroSFService
+ */
 @Injectable({
   providedIn: 'root'
 })
