@@ -32,7 +32,7 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
 
       if(err.status == 400 && err.error.message === "Correo y/o contraseña incorrecta"){
         //LoginComponent
-        this.snackBar.open('El usuario y/o contraseña son incorrectos', 'Cerrar  ', {
+        this.snackBar.open('El correo y/o contraseña son incorrectos', 'Cerrar  ', {
           duration: 3000
         });
       }else if(err.status == 400 && err.error.message === "Usuario existente, porfavor intente con otro"){
@@ -62,7 +62,7 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         });
       }else if(err.status == 400 && err.error.message === "su token no es valido"){
         //RecuperarContraseñaComponent: Token no valido
-        this.snackBar.open('su token no es valido', 'Cerrar  ', {
+        this.snackBar.open('Su token no es valido', 'Cerrar  ', {
           duration: 3000
         });
       }else if(err.status == 400 && err.error.message === "Entradas incorrectas El nombre es requerido. El apellido es requerido. El celular es requerido. El correo es requerido. El usuario es requerido. El fechaNacimiento es requerido. El direccion es requerido. El cedula es requerido."){
@@ -72,7 +72,7 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         });
       }else if(err.status == 400 && err.error.message === "el usuario no existe"){
         //FormularioUsuariosComponent: Obtener usuario (entrega adicional)
-        this.snackBar.open('el usuario no existe', 'Cerrar  ', {
+        this.snackBar.open('El usuario no existe', 'Cerrar  ', {
           duration: 3000
         });
       }else if(err.status == 400 && err.error.message === "revise las entradas"){
@@ -82,15 +82,14 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         });
       }else if(err.status == 400 && err.error.message === "usuario no existe"){
         //FacturaComponent: factura cliente
-        this.snackBar.open('usuario no existe', 'Cerrar  ', {
+        this.snackBar.open('Usuario no existe', 'Cerrar  ', {
           duration: 3000
         });
       } else if(err.status == 400 && err.error.message === "no ha ingresado ningun dato "){
         //SolicitudServicioComponent: solicitar servicio
-        this.snackBar.open('no ha ingresado ningun dato', 'Cerrar  ', {
+        this.snackBar.open('No ha ingresado ningun dato', 'Cerrar  ', {
           duration: 3000
         });
-
       }else if(err.status == 404){
         this.router.navigate([`/error/${err.status}/Recurso no encontrado`]);
       }else if(err.status == 500){

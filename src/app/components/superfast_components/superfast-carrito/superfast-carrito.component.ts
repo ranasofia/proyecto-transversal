@@ -11,13 +11,29 @@ import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { Router } from '@angular/router';
 
+/**
+ * Decorador de SuperfastCarritoComponent
+ */
 @Component({
   selector: 'app-superfast-carrito',
   templateUrl: './superfast-carrito.component.html',
   styleUrls: ['./superfast-carrito.component.css']
 })
+
+/**
+ * Clase que maneja la lógica del carrito
+ */
 export class SuperfastCarritoComponent implements OnInit {
 
+  /**
+   * Constructor de SuperfastCarritoComponent
+   * @param comunicacionService objeto que permite usar los servicios de catálogo, carrito y pedidos
+   * @param pedidosClienteService objeto que permite usar los servicios para los pedidos
+   * @param _snackBar objeto que permite mostrar mensajes que den información al usuario
+   * @param carritoService objeto que permite usar los servicios del carrito
+   * @param usuarioTransversalService objeto que permite usar los servicios del usuario en general
+   * @param router objeto que permite redireccionar
+   */
   constructor(private comunicacionService: ComunicacionService,
     private pedidosClienteService: PedidosClienteService,
     private _snackBar: MatSnackBar,
@@ -25,8 +41,14 @@ export class SuperfastCarritoComponent implements OnInit {
     private usuarioTransversalService: UsuarioTransversalService,
     private router: Router) { }
 
+  /**
+   * Arreglo que almacena los pedidos del carrito
+   */
   pedidos: Pedido[];
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
 
     const HELPER = new JwtHelperService();
@@ -50,6 +72,10 @@ export class SuperfastCarritoComponent implements OnInit {
 
   }
 
+  /**
+   * Permite cancelar el pedido
+   * @param idPedido indica el pedido a cancelar
+   */
   cancelarPedido(idPedido: number) {
 
     this.pedidosClienteService.cancelarPedido(idPedido).subscribe(data => {
@@ -64,6 +90,9 @@ export class SuperfastCarritoComponent implements OnInit {
 
   }
 
+  /**
+   * Permite retirar todos los pedidos del carrito
+   */
   limpiarCarrito(){
 
     this.pedidos.forEach(element => {
@@ -74,6 +103,9 @@ export class SuperfastCarritoComponent implements OnInit {
 
   }
 
+  /**
+   * Permite efectuar la compra de los pedidos del carrito
+   */
   comprarCarrito() {
 
     const HELPER = new JwtHelperService();

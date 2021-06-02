@@ -84,8 +84,14 @@ export class UsuarioHCCauchos {
    */
   aplicacionId: number = 1;
 
+  /**
+   * Es la variable alternativa para el correo
+   */
   email:string;
 
+  /**
+   * Es la variable alternativa para la contraseña
+   */
   password: string;
 
 }

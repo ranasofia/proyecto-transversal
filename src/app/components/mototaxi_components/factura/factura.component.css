@@ -70,8 +70,8 @@
 }
 
 .image{
-    position:absolute; 
-    top: 150px; 
+    position:absolute;
+    top: 150px;
     left: 7.5%;
 }
 
@@ -89,4 +89,11 @@
     top: 640px;
     left: 37%;
     font-size: 15px;
+}
+
+.btn{
+
+  width: 100%;
+  text-align: center;
+
 }

@@ -43,7 +43,9 @@ export class Usuario {
    * Es el número de documento de identidad del usuario
    */
   cedula: string;
-
+  /**
+   * Es el token del usuario
+   */
   token:string;
 
 }
