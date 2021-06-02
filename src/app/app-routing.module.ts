@@ -1,9 +1,9 @@
 import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
-import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { FacturaComponent } from './components/mototaxi_components/solicitud-servicio/factura/factura.component';
 import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
-import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
-import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
+import { ConversarComponent } from './components/mototaxi_components/historial-cliente/conversar/conversar.component';
+import { ComentarComponent } from './components/mototaxi_components/historial-cliente/comentar/comentar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
 import { SuperfastCarritoComponent } from './components/superfast_components/superfast-carrito/superfast-carrito.component';
 import { HccauchosCarritoComponent } from './components/hccauchos_components/hccauchos-carrito/hccauchos-carrito.component';

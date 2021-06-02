@@ -1,7 +1,7 @@
-import { environment } from './../../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
-import { ServicioSolicitudService } from './../../../_service/mototaxi_service/servicio-solicitud.service';
+import { ServicioSolicitudService } from 'src/app/_service/mototaxi_service/servicio-solicitud.service';
 import { Component, OnInit } from '@angular/core';
 import * as html2pdf from 'html2pdf.js';
 

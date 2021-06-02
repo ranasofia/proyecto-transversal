@@ -38,13 +38,13 @@ import { UsuariosComponent } from 'src/app/components/transversal_components/usu
 import { FormularioUsuariosComponent } from 'src/app/components/transversal_components/usuarios/formulario-usuarios/formulario-usuarios.component';
 import { LoginHCService } from './_service/hccauchos_service/login-hc.service';
 import { RegistroLoginOccibanaService } from './_service/occibana_service/registro-login-occibana.service';
-import { FacturaComponent } from './components/mototaxi_components/factura/factura.component';
+import { FacturaComponent } from './components/mototaxi_components/solicitud-servicio/factura/factura.component';
 import { FacturasComponent } from './components/superfast_components/facturas/facturas.component';
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DialogEliminarComponent } from 'src/app/components/transversal_components/usuarios/dialog-eliminar/dialog-eliminar.component';
 import { ReservaHabitacionComponent } from './components/occibana_components/reserva-habitacion/reserva-habitacion.component';
-import { ComentarComponent } from './components/mototaxi_components/comentar/comentar.component';
-import { ConversarComponent } from './components/mototaxi_components/conversar/conversar.component';
+import { ComentarComponent } from './components/mototaxi_components/historial-cliente/comentar/comentar.component';
+import { ConversarComponent } from './components/mototaxi_components/historial-cliente/conversar/conversar.component';
 import { PaginaPrincipalComponent } from './components/transversal_components/pagina-principal/pagina-principal.component';
 import { HistorialComprasComponent } from './components/superfast_components/historial-compras/historial-compras.component';
 import { MisReservasComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/mis-reservas.component';
