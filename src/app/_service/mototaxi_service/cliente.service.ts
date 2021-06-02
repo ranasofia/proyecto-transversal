@@ -92,7 +92,7 @@ export class ClienteService {
    * @returns 
    */
   getGenerarContraseña(usuario: string){
-    return this.http.post(this.URL + "/generarContraseña", usuario);
+    return this.http.post(this.URL + "/generarContrasena", usuario);
   }
 
   /**
@@ -102,6 +102,6 @@ export class ClienteService {
    * @returns 
    */
   putRecuperarContraseña(token: string, contrasena:any){
-    return this.http.put(this.URL + "/RecuperarContraseña?tokenRecibido=" + token, contrasena);
+    return this.http.put(this.URL + "/RecuperarContrasena?tokenRecibido=" + token, contrasena);
   }
 }

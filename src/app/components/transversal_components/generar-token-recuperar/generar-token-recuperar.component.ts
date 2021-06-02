@@ -1,3 +1,4 @@
+import { PerfilService } from './../../../_service/occibana_service/perfil.service';
 import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
 import { AdminService } from './../../../_service/superfast_service/admin.service';
 import { Router } from '@angular/router';
@@ -35,6 +36,11 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   user: string;
 
   /**
+   * varible que contiene el token generado 
+   */
+  token: string;
+
+  /**
    * Permite configurar las validaciones del formulario
    * @returns
    */
@@ -56,7 +62,8 @@ export class GenerarTokenRecuperarComponent implements OnInit {
               private _snackBar: MatSnackBar, 
               private router: Router,
               private adminService: AdminService,
-              private clienteService: ClienteService) {
+              private clienteService: ClienteService,
+              private perfilService: PerfilService) {
     this.generarForm=this.createFormGroup();
   }
 
@@ -99,12 +106,23 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   }
   //
   generarTokenOccibana(){
+    this.correo = this.generarForm.controls["email"].value;
+    this.clienteService.getDatosRecuperar(this.correo).subscribe(data=>{
+      this.user = data["usuario"];
+    });
 
+    var generar = {usuario: this.user, correo: this.correo};
+
+    this.perfilService.postGenerarContraseña(generar).subscribe(data => {
+      this.token = data["tokengenerado"];
+    });
   }
   //
   generarTokenHcCauchos(){
     
   }
+  //
+
 
   /**
    * Permite iniciar el proceso de generar token

@@ -227,6 +227,8 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',
+      environment.UBER_MOTOS+ '/cliente/generarContrasena',
+      environment.UBER_MOTOS+ '/cliente/RecuperarContrasena?tokenRecibido=',
       environment.OCCIBANA + '/registroLogin/registroLogin',
       environment.OCCIBANA + '/registroLogin/postRegistroUsuario',
       environment.OCCIBANA + '/listas/postHotelesPrincipal',
@@ -238,9 +240,12 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.OCCIBANA + '/panelHotel/postBuscarDisponibilidadHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHabitacion',
+      environment.OCCIBANA + '/admin/postCorreoRecuperacionTransversal',
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
-      environment.SUPERFAST + '/admin/login'
+      environment.SUPERFAST + '/admin/login',
+      environment.SUPERFAST +'/GenerarToken/GetGenerarToken?correo=',
+      environment.SUPERFAST+ '/RecuperarContrasenia/RepContra'
     ]
   }
 }
