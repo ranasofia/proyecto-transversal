@@ -86,8 +86,6 @@ export class LoginComponent implements OnInit {
    * Método que valida el formulario, obtiene el token y redirige a la página principal
    */
   private iniciarSesion() {
-
-    this.barraProgresoService.progressBar.next("1");
     if (this.loginForm.valid) {
 
       const value = this.loginForm.value;
@@ -99,13 +97,12 @@ export class LoginComponent implements OnInit {
       var cryptoJS = require("crypto-js");
       var passwordEncrypt = cryptoJS.AES.encrypt(usuario.contrasena, 'proyectoTransversal');
 
+      this.barraProgresoService.progressBar.next("1");
       this.usuarioTransversalService.getToken(usuario).subscribe(data => {
-
         sessionStorage.setItem(environment.TOKEN, data);
-        this.barraProgresoService.progressBar.next("2");
         sessionStorage.setItem("clave", passwordEncrypt);
         this.router.navigate(['/mototaxi/solicitudServicio']);
-
+        this.barraProgresoService.progressBar.next("2");
       });
 
     }
