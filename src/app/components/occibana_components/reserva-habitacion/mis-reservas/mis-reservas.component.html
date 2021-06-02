@@ -15,19 +15,28 @@
             usuario.nombre + " " + usuario.apellido
           }}</mat-card-subtitle>
         </mat-card-header>
-        
+
         <mat-card-content>
           <ul>
-            <li>Hotel: </li>
+            <li>Hotel:</li>
             <li>Número de personas: {{ reserva.numpersona }}</li>
-            <li>Fecha llegada: {{ reserva.fecha_llegada | date:'dd-MM-yyyy':'UTC' }}</li>
-            <li>Fecha salida: {{ reserva.fecha_salida | date:'dd-MM-yyyy':'UTC' }}</li>
+            <li>
+              Fecha llegada:
+              {{ reserva.fecha_llegada | date: "dd-MM-yyyy":"UTC" }}
+            </li>
+            <li>
+              Fecha salida:
+              {{ reserva.fecha_salida | date: "dd-MM-yyyy":"UTC" }}
+            </li>
             <li>Correo: {{ reserva.correo }}</li>
             <li>Medio de pago: {{ reserva.mediopago }}</li>
-            <li>Calificación: 
+            <li>
+              Calificación:
               <ngb-rating [(rate)]="reserva.calificacion">
                 <ng-template let-fill="fill" let-index="index">
-                  <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                  <span class="star" [class.filled]="fill === 100"
+                    >&#9733;</span
+                  >
                 </ng-template>
               </ngb-rating>
             </li>
@@ -35,16 +44,23 @@
           </ul>
         </mat-card-content>
         <mat-card-actions style="overflow: hidden">
-          
-          <button mat-mini-fab color="accent" (click)="calificarHotel(reserva.id)">
+          <button
+            mat-mini-fab
+            color="accent"
+            (click)="calificarHotel(reserva.id)"
+          >
             <mat-icon>start_purple500</mat-icon>
           </button>
-          
-          <button mat-mini-fab color="accent">
+
+          <button mat-mini-fab color="accent" (click)="comentarHotel()">
             <mat-icon>add_comment</mat-icon>
           </button>
-          
-          <button mat-mini-fab color="primary" (click)="cancelarReserva(reserva.id)">
+
+          <button
+            mat-mini-fab
+            color="primary"
+            (click)="cancelarReserva(reserva.id)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>

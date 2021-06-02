@@ -135,9 +135,9 @@
                   <input
                     type="email"
                     matInput
+                    formControlName="validacionCorreo"
                     placeholder="Ingresa tu correo"
                     required
-                    formControlName="email"
                   />
                   <mat-icon matPrefix>contact_mail</mat-icon>
                   <mat-error
@@ -152,6 +152,15 @@
                     *ngIf="reservaForm.controls.email.hasError('required')"
                   >
                     Este campo es<strong> obligatorio</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      reservaForm.controls.validacionCorreo.hasError(
+                        'verificacionCorreo'
+                      )
+                    "
+                  >
+                    Los correos no coinciden
                   </mat-error>
                 </mat-form-field>
 

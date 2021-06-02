@@ -1,1 +1,33 @@
-<p>dialog-comentar works!</p>
+<mat-dialog-content>
+  A continuación, realice un comentario del servicio del hotel:
+</mat-dialog-content>
+<br />
+<form [formGroup]="comentarioF" fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field class="comentario-full-width">
+    <textarea
+      matInput
+      type="text"
+      placeholder="Tu comentario aquí..."
+      required
+      formControlName="comentarioF"
+      (keyup)="comentarValido($event.target.value)"
+    >
+    </textarea>
+    <mat-error *ngIf="comentarioF.controls.comentarioF.hasError('required')">
+      Este campo es<strong> obligatorio</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-dialog-actions fxLayoutAlign="center">
+    <button
+      mat-raised-button
+      mat-dialog-close
+      [disabled]="isDisabled"
+      color="primary"
+      (click)="comentar()"
+    >
+      Comentar
+    </button>
+    <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+  </mat-dialog-actions>
+</form>
