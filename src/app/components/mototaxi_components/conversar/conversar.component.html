@@ -16,13 +16,13 @@
             </div>
                 <mat-form-field appearance="outline" class="textArea">
                     <mat-icon matPrefix>description</mat-icon>
-                    <textarea matInput formControlName="conversar" required rows="5"></textarea>
+                    <textarea matInput formControlName="conversar" rows="5"></textarea>
                   <mat-error *ngIf="formConversar.controls.conversar.hasError('required')">
                       Este campo es<strong> obligatorio</strong>
                   </mat-error>
                 </mat-form-field>
     
-              <button mat-raised-button color="primary"style="top: 300px; left: -45px;">Enviar </button>
+              <button mat-raised-button color="primary"style="top: 300px; left: -45px;" type="submit">Enviar </button>
               <button mat-raised-button color="primary"style="top: 300px; left: 150px;" routerLink="/mototaxi/historialCliente">Cancelar</button>
           </mat-card-content>
         </mat-card>

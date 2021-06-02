@@ -54,7 +54,7 @@
                 <mat-form-field appearance="fill" class="text">
                     <mat-icon matPrefix>location_on</mat-icon>
                     <mat-label>Elige tú destino</mat-label>
-                    <mat-select formControlName="destino1" [(ngModel)]="selectDestino.id">
+                    <mat-select matSelect formControlName="destino1" (ngModelChange)="selectDestino.id">
                         <mat-option *ngFor="let des of destino" value ={{des.id}}>{{des.lugarDestino}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="formCalcular.controls.destino1.hasError('required')">
@@ -66,7 +66,7 @@
                 <mat-form-field appearance="fill" class="text">
                     <mat-icon matPrefix>sports_score</mat-icon>
                     <mat-label>Elige tú ubicacion</mat-label>
-                    <mat-select  formControlName="ubicacion1" [(ngModel)]="selectUbicacion.id">
+                    <mat-select matSelect formControlName="ubicacion1" (ngModelChange)="selectUbicacion.id">
                         <mat-option *ngFor="let ubi of ubicacion" value ={{ubi.id}}>{{ubi.lugarUbicacion}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('required')">
@@ -81,7 +81,7 @@
                 </mat-form-field>
 
                 <div>
-                    <button mat-button class="boton">Calcular</button>
+                    <button mat-raised-button class="boton" type="submit">Calcular</button>
                 </div>
                 <br>
             </form>
@@ -103,7 +103,7 @@
                 <mat-form-field appearance="fill" class="text">
                     <mat-icon matPrefix>credit_card</mat-icon>
                     <mat-label>Elige tú metodo de pago</mat-label>
-                    <mat-select formControlName="pag" [(ngModel)]="selectPago.id">
+                    <mat-select matSelect formControlName="pag" (ngModelChange)="selectPago.id">
                         <mat-option *ngFor="let pag of pago" value ={{pag.id}}>{{pag.descripcion}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="formSolicitar.controls.pag.hasError('required')">
@@ -112,11 +112,11 @@
                 </mat-form-field>
             
                 <div>
-                    <button mat-button class="botonGuardar">Guardar</button>
+                    <button mat-raised-button class="botonGuardar" type="submit">Guardar</button>
                 </div>
             </form>
                 <div>
-                    <button mat-button class="botonFactura" routerLink="/mototaxi/solicitudServicio/factura">Generar Factura</button>
+                    <button mat-raised-button class="botonFactura" routerLink="/mototaxi/solicitudServicio/factura">Generar Factura</button>
                 </div>
                 <br>
                 <br>

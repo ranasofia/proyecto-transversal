@@ -35,6 +35,17 @@ export class ConversarComponent implements OnInit {
   conductor: string;
 
   /**
+   * Método que se encarga de configurar las validaciones del formulario de usuario
+   * @returns grupoFormulario
+   */
+   createFormGroup() {
+    return new FormGroup({
+      id: new FormControl(),
+      conversar: new FormControl('', [Validators.required]),
+    });
+  }
+
+  /**
    * Constructor de ConversarComponent
    * @param historial 
    * @param route 
@@ -46,21 +57,11 @@ export class ConversarComponent implements OnInit {
               private route: ActivatedRoute,
               private barraProgreso: BarraProgresoService,
               private snackBar: MatSnackBar, 
-              private routeer: Router) { }
-
-  /**
-   * Método que se encarga de configurar las validaciones del formulario de usuario
-   * @returns grupoFormulario
-   */
-  createFormGroup() {
-    return new FormGroup({
-      id: new FormControl(),
-      conversar: new FormControl('', [Validators.required]),
-    });
-  }
+              private routeer: Router) { 
+                this.formConversar = this.createFormGroup();
+              }
 
   ngOnInit(): void {
-    this.formConversar=this.createFormGroup();
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
       this.barraProgreso.progressBar.next("1");
@@ -106,8 +107,11 @@ export class ConversarComponent implements OnInit {
     let notificacion:Notificacion;
     notificacion=new Notificacion();
     notificacion.id=this.id;
-    var conversacion = {Conversacion: this.formConversar.value["conversar"]};
-    this.conversar(notificacion.id,usuario,conversacion);
+    
+    if(this.formConversar.valid){
+      var conversacion = {Conversacion: this.formConversar.value["conversar"]};
+      this.conversar(notificacion.id,usuario,conversacion);
+    }
   }
 
   /**

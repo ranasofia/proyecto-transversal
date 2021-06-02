@@ -37,6 +37,17 @@ export class ComentarComponent implements OnInit {
   comentarioDeCliente: string;
 
   /**
+   * Método que se encarga de configurar las validaciones del formulario de usuario
+   * @returns grupoFormulario
+   */
+   createFormGroup() {
+    return new FormGroup({
+      id: new FormControl(),
+      comentario: new FormControl('', [Validators.required])
+    });
+  }
+
+  /**
    * Constructor de ComentarComponent
    * @param historial 
    * @param route 
@@ -48,21 +59,11 @@ export class ComentarComponent implements OnInit {
               private route: ActivatedRoute,
               private barraProgreso: BarraProgresoService,
               private snackBar: MatSnackBar, 
-              private routeer: Router) {}
-
-  /**
-   * Método que se encarga de configurar las validaciones del formulario de usuario
-   * @returns grupoFormulario
-   */
-  createFormGroup() {
-    return new FormGroup({
-      id: new FormControl(),
-      comentario: new FormControl('', [Validators.required]),
-    });
-  }
+              private routeer: Router) {
+                this.FormComentar = this.createFormGroup();
+              }
 
   ngOnInit(): void {
-    this.FormComentar=this.createFormGroup();
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
       this.barraProgreso.progressBar.next("1");
@@ -99,14 +100,17 @@ export class ComentarComponent implements OnInit {
     let notificacion:Notificacion;
     notificacion=new Notificacion();
     notificacion.id=this.id;
-    var comentario = {ComentarioDeCliente: this.FormComentar.value["comentario"]};
+    
+    if(this.FormComentar.valid){
+      var comentario = {ComentarioDeCliente: this.FormComentar.controls["comentario"].value};
 
-    if(this.comentarioDeCliente == undefined){
-      this.comentar(notificacion.id,comentario);
-    }else if(this.comentarioDeCliente != undefined){
-      this.snackBar.open('Ya ha realizado un comentario a este servicio', 'Cerrar', {
-        duration: 3000
-      })
+      if(this.comentarioDeCliente == undefined){
+        this.comentar(notificacion.id,comentario);
+      }else if(this.comentarioDeCliente != undefined){
+        this.snackBar.open('Ya ha realizado un comentario a este servicio', 'Cerrar', {
+          duration: 3000
+        })
+      }
     }
   }
 

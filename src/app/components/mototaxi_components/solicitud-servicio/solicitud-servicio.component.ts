@@ -26,6 +26,11 @@ export class SolicitudServicioComponent implements OnInit {
    */
   gridColumns = 3;
   /**
+   * Es el formulario de solicitud de servicio
+   */
+  formCalcular: FormGroup;
+  formSolicitar: FormGroup;
+  /**
    * Objeto de tipo de array de la clase Conductor
    */
   conductor: Conductor[];
@@ -61,21 +66,22 @@ export class SolicitudServicioComponent implements OnInit {
    */
   tarifa:number;
 
-  formCalcular= new FormGroup({
-    destino1: new FormControl('', [
-      Validators.required,
-    ]),
-    ubicacion1: new FormControl('', [
-      Validators.required,
-    ]),
-    descripcion:new FormControl,
-  });
-
-  formSolicitar = new FormGroup({
-    pag: new FormControl('', [
-      Validators.required,
-    ])
-  });
+  /**
+   * Permite configurar las validaciones del formulario
+   * @returns grupoFormulario
+   */
+  createFormGroupCalcular(){
+    return new FormGroup({
+      destino1: new FormControl('', [Validators.required]),
+      ubicacion1: new FormControl('', [Validators.required]),
+      descripcion:new FormControl
+    });
+  }
+  createFormGroupSolicitar(){
+    return new FormGroup({
+      pag: new FormControl('', [Validators.required])
+    });
+  }
 
   disableSelect = new FormControl(false);
 
@@ -86,10 +92,20 @@ export class SolicitudServicioComponent implements OnInit {
     this.gridColumns = this.gridColumns === 3 ? 4 : 3;
   }
 
+  /**
+   * Constructor de SolicitarServicioComponent
+   * @param servicioSolicitudService 
+   * @param barraProgresoService 
+   * @param _snackBar 
+   * @param route 
+   */
   constructor(private servicioSolicitudService: ServicioSolicitudService,
               private barraProgresoService:BarraProgresoService,
               private _snackBar: MatSnackBar,
-              public route: ActivatedRoute) { }
+              public route: ActivatedRoute) { 
+                this.formCalcular = this.createFormGroupCalcular();
+                this.formSolicitar = this.createFormGroupSolicitar();
+              }
 
   ngOnInit(): void {
     this.barraProgresoService.progressBar.next("1");
