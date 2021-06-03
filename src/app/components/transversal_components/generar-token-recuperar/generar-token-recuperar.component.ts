@@ -137,15 +137,27 @@ export class GenerarTokenRecuperarComponent implements OnInit {
     this.clienteService.getDatosRecuperar(this.correoOccibana).subscribe(data=>{
       this.user = data["usuario"];
 
-      var generar = {usuario: this.user, correo: this.correoOccibana};
+      var usuario = {usuario: this.user,
+                    correo: this.correoOccibana};
 
-      this.perfilService.postGenerarContraseña(generar).subscribe(data => {
-        this.tokenOccibana = data["tokengenerado"];
-        sessionStorage.setItem(environment.TOKENOCRC,this.tokenOccibana);
-        this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
-          duration: 5000
-        });
-        this.router.navigate(['/recuperarContrasena']);
+      this.perfilService.postGenerarContraseña(usuario).subscribe(data => {
+        if(data["mensajeTransversal"] == "Ya existe una recuperacion de contraseña activa, porfavor espere a que pueda realizar una de nuevo"){
+          this._snackBar.open('Ya existe una recuperacion de contraseña activa, porfavor espere a que pueda realizar una de nuevo', 'Cancel  ', {
+            duration: 5000
+          });
+        }else{
+          var cryptoJS = require("crypto-js");
+          var userEncrypt = cryptoJS.AES.encrypt(this.user, 'usuarioOccibana');
+
+          sessionStorage.setItem(environment.USEROCRC, userEncrypt);
+
+          this.tokenOccibana = data["tokengenerado"];
+          sessionStorage.setItem(environment.TOKENOCRC,this.tokenOccibana);
+          this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+            duration: 5000
+          });
+          this.router.navigate(['/recuperarContrasena']);
+        }
       });
     });
   }

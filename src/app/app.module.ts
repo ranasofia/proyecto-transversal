@@ -242,6 +242,7 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.OCCIBANA + '/panelHotel/postInformacionDelHotel',
       environment.OCCIBANA + '/panelHotel/postInformacionDelHabitacion',
       environment.OCCIBANA + '/admin/postCorreoRecuperacionTransversal',
+      environment.OCCIBANA + '/admin/putReactivarCuenta',
       environment.SUPERFAST + '/Registrar/PostInsertar_Usuario',
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
       environment.SUPERFAST + '/admin/login',

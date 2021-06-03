@@ -90,7 +90,17 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         this.snackBar.open('No ha ingresado ningun dato', 'Cerrar  ', {
           duration: 3000
         });
-      } else if (err.status == 400 && err.error.message.include('surgio el siguente error:')) {
+      } else if(err.status == 400 && err.error.message === "Correo incorrecto"){
+        //Buscar usuario recuperar
+        this.snackBar.open('Correo incorrecto o usuario no existe', 'Cerrar  ', {
+          duration: 3000
+        });
+      } else if(err.status == 400 && err.error.message === "surgio el siguente error: Object reference not set to an instance of an object."){
+        //Generar Recuperación Occibana
+        this.snackBar.open('Error', 'Cerrar  ', {
+          duration: 3000
+        });
+      }else if (err.status == 400 && err.error.message.include('surgio el siguente error:')) {
         this.snackBar.open('Ocurrió un error al cargar los datos', 'Cerrar  ', {
           duration: 3000
         });
