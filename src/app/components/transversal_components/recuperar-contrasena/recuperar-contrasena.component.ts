@@ -108,7 +108,7 @@ export class RecuperarContrasenaComponent implements OnInit {
 
 //
 recuperarContraseñaSuperFast(){
-  var contraseña = {Token: this.recuperarForm.controls["token"].value, 
+  var contraseña = {Token: sessionStorage.getItem(environment.TOKENSPFRC), 
   NuevaContrasenia: this.recuperarForm.controls["password"]};
  this.adminService.postRecuperarContraseña(contraseña)
 }

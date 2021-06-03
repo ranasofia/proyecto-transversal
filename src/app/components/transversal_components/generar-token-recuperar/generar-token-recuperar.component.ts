@@ -97,47 +97,40 @@ export class GenerarTokenRecuperarComponent implements OnInit {
           this.router.navigate(['/recuperarContrasena']);
       });
      
-      this.correoMototaxi = this.generarForm.controls["email"].value;
+     
    
-      this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
-        this.user=data["usuario"];
-       
-        var usuario = new Usuario();
-        usuario.usuario = this.user;
-        this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
-          this.tokenMototaxi = data["tokenGenerar"];
-          sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
-         
-        });
-      });
+      
 
         
       
-     
-      this.router.navigate(['/recuperarContrasena']);
+   
     }
   }
 
   //
   generarTokenSuperFast(){
     this.correoSuperfast = this.generarForm.controls["email"].value;
-    this.adminService.getGenerarContraseña(this.correoSuperfast);
+    this.adminService.getGenerarContraseña(this.correoSuperfast).subscribe(data=>{
+      this.tokenSuperFast=data[""];
+      sessionStorage.setItem(environment.TOKENSPFRC,this.tokenSuperFast);
+    });
   }
   //
-  /*generarTokenMototaxi(){
+  generarTokenMototaxi(){
     this.correoMototaxi = this.generarForm.controls["email"].value;
     this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
       this.user=data["usuario"];
-      console.log(this.user);
-      
-      });
+     
       var usuario = new Usuario();
       usuario.usuario = this.user;
       this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
         this.tokenMototaxi = data["tokenGenerar"];
-        console.log(this.tokenMototaxi);
+        sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
+      });
     });
-  }*/
+      
+    this.router.navigate(['/recuperarContrasena']);
+  }
   //
   generarTokenOccibana(){
     this.correoOccibana = this.generarForm.controls["email"].value;
@@ -149,6 +142,7 @@ export class GenerarTokenRecuperarComponent implements OnInit {
 
     this.perfilService.postGenerarContraseña(generar).subscribe(data => {
       this.tokenOccibana = data["tokengenerado"];
+      sessionStorage.setItem(environment.TOKENOCRC,this.tokenOccibana);
     });
   }
   //
