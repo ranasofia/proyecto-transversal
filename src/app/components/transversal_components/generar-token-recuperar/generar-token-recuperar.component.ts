@@ -7,6 +7,7 @@ import { RecuperarContrasenaService } from 'src/app/_service/transversal_service
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 /**
  * Decorador de GenerarTokenRecuperarComponent
@@ -28,17 +29,23 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   /**
    * variable que contiene el correo 
    */
-  correo: string;
+  correoMototaxi: string;
+  correoSuperfast: string;
+  correoOccibana: string;
+  correoHcCauchos: string;  
 
   /**
    * variable que contiene el usuario 
    */
-  user: string;
+  public user: string;
 
   /**
    * varible que contiene el token generado 
    */
-  token: string;
+  public tokenMototaxi: string;
+  public tokenSuperFast: string;
+  public tokenHcCauchos: string;
+  public tokenOccibana: string;
 
   /**
    * Permite configurar las validaciones del formulario
@@ -71,6 +78,7 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    * Método que se ejecuta al cargar la página
    */
   ngOnInit(): void {
+    
   }
 
   /**
@@ -88,33 +96,59 @@ export class GenerarTokenRecuperarComponent implements OnInit {
           });
           this.router.navigate(['/recuperarContrasena']);
       });
+     
+      this.correoMototaxi = this.generarForm.controls["email"].value;
+   
+      this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
+        this.user=data["usuario"];
+       
+        var usuario = new Usuario();
+        usuario.usuario = this.user;
+        this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
+          this.tokenMototaxi = data["tokenGenerar"];
+          sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
+         
+        });
+      });
+
+        
+      
+     
+      this.router.navigate(['/recuperarContrasena']);
     }
   }
 
   //
   generarTokenSuperFast(){
-    this.correo = this.generarForm.controls["email"].value;
-    this.adminService.getGenerarContraseña(this.correo);
+    this.correoSuperfast = this.generarForm.controls["email"].value;
+    this.adminService.getGenerarContraseña(this.correoSuperfast);
   }
   //
-  generarTokenMototaxi(){
-    this.correo = this.generarForm.controls["email"].value;
-    this.clienteService.getDatosRecuperar(this.correo).subscribe(data=>{
-      this.user = data["usuario"];
+  /*generarTokenMototaxi(){
+    this.correoMototaxi = this.generarForm.controls["email"].value;
+    this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
+      this.user=data["usuario"];
+      console.log(this.user);
+      
+      });
+      var usuario = new Usuario();
+      usuario.usuario = this.user;
+      this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
+        this.tokenMototaxi = data["tokenGenerar"];
+        console.log(this.tokenMototaxi);
     });
-    this.clienteService.getGenerarContraseña(this.user);
-  }
+  }*/
   //
   generarTokenOccibana(){
-    this.correo = this.generarForm.controls["email"].value;
-    this.clienteService.getDatosRecuperar(this.correo).subscribe(data=>{
+    this.correoOccibana = this.generarForm.controls["email"].value;
+    this.clienteService.getDatosRecuperar(this.correoOccibana).subscribe(data=>{
       this.user = data["usuario"];
     });
 
-    var generar = {usuario: this.user, correo: this.correo};
+    var generar = {usuario: this.user, correo: this.correoOccibana};
 
     this.perfilService.postGenerarContraseña(generar).subscribe(data => {
-      this.token = data["tokengenerado"];
+      this.tokenOccibana = data["tokengenerado"];
     });
   }
   //
