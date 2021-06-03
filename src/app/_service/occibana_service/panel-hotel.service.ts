@@ -68,7 +68,8 @@ export class PanelHotelService {
   }
 
   /**
-   * 
+   * Método realiza un petición par cofirmar la disponibilidad de una habitación
+   * en las fechas seleccionadas por el usuario
    * @param idHotel 
    * @param fechaSalida 
    * @param fechaLlegada 

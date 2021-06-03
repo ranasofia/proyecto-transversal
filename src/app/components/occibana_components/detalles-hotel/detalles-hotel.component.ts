@@ -63,7 +63,7 @@ export class DetallesHotelComponent implements OnInit {
   /**
    * Representa la información del hotel seleccionado
    */
-  hotelSeleccionado?: Hotel;
+  hotelSeleccionado = new Hotel();
 
   /**
    * Constructor sobrecargado del componente de detalles del hotel
@@ -94,10 +94,10 @@ export class DetallesHotelComponent implements OnInit {
    * Método que se encarga de cargar los datos del hotel seleccionado por el usuario
    */
   cargarDatosHotel(): void {
-    this.barraProgreso.progressBar.next('1');
     this.panelHotelService.postInformacionHotel(this.idHotel).subscribe(
       (datos) => {
         this.hotelSeleccionado = datos;
+        this.hotelSeleccionado?.promediocalificacion
         this.hotelSeleccionado.imagen =
           'https://www.occibanaisw.tk/' + this.hotelSeleccionado.imagen;
         this.obtenerComentariosHotel();
@@ -107,12 +107,7 @@ export class DetallesHotelComponent implements OnInit {
         );
         this.nombreUsuario = token.name;
         this.cargarDatosPerfil();
-        this.barraProgreso.progressBar.next('2');
-      } /*
-      (error) => {
-        this.barraProgreso.progressBar.next('2');
-        return this.router.navigate['/occibana/hoteles'];
-      }*/
+      }
     );
   }
 
@@ -123,10 +118,7 @@ export class DetallesHotelComponent implements OnInit {
     this.perfilService.postCargaDatosPerfil(this.nombreUsuario).subscribe(
       (data) => {
         this.idUsuario = data.datos.id;
-      } /*,
-      (error) => {
-        return this.router.navigate['/occibana/hoteles'];
-      }*/
+      }
     );
   }
 
@@ -137,10 +129,7 @@ export class DetallesHotelComponent implements OnInit {
     this.serviceHotel.postObtenerComentarios(this.hotelSeleccionado).subscribe(
       (data) => {
         this.comentarios = data;
-      } /*,
-      (err) => {
-        return this.router.navigate['/occibana/hoteles'];
-      }*/
+      }
     );
   }
 
@@ -151,10 +140,7 @@ export class DetallesHotelComponent implements OnInit {
     this.serviceHotel.postHabitacionesHotel(idHotel).subscribe(
       (data) => {
         this.habitaciones = data;
-      } /*,
-      (err) => {
-        return this.router.navigate['/occibana/hoteles'];
-      }*/
+      }
     );
   }
 }

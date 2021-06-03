@@ -1,11 +1,13 @@
+import { GenerarTokenRecuperarComponent } from './../generar-token-recuperar/generar-token-recuperar.component';
 import { AdminService } from 'src/app/_service/superfast_service/admin.service';
 import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
 import { Router } from '@angular/router';
 import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 /**
  * Decorador de RecuperarContrasenaComponent
@@ -35,7 +37,11 @@ export class RecuperarContrasenaComponent implements OnInit {
   /**
    * variable que contiene el token de recuperacion
    */
-  token: string;
+  public tokenMototaxi: string;
+  tokenSuperFast:string;
+  tokenOccibana:string;
+  tokenHcCauchos:string;
+
 
   /**
    * Permite configurar las validaciones del formulario
@@ -53,7 +59,7 @@ export class RecuperarContrasenaComponent implements OnInit {
         ValidacionesPropias.verificacionClave
       ]),
       token:new FormControl('',[
-        Validators.required
+       // Validators.required
       ]),
 
     });
@@ -76,6 +82,8 @@ export class RecuperarContrasenaComponent implements OnInit {
    * Método que se ejecuta al cargar la página
    */
   ngOnInit(): void {
+    
+    
   }
 
   /**
@@ -93,7 +101,8 @@ export class RecuperarContrasenaComponent implements OnInit {
       });
       this.router.navigate(['/login']);
     });
-
+     //this.recuperarContraseñaMototaxi();
+     
   }
 }
 
@@ -105,11 +114,19 @@ recuperarContraseñaSuperFast(){
 }
 //
 recuperarContraseñaMototaxi(){
-  this.token = this.recuperarForm.controls["token"].value;
-  var contraseña = {Contrasena: this.recuperarForm.controls["password"], 
-                    ContrasenaConfirmada: this.recuperarForm.controls["validacionContrasena"]};
+
+  var contraseña = {Contrasena: this.recuperarForm.controls["password"].value, 
+                    ContrasenaConfirmada: this.recuperarForm.controls["validacionContrasena"].value};
   
-  this.clienteService.putRecuperarContraseña(this.token, contraseña);
+  this.clienteService.putRecuperarContraseña(sessionStorage.getItem(environment.TOKENMTRC), contraseña)
+  .subscribe(data => {
+    this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
+      duration: 3000
+    });
+    this.router.navigate(['/login']);
+  });
+  sessionStorage.removeItem(environment.TOKENMTRC);
+  
 }
 //
 recuperarContraseñaOccibana(){

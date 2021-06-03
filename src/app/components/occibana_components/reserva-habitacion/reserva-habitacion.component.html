@@ -1,4 +1,4 @@
-<div [hidden]="route.children.length !== 0">
+<div [hidden]="route.children != undefined && route.children.length !== 0">
   <div class="occibana-image" fxLayoutAlign="center">
     <img src="assets/images/occibana-principal.png" />
   </div>

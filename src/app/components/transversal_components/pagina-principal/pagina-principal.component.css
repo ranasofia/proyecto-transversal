@@ -75,16 +75,3 @@ h2{
     width: 60%;
    
 }
-.btn-detalles{
-    margin-left: 40%;
-    margin-top: 2%;
-}
-.detalles{
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-   
-}

@@ -95,7 +95,7 @@ export class ClienteService {
    * @param usuario variable que identifica el usuario
    * @returns
    */
-  getGenerarContraseña(usuario: string){
+  getGenerarContraseña(usuario: Usuario){
     return this.http.post(this.URL + "/generarContrasena", usuario);
   }
 

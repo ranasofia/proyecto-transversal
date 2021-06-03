@@ -18,20 +18,20 @@
 
         <mat-card-content>
           <ul>
-            <li>Hotel:</li>
-            <li>Número de personas: {{ reserva.numpersona }}</li>
-            <li>
-              Fecha llegada:
+            <li><mat-icon>local_hotel</mat-icon><em> Hotel:</em> {{ reserva.nombrehotel }}</li>
+            <li><mat-icon>people</mat-icon><em> Número de personas:</em> {{ reserva.numpersona }}</li>
+            <li><mat-icon>date_range</mat-icon>
+              <em> Fecha llegada:</em>
               {{ reserva.fecha_llegada | date: "dd-MM-yyyy":"UTC" }}
             </li>
-            <li>
-              Fecha salida:
+            <li><mat-icon>date_range</mat-icon>
+              <em> Fecha salida:</em>
               {{ reserva.fecha_salida | date: "dd-MM-yyyy":"UTC" }}
             </li>
-            <li>Correo: {{ reserva.correo }}</li>
-            <li>Medio de pago: {{ reserva.mediopago }}</li>
-            <li>
-              Calificación:
+            <li><mat-icon>email</mat-icon><em> Correo:</em> {{ reserva.correo }}</li>
+            <li><mat-icon>monetization_on</mat-icon><em> Medio de pago:</em> {{ reserva.mediopago }}</li>
+            <li><mat-icon>star_rate</mat-icon> 
+              <em> Calificación:</em> 
               <ngb-rating [(rate)]="reserva.calificacion">
                 <ng-template let-fill="fill" let-index="index">
                   <span class="star" [class.filled]="fill === 100"
@@ -40,7 +40,7 @@
                 </ng-template>
               </ngb-rating>
             </li>
-            <li>Comentario: {{ reserva.comentario }}</li>
+            <li><mat-icon>comment</mat-icon><em> Comentario:</em> {{ reserva.comentario }}</li>
           </ul>
         </mat-card-content>
         <mat-card-actions style="overflow: hidden">

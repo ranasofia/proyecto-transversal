@@ -1,76 +1,70 @@
-
-    <ngb-carousel>
-      <ng-template *ngFor="let imagenes of imagenes" ngbSlide>
-        <div class="picsum-img-wrapper">
-          <img src="{{imagenes.img}}" class="imagen" alt="Random first slide">
-        </div>
-        <div class="carousel-caption">
-          <h3>{{imagenes.name}}</h3>
-        </div>
-      </ng-template>
-    </ngb-carousel>
-    <h2> NUESTROS SERVICIOS </h2>
-    <div class="card-producto">
-      <div class=img-producto>
-        <div class="descripcion-producto">
-          <div class="producto">
-            <h2> SUPERFAST </h2>
-            Microempresa la cual presta servicios de domicilios en el municipio de Facatativá (Cundinamarca), ofreciendo domicilios de restaurantes, mercado y farmacia, pagos de servicios, mandados y mucho mas
-          </div>
-        </div>
-      </div>
-      <div class="container-descripcion">
-        <img mat-card-image src="assets/images/Superfast info.jpg">
-        <div class="btn-detalles">
-          <button mat-raised-button color="primary" class="detalles"> VER DETALLES </button>
-        </div>
+<ngb-carousel>
+  <ng-template *ngFor="let imagenes of imagenes" ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="{{ imagenes.img }}" class="imagen" alt="Random first slide" />
+    </div>
+    <div class="carousel-caption">
+      <h3>{{ imagenes.name }}</h3>
+    </div>
+  </ng-template>
+</ngb-carousel>
+<h2>NUESTROS SERVICIOS</h2>
+<div class="card-producto">
+  <div class="img-producto">
+    <div class="descripcion-producto">
+      <div class="producto">
+        <h2>SUPERFAST</h2>
+        Microempresa la cual presta servicios de domicilios en el municipio de
+        Facatativá (Cundinamarca), ofreciendo domicilios de restaurantes,
+        mercado y farmacia, pagos de servicios, mandados y mucho mas
       </div>
     </div>
-    <div class="card-producto">
-      <div class=img-producto>
-        <div class="descripcion-producto">
-          <div class="producto">
-            <h2> OCCIBANA </h2>
-            Occibana, los mejores hoteles de la sabana occidente de Cundinamarca en una sola página web y con disponibilidades a un clic
-          </div>
-        </div>
-      </div>
-      <div class="container-descripcion">
-        <img mat-card-image src="assets/images/Occibana info.jpg">
-        <div class="btn-detalles">
-          <button mat-raised-button color="primary" class="detalles"> VER DETALLES </button>
-        </div>
+  </div>
+  <div class="container-descripcion">
+    <img mat-card-image src="assets/images/Superfast info.jpg" />
+  </div>
+</div>
+<div class="card-producto">
+  <div class="img-producto">
+    <div class="descripcion-producto">
+      <div class="producto">
+        <h2>OCCIBANA</h2>
+        Occibana, los mejores hoteles de la sabana occidente de Cundinamarca en
+        una sola página web y con disponibilidades a un clic
       </div>
     </div>
-    <div class="card-producto">
-      <div class=img-producto>
-        <div class="descripcion-producto">
-          <div class="producto">
-            <h2> MOTOTAXI DELUXE </h2>
-            Empresa enfocada en la prestación de servicios de movilidad mototaxista, pensada en facilitar el transporte de los clientes a diferentes destinos del municipio de Sasaima (Cundinamarca), teniendo como prioridad el bienestar de los usuarios.
-          </div>
-        </div>
-      </div>
-      <div class="container-descripcion">
-        <img mat-card-image src="assets/images/Mototaxi Deluxe (3).png">
-        <div class="btn-detalles">
-          <button mat-raised-button color="primary" class="detalles"> VER DETALLES </button>
-        </div>
-      </div>
-    </div>
-    <div class="card-producto">
-      <div class=img-producto>
-        <div class="descripcion-producto">
-          <div class="producto">
-            <h2> HCCAUCHOS </h2>
-            Es una empresa encargada de la comercialización de productos destinados al mantenimiento de automóviles, maquinaria o múltiples fines
-          </div>
-        </div>
-      </div>
-      <div class="container-descripcion">
-        <img mat-card-image src="assets/images/HCCauchos info.png">
-        <div class="btn-detalles">
-          <button mat-raised-button color="primary" class="detalles"> VER DETALLES </button>
-        </div>
+  </div>
+  <div class="container-descripcion">
+    <img mat-card-image src="assets/images/Occibana info.jpg" />
+  </div>
+</div>
+<div class="card-producto">
+  <div class="img-producto">
+    <div class="descripcion-producto">
+      <div class="producto">
+        <h2>MOTOTAXI DELUXE</h2>
+        Empresa enfocada en la prestación de servicios de movilidad mototaxista,
+        pensada en facilitar el transporte de los clientes a diferentes destinos
+        del municipio de Sasaima (Cundinamarca), teniendo como prioridad el
+        bienestar de los usuarios.
       </div>
     </div>
+  </div>
+  <div class="container-descripcion">
+    <img mat-card-image src="assets/images/Mototaxi Deluxe (3).png" />
+  </div>
+</div>
+<div class="card-producto">
+  <div class="img-producto">
+    <div class="descripcion-producto">
+      <div class="producto">
+        <h2>HCCAUCHOS</h2>
+        Es una empresa encargada de la comercialización de productos destinados
+        al mantenimiento de automóviles, maquinaria o múltiples fines
+      </div>
+    </div>
+  </div>
+  <div class="container-descripcion">
+    <img mat-card-image src="assets/images/HCCauchos info.png" />
+  </div>
+</div>
