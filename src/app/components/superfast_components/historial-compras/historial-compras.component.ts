@@ -70,6 +70,8 @@ export class HistorialComprasComponent implements OnInit {
 
       pedidos.forEach(element => {
 
+        var longitud = element.compras[0].imagen_producto1.length;
+        element.compras[0].imagen_producto1 = "https://www.superfastisw.tk/" + element.compras[0].imagen_producto1.substring(1, longitud);
         detalles.push(element.compras[0]);
 
       });
