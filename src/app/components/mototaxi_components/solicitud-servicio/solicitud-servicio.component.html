@@ -57,7 +57,7 @@
                     <mat-select matSelect formControlName="destino1" (ngModelChange)="selectDestino.id">
                         <mat-option *ngFor="let des of destino" value ={{des.id}}>{{des.lugarDestino}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formCalcular.controls.destino1.hasError('required')">
+                    <mat-error *ngIf="formCalcular.controls.destino1.hasError('required') && formCalcular.controls.destino1.dirty">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
                 </mat-form-field>
@@ -69,8 +69,11 @@
                     <mat-select matSelect formControlName="ubicacion1" (ngModelChange)="selectUbicacion.id">
                         <mat-option *ngFor="let ubi of ubicacion" value ={{ubi.id}}>{{ubi.lugarUbicacion}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('required')">
+                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('required') && formCalcular.controls.ubicacion1.dirty">
                         Este campo es<strong> obligatorio</strong>
+                    </mat-error>
+                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('verificacionSolicitud')&& formCalcular.controls.ubicacion1.dirty">
+                       No puedes ingresar el mismo destino
                     </mat-error>
                 </mat-form-field>
             
@@ -106,7 +109,7 @@
                     <mat-select matSelect formControlName="pag" (ngModelChange)="selectPago.id">
                         <mat-option *ngFor="let pag of pago" value ={{pag.id}}>{{pag.descripcion}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formSolicitar.controls.pag.hasError('required')">
+                    <mat-error *ngIf="formSolicitar.controls.pag.hasError('required')&&formSolicitar.controls.pag.dirty">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
                 </mat-form-field>

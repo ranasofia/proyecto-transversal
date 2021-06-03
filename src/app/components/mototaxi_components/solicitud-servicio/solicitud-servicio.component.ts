@@ -1,3 +1,4 @@
+import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Conductor } from './../../../_model/mototaxi_model/Conductor';
@@ -5,7 +6,7 @@ import { environment } from './../../../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BarraProgresoService } from '../../../_service/utilidades/barra-progreso.service';
 import { ServicioSolicitudService } from './../../../_service/mototaxi_service/servicio-solicitud.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup ,FormGroupDirective,NgForm,Validators} from '@angular/forms';
 import { Destino } from 'src/app/_model/mototaxi_model/Destino';
 import { Pago } from 'src/app/_model/mototaxi_model/Pago';
@@ -73,7 +74,10 @@ export class SolicitudServicioComponent implements OnInit {
   createFormGroupCalcular(){
     return new FormGroup({
       destino1: new FormControl('', [Validators.required]),
-      ubicacion1: new FormControl('', [Validators.required]),
+      ubicacion1: new FormControl('', [Validators.required,
+        ValidacionesPropias.verificacionSolicitud
+      ]),
+    
       descripcion:new FormControl
     });
   }
@@ -102,7 +106,8 @@ export class SolicitudServicioComponent implements OnInit {
   constructor(private servicioSolicitudService: ServicioSolicitudService,
               private barraProgresoService:BarraProgresoService,
               private _snackBar: MatSnackBar,
-              public route: ActivatedRoute) { 
+              public route: ActivatedRoute,
+              protected changeDetectorRef: ChangeDetectorRef) { 
                 this.formCalcular = this.createFormGroupCalcular();
                 this.formSolicitar = this.createFormGroupSolicitar();
               }
@@ -180,8 +185,17 @@ export class SolicitudServicioComponent implements OnInit {
    * Metodo que reinicia los componentes del form
    */
   onResetForm() {
-    this.formCalcular.reset();
+   this.formCalcular.reset();
     this.formSolicitar.reset();
+
+    Object.keys(this.formCalcular.controls).forEach(key => {
+      this.formCalcular.get(key).setErrors(null);
+    });
+    
+    Object.keys(this.formSolicitar.controls).forEach(key => {
+      this.formSolicitar.get(key).setErrors(null);
+    });
+   
   }
 }
 
