@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
 
@@ -23,7 +23,7 @@ export class LoginHCService {
    * Da estado inicial e inyecta variables en ClienteService
    * @param http variable que se inyecta para poder hacer las peticiones http
    */
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) {
   }
 
   /**
@@ -33,7 +33,8 @@ export class LoginHCService {
    */
   getToken(usuario: UsuarioHCCauchos) {
 
-    return this.http.post<string>(this.URL + "/login", usuario);
+    let httpToken:HttpClient = new HttpClient(this.httpBackend);
+    return httpToken.post<string>(this.URL + "/login", usuario);
   }
 
   /**

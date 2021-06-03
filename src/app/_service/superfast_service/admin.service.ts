@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { UsuarioSuperfast } from './../../_model/superfast_model/UsuarioSuperfast';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ export class AdminService {
   private URL3: string = environment.SUPERFAST + '/GenerarToken';
   private URL4: string=environment.SUPERFAST + '/RecuperarContrasenia';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) { }
 
   /**
    * Permite obtener el token JWT que se utilizará para las futuras peticiones de servicio
@@ -21,7 +21,8 @@ export class AdminService {
    * @returns token
    */
   getToken(usuario: UsuarioSuperfast) {
-    return this.http.post<string>(this.URL + "/login", usuario);
+    let httpToken:HttpClient = new HttpClient(this.httpBackend);
+    return httpToken.post<string>(this.URL + "/login", usuario);
   }
 
   /**
@@ -43,9 +44,9 @@ export class AdminService {
   }
 
   /**
-   * permite recuperar la contraseña 
+   * permite recuperar la contraseña
    * @param datos variable que contiene los datos para recuperar contraseña
-   * @returns 
+   * @returns
    */
   postRecuperarContraseña(datos:any){
     return this.http.post(this.URL4+ "/RepContra",datos);

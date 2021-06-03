@@ -49,6 +49,8 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
     cantidad: number;
 
+    idProductoStockExcedido: number;
+
     validacionesPropias = new ValidacionesPropias();
 
     /**
@@ -108,6 +110,19 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
     }
 
+    noExceder(event: Event, numero: number, id: number){
+
+      let valor = Number((event.target as HTMLInputElement).value);
+
+      if(valor > numero){
+
+        this.idProductoStockExcedido = id;
+
+      }
+
+    }
+
+
     /**
      * Permite agregar un pedido al carrito
      * @param cantidad variable que indica el número de existencias a agregar al carrito
@@ -115,7 +130,7 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
      */
     agregarAlCarrito(cantidad: number, producto: ProductoH){
 
-      if(cantidad != null && cantidad > 0){
+      if(cantidad != null && cantidad > 0 && producto.ca_actual > cantidad){
 
         let carro = new Carro();
         carro.producto_id = producto.id;
@@ -138,6 +153,12 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
           this.ngOnInit();
 
+        });
+
+      }else{
+
+        this._snackBar.open('No hay suficientes existencias en el stock', 'Cancel  ', {
+          duration: 5000
         });
 
       }

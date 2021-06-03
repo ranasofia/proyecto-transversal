@@ -1,7 +1,7 @@
 import { Usuario } from './../../_model/transversal_model/Usuario';
 import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 /**
@@ -25,7 +25,9 @@ export class ClienteService {
    * Da estado inicial e inyecta variables en ClienteService
    * @param http variable que se inyecta para poder hacer las peticiones http
    */
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) {
+
+
   }
 
   /**
@@ -34,7 +36,9 @@ export class ClienteService {
    * @returns token
    */
   getToken(cliente: UsuarioMototaxi) {
-    return this.http.post<string>(this.URL + "/logincliente", cliente);
+
+    let httpToken:HttpClient = new HttpClient(this.httpBackend);
+    return httpToken.post<string>(this.URL + "/logincliente", cliente);
   }
 
   /**
@@ -80,7 +84,7 @@ export class ClienteService {
   /**
    * Permite traer todo el registro de un usuario
    * @param correo variable que trae los datos del usuario
-   * @returns 
+   * @returns
    */
   getDatosRecuperar(correo: string){
     return this.http.get(this.URL2 + '/datosRecuperar?correo=' + correo);
@@ -88,8 +92,8 @@ export class ClienteService {
 
   /**
    * Permite generar el token para recuperar la contraseña
-   * @param usuario variable que identifica el usuario 
-   * @returns 
+   * @param usuario variable que identifica el usuario
+   * @returns
    */
   getGenerarContraseña(usuario: string){
     return this.http.post(this.URL + "/generarContrasena", usuario);
@@ -99,7 +103,7 @@ export class ClienteService {
    * Permite cambiar la contraseña
    * @param token variable que permite recuperar la contraseña
    * @param contrasena variable que contien la contraseña nueva
-   * @returns 
+   * @returns
    */
   putRecuperarContraseña(token: string, contrasena:any){
     return this.http.put(this.URL + "/RecuperarContrasena?tokenRecibido=" + token, contrasena);

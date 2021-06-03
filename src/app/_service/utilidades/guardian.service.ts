@@ -127,13 +127,15 @@ export class GuardianService implements CanActivate {
 
             }
 
-            servicioRegistroConvertido.registrar(usuarioConvertido).subscribe();
+            servicioRegistroConvertido.registrar(usuarioConvertido).subscribe( data =>{
 
-            servicioConvertido.getToken(usuarioConvertido).subscribe(data2 => {
+              servicioConvertido.getToken(usuarioConvertido).subscribe(data2 => {
 
-              sessionStorage.setItem(cadenaSesion, data2);
+                sessionStorage.setItem(cadenaSesion, data2);
 
-            })
+              })
+
+            });
 
           }
 

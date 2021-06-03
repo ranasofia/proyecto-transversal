@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UsuarioOccibana } from 'src/app/_model/occibana_model/UsuarioOccibana';
 
@@ -25,7 +25,7 @@ export class RegistroLoginOccibanaService {
    * Da estado inicial e inyecta variables en ClienteService
    * @param http variable que se inyecta para poder hacer las peticiones http
    */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) { }
 
   /**
    * Permite registrar a un usuario en la aplicación de HCCauchos
@@ -45,7 +45,8 @@ export class RegistroLoginOccibanaService {
    */
   getToken(usuario: UsuarioOccibana) {
 
-    return this.http.post<string>(this.URL + "/postIngresoLogin", usuario);
+    let httpToken:HttpClient = new HttpClient(this.httpBackend);
+    return httpToken.post<string>(this.URL + "/postIngresoLogin", usuario);
   }
 
   /**

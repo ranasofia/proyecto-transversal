@@ -42,8 +42,8 @@ export class Conversion {
     usuarioConvertido.user_id = usuario.idUsuario;
     usuarioConvertido.nombre = usuario.nombre;
     usuarioConvertido.apellido = usuario.apellido;
-    //usuarioConvertido.correo = usuario.correo;
-    //usuarioConvertido.clave = usuario.contrasena;
+    usuarioConvertido.correo = usuario.correo;
+    usuarioConvertido.clave = usuario.contrasena;
     usuarioConvertido.fecha_nacimiento = usuario.fechaNacimiento;
     usuarioConvertido.identificacion = usuario.cedula;
     usuarioConvertido.email = usuario.correo;
