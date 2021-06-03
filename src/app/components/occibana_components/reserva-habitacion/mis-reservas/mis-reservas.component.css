@@ -39,3 +39,20 @@ h1 {
 .filled {
   color: #ffff00;
 }
+
+ul li {
+  list-style: none;
+}
+
+li {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+li .mat-icon {
+  color: #E91E63;
+}
+
+li em {
+  font-weight: bold;
+}

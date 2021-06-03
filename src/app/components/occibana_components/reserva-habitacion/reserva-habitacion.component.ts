@@ -98,15 +98,14 @@ export class ReservaHabitacionComponent implements OnInit {
     private barraProgreso: BarraProgresoService
   ) {
     this.reservaForm = this.createFormGroup();
+    this.rangoFechas = this.createFormFechas();
   }
 
   /**
    * Implementación que se ejecuta una vez se inicie el ReservaHabitacionComponent
    */
   ngOnInit(): void {
-    this.rangoFechas = this.createFormFechas();
     this.isDisabled = true;
-    this.barraProgreso.progressBar.next('1');
     this.route.params.subscribe((data) => {
       const idHabitacion = data.id;
       this.obtenerInformacionHabitacion(idHabitacion);
@@ -115,7 +114,6 @@ export class ReservaHabitacionComponent implements OnInit {
       );
       const nombreUsuario = token.name;
       this.cargarDatosPerfil(nombreUsuario);
-      this.barraProgreso.progressBar.next('2');
     });
   }
 
@@ -137,7 +135,6 @@ export class ReservaHabitacionComponent implements OnInit {
   createFormGroup(): FormGroup {
     return new FormGroup({
       id: new FormControl(),
-
       nombre: new FormControl('', [Validators.required]),
       apellido: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -152,8 +149,7 @@ export class ReservaHabitacionComponent implements OnInit {
    * Método que obtiene toda la información de la habitación seleccionada de un hotel a partir de su id
    */
   obtenerInformacionHabitacion(idHabitacion: number): void {
-    this.panelHotelService
-      .postInformacionHabitacion(idHabitacion)
+    this.panelHotelService.postInformacionHabitacion(idHabitacion)
       .subscribe((data) => {
         this.informacionHabitacion = data;
         this.obtenerDatosHotel(data.idhotel);
@@ -207,32 +203,33 @@ export class ReservaHabitacionComponent implements OnInit {
    * fechas seleccionadas por el usuario
    */
   buscarDisponiblidad(): void {
-    this.fechaLlegada = this.rangoFechas.value.fechaLlegada;
-    this.fechaSalida = this.rangoFechas.value.fechaSalida;
-    this.barraProgreso.progressBar.next('1');
-    this.panelHotelService
-      .buscarDisponibilidad(
-        this.informacionHotel.idhotel,
-        this.fechaSalida.toJSON(),
-        this.fechaLlegada.toJSON(),
-        this.informacionHabitacion
-      )
-      .subscribe(
-        (data) => {
-          this._snackBar.open(data.mensaje, 'Cancel', {
-            duration: 4000,
-          });
-          if (
-            data.mensaje == 'habitación disponible para las fechas selccionadas'
-          ) {
-            this.isDisabled = false;
+
+    if (this.rangoFechas.valid) {
+
+      this.fechaLlegada = this.rangoFechas.value['fechaLlegada'];
+      this.fechaSalida = this.rangoFechas.value['fechaSalida'];
+      this.panelHotelService
+        .buscarDisponibilidad(
+          this.informacionHotel.idhotel,
+          this.fechaSalida.toISOString(),
+          this.fechaLlegada.toISOString(),
+          this.informacionHabitacion
+        )
+        .subscribe(
+          (data) => {
+            this._snackBar.open(data.mensaje, 'Cancel', {
+              duration: 4000,
+            });
+            if (
+              data.mensaje == 'habitación disponible para las fechas selccionadas'
+            ) {
+              this.isDisabled = false;
+            }
           }
-          this.barraProgreso.progressBar.next('2');
-        } /*,
-      (error) => {
-        this.barraProgreso.progressBar.next('2');
-      }*/
-      );
+        );
+
+    }
+
   }
 
   /**
@@ -247,36 +244,37 @@ export class ReservaHabitacionComponent implements OnInit {
    * Método que se va a encargar de crear una reserva nueva de una habitación de un hotel
    */
   realizarReserva(): void {
-    const reserva = new Reserva();
-    reserva.idusuario = this.usuario.id;
-    reserva.numpersona = this.informacionHabitacion.numpersonas.toString();
-    reserva.fecha_llegada = this.fechaLlegada.toJSON();
-    reserva.fecha_salida = this.fechaSalida.toJSON();
-    reserva.nombre = this.usuario.nombre;
-    reserva.apellido = this.usuario.apellido;
-    reserva.correo = this.usuario.correo;
-    reserva.idhotel = this.informacionHotel.idhotel;
-    reserva.mediopago = this.medioPagoSeleccionado;
-    reserva.id_habitacion = this.informacionHabitacion.id;
-    reserva.precioNoche = this.informacionHabitacion.precio;
-    this.barraProgreso.progressBar.next('1');
-    this.panelHotelService
-      .postReservarHospedaje(reserva, this.usuario.usuario)
-      .subscribe(
-        (data) => {
-          this._snackBar.open(
-            'Su reserva se realizó satifactoriamente.',
-            'OK',
-            {
-              duration: 2000,
-            }
-          );
-          this.barraProgreso.progressBar.next('2');
-        },
-        (error) => {
-          this.barraProgreso.progressBar.next('2');
-        }
-      );
+    
+    if(this.reservaForm.valid) {
+      
+      const reserva = new Reserva();
+      reserva.idusuario = this.usuario.id;
+      reserva.numpersona = this.informacionHabitacion.numpersonas.toString();
+      reserva.fecha_llegada = this.fechaLlegada.toJSON();
+      reserva.fecha_salida = this.fechaSalida.toJSON();
+      reserva.nombre = this.usuario.nombre;
+      reserva.apellido = this.usuario.apellido;
+      reserva.correo = this.usuario.correo;
+      reserva.idhotel = this.informacionHotel.idhotel;
+      reserva.mediopago = this.medioPagoSeleccionado;
+      reserva.id_habitacion = this.informacionHabitacion.id;
+      reserva.precioNoche = this.informacionHabitacion.precio;
+      this.panelHotelService
+        .postReservarHospedaje(reserva, this.usuario.usuario)
+        .subscribe(
+          (data) => {
+            this._snackBar.open(
+              'Su reserva se realizó satifactoriamente.',
+              'OK',
+              {
+                duration: 2000,
+              }
+            );
+          }
+        );
+
+    }
+
   }
 
   /**

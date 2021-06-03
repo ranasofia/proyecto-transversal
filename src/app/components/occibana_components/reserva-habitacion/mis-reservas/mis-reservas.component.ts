@@ -12,6 +12,7 @@ import { DatosPerfilService } from './../../../../_service/occibana_service/dato
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
 
 /**
  * Decorador de MisReservasComponent
@@ -46,16 +47,6 @@ export class MisReservasComponent implements OnInit {
   gridColumns = 3;
 
   /**
-   * Variable que almacena el objeto de tipo Hotel
-   */
-  hotel: Hotel;
-
-  /**
-   * Variable de tipo string que almacena el nombre del hotel
-   */
-  nombreHotel: string;
-
-  /**
    * Constructor sobrecargado de la clase MisReservasComponent
    * @param perfilService
    * @param hotelService
@@ -68,7 +59,7 @@ export class MisReservasComponent implements OnInit {
     private hotelService: HotelService,
     private dialog: MatDialog,
     configRating: NgbRatingConfig,
-    private panelHotel: PanelHotelService
+    private barraProgreso: BarraProgresoService
   ) {
     configRating.readonly = true;
     configRating.max = 5;
@@ -78,6 +69,7 @@ export class MisReservasComponent implements OnInit {
    * Implementación que se ejecuta una vez se inicie el MisReservasComponent
    */
   ngOnInit(): void {
+    this.reservas = [];
     const token = this.helper.decodeToken(
       sessionStorage.getItem(environment.TOKEN)
     );
@@ -95,16 +87,6 @@ export class MisReservasComponent implements OnInit {
   }
 
   /**
-   * Método que se encarga de obtener la información de un hotel a partir de su id
-   * @param idHotel
-   */
-  cargarDatosHotel(idHotel: number) {
-    this.panelHotel.postInformacionHotel(idHotel).subscribe((data) => {
-      this.hotel = data;
-    });
-  }
-
-  /**
    * Método que carga todas la reservas vigentes que tiene un usuario
    */
   cargarMisReservas(): void {
@@ -113,9 +95,6 @@ export class MisReservasComponent implements OnInit {
         this.reservas = 'No tienes ninguna reserva actualmente';
       } else {
         this.reservas = data;
-        for (let i = 0; i < this.reservas.length; i++) {
-          this.cargarDatosHotel(this.reservas[i].idhotel);
-        }
       }
     });
   }
@@ -148,7 +127,7 @@ export class MisReservasComponent implements OnInit {
     this.dialog.open(DialogComentarComponent, {
       data: {
         idUsuario: this.usuario.id,
-        idHotel: this.hotel.idhotel,
+        idHotel: this.reservas.idhotel,
       },
     });
   }
@@ -163,7 +142,7 @@ export class MisReservasComponent implements OnInit {
     this.dialog.open(DialogCalificarComponent, {
       data: {
         idReserva,
-        idHotel: this.hotel.idhotel,
+        idHotel: this.reservas.idhotel,
         idUsuario: this.usuario.id,
       },
     });

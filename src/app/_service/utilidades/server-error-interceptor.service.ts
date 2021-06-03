@@ -90,6 +90,10 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         this.snackBar.open('No ha ingresado ningun dato', 'Cerrar  ', {
           duration: 3000
         });
+      } else if (err.status == 400 && err.error.message.include('surgio el siguente error:')) {
+        this.snackBar.open('Ocurrió un error al cargar los datos', 'Cerrar  ', {
+          duration: 3000
+        });
       }else if(err.status == 404){
         this.router.navigate([`/error/${err.status}/Recurso no encontrado`]);
       }else if(err.status == 500){
