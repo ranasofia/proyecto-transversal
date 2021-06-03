@@ -82,70 +82,74 @@ export class RecuperarContrasenaComponent implements OnInit {
    * Método que se ejecuta al cargar la página
    */
   ngOnInit(): void {
-    
-    
+     
   }
 
   /**
    * Permite llevar la recuperación de contraseña
    */
   private recuperarContraseña(){
+    if(this.recuperarForm.valid){
+      var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, 
+                Contrasena:this.recuperarForm.controls["password"].value};
 
-  if(this.recuperarForm.valid){
-    var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, 
-              Contrasena:this.recuperarForm.controls["password"].value};
+      this.recuperarc.recuperar(obj).subscribe(data => {
+        this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
+          duration: 3000
+        });
+        this.router.navigate(['/login']);
+      });
+      //this.recuperarContraseñaSuperFast();
+      //this.recuperarContraseñaMototaxi();
+      //this.recuperarContraseñaOccibana();
+      //this.recuperarContraseñaHcCauchos();
+    }
+  }
+  //  
+  recuperarContraseñaSuperFast(){
+    var contraseña = {Token: sessionStorage.getItem(environment.TOKENSPFRC), 
+                      NuevaContrasenia: this.recuperarForm.controls["password"].value};
 
-    this.recuperarc.recuperar(obj).subscribe(data => {
+    this.adminService.postRecuperarContraseña(contraseña).subscribe(data =>{
       this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
         duration: 3000
       });
       this.router.navigate(['/login']);
     });
-     //this.recuperarContraseñaMototaxi();
-     
+    sessionStorage.removeItem(environment.TOKENSPFRC);
   }
-}
-
-//
-recuperarContraseñaSuperFast(){
-  var contraseña = {Token: this.recuperarForm.controls["token"].value, 
-  NuevaContrasenia: this.recuperarForm.controls["password"]};
- this.adminService.postRecuperarContraseña(contraseña)
-}
-//
-recuperarContraseñaMototaxi(){
-
-  var contraseña = {Contrasena: this.recuperarForm.controls["password"].value, 
-                    ContrasenaConfirmada: this.recuperarForm.controls["validacionContrasena"].value};
+  //
+  recuperarContraseñaMototaxi(){
+    var contraseña = {Contrasena: this.recuperarForm.controls["password"].value, 
+                      ContrasenaConfirmada: this.recuperarForm.controls["validacionContrasena"].value};
   
-  this.clienteService.putRecuperarContraseña(sessionStorage.getItem(environment.TOKENMTRC), contraseña)
-  .subscribe(data => {
-    this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
-      duration: 3000
+    this.clienteService.putRecuperarContraseña(sessionStorage.getItem(environment.TOKENMTRC), contraseña)
+    .subscribe(data => {
+      this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
+        duration: 3000
+      });
+      this.router.navigate(['/login']);
     });
-    this.router.navigate(['/login']);
-  });
-  sessionStorage.removeItem(environment.TOKENMTRC);
-  
-}
-//
-recuperarContraseñaOccibana(){
+    sessionStorage.removeItem(environment.TOKENMTRC);
+  }
+  //
+  recuperarContraseñaOccibana(){
 
-}
-//
-recuperarContraseñaHcCauchos(){
-  
-}
+  }
+  //
+  recuperarContraseñaHcCauchos(){
+    
+  }
 
-onResetForm() {
-  this.recuperarForm.reset();
-}
+  onResetForm() {
+    this.recuperarForm.reset();
+  }
 
-/**
-  * Permite iniciar el proceso de recuperar contraseña
-  * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
-  */
-recuperar(event: Event): any {
+  /**
+    * Permite iniciar el proceso de recuperar contraseña
+    * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
+    */
+  recuperar(event: Event): any {
     event.preventDefault();
     this.recuperarContraseña();
   }

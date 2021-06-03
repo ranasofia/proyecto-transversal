@@ -14,6 +14,9 @@ export const environment = {
   TOKEN_OCCIBANA: 'access_token_occ',
   TOKEN_MOTOTAXI: 'access_token_mt',
   TOKENMTRC: 'recu_mt',
+  TOKENSPFRC: 'recu_spf',
+  TOKENOCRC:'recu_occ',
+  TOKENHCRC: 'recu_hc',
   REINTENTOS: 1,
 };
 

@@ -85,7 +85,6 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    * Permite llevar a cabo generar el token de recuperacion de contraseña
    */
   private generartoken(){
-
     if(this.generarForm.valid){
       var usuario=new Usuario();
 
@@ -96,68 +95,65 @@ export class GenerarTokenRecuperarComponent implements OnInit {
           });
           this.router.navigate(['/recuperarContrasena']);
       });
-     
-      this.correoMototaxi = this.generarForm.controls["email"].value;
-   
-      this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
-        this.user=data["usuario"];
-       
-        var usuario = new Usuario();
-        usuario.usuario = this.user;
-        this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
-          this.tokenMototaxi = data["tokenGenerar"];
-          sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
-         
-        });
-      });
-
-        
-      
-     
-      this.router.navigate(['/recuperarContrasena']);
+      //this.generarTokenSuperFast();
+      //this.generarTokenMototaxi();
+      //this.generarTokenOccibana();
+      //this.generarTokenHcCauchos();
     }
   }
-
   //
   generarTokenSuperFast(){
     this.correoSuperfast = this.generarForm.controls["email"].value;
-    this.adminService.getGenerarContraseña(this.correoSuperfast);
+    this.adminService.getGenerarContraseña(this.correoSuperfast).subscribe(data=>{
+      this.tokenSuperFast = data.toString();
+      sessionStorage.setItem(environment.TOKENSPFRC,this.tokenSuperFast);
+      this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+        duration: 5000
+      });
+      this.router.navigate(['/recuperarContrasena']);
+    });
   }
   //
-  /*generarTokenMototaxi(){
+  generarTokenMototaxi(){
     this.correoMototaxi = this.generarForm.controls["email"].value;
     this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
       this.user=data["usuario"];
-      console.log(this.user);
-      
-      });
+     
       var usuario = new Usuario();
       usuario.usuario = this.user;
       this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
         this.tokenMototaxi = data["tokenGenerar"];
-        console.log(this.tokenMototaxi);
+        sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
+        this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+          duration: 5000
+        });
+        this.router.navigate(['/recuperarContrasena']);
+      });
     });
-  }*/
+  }
   //
   generarTokenOccibana(){
     this.correoOccibana = this.generarForm.controls["email"].value;
     this.clienteService.getDatosRecuperar(this.correoOccibana).subscribe(data=>{
       this.user = data["usuario"];
-    });
 
-    var generar = {usuario: this.user, correo: this.correoOccibana};
+      var generar = {usuario: this.user, correo: this.correoOccibana};
 
-    this.perfilService.postGenerarContraseña(generar).subscribe(data => {
-      this.tokenOccibana = data["tokengenerado"];
+      this.perfilService.postGenerarContraseña(generar).subscribe(data => {
+        this.tokenOccibana = data["tokengenerado"];
+        sessionStorage.setItem(environment.TOKENOCRC,this.tokenOccibana);
+        this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+          duration: 5000
+        });
+        this.router.navigate(['/recuperarContrasena']);
+      });
     });
   }
   //
   generarTokenHcCauchos(){
     
   }
-  //
-
-
+  
   /**
    * Permite iniciar el proceso de generar token
    * @param event objeto que posee los datos del evento que ejecutó el envío del formulario
