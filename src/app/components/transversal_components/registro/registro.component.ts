@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 /**
  * Decorador de RegistroComponent
@@ -86,7 +87,7 @@ export class RegistroComponent implements OnInit {
    * @param usuarioTransversalService objeto que permite usar los servicios del usuario general
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
    */
-  constructor(private usuarioTransversalService: UsuarioTransversalService, private _snackBar: MatSnackBar) {
+  constructor(private usuarioTransversalService: UsuarioTransversalService, private _snackBar: MatSnackBar, private router: Router) {
     this.registroForm = this.createFormGroup();
   }
 
@@ -94,6 +95,7 @@ export class RegistroComponent implements OnInit {
    * Método que se ejecuta al cargar la página
    */
   ngOnInit(): void {
+
   }
 
 
@@ -120,6 +122,9 @@ export class RegistroComponent implements OnInit {
         this._snackBar.open('Usuario registrado exitosamente', 'Cancel  ', {
           duration: 3000
         });
+
+        this.router.navigate(['/login']);
+
       });
 
     }
