@@ -65,6 +65,23 @@ export class ValidacionesPropias {
 
     return null;
   }
+
+/**
+ * Permite verificar si el campo de destino es igual al campo de ubicacion para solicitar el servicio
+ * @param control variable que posee el control que se está validando
+ * @returns resultadoValidacion
+ */
+  static verificacionSolicitud(control:AbstractControl){
+    if(control.parent!= undefined){
+      var ubicacion=control.parent.controls['destino1'].value;
+      var destino =control.parent.controls['ubicacion1'].value;
+
+      if(ubicacion==destino){
+        return { verificacionSolicitud: true };
+      } 
+    }
+    return null;
+  }
   
   /*
    * Es el método valida que solo se puden escribir números positivos en un campo de texto

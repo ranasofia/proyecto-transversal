@@ -85,4 +85,9 @@ export class HotelesComponent implements OnInit {
 
     this.hotelesFiltrados = dataSource.filteredData;
   }
+
+  onMisReservas(): void {
+    this.router.navigate(['/occibana/hoteles/reservaHabitacion/' + 0,
+    'misReservas'])
+  }
 }

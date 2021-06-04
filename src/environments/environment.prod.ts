@@ -12,6 +12,7 @@ export const environment = {
   TOKENMTRC: 'recu_mt',
   TOKENSPFRC: 'recu_spf',
   TOKENOCRC:'recu_occ',
+  USEROCRC: 'user_occ',
   TOKENHCRC: 'recu_hc',
   REINTENTOS: 1
 };

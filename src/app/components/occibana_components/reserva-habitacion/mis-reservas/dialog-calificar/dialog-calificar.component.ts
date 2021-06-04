@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ComentarioService } from './../../../../../_service/occibana_service/comentario.service';
 import { Component, OnInit, Inject } from '@angular/core';
+import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
 
 @Component({
   selector: 'app-dialog-calificar',
@@ -21,13 +22,15 @@ export class DialogCalificarComponent implements OnInit {
       idUsuario: number
     },
     private comCalService: ComentarioService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private barraProgreso: BarraProgresoService
   ) { }
 
   ngOnInit(): void {
   }
 
   calificar() {
+    this.barraProgreso.progressBar.next("1");
     this.comCalService.postCalificar(
       this.data.idUsuario,
       this.data.idReserva,
@@ -38,6 +41,7 @@ export class DialogCalificarComponent implements OnInit {
         this._snackBar.open(data.mensaje, 'OK', {
           duration: 3500
         });
+        this.barraProgreso.progressBar.next("2");
       }
     )
   }

@@ -122,12 +122,12 @@ export class MisReservasComponent implements OnInit {
    * Método que se encarga de abrir el dialog de ComentarComponent, en el cual
    * el usuario podrá comentar el servicio del hotel
    */
-  comentarHotel() {
+  comentarHotel(idhotel: number) {
     this.dialog.afterAllClosed.subscribe(() => this.ngOnInit());
     this.dialog.open(DialogComentarComponent, {
       data: {
         idUsuario: this.usuario.id,
-        idHotel: this.reservas.idhotel,
+        idHotel: idhotel,
       },
     });
   }
@@ -137,12 +137,12 @@ export class MisReservasComponent implements OnInit {
    * el usuario podrá calificar el servicio del hotel
    * @param idReserva
    */
-  calificarHotel(idReserva: number) {
+  calificarHotel(idReserva: number, idhotel: number) {
     this.dialog.afterAllClosed.subscribe(() => this.ngOnInit());
     this.dialog.open(DialogCalificarComponent, {
       data: {
         idReserva,
-        idHotel: this.reservas.idhotel,
+        idHotel: idhotel,
         idUsuario: this.usuario.id,
       },
     });

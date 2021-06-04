@@ -38,11 +38,17 @@ export class PerfilService {
    * @param usuario variable recibe el usuario y correo del usuario para recuperar
    * @returns
    */
-  postGenerarContraseña(usuario:any){
+  postGenerarContraseña(usuario: any){
 
     return this.http.post(this.URL2 + "/postCorreoRecuperacionTransversal",usuario);
   }
 
-
-
+  /**
+   * Permite cambiar la contraseña
+   * @param usuario variable que contiene los datos para realizar la recuperación
+   * @returns
+   */
+  putRecuperarContraseña(usuario:any){
+    return this.http.put(this.URL2 + "/putReactivarCuenta", usuario);
+  }
 }

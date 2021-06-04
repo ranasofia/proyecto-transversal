@@ -1,4 +1,7 @@
 <h1>MIS RESERVAS</h1>
+<button mat-fab color="accent" class="btn-home" routerLink="/occibana/hoteles">
+  <mat-icon>home</mat-icon>
+</button>
 <div class="mis-reservas-container">
   <div fxLayout="row wrap" fxLayoutGap="18px grid">
     <div
@@ -40,19 +43,18 @@
                 </ng-template>
               </ngb-rating>
             </li>
-            <li><mat-icon>comment</mat-icon><em> Comentario:</em> {{ reserva.comentario }}</li>
           </ul>
         </mat-card-content>
         <mat-card-actions style="overflow: hidden">
           <button
             mat-mini-fab
             color="accent"
-            (click)="calificarHotel(reserva.id)"
+            (click)="calificarHotel(reserva.id, reserva.idhotel)"
           >
             <mat-icon>start_purple500</mat-icon>
           </button>
 
-          <button mat-mini-fab color="accent" (click)="comentarHotel()">
+          <button mat-mini-fab color="accent" (click)="comentarHotel(reserva.idhotel)">
             <mat-icon>add_comment</mat-icon>
           </button>
 

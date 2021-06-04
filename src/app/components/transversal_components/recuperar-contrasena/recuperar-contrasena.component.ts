@@ -1,9 +1,9 @@
-import { GenerarTokenRecuperarComponent } from './../generar-token-recuperar/generar-token-recuperar.component';
+import { PerfilService } from './../../../_service/occibana_service/perfil.service';
 import { AdminService } from 'src/app/_service/superfast_service/admin.service';
 import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
 import { Router } from '@angular/router';
 import { RecuperarContrasenaService } from 'src/app/_service/transversal_service/recuperar-contrasena.service';
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -42,7 +42,6 @@ export class RecuperarContrasenaComponent implements OnInit {
   tokenOccibana:string;
   tokenHcCauchos:string;
 
-
   /**
    * Permite configurar las validaciones del formulario
    * @returns
@@ -61,7 +60,6 @@ export class RecuperarContrasenaComponent implements OnInit {
       token:new FormControl('',[
        // Validators.required
       ]),
-
     });
   }
 
@@ -74,7 +72,8 @@ export class RecuperarContrasenaComponent implements OnInit {
               private _snackBar: MatSnackBar, 
               private router: Router,
               private clienteService: ClienteService,
-              private adminService:AdminService) {
+              private adminService:AdminService,
+              private perfilService: PerfilService) {
     this.recuperarForm=this.createFormGroup();
   }
 
@@ -134,15 +133,26 @@ export class RecuperarContrasenaComponent implements OnInit {
   }
   //
   recuperarContraseñaOccibana(){
+    var CryptoJS = require("crypto-js");
+    var bytes = CryptoJS.AES.decrypt(sessionStorage.getItem(environment.USEROCRC), 'usuarioOccibana');
+    var userDecrypt = bytes.toString(CryptoJS.enc.Utf8);
 
+    var contraseña = {usuario: userDecrypt,
+                      contrasena: this.recuperarForm.controls["password"].value,
+                      codigo: sessionStorage.getItem(environment.TOKENOCRC)};
+
+    this.perfilService.putRecuperarContraseña(contraseña).subscribe(data => {
+      this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
+        duration: 3000
+      });
+      this.router.navigate(['/login']);
+    })
+    sessionStorage.removeItem(environment.TOKENOCRC);
+    sessionStorage.removeItem(environment.USEROCRC);
   }
   //
   recuperarContraseñaHcCauchos(){
     
-  }
-
-  onResetForm() {
-    this.recuperarForm.reset();
   }
 
   /**
