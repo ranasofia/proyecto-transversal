@@ -12,7 +12,7 @@ export class PerfilService {
   private URL2: string =environment.OCCIBANA+ '/admin';
 
   constructor(private http: HttpClient) {
-    
+
   }
 
   actualizarPerfil(usuario: Object){
@@ -23,7 +23,7 @@ export class PerfilService {
 
   cambiarClave(usuario: Object){
 
-    return this.http.post(this.URL + "/putActualizarContrasena", usuario);
+    return this.http.put(this.URL + "/putActualizarContrasena", usuario);
 
   }
 
@@ -36,10 +36,10 @@ export class PerfilService {
   /**
    * Permite generar el token para recuperación de contraseña
    * @param usuario variable recibe el usuario y correo del usuario para recuperar
-   * @returns 
+   * @returns
    */
   postGenerarContraseña(usuario:any){
-   
+
     return this.http.post(this.URL2 + "/postCorreoRecuperacionTransversal",usuario);
   }
 

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Producto } from 'src/app/_model/superfast_model/Producto';
@@ -35,7 +35,8 @@ export class ProductoDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {producto: Producto},
   private usuarioTransversalService: UsuarioTransversalService,
   private inicioService: InicioService,
-  private _snackBar: MatSnackBar) {
+  private _snackBar: MatSnackBar,
+  private dialogRef: MatDialogRef<ProductoDialogComponent>) {
 
     this.productoForm = this.createFormGroup();
 
@@ -69,6 +70,8 @@ export class ProductoDialogComponent implements OnInit {
    */
   enviarACarrito(event: Event): void{
 
+    if (this.productoForm.valid) {
+
       const HELPER = new JwtHelperService();
 
       let usuarioSuperfast = new UsuarioSuperfast();
@@ -94,9 +97,13 @@ export class ProductoDialogComponent implements OnInit {
             duration: 3000
           });
 
+          this.dialogRef.close();
+
         });
 
       })
+
+    }
 
   }
 

@@ -262,7 +262,13 @@ export class PerfilUsuarioComponent implements OnInit {
 
           this.perfilServiceOccibana.actualizarPerfil(cascaronTemporalOccibana).subscribe(data => {
 
-            this.registroLoginOccibanaService.getToken(usuarioOccibanaActualizado).subscribe(data => sessionStorage.setItem(environment.TOKEN_OCCIBANA, data));
+            let datosAuxiliares = {usuario: usuarioOccibanaActualizado.usuario, Correo: usuarioOccibanaActualizado.correo, contrasenaAct: usuarioOccibana.contrasena, contrasenaNueva: usuarioOccibanaActualizado.contrasena}
+
+            this.perfilServiceOccibana.cambiarClave(datosAuxiliares).subscribe(data =>{
+
+              this.registroLoginOccibanaService.getToken(usuarioOccibanaActualizado).subscribe(data => sessionStorage.setItem(environment.TOKEN_OCCIBANA, data));
+
+            });
 
           })
 
@@ -313,15 +319,14 @@ export class PerfilUsuarioComponent implements OnInit {
         usuarioHCCauchosActualizado.correo = usuarioHCCauchosActualizado.email;
         usuarioHCCauchosActualizado.clave = usuarioHCCauchosActualizado.password;
 
-        this.comunicacionCService.cambiarCorreo(usuarioHCCauchosActualizado).subscribe(data => {
 
-          this.comunicacionCService.cambiarClave(usuarioHCCauchosActualizado).subscribe(data => {
+        this.comunicacionCService.cambiarCorreo(usuarioHCCauchosActualizado).subscribe();
 
-            this.loginHCService.getToken(usuarioHCCauchosActualizado).subscribe(data => sessionStorage.setItem(environment.TOKEN_HCCAUCHOS, data));
+        this.comunicacionCService.cambiarClave(usuarioHCCauchosActualizado).subscribe(data => {
 
-          })
+          this.loginHCService.getToken(usuarioHCCauchosActualizado).subscribe(data => sessionStorage.setItem(environment.TOKEN_HCCAUCHOS, data));
 
-        })
+        });
 
       });
 
@@ -342,7 +347,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
           sessionStorage.setItem("clave", claveEncriptada);
 
-          this.router.navigate(["/usuarios"]);
+          this.router.navigate(["/"]);
 
         })
 

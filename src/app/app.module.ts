@@ -223,8 +223,6 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.UBER_MOTOS + '/usuario/datosRecuperar?correo=',
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
-      environment.HCCAUCHOS + '/Usuario/editarcorreo',
-      environment.HCCAUCHOS + '/Usuario/modificarclave',
       environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
       environment.UBER_MOTOS + '/cliente/logincliente',
       environment.UBER_MOTOS + '/cliente/registrocliente',

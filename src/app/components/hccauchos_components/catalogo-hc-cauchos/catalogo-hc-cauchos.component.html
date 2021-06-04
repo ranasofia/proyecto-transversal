@@ -31,10 +31,10 @@
           <p>
             PRECIO: ${{formatoMoneda.format(producto.precio)}}
           </p>
-          <p *ngIf="producto.id != idProductoStockExcedido">
+          <p *ngIf="IDsProductoStockExcedido.indexOf(producto.id) == -1">
             STOCK: {{producto.ca_actual}}
           </p>
-          <p *ngIf="producto.id == idProductoStockExcedido" style="color:red">
+          <p *ngIf="IDsProductoStockExcedido.indexOf(producto.id) != -1" style="color:red">
             STOCK: {{producto.ca_actual}}
           </p>
           <p>
@@ -49,12 +49,12 @@
           <div class="contenedorAgregar">
             <div>
               <div class="contenedorCampoCantidad">
-                <input matInput type="number" min="0" placeholder="Cantidad" (keydown)="validacionesPropias.soloNumeros($event)" (keyup)="noExceder($event, producto.ca_actual, producto.id)">
+                <input matInput type="number" min="0" #cantidad placeholder="Cantidad" (keydown)="validacionesPropias.soloNumeros($event)" (keyup)="noExceder($event, producto.ca_actual, producto.id)">
               </div>
             </div>
 
             <div>
-              <button mat-button (click)="agregarAlCarrito(cantidad, producto)">
+              <button mat-button (click)="agregarAlCarrito(cantidad.value, producto)">
                 <mat-icon matPrefix>shopping_cart</mat-icon>Añadir
               </button>
             </div>

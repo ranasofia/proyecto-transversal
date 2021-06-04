@@ -49,7 +49,7 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
     cantidad: number;
 
-    idProductoStockExcedido: number;
+    IDsProductoStockExcedido: number[] = [];
 
     validacionesPropias = new ValidacionesPropias();
 
@@ -116,7 +116,20 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
       if(valor > numero){
 
-        this.idProductoStockExcedido = id;
+        this.IDsProductoStockExcedido.push(id);
+
+      }else{
+
+
+        this.IDsProductoStockExcedido.forEach((element, index) => {
+
+          if(element == id){
+
+            this.IDsProductoStockExcedido.splice(index,1);
+
+          }
+
+        });
 
       }
 
@@ -153,6 +166,12 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
           this.ngOnInit();
 
+        });
+
+      }else if(cantidad == 0){
+
+        this._snackBar.open('No ha indicado la cantidad', 'Cancel  ', {
+          duration: 5000
         });
 
       }else{
