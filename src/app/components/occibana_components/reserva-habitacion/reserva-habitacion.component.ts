@@ -105,6 +105,7 @@ export class ReservaHabitacionComponent implements OnInit {
    * Implementación que se ejecuta una vez se inicie el ReservaHabitacionComponent
    */
   ngOnInit(): void {
+    this.medioPagoSeleccionado = 'Efectivo';
     this.isDisabled = true;
     this.route.params.subscribe((data) => {
       const idHabitacion = data.id;
@@ -188,8 +189,8 @@ export class ReservaHabitacionComponent implements OnInit {
           },
           [Validators.required]
         ),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        validacionCorreo: new FormControl('', [
+        email: new FormControl(data.datos.correo, [Validators.required, Validators.email]),
+        validacionCorreo: new FormControl(data.datos.correo, [
           Validators.required,
           Validators.email,
           ValidacionesPropias.verificacionCorreo,
@@ -205,7 +206,7 @@ export class ReservaHabitacionComponent implements OnInit {
   buscarDisponiblidad(): void {
 
     if (this.rangoFechas.valid) {
-
+      this.barraProgreso.progressBar.next("1");
       this.fechaLlegada = this.rangoFechas.value['fechaLlegada'];
       this.fechaSalida = this.rangoFechas.value['fechaSalida'];
       this.panelHotelService
@@ -225,6 +226,7 @@ export class ReservaHabitacionComponent implements OnInit {
             ) {
               this.isDisabled = false;
             }
+            this.barraProgreso.progressBar.next("2");
           }
         );
 
@@ -270,6 +272,11 @@ export class ReservaHabitacionComponent implements OnInit {
                 duration: 2000,
               }
             );
+            this.router.navigate([
+              '/occibana/hoteles/reservaHabitacion/' + this.informacionHabitacion?.id,
+              'misReservas',
+            ]);
+            this.barraProgreso.progressBar.next("2");
           }
         );
 

@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComentarioService } from './../../../../../_service/occibana_service/comentario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
+import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
 
 /**
  * Decorador de DialogComentarComponent
@@ -40,7 +41,8 @@ export class DialogComentarComponent implements OnInit {
       idHotel: number;
     },
     private comCalService: ComentarioService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private barraProgreso: BarraProgresoService
   ) {
     this.comentarioF = this.createFormGroup();
   }
@@ -66,6 +68,7 @@ export class DialogComentarComponent implements OnInit {
    * Método que se encarga de crear un comentario por parte del usuario al hotel, a partir de su id
    */
   comentar(): void {
+    this.barraProgreso.progressBar.next("1");
     let comentario = this.comentarioF.value['comentarioF'];
     this.comCalService
       .postComentar(this.data.idUsuario, comentario, this.data.idHotel)
@@ -73,6 +76,7 @@ export class DialogComentarComponent implements OnInit {
         this._snackBar.open(data.mensaje, 'OK', {
           duration: 3000,
         });
+        this.barraProgreso.progressBar.next("2");
       });
   }
 

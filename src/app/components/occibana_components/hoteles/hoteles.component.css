@@ -68,3 +68,18 @@ mat-card-actions button {
   font-size: 17px;
   color: #acada9;
 }
+
+.btn-reserva {
+  background-color:#55A4F9;
+    position: absolute;
+    top: 4%;
+    left: 90%;
+    width: 75px;
+    height: 75px;
+}
+
+.img-reserva {
+  margin-top: -5px !important;
+  width: 50px !important;
+  font-size: 50px !important;
+}
