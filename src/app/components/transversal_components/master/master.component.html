@@ -39,6 +39,16 @@
           <mat-label class="user">{{user}}</mat-label>
         </div>
         <br>
+        <button mat-menu-item style="cursor: pointer" routerLink="/perfil" (click)="sidenav.toggle()">
+          <mat-icon>people</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item style="cursor: pointer" routerLink="/hccauchos/catalogo" (click)="sidenav.toggle()">
+          <mat-icon>store</mat-icon>
+          <span>HC Cauchos</span>
+        </button>
+        <mat-divider></mat-divider>
         <button mat-menu-item style="cursor: pointer" routerLink="/mototaxi/solicitudServicio" (click)="sidenav.toggle()">
           <mat-icon>two_wheeler</mat-icon>
           <span>Mototaxi Deluxe</span>
@@ -49,24 +59,9 @@
           <span>Occibana</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item style="cursor: pointer" routerLink="/hccauchos/catalogo" (click)="sidenav.toggle()">
-          <mat-icon>store</mat-icon>
-          <span>HC Cauchos</span>
-        </button>
-        <mat-divider></mat-divider>
         <button mat-menu-item style="cursor: pointer" routerLink="/superfast/catalogo" (click)="sidenav.toggle()">
           <mat-icon>shopping_cart</mat-icon>
           <span>SuperFast</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item style="cursor: pointer" routerLink="/usuarios" (click)="sidenav.toggle()">
-          <mat-icon>people</mat-icon>
-          <span>Nuestros usuarios</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item style="cursor: pointer" routerLink="/perfil" (click)="sidenav.toggle()">
-          <mat-icon>people</mat-icon>
-          <span>Perfil</span>
         </button>
         <mat-divider></mat-divider>
           <button mat-menu-item (click)="cerrarSesion(); sidenav.toggle()" routerLink="/login">

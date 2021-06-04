@@ -23,7 +23,7 @@
 
               <mat-form-field appearance="outline" class="login-full-width">
                   <mat-label> Correo electrónico </mat-label>
-                  <input [(ngModel)]="nombreUsuario" type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
+                  <input (ngModelChange)="nombreUsuario" type="email" matInput formControlName="email" placeholder="Ingresa tu correo">
                   <mat-icon matPrefix>mail_outline</mat-icon>
                   <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
                       Digita un correo electrónico válido...
@@ -36,7 +36,7 @@
               <!--Input contraseña-->
               <mat-form-field appearance="outline" class="login-full-width">
                   <mat-label> Contraseña </mat-label>
-                  <input  [(ngModel)]="contrasena" [type]="hide ? 'password' : 'text'" matInput formControlName="password" placeholder="Ingresa tu contraseña">
+                  <input  (ngModelChange)="contrasena" [type]="hide ? 'password' : 'text'" matInput formControlName="password" placeholder="Ingresa tu contraseña">
                     <mat-icon matPrefix>lock_outline</mat-icon>
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="loginForm.controls.password.hasError('required')">

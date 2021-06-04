@@ -6,7 +6,7 @@
     </button>
 
     <h2 class="tituloServicio">SOLICITUD DE SERVICIO</h2>
-    <div fxLayout="row wrap" fxLayoutGap="16px grid"> 
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%">
             <table class="tablaRutas">
                 <tr><th>N°</th><th>Ruta</th><th>Distancia (km)</th></tr>
@@ -39,7 +39,7 @@
                 <tr><td>27</td><td>Mesetas - Santa Ana & Vic.</td><td>8.4</td></tr>
                 <tr><td>28</td><td>Mesetas - Las Mercedes & Vic.</td><td>5.2</td></tr>
                 <tr><td>29</td><td>Mesetas - San Bernardo & Vic.</td><td>10</td></tr>
-                <tr><td>30</td><td>Mesetas - Guane & Vic.</td><td>13</td></tr>  
+                <tr><td>30</td><td>Mesetas - Guane & Vic.</td><td>13</td></tr>
                 <tr><td>31</td><td>Santa Ana - Las Mercedes & Vic.</td><td>5</td></tr>
                 <tr><td>32</td><td>Santa Ana - San Bernardo & Vic.</td><td>4.6</td></tr>
                 <tr><td>33</td><td>Santa Ana - Guane & Vic.</td><td>12</td></tr>
@@ -57,7 +57,7 @@
                     <mat-select matSelect formControlName="destino1" (ngModelChange)="selectDestino.id">
                         <mat-option *ngFor="let des of destino" value ={{des.id}}>{{des.lugarDestino}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formCalcular.controls.destino1.hasError('required') && formCalcular.controls.destino1.dirty">
+                    <mat-error *ngIf="formCalcular.controls.destino1.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
                 </mat-form-field>
@@ -69,14 +69,14 @@
                     <mat-select matSelect formControlName="ubicacion1" (ngModelChange)="selectUbicacion.id">
                         <mat-option *ngFor="let ubi of ubicacion" value ={{ubi.id}}>{{ubi.lugarUbicacion}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('required') && formCalcular.controls.ubicacion1.dirty">
+                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
-                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('verificacionSolicitud')&& formCalcular.controls.ubicacion1.dirty">
+                    <mat-error *ngIf="formCalcular.controls.ubicacion1.hasError('verificacionSolicitud')">
                        No puedes ingresar el mismo destino
                     </mat-error>
                 </mat-form-field>
-            
+
                 <h4>Descripción</h4>
                 <mat-form-field appearance="outline" class="textArea">
                     <mat-icon matPrefix>description</mat-icon>
@@ -109,11 +109,11 @@
                     <mat-select matSelect formControlName="pag" (ngModelChange)="selectPago.id">
                         <mat-option *ngFor="let pag of pago" value ={{pag.id}}>{{pag.descripcion}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formSolicitar.controls.pag.hasError('required')&&formSolicitar.controls.pag.dirty">
+                    <mat-error *ngIf="formSolicitar.controls.pag.hasError('required')">
                         Este campo es<strong> obligatorio</strong>
                     </mat-error>
                 </mat-form-field>
-            
+
                 <div>
                     <button mat-raised-button class="botonGuardar" type="submit">Guardar</button>
                 </div>
