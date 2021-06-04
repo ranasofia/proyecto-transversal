@@ -33,14 +33,38 @@ export class RecuperarContrasenaComponent implements OnInit {
    * Permite mostrar u ocultar el valor del campo de repetir contraseña
    */
   hide2 = true;
-
   /**
-   * variable que contiene el token de recuperacion
+   * Variable que contiene la nueva contraseña
    */
-  public tokenMototaxi: string;
+  contrasena: string;
+  /**
+   * Variable que contiene la confirmación de contraseña
+   */
+  confirmarContrasena: string;
+  /**
+   * Variable que contiene el token de recuperacion del usuario Transversal
+   */
+  tokenTransversal: string;
+  /**
+   * Variable que contiene el token de recuperacion de SuperFast
+   */
   tokenSuperFast:string;
+  /**
+   * Variable que contiene el token de recuperacion de Mototaxi Deluxe
+   */
+  tokenMototaxi: string;
+  /**
+   * Variable que contiene el token de recuperacion de Occibana
+   */
   tokenOccibana:string;
+  /**
+   * Variable que contiene el token de recuperacion de HcCauchos
+   */
   tokenHcCauchos:string;
+  /**
+   * Variable que contiene el usuario de occibana a recuperar
+   */
+  usuarioOccibana: string;
 
   /**
    * Permite configurar las validaciones del formulario
@@ -74,8 +98,8 @@ export class RecuperarContrasenaComponent implements OnInit {
               private clienteService: ClienteService,
               private adminService:AdminService,
               private perfilService: PerfilService) {
-    this.recuperarForm=this.createFormGroup();
-  }
+                this.recuperarForm=this.createFormGroup();
+              }
 
   /**
    * Método que se ejecuta al cargar la página
@@ -85,71 +109,86 @@ export class RecuperarContrasenaComponent implements OnInit {
   }
 
   /**
-   * Permite llevar la recuperación de contraseña
+   * Permite llevar a cabo la recuperación de contraseña de todos los proyectos
    */
   private recuperarContraseña(){
     if(this.recuperarForm.valid){
-      var obj = {tokenRecibido:this.recuperarForm.controls["token"].value, 
-                Contrasena:this.recuperarForm.controls["password"].value};
+      this.tokenTransversal = this.recuperarForm.controls["token"].value;
+      this.contrasena = this.recuperarForm.controls["password"].value;
+      this.confirmarContrasena = this.recuperarForm.controls["validacionContrasena"].value;
 
-      this.recuperarc.recuperar(obj).subscribe(data => {
-        this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
-          duration: 3000
-        });
-        this.router.navigate(['/login']);
-      });
-      //this.recuperarContraseñaSuperFast();
-      //this.recuperarContraseñaMototaxi();
-      //this.recuperarContraseñaOccibana();
+      this.tokenSuperFast = sessionStorage.getItem(environment.TOKENSPFRC);
+      this.tokenMototaxi = sessionStorage.getItem(environment.TOKENMTRC);
+      this.tokenOccibana = sessionStorage.getItem(environment.TOKENOCRC);
+      this.usuarioOccibana = sessionStorage.getItem(environment.USEROCRC);
+
+      this.recuperarContraseñaTransversal(this.tokenTransversal, this.contrasena);
+      /*this.recuperarContraseñaSuperFast(this.tokenSuperFast, this.contrasena);
+      this.recuperarContraseñaMototaxi(this.tokenMototaxi, this.contrasena, this.confirmarContrasena);
+      this.recuperarContraseñaOccibana(this.usuarioOccibana, this.contrasena, this.tokenOccibana);*/
       //this.recuperarContraseñaHcCauchos();
+
+      this._snackBar.open('Contraseña actualizada', 'Cancel  ', {
+        duration: 5000
+      });
+      this.router.navigate(['/login']);
     }
   }
-  //  
-  recuperarContraseñaSuperFast(){
-    var contraseña = {Token: sessionStorage.getItem(environment.TOKENSPFRC), 
-                      NuevaContrasenia: this.recuperarForm.controls["password"].value};
+  
+  /**
+   * Metodo que realiza la recuperación de contraseña del usuario Transversal
+   * @param token variable que contiene el token generado para recuperar
+   * @param contrasena variable que contiene la nueva contraseña
+   */
+  recuperarContraseñaTransversal(token: string, contrasena: string){
+    var body = {tokenRecibido: token, Contrasena: contrasena};
 
-    this.adminService.postRecuperarContraseña(contraseña).subscribe(data =>{
-      this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
-        duration: 3000
-      });
-      this.router.navigate(['/login']);
-    });
+    this.recuperarc.recuperar(body).subscribe();
+  }
+  
+  /**
+   * Metodo que realiza la recuperación de contraseña de SuperFast
+   * @param token variable que contiene el token generado para recuperar
+   * @param contrasena variable que contiene la nueva contraseña
+   */
+  recuperarContraseñaSuperFast(token: string, contrasena: string){
+    var body = {Token: token, NuevaContrasenia: contrasena};
+
+    this.adminService.postRecuperarContraseña(body).subscribe();
     sessionStorage.removeItem(environment.TOKENSPFRC);
   }
-  //
-  recuperarContraseñaMototaxi(){
-    var contraseña = {Contrasena: this.recuperarForm.controls["password"].value, 
-                      ContrasenaConfirmada: this.recuperarForm.controls["validacionContrasena"].value};
   
-    this.clienteService.putRecuperarContraseña(sessionStorage.getItem(environment.TOKENMTRC), contraseña)
-    .subscribe(data => {
-      this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
-        duration: 3000
-      });
-      this.router.navigate(['/login']);
-    });
+  /**
+   * Metodo que realiza la recuperación de contraseña de Mototaxi Deluxe
+   * @param token variable que contiene el token generado para recuperar
+   * @param contrasena variable que contiene la nueva contraseña
+   * @param confirContrasena variable que contiene la confirmación de contraseña
+   */
+  recuperarContraseñaMototaxi(token: string, contrasena: string, confirContrasena: string){
+    var body = {Contrasena: contrasena, ContrasenaConfirmada: confirContrasena};
+  
+    this.clienteService.putRecuperarContraseña(token, body).subscribe();
     sessionStorage.removeItem(environment.TOKENMTRC);
   }
-  //
-  recuperarContraseñaOccibana(){
+  
+  /**
+   * Metodo que realiza la recuperación de contraseña de Mototaxi Deluxe
+   * @param user variable que contiene el usuario que va a recuperar
+   * @param contrasena variable que contiene la nueva contraseña
+   * @param token variable que contiene el token generado para recuperar
+   */
+  recuperarContraseñaOccibana(user: string, contrasena: string, token: string){
     var CryptoJS = require("crypto-js");
-    var bytes = CryptoJS.AES.decrypt(sessionStorage.getItem(environment.USEROCRC), 'usuarioOccibana');
+    var bytes = CryptoJS.AES.decrypt(user, 'usuarioOccibana');
     var userDecrypt = bytes.toString(CryptoJS.enc.Utf8);
 
-    var contraseña = {usuario: userDecrypt,
-                      contrasena: this.recuperarForm.controls["password"].value,
-                      codigo: sessionStorage.getItem(environment.TOKENOCRC)};
+    var body = {usuario: userDecrypt, contrasena: contrasena, codigo: token};
 
-    this.perfilService.putRecuperarContraseña(contraseña).subscribe(data => {
-      this._snackBar.open('Contraseña actualizada ', 'Cancel  ', {
-        duration: 3000
-      });
-      this.router.navigate(['/login']);
-    })
+    this.perfilService.putRecuperarContraseña(body).subscribe();
     sessionStorage.removeItem(environment.TOKENOCRC);
     sessionStorage.removeItem(environment.USEROCRC);
   }
+  
   //
   recuperarContraseñaHcCauchos(){
     

@@ -25,27 +25,30 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    * Variable de tipo FormGroup que contiene el formulario de Generar Token
    */
   generarForm: FormGroup;
-
   /**
-   * variable que contiene el correo 
+   * Variable que contiene el correo 
    */
-  correoMototaxi: string;
-  correoSuperfast: string;
-  correoOccibana: string;
-  correoHcCauchos: string;  
-
+  correo: string;
   /**
-   * variable que contiene el usuario 
+   * Variable que contiene el usuario 
    */
-  public user: string;
-
+  user: string;
   /**
-   * varible que contiene el token generado 
+   * Varible que contiene el token generado de SuperFast
    */
-  public tokenMototaxi: string;
-  public tokenSuperFast: string;
-  public tokenHcCauchos: string;
-  public tokenOccibana: string;
+  tokenSuperFast: string;
+  /**
+   * Varible que contiene el token generado de Mototaxi Deluxe
+   */
+  tokenMototaxi: string;
+  /**
+   * Varible que contiene el token generado de Occibana
+   */
+  tokenOccibana: string;
+  /**
+   * Varible que contiene el token generado de HcCauchos
+   */
+  tokenHcCauchos: string;
 
   /**
    * Permite configurar las validaciones del formulario
@@ -71,8 +74,8 @@ export class GenerarTokenRecuperarComponent implements OnInit {
               private adminService: AdminService,
               private clienteService: ClienteService,
               private perfilService: PerfilService) {
-    this.generarForm=this.createFormGroup();
-  }
+                this.generarForm=this.createFormGroup();
+              }
 
   /**
    * Método que se ejecuta al cargar la página
@@ -82,29 +85,50 @@ export class GenerarTokenRecuperarComponent implements OnInit {
   }
 
   /**
-   * Permite llevar a cabo generar el token de recuperacion de contraseña
+   * Permite llevar a cabo generar el token de recuperacion de contraseña de todos los proyectos
    */
   private generartoken(){
     if(this.generarForm.valid){
-      var usuario=new Usuario();
+      this.correo = this.generarForm.controls["email"].value;
 
-      usuario.correo=this.generarForm.controls["email"].value;
-      this.recuperar.generar(usuario).subscribe(data => {
-          this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
-            duration: 5000
-          });
-          this.router.navigate(['/recuperarContrasena']);
-      });
-      //this.generarTokenSuperFast();
-      //this.generarTokenMototaxi();
-      //this.generarTokenOccibana();
+      var usuarioTransversal = new Usuario();
+      var usuarioMototaxi = new Usuario();
+      usuarioTransversal.correo = this.correo;
+      
+      this.generarTokenTransversal(usuarioTransversal);
+      /*this.generarTokenSuperFast(this.correo);
+
+      this.clienteService.getDatosRecuperar(this.correo).subscribe(data => {
+        this.user = data["usuario"];
+        usuarioMototaxi.usuario = this.user;
+
+        this.generarTokenMototaxi(usuarioMototaxi);
+        this.generarTokenOccibana(this.user, this.correo);
+      });*/
+      
       //this.generarTokenHcCauchos();
     }
   }
-  //
-  generarTokenSuperFast(){
-    this.correoSuperfast = this.generarForm.controls["email"].value;
-    this.adminService.getGenerarContraseña(this.correoSuperfast).subscribe(data=>{
+
+  /**
+   * Metodo que genera el token para recuperar contraseña del usuario transversal
+   * @param user Variable tipo Usuario que contiene el correo del usuario para realizar la petición
+   */
+  generarTokenTransversal(user: Usuario){
+    this.recuperar.generar(user).subscribe(data => {
+      this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+        duration: 5000
+      });
+      this.router.navigate(['/recuperarContrasena']);
+    });
+  }
+  
+  /**
+   * Metodo que genera el token para recuperar contraseña de SuperFast
+   * @param email Variable que contiene el correo del usuario para realizar la petición
+   */
+  generarTokenSuperFast(email: string){
+    this.adminService.getGenerarContraseña(email).subscribe(data=>{
       this.tokenSuperFast = data.toString();
       sessionStorage.setItem(environment.TOKENSPFRC,this.tokenSuperFast);
       this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
@@ -113,54 +137,51 @@ export class GenerarTokenRecuperarComponent implements OnInit {
       this.router.navigate(['/recuperarContrasena']);
     });
   }
-  //
-  generarTokenMototaxi(){
-    this.correoMototaxi = this.generarForm.controls["email"].value;
-    this.clienteService.getDatosRecuperar(this.correoMototaxi).subscribe(data=>{
-      this.user=data["usuario"];
-     
-      var usuario = new Usuario();
-      usuario.usuario = this.user;
-      this.clienteService.getGenerarContraseña(usuario).subscribe(data=>{
-        this.tokenMototaxi = data["tokenGenerar"];
-        sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
+  
+  /**
+   * Metodo que genera el token para recuperar contraseña de Mototaxi Deluxe
+   * @param user Variable tipo Usuario que contiene el usuario para realizar la petición
+   */
+  generarTokenMototaxi(user: Usuario){
+    this.clienteService.getGenerarContraseña(user).subscribe(data=>{
+      this.tokenMototaxi = data["tokenGenerar"];
+      sessionStorage.setItem(environment.TOKENMTRC,this.tokenMototaxi);
+      this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+        duration: 5000
+      });
+      this.router.navigate(['/recuperarContrasena']);
+    });
+  }
+  
+  /**
+   * Metodo que genera el token para recuperar contraseña de Occibana
+   * @param user Variable que contiene el usuario para realizar la petición
+   * @param email Variable que contiene el correo del usuario para realizar la petición
+   */
+  generarTokenOccibana(user: string, email: string){
+    var usuario = {usuario: user, correo: email};
+
+    this.perfilService.postGenerarContraseña(usuario).subscribe(data => {
+      if(data["mensajeTransversal"] == "Ya existe una recuperacion de contraseña activa, porfavor espere a que pueda realizar una de nuevo"){
+        this._snackBar.open('Ya existe una recuperacion de contraseña activa, porfavor espere a que pueda realizar una de nuevo', 'Cancel  ', {
+          duration: 5000
+        });
+      }else{
+        var cryptoJS = require("crypto-js");
+        var userEncrypt = cryptoJS.AES.encrypt(user, 'usuarioOccibana');
+
+        sessionStorage.setItem(environment.USEROCRC, userEncrypt);
+
+        this.tokenOccibana = data["tokengenerado"];
+        sessionStorage.setItem(environment.TOKENOCRC,this.tokenOccibana);
         this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
           duration: 5000
         });
         this.router.navigate(['/recuperarContrasena']);
-      });
+      }
     });
   }
-  //
-  generarTokenOccibana(){
-    this.correoOccibana = this.generarForm.controls["email"].value;
-    this.clienteService.getDatosRecuperar(this.correoOccibana).subscribe(data=>{
-      this.user = data["usuario"];
 
-      var usuario = {usuario: this.user,
-                    correo: this.correoOccibana};
-
-      this.perfilService.postGenerarContraseña(usuario).subscribe(data => {
-        if(data["mensajeTransversal"] == "Ya existe una recuperacion de contraseña activa, porfavor espere a que pueda realizar una de nuevo"){
-          this._snackBar.open('Ya existe una recuperacion de contraseña activa, porfavor espere a que pueda realizar una de nuevo', 'Cancel  ', {
-            duration: 5000
-          });
-        }else{
-          var cryptoJS = require("crypto-js");
-          var userEncrypt = cryptoJS.AES.encrypt(this.user, 'usuarioOccibana');
-
-          sessionStorage.setItem(environment.USEROCRC, userEncrypt);
-
-          this.tokenOccibana = data["tokengenerado"];
-          sessionStorage.setItem(environment.TOKENOCRC,this.tokenOccibana);
-          this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
-            duration: 5000
-          });
-          this.router.navigate(['/recuperarContrasena']);
-        }
-      });
-    });
-  }
   //
   generarTokenHcCauchos(){
     
