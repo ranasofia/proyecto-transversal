@@ -24,12 +24,14 @@
                 <mat-card-content>
                     <h1>{{producto.nombre_producto}}</h1>
                     <p>
+                        ALIADO: {{producto.nombre_aliado}}
+                    </p>
+                    <p>
                         PRECIO: ${{formatoMoneda.format(producto.precio_producto)}}
                     </p>
                     <p>
                         DESCRIPCIÓN: {{producto.descripcion_producto}}
                     </p>
-
                 </mat-card-content>
                 <mat-card-actions>
 
