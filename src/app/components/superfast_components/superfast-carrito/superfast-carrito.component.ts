@@ -10,10 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { Router } from '@angular/router';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { DetallePedido } from 'src/app/_model/superfast_model/DetallePedido';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 /**
  * Decorador de SuperfastCarritoComponent

@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
-import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { environment } from 'src/environments/environment';
 
@@ -35,10 +34,19 @@ export class HccauchosCarritoComponent implements OnInit {
    */
   pedidos: Pedido[];
 
+  /**
+   * Son los pedidos del carrito que deben ser mostrados de acuerdo a la paginación
+   */
   pedidosPaginados: Pedido[];
 
+  /**
+   * Es la fuente de datos que controla la información que se muestra en la paginación y el filtro
+   */
   dataSource: MatTableDataSource<Pedido>;
 
+  /**
+   * Objeto que permite realizar la paginación de los pedidos
+   */
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
@@ -69,7 +77,7 @@ export class HccauchosCarritoComponent implements OnInit {
    * Permite cancelar un pedido
    * @param idPedido indica el pedido a cancelar
    */
-  cancelarPedido(idPedido: number){
+  cancelarPedido(idPedido: number) {
 
     this.comunicacionCService.eliminarPedidoCarrito(idPedido).subscribe(data => {
 
@@ -86,7 +94,7 @@ export class HccauchosCarritoComponent implements OnInit {
   /**
    * Permite limpiar todo el carrito
    */
-  vaciarCarrito(){
+  vaciarCarrito() {
 
     const HELPER = new JwtHelperService();
     let tokenHCCauchos = HELPER.decodeToken(sessionStorage.getItem(environment.TOKEN_HCCAUCHOS));
@@ -105,6 +113,9 @@ export class HccauchosCarritoComponent implements OnInit {
 
   }
 
+  /**
+   * Permite actualizar la información del paginador y los datos a mostrar
+   */
   actualizarPaginador() {
 
     if (this.paginator != undefined) {

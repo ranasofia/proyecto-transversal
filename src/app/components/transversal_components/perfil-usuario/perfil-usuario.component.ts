@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
 import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
-import { UsuarioOccibana } from 'src/app/_model/occibana_model/UsuarioOccibana';
 
 /**
  * Decorador de PerfilUsuarioComponent

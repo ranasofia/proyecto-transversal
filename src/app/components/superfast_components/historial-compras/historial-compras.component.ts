@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { DetallePedido } from 'src/app/_model/superfast_model/DetallePedido';
 import { Pedido } from 'src/app/_model/superfast_model/Pedido';
 import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfast';
 import { ComunicacionService } from 'src/app/_service/superfast_service/comunicacion.service';
@@ -103,9 +102,11 @@ export class HistorialComprasComponent implements OnInit {
 
   }
 
+  /**
+   * Permite abrir el modal que mostrará los detalles de los artículos del pedido
+   * @param articulos objeto que posee los artículos del pedido
+   */
   openDialog(articulos) {
-
-    //this.dialog.afterAllClosed.subscribe(data => this.ngOnInit())
     this.dialog.open(DialogHistorialComponent, {
       data: { articulos: articulos },
     });

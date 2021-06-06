@@ -12,24 +12,45 @@ import { UsuarioTransversalService } from 'src/app/_service/transversal_service/
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { RegistroHCService } from 'src/app/_service/hccauchos_service/registro-hc.service';
 import { RegistroLoginOccibanaService } from 'src/app/_service/occibana_service/registro-login-occibana.service';
-import { RegistroSFService} from 'src/app/_service/superfast_service/registro-sf.service';
+import { RegistroSFService } from 'src/app/_service/superfast_service/registro-sf.service';
 
-
+/**
+ * Decorador de GuardianService
+ */
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Clase que permite condicionar el acceso a ciertas páginas teniendo en cuenta si se ha iniciado o no sesión y teniendo en cuenta a qué aplicación hace referencia la página
+ */
 export class GuardianService implements CanActivate {
 
+  /**
+   *
+   * @param clienteService objeto que se inyecta para usar el servicio de registro e inicio de sesión de Mototaxi
+   * @param registroHCService objeto que se inyecta para usar el servicio de registro de HCCauchos
+   * @param registroLoginOccibanaService objeto que se inyecta para usar el servicio de registro e inicio de sesión de Occibana
+   * @param registroSFService objeto que se inyecta para usar el servicio de registro de Superfast
+   * @param adminService objeto que se inyecta para usar el servicio de inicio de sesión de Superfast
+   * @param usuarioTransversalService objeto que se inyecta para usar el servicio de registro e inicio de sesión del Proyecto Transversal
+   * @param router objeto que se inyecta para los redireccionamientos
+   * @param loginHC objeto que se inyecta para el inicio de sesión de HCCauchos
+   * @param barraProgresoService objeto que se inyecta para mostrar la barra de progreso
+   */
   constructor(private clienteService: ClienteService,
-              private registroHCService: RegistroHCService,
-              private registroLoginOccibanaService: RegistroLoginOccibanaService,
-              private registroSFService: RegistroSFService,
-              private adminService: AdminService,
-              private usuarioTransversalService: UsuarioTransversalService,
-              private router: Router,
-              private loginHC: LoginHCService,
-              private barraProgresoService: BarraProgresoService) { }
+    private registroHCService: RegistroHCService,
+    private registroLoginOccibanaService: RegistroLoginOccibanaService,
+    private registroSFService: RegistroSFService,
+    private adminService: AdminService,
+    private usuarioTransversalService: UsuarioTransversalService,
+    private router: Router,
+    private loginHC: LoginHCService,
+    private barraProgresoService: BarraProgresoService) { }
 
+  /**
+   * Se encarga de la lógica para permitir, denegar y gestionar el acceso a las páginas que necesiten restricción de token
+   */
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     this.barraProgresoService.progressBar.next("1");
@@ -95,7 +116,7 @@ export class GuardianService implements CanActivate {
           usuarioConvertido = Conversion.convertirAMototaxi(usuarioTransversal);
           cadenaSesion = environment.TOKEN_MOTOTAXI;
 
-        }else{
+        } else {
 
           return true;
 
@@ -127,7 +148,7 @@ export class GuardianService implements CanActivate {
 
             }
 
-            servicioRegistroConvertido.registrar(usuarioConvertido).subscribe( data =>{
+            servicioRegistroConvertido.registrar(usuarioConvertido).subscribe(data => {
 
               servicioConvertido.getToken(usuarioConvertido).subscribe(data2 => {
 
@@ -175,6 +196,11 @@ export class GuardianService implements CanActivate {
 
   }
 
+  /**
+   * Permite detener la ejecución por un tiempo estipulado
+   * @param ms variable que indica el tiempo a detener la ejecución
+   * @returns promesa
+   */
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

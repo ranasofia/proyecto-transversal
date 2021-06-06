@@ -1,12 +1,9 @@
 import { DetallePedido } from './../../../_model/superfast_model/DetallePedido';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SuperfastCarritoComponent } from 'src/app/components/superfast_components/superfast-carrito/superfast-carrito.component';
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
 import * as html2pdf from 'html2pdf.js';
-import jsPDF from 'jspdf';
 import { CarritoService } from 'src/app/_service/superfast_service/carrito.service';
 import { Pedido } from 'src/app/_model/superfast_model/Pedido';
 

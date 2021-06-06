@@ -46,6 +46,9 @@ export class CatalogoSuperFastComponent implements OnInit {
    */
   productosFiltrados: Producto[];
 
+  /**
+   * Objeto que permite hacer la paginación de los productos del catálogo
+   */
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
@@ -106,6 +109,9 @@ export class CatalogoSuperFastComponent implements OnInit {
 
   }
 
+  /**
+   * Permite actualizar la información del paginador y los datos a mostrar
+   */
   actualizarPaginador() {
 
     let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;

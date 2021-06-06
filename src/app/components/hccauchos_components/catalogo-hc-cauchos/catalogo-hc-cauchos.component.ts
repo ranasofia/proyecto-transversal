@@ -48,12 +48,19 @@ import { MatPaginator } from '@angular/material/paginator';
      */
     productosFiltrados: ProductoH[];
 
-    cantidad: number;
-
+    /**
+     * IDs de los productos del catálogo cuyo stock se está viendo superado
+     */
     IDsProductoStockExcedido: number[] = [];
 
+    /**
+     * Objeto que permite establecer validaciones propias
+     */
     validacionesPropias = new ValidacionesPropias();
 
+    /**
+     * Objeto que permite hacer la paginación de los productos del catálogo
+     */
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     /**
@@ -113,6 +120,12 @@ import { MatPaginator } from '@angular/material/paginator';
 
     }
 
+    /**
+     * Permite agregar a la lista de IDs de productos excedidos el ID del producto al detectar que una entrada del usuario supera el stock
+     * @param event objeto que posee toda la información del evento que activó el método
+     * @param numero indica el número que no debe ser excedido
+     * @param id indica el id que debe ser almacenado en IDsProductoStockExcedido, al haber superado el stock disponible
+     */
     noExceder(event: Event, numero: number, id: number){
 
       let valor = Number((event.target as HTMLInputElement).value);
@@ -187,6 +200,9 @@ import { MatPaginator } from '@angular/material/paginator';
 
     }
 
+    /**
+     * Permite actualizar la información del paginador y los datos a mostrar
+     */
     actualizarPaginador() {
 
       let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;
