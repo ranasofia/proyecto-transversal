@@ -92,7 +92,7 @@ export class CatalogoSuperFastComponent implements OnInit {
       for (var i = 0; i < this.productos.length; i++) {
 
         var longitud = this.productos[i].imagen_producto1.length;
-        this.productos[i].imagen_producto1 = "https://www.superfastisw.tk/" + this.productos[i].imagen_producto1.substring(1, longitud);
+        this.productos[i].imagen_producto1 = "http://52.67.179.68/" + this.productos[i].imagen_producto1.substring(1, longitud);
 
       }
 
@@ -107,7 +107,6 @@ export class CatalogoSuperFastComponent implements OnInit {
   }
 
   actualizarPaginador() {
-
 
     let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;
     let indiceFinal = (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;

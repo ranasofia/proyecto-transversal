@@ -13,7 +13,7 @@
  .card-producto{
      display: flex;
      width: 70%;
-     height: 350px;
+     height: 300px;
      background-color:grey;
      margin-left: 15%;
      margin-top: 2%;
@@ -21,6 +21,8 @@
  }
 
  .img-producto{
+
+    margin-top: 2%;
      display: flex;
      width: 40%;
      height: 350px;
@@ -29,7 +31,7 @@
  .img-producto img{
      text-align: center;
      width: 80%;
-     height: 250px;
+     height: 200px;
      margin-top: 12%;
      margin-left: 10%;
      border: solid;
