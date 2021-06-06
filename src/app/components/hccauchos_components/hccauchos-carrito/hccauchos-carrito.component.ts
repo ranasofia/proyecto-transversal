@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
 import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
@@ -33,6 +35,12 @@ export class HccauchosCarritoComponent implements OnInit {
    */
   pedidos: Pedido[];
 
+  pedidosPaginados: Pedido[];
+
+  dataSource: MatTableDataSource<Pedido>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   /**
    * Método que se ejecuta al cargar la página
    */
@@ -46,6 +54,12 @@ export class HccauchosCarritoComponent implements OnInit {
     this.comunicacionCService.getCarrito(idUsuario).subscribe(data => {
 
       this.pedidos = data;
+      this.pedidosPaginados = data;
+
+      this.dataSource = new MatTableDataSource(this.pedidos);
+      this.dataSource.paginator = this.paginator;
+
+      this.actualizarPaginador();
 
     })
 
@@ -88,6 +102,18 @@ export class HccauchosCarritoComponent implements OnInit {
       this.ngOnInit();
 
     })
+
+  }
+
+  actualizarPaginador() {
+
+    if (this.paginator != undefined) {
+
+      let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;
+      let indiceFinal = (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;
+
+      this.pedidosPaginados = this.dataSource.filteredData.slice(indiceInicial, indiceFinal + 1);
+    }
 
   }
 

@@ -21,39 +21,34 @@
           The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
-  <ng-container matColumnDef="nombreprodet">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-    <td mat-cell *matCellDef="let element"> {{element.nombreprodet}} </td>
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+    <td mat-cell *matCellDef="let element"> {{datePipe.transform(element.fecha, 'dd-MM-yyyy hh:mm a', 'UTC')}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="especprodaliado">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
-    <td mat-cell *matCellDef="let element"> {{element.especprodaliado}} </td>
+  <ng-container matColumnDef="nombre_estado_ped">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado Pedido </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre_estado_ped}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="imagen_producto1">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
-    <td mat-cell *matCellDef="let element"> <img style="width: 100px; height: 100px;" src="{{element.imagen_producto1}}"> </td>
+  <ng-container matColumnDef="nombre_estado_domicilio">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado Domicilio </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre_estado_domicilio}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="cantidad">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
-    <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+  <ng-container matColumnDef="nombre_aliado">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Aliado </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre_aliado}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="descripcion">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Especificación </th>
-    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+  <ng-container matColumnDef="detalles">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalles del pedido </th>
+    <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" (click)="openDialog(element.compras)">Ver detalles</button></td>
   </ng-container>
 
-  <ng-container matColumnDef="v_unitario">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor unitario </th>
-    <td mat-cell *matCellDef="let element"> ${{element.v_unitario}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="v_total">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor total </th>
-    <td mat-cell *matCellDef="let element"> ${{element.v_total}} </td>
+  <ng-container matColumnDef="valor_total">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Total </th>
+    <td mat-cell *matCellDef="let element"> ${{element.valor_total}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

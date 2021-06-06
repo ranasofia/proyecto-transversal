@@ -51,6 +51,7 @@ import { MisReservasComponent } from './components/occibana_components/reserva-h
 import { DialogComentarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-comentar/dialog-comentar.component';
 import { DialogCalificarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-calificar/dialog-calificar.component';
 import { DialogCancelarReservaComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-cancelar-reserva/dialog-cancelar-reserva.component';
+import { DialogHistorialComponent } from './components/superfast_components/dialog-historial/dialog-historial.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -291,7 +292,8 @@ export function delay(ms: number) {
     MisReservasComponent,
     DialogComentarComponent,
     DialogCalificarComponent,
-    DialogCancelarReservaComponent
+    DialogCancelarReservaComponent,
+    DialogHistorialComponent
   ],
 
 

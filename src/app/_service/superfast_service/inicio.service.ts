@@ -36,16 +36,16 @@ export class InicioService {
    */
   agregarAlCarrito(usuario: UsuarioSuperfast, producto: Producto, especificacion: string){
 
-    let cuerpoSolicitud = {Cliente_id: usuario.id,
-    Aliado_id: producto.id_aliado,
-    Descripcion: especificacion,
-    V_unitario: producto.precio_producto,
-    Producto_id: producto.id,
-    Direccion_cliente: usuario.direccion,
-    Telefono_cliente: usuario.telefono,
-    Cantidad: producto.cantidad};
+    let cuerpoSolicitud = {idcliente: usuario.id,
+    idaliado: producto.id_aliado,
+    descripcion: especificacion,
+    valorunitario: producto.precio_producto,
+    productoid: producto.id,
+    direccioncliente: usuario.direccion,
+    telefonocliente: usuario.telefono,
+    cantidad: producto.cantidad};
 
-    return this.http.post<string>(this.URL + "/AgregarPedidoCarrito", cuerpoSolicitud);
+    return this.http.post<string>(this.URL + "/AgregarPedidosCarrito", cuerpoSolicitud);
 
   }
 

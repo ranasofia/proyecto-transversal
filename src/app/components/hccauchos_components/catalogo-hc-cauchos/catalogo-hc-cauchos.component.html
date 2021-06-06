@@ -27,7 +27,7 @@
         <mat-card-header>
 
         </mat-card-header>
-        <img mat-card-image src="{{producto.imagen}}">
+        <img mat-card-image onerror="this.src='assets/images/HCCauchos info.png'" src="{{producto.imagen}}">
         <mat-card-content>
           <h1>{{producto.titulo}}</h1>
           <p>
@@ -70,3 +70,5 @@
   </div>
 
 </div>
+
+<mat-paginator [pageSizeOptions]="[3, 6, 9]"  (page)="actualizarPaginador()" showFirstLastButtons></mat-paginator>

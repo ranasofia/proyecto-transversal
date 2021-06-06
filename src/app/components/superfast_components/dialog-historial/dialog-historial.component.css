@@ -1,0 +1,88 @@
+
+ .carrito-container{
+     width: 70vw;
+     height: 300px;
+
+ }
+ .boton-vaciar button{
+     width: 30%;
+     margin-left: 35%;
+     text-align: center;
+     height: 50px;
+ }
+ .card-producto{
+     display: flex;
+     width: 70%;
+     height: 350px;
+     background-color:grey;
+     margin-left: 15%;
+     margin-top: 2%;
+     border-radius: 15px;
+ }
+
+ .img-producto{
+     display: flex;
+     width: 40%;
+     height: 350px;
+
+ }
+ .img-producto img{
+     text-align: center;
+     width: 80%;
+     height: 250px;
+     margin-top: 12%;
+     margin-left: 10%;
+     border: solid;
+     border-color: black;
+
+ }
+ .descripcion-producto{
+
+     flex-wrap: wrap;
+     width: 100%;
+     height: 300px;
+
+ }
+ .btn-productos{
+     width: 100%;
+     height: 50px;
+
+     text-align: right;
+ }
+ .btn-productos .modificar{
+     margin-right: 5%;
+ }
+ .btn-productos .cancelar{
+     margin-right: 10%;
+     background-color: orangered;
+ }
+ .contenedorBotonComprar{
+
+  width: 100%;
+  text-align: center;
+
+ }
+
+ .subcontenedorBoton{
+
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+ }
+ .producto{
+
+ padding-top: 10%;
+ font-size: 14px;
+ font-weight: bold;
+ }
+ .producto h2{
+     font-size: 40px;
+ }
+
+ .container-descripcion{
+     width: 60%;
+
+ }
+ .mat-form-field{
+     height: 20px;
+ }

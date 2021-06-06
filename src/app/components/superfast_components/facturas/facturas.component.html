@@ -1,10 +1,6 @@
 <div ID="content" class="content">
   <div class="titulo2">
     <h1> - FACTURA DE PAGO - </h1>
-    <mat-form-field data-html2canvas-ignore="true">
-      <mat-icon matPrefix>search</mat-icon>
-      <input type="text" placeholder="Buscar " matInput (keyup)="dataFilter($event.target.value)">
-    </mat-form-field>
   </div>
   <div class="prueba">
     <div>
@@ -17,22 +13,22 @@
           <!-- Position Column -->
           <ng-container matColumnDef="nombreprodet">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre producto </th>
-            <td mat-cell *matCellDef="let element"> {{element.compras[0].nombreprodet}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.nombreprodet}} </td>
           </ng-container>
 
           <ng-container matColumnDef="v_unitario">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor unitario </th>
-            <td mat-cell *matCellDef="let element"> ${{element.compras[0].v_unitario}} </td>
+            <td mat-cell *matCellDef="let element"> ${{element.v_unitario}} </td>
           </ng-container>
 
           <ng-container matColumnDef="cantidad">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Unidades </th>
-            <td mat-cell *matCellDef="let element"> {{element.compras[0].cantidad}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
           </ng-container>
 
           <ng-container matColumnDef="v_total">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor total </th>
-            <td mat-cell *matCellDef="let element"> ${{element.compras[0].v_total}} </td>
+            <td mat-cell *matCellDef="let element"> ${{element.v_total}} </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

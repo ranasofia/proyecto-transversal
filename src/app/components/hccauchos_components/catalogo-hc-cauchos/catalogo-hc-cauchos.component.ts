@@ -1,5 +1,5 @@
 import { ProductoH } from 'src/app/_model/hccauchos_model/ProductoH';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,6 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropias';
+import { MatPaginator } from '@angular/material/paginator';
 /**
  * Decorador de CatalogoHcCauchosComponent
  */
@@ -53,20 +54,17 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
 
     validacionesPropias = new ValidacionesPropias();
 
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
     /**
      * Permite filtrar los productos a mostrar
      * @param filter variabe que posee la palabra clave por la que se filtra
      */
     dataFilter(filter: string) {
 
-      // Filtrar con cadena de texto convertida en minúsculas
+      this.dataSource.filter = filter.trim().toLocaleLowerCase();
 
-      var dataSource = new MatTableDataSource(this.productos);
-
-      dataSource.filter = filter.trim().toLocaleLowerCase();
-
-      this.productosFiltrados = dataSource.filteredData;
-
+      this.actualizarPaginador();
     }
 
     /**
@@ -104,6 +102,11 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
           this.productos[i].imagen = "http://18.224.240.8:8080/" + this.productos[i].imagen.substring(1, longitud);
 
         }
+
+        this.dataSource = new MatTableDataSource(this.productos);
+        this.dataSource.paginator = this.paginator;
+
+        this.actualizarPaginador();
 
 
       });
@@ -181,6 +184,15 @@ import { ValidacionesPropias } from 'src/app/_model/utilidades/ValidacionesPropi
         });
 
       }
+
+    }
+
+    actualizarPaginador() {
+
+      let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;
+      let indiceFinal = (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;
+
+      this.productosFiltrados = this.dataSource.filteredData.slice(indiceInicial, indiceFinal + 1);
 
     }
 

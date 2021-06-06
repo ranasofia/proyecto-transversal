@@ -9,16 +9,16 @@
 
 <h2> -- CARRITO DE COMPRAS HCCAUCHOS -- </h2>
 <div class="carrito-container">
-    <div class="boton-vaciar">
+    <div *ngIf="(pedidos != undefined && pedidos.length > 0)" class="boton-vaciar">
         <button mat-raised-button color="primary" (click)="vaciarCarrito()">
             <mat-icon matPrefix>delete</mat-icon>
             VACIAR CARRITO
         </button>
     </div>
-    <ng-container *ngFor="let pedido of pedidos">
+    <ng-container *ngFor="let pedido of pedidosPaginados">
         <div class="card-producto">
             <div class=img-producto>
-                <img mat-card-image src="{{pedido.imagen}}">
+                <img mat-card-image onerror="this.src='assets/images/HCCauchos info.png'" src="{{pedido.imagen}}">
             </div>
             <div class="container-descripcion">
                 <div class="descripcion-producto">
@@ -52,5 +52,8 @@
             </div>
         </div>
     </ng-container>
+
+    <mat-paginator [hidden]="(pedidos == undefined || pedidos.length == 0)" [pageSizeOptions]="[3, 6, 9]"  (page)="actualizarPaginador()" showFirstLastButtons></mat-paginator>
+
 
 </div>

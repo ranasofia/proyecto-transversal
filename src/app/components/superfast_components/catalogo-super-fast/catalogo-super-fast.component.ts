@@ -1,10 +1,11 @@
 import { ProductoDialogComponent } from 'src/app/components/superfast_components/producto-dialog/producto-dialog.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ComunicacionService } from 'src/app/_service/superfast_service/comunicacion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Producto } from 'src/app/_model/superfast_model/Producto';
 import { InicioService } from 'src/app/_service/superfast_service/inicio.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 /**
  * Decorador de CatalogoSuperFastComponent
@@ -45,19 +46,17 @@ export class CatalogoSuperFastComponent implements OnInit {
    */
   productosFiltrados: Producto[];
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   /**
    * Permite filtrar los productos a mostrar
    * @param filter variabe que posee la palabra clave por la que se filtra
    */
   dataFilter(filter: string) {
 
-    // Filtrar con cadena de texto convertida en minúsculas
+    this.dataSource.filter = filter.trim().toLocaleLowerCase();
 
-    var dataSource = new MatTableDataSource(this.productos);
-
-    dataSource.filter = filter.trim().toLocaleLowerCase();
-
-    this.productosFiltrados = dataSource.filteredData;
+    this.actualizarPaginador();
 
   }
 
@@ -97,8 +96,23 @@ export class CatalogoSuperFastComponent implements OnInit {
 
       }
 
+      this.dataSource = new MatTableDataSource(this.productos);
+      this.dataSource.paginator = this.paginator;
+
+      this.actualizarPaginador();
+
 
     });
+
+  }
+
+  actualizarPaginador() {
+
+
+    let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;
+    let indiceFinal = (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;
+
+    this.productosFiltrados = this.dataSource.filteredData.slice(indiceInicial, indiceFinal + 1);
 
   }
 
@@ -107,7 +121,7 @@ export class CatalogoSuperFastComponent implements OnInit {
    */
   openDialog(producto: Producto) {
     this.dialog.open(ProductoDialogComponent, {
-      data:{producto: producto}
+      data: { producto: producto }
     });
   }
 

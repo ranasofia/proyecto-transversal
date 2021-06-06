@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +10,7 @@ import { Pedido } from 'src/app/_model/superfast_model/Pedido';
 import { UsuarioSuperfast } from 'src/app/_model/superfast_model/UsuarioSuperfast';
 import { ComunicacionService } from 'src/app/_service/superfast_service/comunicacion.service';
 import { environment } from 'src/environments/environment';
+import { DialogHistorialComponent } from 'src/app/components/superfast_components/dialog-historial/dialog-historial.component'
 
 /**
  * Decorador de HistorialcComprasComponent
@@ -26,12 +29,12 @@ export class HistorialComprasComponent implements OnInit {
   /**
    * Indica qué variables deben ser mostradas en la tabla
    */
-  displayedColumns: string[] = ['nombreprodet', 'especprodaliado', 'imagen_producto1', 'cantidad', 'descripcion', 'v_unitario', 'v_total'];
+  displayedColumns: string[] = ['fecha', 'nombre_estado_ped', 'nombre_estado_domicilio', 'nombre_aliado', 'detalles', 'valor_total'];
 
   /**
    * Es el origen de datos de la tabla
    */
-  dataSource = new MatTableDataSource<DetallePedido>();
+  dataSource = new MatTableDataSource<Pedido>();
 
   /**
    * Permite ordenar los datos de la tabla
@@ -49,7 +52,9 @@ export class HistorialComprasComponent implements OnInit {
    * @param usuarioTransversalService objeto que permite usar los servicios relacionados con el usuario general
    * @param dialog objeto que permite invocar la venana modal
    */
-  constructor(private comunicacionService: ComunicacionService) { }
+  constructor(private comunicacionService: ComunicacionService,
+    private datePipe: DatePipe,
+    private dialog: MatDialog) { }
 
   /**
    * Método que se ejecuta al cargar la página
@@ -66,19 +71,20 @@ export class HistorialComprasComponent implements OnInit {
     this.comunicacionService.getHistorialCompras(usuarioSuperfast).subscribe(data => {
 
       let pedidos: Pedido[] = data;
-      let detalles: Array<DetallePedido> = [];
 
-      pedidos.forEach(element => {
+      pedidos.forEach(pedido => {
 
-        var longitud = element.compras[0].imagen_producto1.length;
-        element.compras[0].imagen_producto1 = "https://www.superfastisw.tk/" + element.compras[0].imagen_producto1.substring(1, longitud);
-        detalles.push(element.compras[0]);
+
+        pedido.compras.forEach(articulo =>{
+
+          var longitud = articulo.imagen_producto1.length;
+          articulo.imagen_producto1 = "https://www.superfastisw.tk/" + articulo.imagen_producto1.substring(1, longitud);
+
+        });
 
       });
 
-      detalles = detalles.reverse();
-
-      this.dataSource = new MatTableDataSource(detalles);
+      this.dataSource = new MatTableDataSource(pedidos);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
 
@@ -95,6 +101,14 @@ export class HistorialComprasComponent implements OnInit {
 
     this.dataSource.filter = filter.trim().toLocaleLowerCase();
 
+  }
+
+  openDialog(articulos) {
+
+    //this.dialog.afterAllClosed.subscribe(data => this.ngOnInit())
+    this.dialog.open(DialogHistorialComponent, {
+      data: { articulos: articulos },
+    });
   }
 
 }

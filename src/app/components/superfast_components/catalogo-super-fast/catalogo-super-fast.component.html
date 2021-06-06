@@ -20,7 +20,7 @@
                 <mat-card-header>
 
                 </mat-card-header>
-                <img mat-card-image src="{{producto.imagen_producto1}}">
+                <img mat-card-image onerror="this.src='assets/images/Superfast info.jpg'" src="{{producto.imagen_producto1}}">
                 <mat-card-content>
                     <h1>{{producto.nombre_producto}}</h1>
                     <p>
@@ -40,3 +40,5 @@
     </div>
 
 </div>
+
+<mat-paginator [pageSizeOptions]="[3, 6, 9]"  (page)="actualizarPaginador()" showFirstLastButtons></mat-paginator>

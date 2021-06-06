@@ -24,6 +24,27 @@ import { Pedido } from 'src/app/_model/superfast_model/Pedido';
  */
 export class FacturasComponent implements OnInit {
 
+
+  /**
+  * Indica las columnas a mostrar en la tabla de los datos recibidos
+  */
+  displayedColumns: string[] = ['nombreprodet', 'v_unitario', 'cantidad', 'v_total'];
+
+  /**
+   * Indica el origen de los datos para llenar la tabla
+   */
+  dataSource = new MatTableDataSource<DetallePedido>();
+
+  /**
+   * Indica el total a pagar
+   */
+  total = 0;
+
+  /**
+   * Permite ordenar los datos de la tabla
+   */
+  @ViewChild(MatSort) sort: MatSort;
+
   /**
    * Constructor de FacturasComponent
    * @param carritoService objeto que se inyecta para usar los servicios de carrito
@@ -38,6 +59,7 @@ export class FacturasComponent implements OnInit {
   ngOnInit(): void {
 
     let pedidos: Pedido[] = this.carritoService.getPedidosFactura();
+    let articulos: DetallePedido[] = [];
 
     if (pedidos == undefined) {
 
@@ -45,15 +67,20 @@ export class FacturasComponent implements OnInit {
 
     } else {
 
-      pedidos.forEach(element => {
+      pedidos.forEach(pedido => {
 
-        this.total = this.total + element.compras[0].v_total;
+        pedido.compras.forEach(articulo => {
+
+          this.total = this.total + articulo.v_total;
+          articulos.push(articulo);
+
+        });
 
       });
 
     }
 
-    this.dataSource = new MatTableDataSource(pedidos);
+    this.dataSource = new MatTableDataSource(articulos);
     this.dataSource.sort = this.sort;
 
   }
@@ -65,26 +92,6 @@ export class FacturasComponent implements OnInit {
   dataFilter(filter: string) {
     this.dataSource.filter = filter.trim().toLocaleLowerCase();
   }
-
-  /**
-   * Indica las columnas a mostrar en la tabla de los datos recibidos
-   */
-  displayedColumns: string[] = ['nombreprodet', 'v_unitario', 'cantidad', 'v_total'];
-
-  /**
-   * Indica el origen de los datos para llenar la tabla
-   */
-  dataSource = new MatTableDataSource<Pedido>();
-
-  /**
-   * Indica el total a pagar
-   */
-  total = 0;
-
-  /**
-   * Permite ordenar los datos de la tabla
-   */
-  @ViewChild(MatSort) sort: MatSort;
 
   /**
    * Genera la factura para que el usuario la pueda descargar
