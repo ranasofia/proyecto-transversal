@@ -92,7 +92,7 @@ export class CatalogoSuperFastComponent implements OnInit {
       for (var i = 0; i < this.productos.length; i++) {
 
         var longitud = this.productos[i].imagen_producto1.length;
-        this.productos[i].imagen_producto1 = "http://52.67.179.68/" + this.productos[i].imagen_producto1.substring(1, longitud);
+        this.productos[i].imagen_producto1 = "http://52.67.179.68:8081/" + this.productos[i].imagen_producto1.substring(1, longitud);
 
       }
 

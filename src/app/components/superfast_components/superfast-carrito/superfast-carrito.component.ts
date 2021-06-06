@@ -72,7 +72,7 @@ export class SuperfastCarritoComponent implements OnInit {
         for (var j = 0; j < this.pedidos[i].compras.length; j++) {
 
           var longitud = this.pedidos[i].compras[j].imagen_producto1.length;
-          this.pedidos[i].compras[j].imagen_producto1 = "http://52.67.179.68/" + this.pedidos[i].compras[j].imagen_producto1.substring(1, longitud);
+          this.pedidos[i].compras[j].imagen_producto1 = "http://52.67.179.68:8081/" + this.pedidos[i].compras[j].imagen_producto1.substring(1, longitud);
 
         }
 
