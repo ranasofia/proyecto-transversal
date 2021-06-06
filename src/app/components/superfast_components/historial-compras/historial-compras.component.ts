@@ -70,7 +70,7 @@ export class HistorialComprasComponent implements OnInit {
 
     this.comunicacionService.getHistorialCompras(usuarioSuperfast).subscribe(data => {
 
-      let pedidos: Pedido[] = data;
+      let pedidos: Pedido[] = data.sort((a,b) => (new Date(a.fecha).getTime() - new Date(b.fecha).getTime())*-1);
 
       pedidos.forEach(pedido => {
 

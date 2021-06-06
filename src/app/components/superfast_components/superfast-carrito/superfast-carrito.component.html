@@ -16,59 +16,76 @@
       VACIAR CARRITO
     </button>
   </div>
-  <ng-container *ngFor="let articulo of articulosPaginados">
 
-      <div class="card-producto">
-        <div class=img-producto>
-          <img mat-card-image onerror="this.src='assets/images/Superfast info.jpg'" src="{{articulo.imagen_producto1}}">
-        </div>
-        <div class="container-descripcion">
-          <div class="descripcion-producto">
+  <mat-tab-group>
 
-            <div class="producto">
-              <h2> {{articulo.nombreprodet}} </h2>
-              DESCRIPCIÓN:
-              <mat-form-field>
-                <input type="text" value="{{articulo.descripcion}}" disabled class="columna1" matInput>
-              </mat-form-field>
-              <br>
-              CANTIDAD:
-              <mat-form-field>
-                <input type="number" value="{{articulo.cantidad}}" disabled class="columna1" matInput>
-              </mat-form-field>
-              <br>
-              ESPECIFICACIÓN:
-              <mat-form-field>
-                <input type="text" value="{{articulo.especprodaliado}}" disabled class="columna1" matInput>
-              </mat-form-field>
-              <br>
-              VALOR UNITARIO:
-              <mat-form-field>
-                <input type="number" value="{{articulo.v_unitario}}" disabled class="columna1" matInput>
-              </mat-form-field>
-              <br>
-              SUBTOTAL:
-              <mat-form-field>
-                <input type="number" value="{{articulo.v_total}}" disabled class="columna1" matInput>
-              </mat-form-field>
+    <ng-container *ngFor="let pedido of pedidos">
+
+      <mat-tab label="{{pedido.nombre_aliado}}">
+
+        <ng-container *ngFor="let articulo of pedido.compras">
+
+          <div class="card-producto">
+            <div class=img-producto>
+              <img mat-card-image onerror="this.src='assets/images/Superfast info.jpg'"
+                src="{{articulo.imagen_producto1}}">
+            </div>
+            <div class="container-descripcion">
+              <div class="descripcion-producto">
+
+                <div class="producto">
+                  <h2> {{articulo.nombreprodet}} </h2>
+                  DESCRIPCIÓN:
+                  <mat-form-field>
+                    <input type="text" value="{{articulo.descripcion}}" disabled class="columna1" matInput>
+                  </mat-form-field>
+                  <br>
+                  CANTIDAD:
+                  <mat-form-field>
+                    <input type="number" value="{{articulo.cantidad}}" disabled class="columna1" matInput>
+                  </mat-form-field>
+                  <br>
+                  ESPECIFICACIÓN:
+                  <mat-form-field>
+                    <input type="text" value="{{articulo.especprodaliado}}" disabled class="columna1" matInput>
+                  </mat-form-field>
+                  <br>
+                  VALOR UNITARIO:
+                  <mat-form-field>
+                    <input type="number" value="{{articulo.v_unitario}}" disabled class="columna1" matInput>
+                  </mat-form-field>
+                  <br>
+                  SUBTOTAL:
+                  <mat-form-field>
+                    <input type="number" value="{{articulo.v_total}}" disabled class="columna1" matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
             </div>
           </div>
+
+        </ng-container>
+
+        <div class="contenedorBotonCancelar">
           <div class="btn-productos">
 
             <button mat-raised-button color="primary" class="cancelar" (click)="cancelarPedido(pedido.id_pedido)">
-              CANCELAR </button>
+              CANCELAR PEDIDO</button>
+
           </div>
         </div>
-      </div>
 
-  </ng-container>
+      </mat-tab>
+
+    </ng-container>
+
+  </mat-tab-group>
 
   <div *ngIf="(pedidos != undefined && pedidos.length > 0)" class="contenedorBotonComprar">
     <div class="subcontenedorBoton">
-      <button mat-raised-button color="primary" (click)="comprarCarrito()">COMPRAR</button>
+      <button mat-raised-button color="primary" (click)="comprarCarrito()">COMPRAR PEDIDOS</button>
     </div>
   </div>
-
-  <mat-paginator [hidden]="(pedidos == undefined || pedidos.length == 0)" [pageSizeOptions]="[3, 6, 9]"  (page)="actualizarPaginador()" showFirstLastButtons></mat-paginator>
 
 </div>

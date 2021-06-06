@@ -10,9 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { Router } from '@angular/router';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DetallePedido } from 'src/app/_model/superfast_model/DetallePedido';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 /**
  * Decorador de SuperfastCarritoComponent
@@ -49,13 +50,7 @@ export class SuperfastCarritoComponent implements OnInit {
    */
   pedidos: Pedido[];
 
-  articulos: DetallePedido[] = [];
 
-  articulosPaginados: DetallePedido[] = [];
-
-  dataSource: MatTableDataSource<DetallePedido>;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
    * Método que se ejecuta al cargar la página
@@ -79,16 +74,9 @@ export class SuperfastCarritoComponent implements OnInit {
           var longitud = this.pedidos[i].compras[j].imagen_producto1.length;
           this.pedidos[i].compras[j].imagen_producto1 = "https://www.superfastisw.tk/" + this.pedidos[i].compras[j].imagen_producto1.substring(1, longitud);
 
-          this.articulos.push(this.pedidos[i].compras[j]);
-          this.articulosPaginados.push(this.pedidos[i].compras[j]);
-
         }
+
       }
-
-      this.dataSource = new MatTableDataSource(this.articulos);
-      this.dataSource.paginator = this.paginator;
-
-      this.actualizarPaginador();
 
     })
 
@@ -161,18 +149,6 @@ export class SuperfastCarritoComponent implements OnInit {
       });
 
     })
-
-  }
-
-  actualizarPaginador() {
-
-    if (this.paginator != undefined) {
-
-      let indiceInicial = (this.paginator.pageIndex + 1) * this.paginator.pageSize - this.paginator.pageSize;
-      let indiceFinal = (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;
-
-      this.articulosPaginados = this.dataSource.filteredData.slice(indiceInicial, indiceFinal + 1);
-    }
 
   }
 
