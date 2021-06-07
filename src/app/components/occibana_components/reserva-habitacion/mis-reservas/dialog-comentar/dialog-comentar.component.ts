@@ -30,9 +30,9 @@ export class DialogComentarComponent implements OnInit {
 
   /**
    * Constructor sobrecargado de la clase DialogComentarComponent
-   * @param data
-   * @param comCalService
-   * @param _snackBar
+   * @param data almacena los datos que vienen del componente padre
+   * @param comCalService inyeccion del servicio de comentar y calificar de Occibana
+   * @param _snackBar objeto que se inyecta para mostrar mensajes que comuniquen información al usuario
    */
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -68,7 +68,7 @@ export class DialogComentarComponent implements OnInit {
    * Método que se encarga de crear un comentario por parte del usuario al hotel, a partir de su id
    */
   comentar(): void {
-    this.barraProgreso.progressBar.next("1");
+    this.barraProgreso.progressBar.next('1');
     let comentario = this.comentarioF.value['comentarioF'];
     this.comCalService
       .postComentar(this.data.idUsuario, comentario, this.data.idHotel)
@@ -76,7 +76,7 @@ export class DialogComentarComponent implements OnInit {
         this._snackBar.open(data.mensaje, 'OK', {
           duration: 3000,
         });
-        this.barraProgreso.progressBar.next("2");
+        this.barraProgreso.progressBar.next('2');
       });
   }
 
