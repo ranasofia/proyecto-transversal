@@ -87,10 +87,15 @@ export class RecuperarContrasenaComponent implements OnInit {
     });
   }
 
+ 
   /**
    * Constructor de RecuperarContrasenaComponent
-   * @param recuperar objeto que permite usar los servicios del recuperar contraseña
+   * @param recuperarc objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+   * @param router permite Redireccionar a otro formulario
+   * @param clienteService objeto que permite usar los servicios de mototaxi
+   * @param adminService objeto que permite usar los servicios de superfast
+   * @param perfilService objeto que permite usar los servicios de occibana
    */
   constructor(private recuperarc:RecuperarContrasenaService,
               private _snackBar: MatSnackBar, 
@@ -122,28 +127,21 @@ export class RecuperarContrasenaComponent implements OnInit {
       this.tokenOccibana = sessionStorage.getItem(environment.TOKENOCRC);
       this.usuarioOccibana = sessionStorage.getItem(environment.USEROCRC);
 
-      this.recuperarContraseñaTransversal(this.tokenTransversal, this.contrasena);
-      /*this.recuperarContraseñaSuperFast(this.tokenSuperFast, this.contrasena);
-      this.recuperarContraseñaMototaxi(this.tokenMototaxi, this.contrasena, this.confirmarContrasena);
-      this.recuperarContraseñaOccibana(this.usuarioOccibana, this.contrasena, this.tokenOccibana);*/
-      //this.recuperarContraseñaHcCauchos();
+      var body = {tokenRecibido: this.tokenTransversal, Contrasena: this.contrasena};
 
-      this._snackBar.open('Contraseña actualizada', 'Cancel  ', {
-        duration: 5000
+      this.recuperarc.recuperar(body).subscribe(data => {
+        this.recuperarContraseñaSuperFast(this.tokenSuperFast, this.contrasena);
+        this.recuperarContraseñaMototaxi(this.tokenMototaxi, this.contrasena, this.confirmarContrasena);
+        this.recuperarContraseñaOccibana(this.usuarioOccibana, this.contrasena, this.tokenOccibana);
+
+        this._snackBar.open('Contraseña actualizada', 'Cancel  ', {
+          duration: 5000
+        });
+        this.router.navigate(['/login']);
       });
-      this.router.navigate(['/login']);
-    }
-  }
-  
-  /**
-   * Metodo que realiza la recuperación de contraseña del usuario Transversal
-   * @param token variable que contiene el token generado para recuperar
-   * @param contrasena variable que contiene la nueva contraseña
-   */
-  recuperarContraseñaTransversal(token: string, contrasena: string){
-    var body = {tokenRecibido: token, Contrasena: contrasena};
 
-    this.recuperarc.recuperar(body).subscribe();
+      //this.recuperarContraseñaHcCauchos();
+    }
   }
   
   /**

@@ -1,6 +1,6 @@
 .registro-container {
     background-color: #607D8B;
-    height: 100%;
+    height: 700px;
 
   }
   
@@ -53,10 +53,36 @@
   
   }
   
-  @media screen and (max-width: 540px) {
-    .registro-container {
-      width: 100%;
-      height: 100%;
+  @media screen and (max-width: 780px) {
+    .registro-card{
+      width: 70%;
+      height: 1000px;
+      margin-left: 15%;
+    }
+    .registro-full-width{
+      margin-left: 30%;
+      width: 50%;
+    }
+    button{
+      margin-left: 35%;
     }
   
   }
+  @media screen and (max-width: 690px) {
+
+    .registro-card{
+      margin-top: 3%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    
+    .registro-card{
+      margin-top: 60%;
+    }
+    button{
+      margin-left: 22%;
+    }
+  }
+ 
+    
+  
