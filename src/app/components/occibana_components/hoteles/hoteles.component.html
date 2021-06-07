@@ -37,7 +37,7 @@
                             </ul>
                         </div>
                         <p class="hoteles-card-img">
-                            <img mat-card-image src="{{ hotel.imagen }}">
+                            <img onerror="this.src='assets/images/Occibana info.jpg'" mat-card-image src="{{ hotel.imagen }}">
                         </p>
                     </mat-card-content>
                     <mat-card-actions>
@@ -47,6 +47,8 @@
             </ng-container>
         </div>
     </section>
+    <mat-paginator [pageSizeOptions]="[3, 6, 9]"  (page)="actualizarPaginador()" showFirstLastButtons></mat-paginator>
 </div>
-
 <router-outlet></router-outlet>
+
+

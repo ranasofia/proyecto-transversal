@@ -1,5 +1,5 @@
 import { Calificacion } from './../../_model/occibana_model/Calificacion';
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -9,6 +9,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * Clase que representa el servicio de comentar y calificar de la aplicacion Occibana
+ */
 export class ComentarioService {
   /**
    * Enlace para llamar a los servicios de Occibana

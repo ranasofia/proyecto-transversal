@@ -116,8 +116,14 @@ mat-tab-group {
   width: 180px;
 }
 
-.seccion-comentar button {
-  height: 40px;
-  width: 160px;
-  margin-top: 30px;
+.seccion-comentarios .mat-expansion-panel {
+  background-color: #9b5151;
+}
+
+.comentarios {
+  width:50px;
+  height:50px;
+  border-radius:160px;
+  border:5px solid #666;
+  float: left;
 }

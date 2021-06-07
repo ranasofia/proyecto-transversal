@@ -1,7 +1,7 @@
+import { Reserva } from './../../../../_model/occibana_model/Reserva';
+import { MatTableDataSource } from '@angular/material/table';
 import { DialogComentarComponent } from './dialog-comentar/dialog-comentar.component';
 import { DialogCalificarComponent } from './dialog-calificar/dialog-calificar.component';
-import { Hotel } from './../../../../_model/occibana_model/Hotel';
-import { PanelHotelService } from './../../../../_service/occibana_service/panel-hotel.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DialogCancelarReservaComponent } from './dialog-cancelar-reserva/dialog-cancelar-reserva.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,9 +10,9 @@ import { HotelService } from './../../../../_service/occibana_service/hotel.serv
 import { environment } from './../../../../../environments/environment';
 import { DatosPerfilService } from './../../../../_service/occibana_service/datos-perfil.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BarraProgresoService } from 'src/app/_service/utilidades/barra-progreso.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 /**
  * Decorador de MisReservasComponent
@@ -47,6 +47,11 @@ export class MisReservasComponent implements OnInit {
   gridColumns = 3;
 
   /**
+   * Componente de Angular material que se usa para realizar el filtro de reservas
+   */
+  dataSource: MatTableDataSource<Reserva>;
+
+  /**
    * Constructor sobrecargado de la clase MisReservasComponent
    * @param perfilService
    * @param hotelService
@@ -64,6 +69,11 @@ export class MisReservasComponent implements OnInit {
     configRating.readonly = true;
     configRating.max = 5;
   }
+
+  /**
+   * Objeto que permite hacer la paginación de la lista de reservas hechas por el usuario
+   */
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
    * Implementación que se ejecuta una vez se inicie el MisReservasComponent
@@ -95,6 +105,9 @@ export class MisReservasComponent implements OnInit {
         this.reservas = 'No tienes ninguna reserva actualmente';
       } else {
         this.reservas = data;
+        this.dataSource = new MatTableDataSource(this.reservas);
+        this.dataSource.paginator = this.paginator;
+        this.actualizarPaginador();
       }
     });
   }
@@ -146,5 +159,20 @@ export class MisReservasComponent implements OnInit {
         idUsuario: this.usuario.id,
       },
     });
+  }
+  /**
+   * Permite actualizar la información del paginador y los datos a mostrar
+   */
+  actualizarPaginador() {
+    let indiceInicial =
+      (this.paginator.pageIndex + 1) * this.paginator.pageSize -
+      this.paginator.pageSize;
+    let indiceFinal =
+      (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;
+
+    this.reservas = this.dataSource.filteredData.slice(
+      indiceInicial,
+      indiceFinal + 1
+    );
   }
 }

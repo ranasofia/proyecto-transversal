@@ -1,29 +1,27 @@
-
+/**
+ * Clase que representa la entidad de Calificacion de la aplicación Occibana
+ */
 export class Calificacion {
+  /**
+   * Constructor sobrecargado de la clase de Calificación
+   * @param mensaje
+   * @param comentarioTb
+   * @param calificacion
+   */
+  constructor(
+    /**
+     * Representa los datos de la calificación
+     */
+    public mensaje: string,
 
     /**
-     * Constructor sobrecargado de la clase de Calificación
-     * @param mensaje 
-     * @param comentarioTb 
-     * @param calificacion 
+     * Representa el cometario de esa calificación
      */
-    constructor(
-        
-        /**
-         * Representa los datos de la calificación
-         */
-        public mensaje: string,
+    public comentarioTb: string,
 
-        /**
-         * Representa el cometario de esa calificación
-         */
-        public comentarioTb: string,
-
-        /**
-         * Representa el número de la calificación
-         */
-        public calificacion: string
-    ){
-
-    }
+    /**
+     * Representa el número de la calificación
+     */
+    public calificacion: string
+  ) {}
 }

@@ -1,9 +1,10 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Hotel } from 'src/app/_model/occibana_model/Hotel';
 import { HotelPrincipal } from 'src/app/_model/occibana_model/HotelPrincipal';
 import { HotelService } from 'src/app/_service/occibana_service/hotel.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 /**
  * Decorador del Componente hoteles
@@ -31,12 +32,17 @@ export class HotelesComponent implements OnInit {
   /**
    * Componente de Angular material que se usa para realizar el filtro de los hoteles
    */
-  dataSource: MatTableDataSource<HotelPrincipal>;
+  dataSource: MatTableDataSource<Hotel>;
 
   /**
    * Array de tipo hotel que almacena todos los hoteles filtrados
    */
   hotelesFiltrados: Hotel[];
+
+  /**
+   * Objeto que permite hacer la paginación de la lista de hoteles destacados
+   */
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
    * Constructor que inicializa hotelesService y routes
@@ -60,17 +66,28 @@ export class HotelesComponent implements OnInit {
    * Método que hace llamado al método postListadoHoteles de HotelService
    */
   listadoHoteles(): void {
-    this.hotelesService.postListadoHoteles(this.hotelesPrincipales).subscribe(
-      (data) => {
+    this.hotelesService
+      .postListadoHoteles(this.hotelesPrincipales)
+      .subscribe((data) => {
         this.hotel = data;
         this.hotelesFiltrados = data;
         for (let i = 0; i < this.hotel.length; i++) {
           // Traida de imágenes del servicio
           const longitud = this.hotelesFiltrados[i].imagen.length;
-          this.hotelesFiltrados[i].imagen =
-            'https://www.occibanaisw.tk/' +
-            this.hotelesFiltrados[i].imagen.substring(1, longitud);
+          if (
+            this.hotelesFiltrados[i].imagen.includes('~') ||
+            this.hotelesFiltrados[i].imagen.includes('/imgadicional')
+          ) {
+            this.hotelesFiltrados[i].imagen = 'assets/images/Occibana info.jpg';
+          } else {
+            this.hotelesFiltrados[i].imagen =
+              'https://www.occibanaisw.tk/' +
+              this.hotelesFiltrados[i].imagen.substring(1, longitud);
+          }
         }
+        this.dataSource = new MatTableDataSource(this.hotel);
+        this.dataSource.paginator = this.paginator;
+        this.actualizarPaginador();
       });
   }
 
@@ -86,8 +103,29 @@ export class HotelesComponent implements OnInit {
     this.hotelesFiltrados = dataSource.filteredData;
   }
 
+  /**
+   * Método que permite redireccionar a el componente de MisReservas
+   */
   onMisReservas(): void {
-    this.router.navigate(['/occibana/hoteles/reservaHabitacion/' + 0,
-    'misReservas'])
+    this.router.navigate([
+      '/occibana/hoteles/reservaHabitacion/' + 108,
+      'misReservas',
+    ]);
+  }
+
+  /**
+   * Permite actualizar la información del paginador y los datos a mostrar
+   */
+  actualizarPaginador() {
+    let indiceInicial =
+      (this.paginator.pageIndex + 1) * this.paginator.pageSize -
+      this.paginator.pageSize;
+    let indiceFinal =
+      (this.paginator.pageIndex + 1) * this.paginator.pageSize - 1;
+
+    this.hotelesFiltrados = this.dataSource.filteredData.slice(
+      indiceInicial,
+      indiceFinal + 1
+    );
   }
 }

@@ -7,35 +7,32 @@ import { UsuarioOccibana } from 'src/app/_model/occibana_model/UsuarioOccibana';
  * Decorador de RegistroLoginOccibanaService
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 /**
  * Clase que llama los servicios relacionados con el registro e inicio de sesión de Occibana
  */
 export class RegistroLoginOccibanaService {
-
   /**
    * Posee el enlace para llamar a los servicios
    */
-  private URL: string = environment.OCCIBANA +  '/registroLogin';
-  private URL2: string = environment.OCCIBANA +  '/perfil';
+  private URL: string = environment.OCCIBANA + '/registroLogin';
+  private URL2: string = environment.OCCIBANA + '/perfil';
 
   /**
    * Da estado inicial e inyecta variables en ClienteService
    * @param http variable que se inyecta para poder hacer las peticiones http
    */
-  constructor(private http: HttpClient, private httpBackend: HttpBackend) { }
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) {}
 
   /**
    * Permite registrar a un usuario en la aplicación de HCCauchos
    * @param usuario variable que posee al usuario con los datos a registrar
    * @returns mensaje
    */
-  registrar(usuario: UsuarioOccibana){
-
-    return this.http.post<string>(this.URL + "/postRegistroUsuario", usuario);
-
+  registrar(usuario: UsuarioOccibana) {
+    return this.http.post<string>(this.URL + '/postRegistroUsuario', usuario);
   }
 
   /**
@@ -44,9 +41,8 @@ export class RegistroLoginOccibanaService {
    * @returns token
    */
   getToken(usuario: UsuarioOccibana) {
-
-    let httpToken:HttpClient = new HttpClient(this.httpBackend);
-    return httpToken.post<string>(this.URL + "/postIngresoLogin", usuario);
+    let httpToken: HttpClient = new HttpClient(this.httpBackend);
+    return httpToken.post<string>(this.URL + '/postIngresoLogin', usuario);
   }
 
   /**
@@ -54,8 +50,7 @@ export class RegistroLoginOccibanaService {
    * @param usuario variable que indica cuál usuario fue el que cerró sesión
    * @returns mensaje
    */
-  postCerrarSesion(usuario: UsuarioOccibana){
-    return this.http.post<string>(this.URL2 + "/postCerrarSesion", usuario);
+  postCerrarSesion(usuario: UsuarioOccibana) {
+    return this.http.post<string>(this.URL2 + '/postCerrarSesion', usuario);
   }
-
 }

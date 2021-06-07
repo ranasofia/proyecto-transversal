@@ -59,7 +59,7 @@ export class ReservaHabitacionComponent implements OnInit {
   /**
    * Representa la información del hotel en donde se va a hacer la reserva
    */
-  informacionHotel: Hotel;
+  informacionHotel = new Hotel();
 
   /**
    * Almacena la fecha de llegada que se digita para buscar disponibilidad

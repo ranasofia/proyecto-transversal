@@ -14,6 +14,10 @@ import { UsuarioOccibana } from 'src/app/_model/occibana_model/UsuarioOccibana';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Clase que representa el servicio de los hoteles de la aplicacion Occibana
+ */
 export class HotelService {
 
   /**
