@@ -106,7 +106,7 @@ import { MatPaginator } from '@angular/material/paginator';
         for (var i = 0; i < this.productos.length; i++) {
 
           var longitud = this.productos[i].imagen.length;
-          this.productos[i].imagen = "http://18.224.240.8:8080/" + this.productos[i].imagen.substring(1, longitud);
+          this.productos[i].imagen = "data:image/png;base64,/" + this.productos[i].imagen.substring(1, longitud);
 
         }
 
