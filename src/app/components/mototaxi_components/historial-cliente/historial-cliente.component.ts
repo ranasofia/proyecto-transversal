@@ -41,21 +41,27 @@ export class HistorialClienteComponent implements OnInit {
    */
   @ViewChild(MatSort) sort: MatSort;
 
+  /**
+   * Decorador de ViewChild el cual permite visualizar la paginación
+   */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
- 
+
   /**
    *  Constructor de HistorialClienteComponent
-   * @param historial objeto que permite usar los servicios de cliente 
-   * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio 
+   * @param historial objeto que permite usar los servicios de cliente
+   * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
-   * @param route permite Redireccionar a otro formulario 
+   * @param route permite Redireccionar a otro formulario
    */
   constructor(private historial: HistorialService,
               private barraProgresoService: BarraProgresoService,
               private _snackBar: MatSnackBar,
               public route: ActivatedRoute) { }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
     /**
       * Constante para decodificar el token

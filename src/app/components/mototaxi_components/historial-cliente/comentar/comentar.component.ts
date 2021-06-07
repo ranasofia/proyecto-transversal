@@ -50,19 +50,22 @@ export class ComentarComponent implements OnInit {
  /**
   * Constructor de ComentarComponent
   * @param historial objeto que permite usar los servicios de comentar servicio
-  * @param route permite Redireccionar a otro formulario 
-  * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio 
+  * @param route permite Redireccionar a otro formulario
+  * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio
   * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
-  * @param routeer permite Redireccionar a otro formulario 
+  * @param routeer permite Redireccionar a otro formulario
   */
   constructor(private historial:HistorialService,
               private route: ActivatedRoute,
               private barraProgreso: BarraProgresoService,
-              private snackBar: MatSnackBar, 
+              private snackBar: MatSnackBar,
               private routeer: Router) {
                 this.FormComentar = this.createFormGroup();
               }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
@@ -79,8 +82,8 @@ export class ComentarComponent implements OnInit {
 
   /**
    * Metodo que permite comentar el servicio
-   * @param idNotificacion 
-   * @param comentario 
+   * @param idNotificacion
+   * @param comentario
    */
   comentar(idNotificacion:number,comentario:any){
     this.barraProgreso.progressBar.next("1");
@@ -100,7 +103,7 @@ export class ComentarComponent implements OnInit {
     let notificacion:Notificacion;
     notificacion=new Notificacion();
     notificacion.id=this.id;
-    
+
     if(this.FormComentar.valid){
       var comentario = {ComentarioDeCliente: this.FormComentar.controls["comentario"].value};
 

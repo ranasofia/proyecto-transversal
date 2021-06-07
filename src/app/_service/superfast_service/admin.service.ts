@@ -8,11 +8,31 @@ import { Injectable } from '@angular/core';
 })
 export class AdminService {
 
+  /**
+   * Enlace para usar los servicios de inicio de sesión de Superfast
+   */
   private URL: string = environment.SUPERFAST +  '/admin';
+
+  /**
+   * Enlace para usar el servicio de cerrar sesión de Superfast
+   */
   private URL2: string = environment.SUPERFAST + '/CerrarSession';
+
+  /**
+   * Enlace para usar el servicio de generar el token para la recuperación de contraseña
+   */
   private URL3: string = environment.SUPERFAST + '/GenerarToken';
+
+  /**
+   * Enlace para usar el servicio de recuperación de contraseña
+   */
   private URL4: string=environment.SUPERFAST + '/RecuperarContrasenia';
 
+  /**
+   * a estado inicial e inyecta variables en AdminService
+   * @param http variable que se inyecta para poder hacer las peticiones http
+   * @param httpBackend variable que se inyecta para diferenciar las peticiones que usan el HttpInterceptor de las que no
+   */
   constructor(private http: HttpClient, private httpBackend: HttpBackend) { }
 
   /**

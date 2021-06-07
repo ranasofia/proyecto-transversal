@@ -32,7 +32,9 @@ export class RegistroComponent implements OnInit {
    * Permite mostrar u ocultar el valor del campo de repetir contraseña
    */
   hide2 = true;
-
+  /**
+   * Objeto que permite establecer validaciones propias
+   */
   validacionesPropias = new ValidacionesPropias();
 
   /**
