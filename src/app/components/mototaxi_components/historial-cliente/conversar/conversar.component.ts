@@ -47,11 +47,11 @@ export class ConversarComponent implements OnInit {
 
   /**
    * Constructor de ConversarComponent
-   * @param historial 
-   * @param route 
-   * @param barraProgreso 
-   * @param snackBar 
-   * @param routeer 
+  * @param historial objeto que permite usar los servicios de conversarcion con el conductor
+  * @param route permite Redireccionar a otro formulario 
+  * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio 
+  * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+  * @param routeer permite Redireccionar a otro formulario 
    */
   constructor(private historial:HistorialService,
               private route: ActivatedRoute,

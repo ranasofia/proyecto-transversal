@@ -18,6 +18,9 @@ export class HistorialService {
    * Posee el enlace para llamar a los servicios
    */
   private URL: string  = environment.UBER_MOTOS + '/cliente';
+   /**
+   * Posee el enlace para llamar ls servicios del proyecto transversal 
+   */
   private URL2: string = environment.UBER_MOTOS + '/usuario';
 
   

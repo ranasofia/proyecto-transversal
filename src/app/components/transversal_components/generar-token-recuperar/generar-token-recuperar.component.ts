@@ -63,10 +63,15 @@ export class GenerarTokenRecuperarComponent implements OnInit {
     });
   }
 
+
   /**
    * Constructor de GenerarTokenRecuperarComponent
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+   * @param router permite Redireccionar a otro formulario
+   * @param clienteService objeto que permite usar los servicios de mototaxi
+   * @param adminService objeto que permite usar los servicios de superfast
+   * @param perfilService objeto que permite usar los servicios de occibana
    */
   constructor(private recuperar:RecuperarContrasenaService,
               private _snackBar: MatSnackBar, 

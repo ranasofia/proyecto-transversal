@@ -98,10 +98,11 @@ export class SolicitudServicioComponent implements OnInit {
 
   /**
    * Constructor de SolicitarServicioComponent
-   * @param servicioSolicitudService 
-   * @param barraProgresoService 
-   * @param _snackBar 
-   * @param route 
+   * @param servicioSolicitudService objeto que permite usar los servicios de  servicio solicitud 
+   * @param barraProgresoService Permite mostrar la barra de progreso al ejecutar un servicio 
+   * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+   * @param route permite Redireccionar a otro formulario
+   * @param changeDetectorRef 
    */
   constructor(private servicioSolicitudService: ServicioSolicitudService,
               private barraProgresoService:BarraProgresoService,

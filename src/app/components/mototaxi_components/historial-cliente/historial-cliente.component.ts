@@ -43,10 +43,13 @@ export class HistorialClienteComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
+ 
   /**
-   * Constructor de HistorialClienteComponent
-   * @param clienteService
-   * @param router
+   *  Constructor de HistorialClienteComponent
+   * @param historial objeto que permite usar los servicios de cliente 
+   * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio 
+   * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+   * @param route permite Redireccionar a otro formulario 
    */
   constructor(private historial: HistorialService,
               private barraProgresoService: BarraProgresoService,

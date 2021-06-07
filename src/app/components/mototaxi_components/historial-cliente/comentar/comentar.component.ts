@@ -47,14 +47,14 @@ export class ComentarComponent implements OnInit {
     });
   }
 
-  /**
-   * Constructor de ComentarComponent
-   * @param historial 
-   * @param route 
-   * @param barraProgreso 
-   * @param snackBar 
-   * @param routeer 
-   */
+ /**
+  * Constructor de ComentarComponent
+  * @param historial objeto que permite usar los servicios de comentar servicio
+  * @param route permite Redireccionar a otro formulario 
+  * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio 
+  * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+  * @param routeer permite Redireccionar a otro formulario 
+  */
   constructor(private historial:HistorialService,
               private route: ActivatedRoute,
               private barraProgreso: BarraProgresoService,
