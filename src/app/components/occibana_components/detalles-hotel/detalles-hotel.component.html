@@ -17,7 +17,7 @@
           </div>
 
           <p class="hoteles-card-img">
-            <img mat-card-image src="{{ hotelSeleccionado?.imagen }}" />
+            <img mat-card-image onerror="this.src='assets/images/Occibana info.jpg'" src="{{ hotelSeleccionado?.imagen }}" />
           </p>
         </mat-card-header>
         <mat-card-content fxLayoutAlign="center">
