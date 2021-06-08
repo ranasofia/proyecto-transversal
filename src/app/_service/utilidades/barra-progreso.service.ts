@@ -18,5 +18,8 @@ export class BarraProgresoService {
    */
   public progressBar = new Subject<string>();
 
+  /**
+   * Constructor de BarraProgresoService
+   */
   constructor() { }
 }

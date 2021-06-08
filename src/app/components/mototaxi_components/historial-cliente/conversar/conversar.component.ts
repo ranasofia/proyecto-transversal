@@ -48,19 +48,21 @@ export class ConversarComponent implements OnInit {
   /**
    * Constructor de ConversarComponent
   * @param historial objeto que permite usar los servicios de conversarcion con el conductor
-  * @param route permite Redireccionar a otro formulario 
-  * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio 
+  * @param route permite Redireccionar a otro formulario
+  * @param barraProgresoService  Permite mostrar la barra de progreso al ejecutar un servicio
   * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
-  * @param routeer permite Redireccionar a otro formulario 
+  * @param routeer permite Redireccionar a otro formulario
    */
   constructor(private historial:HistorialService,
               private route: ActivatedRoute,
               private barraProgreso: BarraProgresoService,
-              private snackBar: MatSnackBar, 
-              private routeer: Router) { 
+              private snackBar: MatSnackBar,
+              private routeer: Router) {
                 this.formConversar = this.createFormGroup();
               }
-
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
     // Toma el id que viene desde la url
     this.route.params.subscribe((params) => {
@@ -76,9 +78,9 @@ export class ConversarComponent implements OnInit {
 
   /**
    * Metodo que permite conversar con el conductor del servicio
-   * @param idNotificacion 
-   * @param usuario 
-   * @param conversar 
+   * @param idNotificacion
+   * @param usuario
+   * @param conversar
    */
   conversar(idNotificacion:number,usuario:string,conversar:any){
     this.barraProgreso.progressBar.next("1");
@@ -107,7 +109,7 @@ export class ConversarComponent implements OnInit {
     let notificacion:Notificacion;
     notificacion=new Notificacion();
     notificacion.id=this.id;
-    
+
     if(this.formConversar.valid){
       var conversacion = {Conversacion: this.formConversar.value["conversar"]};
       this.conversar(notificacion.id,usuario,conversacion);

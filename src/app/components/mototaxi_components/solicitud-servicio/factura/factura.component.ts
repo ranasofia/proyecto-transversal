@@ -52,6 +52,9 @@ export class FacturaComponent implements OnInit {
   constructor(private servicioSolicitudService: ServicioSolicitudService,
               private barraProgresoService: BarraProgresoService) { }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
     this.barraProgresoService.progressBar.next("1");
     /**
@@ -75,6 +78,9 @@ export class FacturaComponent implements OnInit {
     });
   }
 
+  /**
+   * Genera la factura para que el usuario la pueda descargar
+   */
   export() {
 
     const options = {
