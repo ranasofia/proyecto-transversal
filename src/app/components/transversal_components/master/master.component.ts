@@ -21,20 +21,33 @@ import { Component, OnInit, DoCheck } from '@angular/core';
  */
 export class MasterComponent implements OnInit, DoCheck {
   /**
-   * Variable que alamacena el token que se genera al ingresar al login
+   * Variable que almacena el token que se genera al ingresar al login de Transversal
    */
   token: string;
+  /**
+   * Variable que almacena el token que se genera al ingresar al login de Mototaxi
+   */
   token1: string;
+  /**
+   * Variable que almacena el token que se genera al ingresar al login de Mototaxi
+   */
   token2: string;
+  /**
+   * Variable que almacena el token que se genera al ingresar al login de Occibana
+   */
   token3: string;
+  /**
+   * Variable que almacena el token que se genera al ingresar al login de HCCauchos
+   */
   token4: string;
+  /**
+   * Variable que almacena el nombre de usuario de la sesion logueada
+   */
   user: any;
-
   /**
    * Variable de tipo string en donde se le asigna un color a la barra de progreso
    */
   color: string = "warn";
-
   /**
    * Variable de tipo boolean para manejar la visualización de la barra de progreso
    */
@@ -153,6 +166,11 @@ export class MasterComponent implements OnInit, DoCheck {
     sessionStorage.removeItem("clave");
   }
 
+  /**
+   * Permite detener la ejecución por un tiempo estipulado
+   * @param ms variable que indica el tiempo a detener la ejecución
+   * @returns promesa
+   */
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

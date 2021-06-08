@@ -14,5 +14,6 @@ export const environment = {
   TOKENOCRC:'recu_occ',
   USEROCRC: 'user_occ',
   TOKENHCRC: 'recu_hc',
+  EMAILHCRC: 'email_hc',
   REINTENTOS: 1
 };

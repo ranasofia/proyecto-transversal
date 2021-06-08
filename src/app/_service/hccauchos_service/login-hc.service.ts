@@ -15,9 +15,17 @@ import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCaucho
 export class LoginHCService {
 
   /**
-   * Posee el enlace para llamar a los servicios
+   * Posee el enlace para llamar a los servicios login y cerrar sesión
    */
   private URL: string = environment.HCCAUCHOS +  '/login';
+  /**
+   * Posee el enlace para llamar a los servicios de generar token para recuperar contraseña
+   */
+  private URL2: string = environment.HCCAUCHOS + '/Recuperar';
+  /**
+   * Posee el enlace para llamar al servicio de cambia la contraseña para recuperar contraseña
+   */
+  private URL3: string = environment.HCCAUCHOS + '/Usuario';
 
   /**
    * Da estado inicial e inyecta variables en ClienteService
@@ -45,5 +53,23 @@ export class LoginHCService {
   putCerrarSesion(usuario: UsuarioHCCauchos){
 
     return this.http.put(this.URL + "/cerrarcesion", usuario);
+  }
+
+  /**
+   * Permite generar el token para recuperar la contraseña
+   * @param usuario variable que obtiene los parametros para la recuperación
+   * @returns 
+   */
+  postGenerarContraseña(usuario: any){
+    return this.http.post(this.URL2 + "/recuperar", usuario);
+  }
+
+  /**
+   * Permite cambiar la contraseña
+   * @param usuario variable que contiene los datos cambiar la contraseña
+   * @returns 
+   */
+  putRecuperarContraseña(usuario: any){
+    return this.http.put(this.URL3 + '/actualizarclave', usuario);
   }
 }

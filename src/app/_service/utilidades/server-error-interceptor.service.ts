@@ -27,7 +27,6 @@ export class ServerErrorInterceptorService implements HttpInterceptor{
         }*/
       }
     })).pipe(catchError((err) => {
-      console.log(err);
       this.barraProgresoService.progressBar.next("2");
 
       if(err.status == 400 && err.error.message === "Correo y/o contraseña incorrecta"){

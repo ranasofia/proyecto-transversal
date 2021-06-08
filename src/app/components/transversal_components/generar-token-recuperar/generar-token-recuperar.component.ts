@@ -1,3 +1,4 @@
+import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
 import { PerfilService } from './../../../_service/occibana_service/perfil.service';
 import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
 import { AdminService } from './../../../_service/superfast_service/admin.service';
@@ -63,6 +64,7 @@ export class GenerarTokenRecuperarComponent implements OnInit {
     });
   }
 
+
   /**
    * Constructor de GenerarTokenRecuperarComponent
    * @param recuperar objeto que permite usar los servicios del recuperar contraseña
@@ -71,13 +73,15 @@ export class GenerarTokenRecuperarComponent implements OnInit {
    * @param clienteService objeto que permite usar los servicios de mototaxi
    * @param adminService objeto que permite usar los servicios de superfast
    * @param perfilService objeto que permite usar los servicios de occibana
+   * @param loginHCService objeto que permite usar los servicios de hcCauchos
    */
   constructor(private recuperar:RecuperarContrasenaService,
               private _snackBar: MatSnackBar, 
               private router: Router,
               private adminService: AdminService,
               private clienteService: ClienteService,
-              private perfilService: PerfilService) {
+              private perfilService: PerfilService,
+              private loginHCService: LoginHCService) {
                 this.generarForm=this.createFormGroup();
               }
 
@@ -109,8 +113,8 @@ export class GenerarTokenRecuperarComponent implements OnInit {
         this.generarTokenMototaxi(usuarioMototaxi);
         this.generarTokenOccibana(this.user, this.correo);
       });
-      
-      //this.generarTokenHcCauchos();
+
+      this.generarTokenHcCauchos(this.correo);
     }
   }
 
@@ -186,9 +190,26 @@ export class GenerarTokenRecuperarComponent implements OnInit {
     });
   }
 
-  //
-  generarTokenHcCauchos(){
-    
+  /**
+   * Metodo que genera el token para recuperar contraseña de HcCauchos
+   * @param email Variable que contiene el correo del usuario para realizar la petición
+   */
+  generarTokenHcCauchos(email: string){
+    var body = {correo: email, link: 'recuperar.com'};
+
+    this.loginHCService.postGenerarContraseña(body).subscribe(data =>{
+      this.tokenHcCauchos = data.toString();
+      sessionStorage.setItem(environment.TOKENHCRC, this.tokenHcCauchos);
+
+      var cryptoJS = require("crypto-js");
+      var emailEncrypt = cryptoJS.AES.encrypt(email, 'correoHcCauchos');
+
+      sessionStorage.setItem(environment.EMAILHCRC, emailEncrypt);
+      this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
+        duration: 5000
+      });
+      this.router.navigate(['/recuperarContrasena']);
+    })
   }
   
   /**

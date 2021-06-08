@@ -1,3 +1,4 @@
+import { LoginHCService } from 'src/app/_service/hccauchos_service/login-hc.service';
 import { PerfilService } from './../../../_service/occibana_service/perfil.service';
 import { AdminService } from 'src/app/_service/superfast_service/admin.service';
 import { ClienteService } from './../../../_service/mototaxi_service/cliente.service';
@@ -65,6 +66,10 @@ export class RecuperarContrasenaComponent implements OnInit {
    * Variable que contiene el usuario de occibana a recuperar
    */
   usuarioOccibana: string;
+  /**
+   * Variable que contiene el correo del usuario de HcCauchos para recuperar
+   */
+  correoHcCauchos: string;
 
   /**
    * Permite configurar las validaciones del formulario
@@ -82,7 +87,7 @@ export class RecuperarContrasenaComponent implements OnInit {
         ValidacionesPropias.verificacionClave
       ]),
       token:new FormControl('',[
-       // Validators.required
+        Validators.required
       ]),
     });
   }
@@ -96,13 +101,15 @@ export class RecuperarContrasenaComponent implements OnInit {
    * @param clienteService objeto que permite usar los servicios de mototaxi
    * @param adminService objeto que permite usar los servicios de superfast
    * @param perfilService objeto que permite usar los servicios de occibana
+   * @param loginHCService objeto que permite usar los servicios de hcCauchos
    */
   constructor(private recuperarc:RecuperarContrasenaService,
               private _snackBar: MatSnackBar, 
               private router: Router,
               private clienteService: ClienteService,
               private adminService:AdminService,
-              private perfilService: PerfilService) {
+              private perfilService: PerfilService,
+              private loginHCService: LoginHCService) {
                 this.recuperarForm=this.createFormGroup();
               }
 
@@ -126,6 +133,8 @@ export class RecuperarContrasenaComponent implements OnInit {
       this.tokenMototaxi = sessionStorage.getItem(environment.TOKENMTRC);
       this.tokenOccibana = sessionStorage.getItem(environment.TOKENOCRC);
       this.usuarioOccibana = sessionStorage.getItem(environment.USEROCRC);
+      this.tokenHcCauchos = sessionStorage.getItem(environment.TOKENHCRC);
+      this.correoHcCauchos = sessionStorage.getItem(environment.EMAILHCRC);
 
       var body = {tokenRecibido: this.tokenTransversal, Contrasena: this.contrasena};
 
@@ -133,14 +142,13 @@ export class RecuperarContrasenaComponent implements OnInit {
         this.recuperarContraseñaSuperFast(this.tokenSuperFast, this.contrasena);
         this.recuperarContraseñaMototaxi(this.tokenMototaxi, this.contrasena, this.confirmarContrasena);
         this.recuperarContraseñaOccibana(this.usuarioOccibana, this.contrasena, this.tokenOccibana);
+        this.recuperarContraseñaHcCauchos(this.correoHcCauchos, this.contrasena);
 
         this._snackBar.open('Contraseña actualizada', 'Cancel  ', {
           duration: 5000
         });
         this.router.navigate(['/login']);
       });
-
-      //this.recuperarContraseñaHcCauchos();
     }
   }
   
@@ -187,9 +195,21 @@ export class RecuperarContrasenaComponent implements OnInit {
     sessionStorage.removeItem(environment.USEROCRC);
   }
   
-  //
-  recuperarContraseñaHcCauchos(){
-    
+  /**
+   * Metodo que realiza la recuperación de contraseña de HcCauchos
+   * @param email variable que contiene el correo del usuario que va a recuperar
+   * @param contrasena variable que contiene la nueva contraseña
+   */
+  recuperarContraseñaHcCauchos(email: string, contrasena: string){
+    var CryptoJS = require("crypto-js");
+    var bytes = CryptoJS.AES.decrypt(email, 'correoHcCauchos');
+    var emailDecrypt = bytes.toString(CryptoJS.enc.Utf8);
+
+    var body = {correo: emailDecrypt, clave: contrasena};
+
+    this.loginHCService.putRecuperarContraseña(body).subscribe();
+    sessionStorage.removeItem(environment.TOKENHCRC);
+    sessionStorage.removeItem(environment.EMAILHCRC);
   }
 
   /**
