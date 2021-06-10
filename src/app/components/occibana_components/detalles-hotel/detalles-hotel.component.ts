@@ -99,7 +99,7 @@ export class DetallesHotelComponent implements OnInit {
         this.hotelSeleccionado = datos;
         this.hotelSeleccionado?.promediocalificacion
         this.hotelSeleccionado.imagen =
-          'https://www.occibanaisw.tk/' + this.hotelSeleccionado.imagen;
+          'http://18.230.178.121:8081/' + this.hotelSeleccionado.imagen;
         this.obtenerComentariosHotel();
         this.obtenerHabitacionesHotel(this.idHotel);
         const token = this.helper.decodeToken(

@@ -73,17 +73,9 @@ export class HotelesComponent implements OnInit {
         this.hotelesFiltrados = data;
         for (let i = 0; i < this.hotel.length; i++) {
           // Traida de imágenes del servicio
-          const longitud = this.hotelesFiltrados[i].imagen.length;
-          if (
-            this.hotelesFiltrados[i].imagen.includes('~') ||
-            this.hotelesFiltrados[i].imagen.includes('/imgadicional')
-          ) {
-            this.hotelesFiltrados[i].imagen = 'assets/images/Occibana info.jpg';
-          } else {
-            this.hotelesFiltrados[i].imagen =
-              'https://www.occibanaisw.tk/' +
-              this.hotelesFiltrados[i].imagen.substring(1, longitud);
-          }
+          this.hotelesFiltrados[i].imagen =
+            'http://18.230.178.121:8081/' +
+            this.hotelesFiltrados[i].imagen;
         }
         this.dataSource = new MatTableDataSource(this.hotel);
         this.dataSource.paginator = this.paginator;
