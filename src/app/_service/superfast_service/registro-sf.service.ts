@@ -33,6 +33,11 @@ export class RegistroSFService {
 
    }
 
+   /**
+    * Permite verificar si un correo ya existe en el sistema
+    * @param correo variable que posee el correo del usuario a registrar
+    * @returns mensaje
+    */
    verificarCorreo(correo: string){
 
     return this.http.get<string>(this.URL + "/GetVerificar_correo?correo=" + correo);

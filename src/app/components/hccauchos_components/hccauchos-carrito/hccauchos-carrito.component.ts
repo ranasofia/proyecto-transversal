@@ -47,14 +47,22 @@ export class HccauchosCarritoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
+  /**
+   * Posee los destinos disponibles para ejecutar la compra
+   */
   destinos: Destino[];
 
+  /**
+   * Es el formulario de compra
+   */
   compraForm: FormGroup;
 
   /**
    * Constructor de HccauchosCarritoComponent
    * @param comunicacionCService objeto que se inyecta para poder usar los servicios del carrito
+   * @param router objeto que se inyecta para las redirecciones
    * @param _snackBar objeto que se inyecta para mostrar mensajes que comuniquen información al usuario
+   * @param usuarioTransversalService objeto que se inyecta para obtener los datos completos del usuario
    */
   constructor(private comunicacionCService: ComunicacionCService,
     private router: Router,
@@ -62,6 +70,10 @@ export class HccauchosCarritoComponent implements OnInit {
     private usuarioTransversalService: UsuarioTransversalService) { }
 
 
+  /**
+   * Permite generar el formulario de compra con sus validaciones
+   * @returns formulario
+   */
   createFormGroup() {
     return new FormGroup({
 
@@ -160,6 +172,9 @@ export class HccauchosCarritoComponent implements OnInit {
   }
 
 
+  /**
+   * Permite comprar los productos del carrito
+   */
   comprar() {
 
     if (this.compraForm.valid) {

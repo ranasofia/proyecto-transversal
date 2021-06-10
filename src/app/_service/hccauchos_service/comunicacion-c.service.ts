@@ -17,12 +17,12 @@ export class ComunicacionCService {
   /**
    * Posee el enlace para llamar a los servicios
    */
-  private URL: string = environment.HCCAUCHOS+ '/Usuario';
+  private URL: string = environment.HCCAUCHOS + '/Usuario';
 
   /**
    * Almacena los pedidos que se usarán para generar la factura
    */
-   private pedidosFactura: Pedido[];
+  private pedidosFactura: Pedido[];
 
   /**
     * Da estado inicial e inyecta variables en UsuarioTransversalService
@@ -47,7 +47,7 @@ export class ComunicacionCService {
    * @param usuario objeto que posee los datos actualizados del usuario
    * @returns mensaje
    */
-  cambiarCorreo(usuario: UsuarioHCCauchos){
+  cambiarCorreo(usuario: UsuarioHCCauchos) {
 
     return this.http.put<string>(this.URL + "/editarcorreo", usuario);
 
@@ -58,7 +58,7 @@ export class ComunicacionCService {
    * @param usuario objeto que posee los datos actualizados del usuario
    * @returns mensaje
    */
-  cambiarClave(usuario: UsuarioHCCauchos){
+  cambiarClave(usuario: UsuarioHCCauchos) {
 
     return this.http.put<string>(this.URL + "/modificarclave", usuario);
 
@@ -69,7 +69,7 @@ export class ComunicacionCService {
    * @param carro objeto que posee los datos del artículo a agregar al carrito
    * @returns mensaje
    */
-  agregarAlCarrito(carro: Carro){
+  agregarAlCarrito(carro: Carro) {
 
     return this.http.post<string>(this.URL + "/AgregarAlCarrito", carro);
 
@@ -80,7 +80,7 @@ export class ComunicacionCService {
    * @param idUsuario variable que indica el usuario del cual se desea obtener el carrito
    * @returns carrito
    */
-  getCarrito(idUsuario: number){
+  getCarrito(idUsuario: number) {
 
     return this.http.get<Pedido[]>(this.URL + "/ObtenerCarrito/" + idUsuario);
 
@@ -91,7 +91,7 @@ export class ComunicacionCService {
    * @param idPedido variable que indica el pedido que se eliminará del carrito
    * @returns mensaje
    */
-  eliminarPedidoCarrito(idPedido: number){
+  eliminarPedidoCarrito(idPedido: number) {
 
     return this.http.get<string>(this.URL + "/EliminarItemCarrito?id_carrito=" + idPedido);
 
@@ -102,39 +102,61 @@ export class ComunicacionCService {
    * @param idUsuario variable que indica el usuario del cual se eliminará el carrito
    * @returns mensaje
    */
-  eliminarCarrito(idUsuario: number){
+  eliminarCarrito(idUsuario: number) {
 
     return this.http.get<string>(this.URL + "/EliminarCarrito?user_id=" + idUsuario);
 
   }
 
-  getDestinos(){
+  /**
+   * Permite obtener los destinos para realizar la compra del pedido
+   * @returns destinos
+   */
+  getDestinos() {
 
     return this.http.get<Destino[]>(this.URL + "/Lugares");
 
   }
 
-  setPedidosFactura(pedidos: Pedido[]){
+  /**
+   * Permite establecer los pedidos para generar la factura
+   * @param pedidos variable que posee la lista de pedidos del carrito que se compraron
+   */
+  setPedidosFactura(pedidos: Pedido[]) {
 
     this.pedidosFactura = pedidos;
 
   }
 
-  getPedidosFactura(){
+  /**
+   * Permite obtener los pedidos para generar la factura
+   * @returns pedidos
+   */
+  getPedidosFactura() {
 
     return this.pedidosFactura;
 
   }
 
-  getHistorial(){
+  /**
+   * Permite obtener el historial de los pedidos que han sido comprados
+   * @returns historial
+   */
+  getHistorial() {
 
     return this.http.get<Object[]>(this.URL + "/historial");
 
   }
 
-  comprarCarrito(idDestino: number, direccion: string){
+  /**
+   * Permite comprar lo que está en el carrito
+   * @param idDestino indica el id del destino de la compra
+   * @param direccion indica la dirección a la que se debe llevar el domicilio
+   * @returns mensaje
+   */
+  comprarCarrito(idDestino: number, direccion: string) {
 
-    let cuerpoPeticion = {municipio: idDestino, direccion: direccion};
+    let cuerpoPeticion = { municipio: idDestino, direccion: direccion };
 
     return this.http.post<string>(this.URL + "/finalizarcompra", cuerpoPeticion);
 

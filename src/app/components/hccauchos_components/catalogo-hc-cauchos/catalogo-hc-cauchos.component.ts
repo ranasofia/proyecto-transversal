@@ -85,6 +85,7 @@ import { MatPaginator } from '@angular/material/paginator';
      * Constructor de CatalogoSuperFastComponent
      * @param comunicacionService objeto que permite usar los servicios relacionados con los productos
      * @param dialog componente que se muestra como pestaña modal
+     * @param _snackBar objeto que se inyecta para mostrar mensajes informativos para el usuario
      */
     constructor(private comunicacionService: ComunicacionCService, private dialog: MatDialog, private _snackBar: MatSnackBar) {
 

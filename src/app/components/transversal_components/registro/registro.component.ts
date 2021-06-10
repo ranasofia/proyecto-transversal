@@ -95,8 +95,15 @@ export class RegistroComponent implements OnInit {
 
   /**
    * Constructor de RegistroComponent
-   * @param usuarioTransversalService objeto que permite usar los servicios del usuario general
+   * @param usuarioTransversalService objeto que se inyecta para controlar el registro de Proyecto Transversal
    * @param _snackBar objeto que permite mostrar alertas durante un tiempo específico
+   * @param router objeto que se inyecta para las redirecciones
+   * @param registroLoginOccibanaService objeto que se inyecta para controlar el registro e inicio de sesión a Occibana
+   * @param registroHCService objeto que se inyecta para controlar el registro a HCCauchos
+   * @param loginHCService objeto que se inyecta para controlar el inicio de sesión a HCCauchos
+   * @param registroSFService objeto que se inyecta para controlar el inicio de sesión a Superfast
+   * @param adminService objeto que se inyecta para controlar el inicio de sesión a Superfast
+   * @param clienteService objeto que se inyecta para controlar el registro e inicio de sesión a Mototaxi Deluxe
    */
   constructor(private usuarioTransversalService: UsuarioTransversalService,
     private _snackBar: MatSnackBar,

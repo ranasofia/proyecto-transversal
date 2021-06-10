@@ -6,11 +6,18 @@ import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 import { MatSort } from '@angular/material/sort';
 
+/**
+ * Decorador de FacturaHCComponent
+ */
 @Component({
   selector: 'app-factura-hc',
   templateUrl: './factura-hc.component.html',
   styleUrls: ['./factura-hc.component.css']
 })
+
+/**
+ * Clase que maneja la lógica de la factura
+ */
 export class FacturaHCComponent implements OnInit {
 
   /**
@@ -26,16 +33,24 @@ export class FacturaHCComponent implements OnInit {
   /**
    * Permite ordenar los datos de la tabla
    */
-   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   /**
    * Indica el total a pagar
    */
-   total = 0;
+  total = 0;
 
+  /**
+   * Constructor de FacturaHCComponent
+   * @param router objeto que se inyecta para las redirecciones
+   * @param comunicacionCService objeto que se inyecta para obtener los pedidos de la factura
+   */
   constructor(private router: Router,
     private comunicacionCService: ComunicacionCService) { }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
 
     let pedidos: Pedido[] = this.comunicacionCService.getPedidosFactura();
@@ -62,7 +77,7 @@ export class FacturaHCComponent implements OnInit {
   /**
    * Genera la factura para que el usuario la pueda descargar
    */
-   export() {
+  export() {
 
     const options = {
       filename: "Factura.pdf",

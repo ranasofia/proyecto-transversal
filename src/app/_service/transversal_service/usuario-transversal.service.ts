@@ -112,6 +112,11 @@ export class UsuarioTransversalService {
      return this.http.put(this.URL + "/actualizarPerfil?usuario=" + nombreUsuario, usuario);
    }
 
+   /**
+    * Permite verificar si un usuario ya exista en Mototaxi
+    * @param usuario objeto que posee el nombre de usuario y correo del usuario a registrar
+    * @returns mensaje
+    */
    verificarExistenciaUsuario(usuario: UsuarioMototaxi){
 
     let httpVerificar:HttpClient = new HttpClient(this.httpBackend);

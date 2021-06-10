@@ -37,6 +37,11 @@ export class RegistroHCService {
 
   }
 
+  /**
+   * Permite verificar si un correo ya existe en el sistema
+   * @param usuario objeto que posee el correo del usuario
+   * @returns mensaje
+   */
   verificarCorreo(usuario: UsuarioHCCauchos){
 
     let httpVerificar:HttpClient = new HttpClient(this.httpBackend);

@@ -6,11 +6,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
 
+/**
+ * Decorador de HistorialComprasHCComponent
+ */
 @Component({
   selector: 'app-historial-compras-hc',
   templateUrl: './historial-compras-hc.component.html',
   styleUrls: ['./historial-compras-hc.component.css']
 })
+
+/**
+ * Clase que maneja la lógica del historial de compras
+ */
 export class HistorialComprasHCComponent implements OnInit {
 
   /**
@@ -33,18 +40,26 @@ export class HistorialComprasHCComponent implements OnInit {
    */
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  /**
+   * Constructor de HistorialComprasHCComponent
+   * @param comunicacionCService objeto que se inyecta para obtener los pedidos comprados del carrito
+   * @param datePipe objeto que se inyecta para dar formato a la fecha
+   */
   constructor(private comunicacionCService: ComunicacionCService,
     private datePipe: DatePipe) { }
 
+  /**
+   * Método que se ejecuta al cargar la página
+   */
   ngOnInit(): void {
 
-    this.comunicacionCService.getHistorial().subscribe(data =>{
+    this.comunicacionCService.getHistorial().subscribe(data => {
 
-      let fecha = data[data.length-1]["fecha_pedido1"];
-      let pedidos = data[data.length-1]["productos"];
+      let fecha = data[data.length - 1]["fecha_pedido1"];
+      let pedidos = data[data.length - 1]["productos"];
 
       pedidos.forEach(pedido => {
-        pedido.precio = pedido.total/pedido.cantidad;
+        pedido.precio = pedido.total / pedido.cantidad;
         pedido.fecha = fecha;
       });
 
@@ -57,9 +72,9 @@ export class HistorialComprasHCComponent implements OnInit {
   }
 
   /**
- * Permite filtrar los usuarios de la tabla
- * @param filter variable que indica el término de la filtración
- */
+   * Permite filtrar los usuarios de la tabla
+   * @param filter variable que indica el término de la filtración
+   */
   dataFilter(filter: string) {
 
     this.dataSource.filter = filter.trim().toLocaleLowerCase();
