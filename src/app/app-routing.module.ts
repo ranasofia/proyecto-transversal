@@ -27,6 +27,8 @@ import { HotelesComponent } from './components/occibana_components/hoteles/hotel
 import { GuardianService } from 'src/app/_service/utilidades/guardian.service';
 import { registerLocaleData } from '@angular/common';
 import { HistorialComprasComponent } from './components/superfast_components/historial-compras/historial-compras.component';
+import { FacturaHCComponent } from './components/hccauchos_components/factura-hc/factura-hc.component';
+import { HistorialComprasHCComponent } from './components/hccauchos_components/historial-compras-hc/historial-compras-hc.component';
 
 const routes: Routes = [
 
@@ -43,6 +45,8 @@ const routes: Routes = [
   {path: 'superfast/historial', component: HistorialComprasComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/catalogo', component: CatalogoHcCauchosComponent, canActivate:[GuardianService]},
   {path: 'hccauchos/carrito', component: HccauchosCarritoComponent, canActivate:[GuardianService]},
+  {path: 'hccauchos/factura', component: FacturaHCComponent, canActivate:[GuardianService]},
+  {path: 'hccauchos/historial', component: HistorialComprasHCComponent, canActivate:[GuardianService]},
   {path: 'mototaxi/solicitudServicio', component: SolicitudServicioComponent, children: [
     {path: 'factura', component: FacturaComponent}], canActivate:[GuardianService]},
   {path: 'mototaxi/historialCliente', component: HistorialClienteComponent, children: [

@@ -52,6 +52,8 @@ import { DialogComentarComponent } from './components/occibana_components/reserv
 import { DialogCalificarComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-calificar/dialog-calificar.component';
 import { DialogCancelarReservaComponent } from './components/occibana_components/reserva-habitacion/mis-reservas/dialog-cancelar-reserva/dialog-cancelar-reserva.component';
 import { DialogHistorialComponent } from './components/superfast_components/dialog-historial/dialog-historial.component';
+import { FacturaHCComponent } from './components/hccauchos_components/factura-hc/factura-hc.component';
+import { HistorialComprasHCComponent } from './components/hccauchos_components/historial-compras-hc/historial-compras-hc.component';
 
 export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalService,
   adminService: AdminService,
@@ -222,8 +224,10 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.UBER_MOTOS + '/usuario/generarContraseña',
       environment.UBER_MOTOS + '/usuario/RecuperarContraseña',
       environment.UBER_MOTOS + '/usuario/datosRecuperar?correo=',
+      environment.UBER_MOTOS + '/usuario/validarExistenciaCliente',
       environment.HCCAUCHOS + '/login/login',
       environment.HCCAUCHOS + '/Registro/Registro',
+      environment.HCCAUCHOS + '/Registro/verificarCorreo',
       environment.HCCAUCHOS + '/Usuario/ObtenerCarrito',
       environment.HCCAUCHOS + '/Usuario/catalogo',
       environment.HCCAUCHOS + '/Recuperar/recuperar',
@@ -249,7 +253,8 @@ export function jwtOptionsFactory(usuarioTransversalService: UsuarioTransversalS
       environment.SUPERFAST + '/comunicacion/GetmostrarProductoInicio',
       environment.SUPERFAST + '/admin/login',
       environment.SUPERFAST +'/GenerarToken/GetGenerarToken?correo=',
-      environment.SUPERFAST+ '/RecuperarContrasenia/RepContra'
+      environment.SUPERFAST+ '/RecuperarContrasenia/RepContra',
+      environment.SUPERFAST + '/Registrar/GetVerificar_correo?correo='
     ]
   }
 }
@@ -296,7 +301,9 @@ export function delay(ms: number) {
     DialogComentarComponent,
     DialogCalificarComponent,
     DialogCancelarReservaComponent,
-    DialogHistorialComponent
+    DialogHistorialComponent,
+    FacturaHCComponent,
+    HistorialComprasHCComponent
   ],
 
 

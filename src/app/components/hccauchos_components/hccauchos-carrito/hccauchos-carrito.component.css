@@ -8,7 +8,7 @@ h2{
 .carrito-container{
     width: 100%;
     height: 600px;
- 
+
 }
 .boton-vaciar button{
     width: 30%;
@@ -76,7 +76,7 @@ font-weight: bold;
 
 .container-descripcion{
     width: 60%;
-   
+
 }
 .mat-form-field{
     height: 20px;
@@ -84,14 +84,14 @@ font-weight: bold;
 @media (max-width: 805px){
 .card-producto{
     height: 550px;
-    
+
 }
 .img-producto img{
     width: 100%;
     height: 180px;
     margin-left: 75%;
 }.card-producto{
-  
+
     text-align: left;
 }
 .descripcion-producto{
@@ -108,21 +108,51 @@ margin-left: -35%;
 .producto{
     font-size: 10px;
     font-weight: bold;
-    
+
     }
     .producto h2{
         font-size: 30px;
     }
-    
+
 }
 @media (max-width: 610px){
     .descripcion-producto{
-    
+
     padding-top: 90%;
-    
+
 }
 .btn-productos{
 
     margin-left: -30%;
 }
+}
+
+.formularioCompra{
+
+  text-align: center;
+
+}
+
+.contenedorBotonDestino{
+
+
+}
+
+.selectorDestino{
+
+  width: 13%;
+
+}
+
+.contenedorBotonComprar{
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.botonComprar{
+
+  width: 13%;
+
 }

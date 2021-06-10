@@ -1,10 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Destino } from 'src/app/_model/hccauchos_model/Destino';
 import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
+import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { ComunicacionCService } from 'src/app/_service/hccauchos_service/comunicacion-c.service';
+import { UsuarioTransversalService } from 'src/app/_service/transversal_service/usuario-transversal.service';
 import { environment } from 'src/environments/environment';
 
 /**
@@ -20,14 +25,6 @@ import { environment } from 'src/environments/environment';
  * Clase que mabneja la lógica del carrito
  */
 export class HccauchosCarritoComponent implements OnInit {
-
-  /**
-   * Constructor de HccauchosCarritoComponent
-   * @param comunicacionCService objeto que se inyecta para poder usar los servicios del carrito
-   * @param _snackBar objeto que se inyecta para mostrar mensajes que comuniquen información al usuario
-   */
-  constructor(private comunicacionCService: ComunicacionCService,
-    private _snackBar: MatSnackBar) { }
 
   /**
    * Son los pedidos del carrito
@@ -48,6 +45,32 @@ export class HccauchosCarritoComponent implements OnInit {
    * Objeto que permite realizar la paginación de los pedidos
    */
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  destinos: Destino[];
+
+  compraForm: FormGroup;
+
+  /**
+   * Constructor de HccauchosCarritoComponent
+   * @param comunicacionCService objeto que se inyecta para poder usar los servicios del carrito
+   * @param _snackBar objeto que se inyecta para mostrar mensajes que comuniquen información al usuario
+   */
+  constructor(private comunicacionCService: ComunicacionCService,
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private usuarioTransversalService: UsuarioTransversalService) { }
+
+
+  createFormGroup() {
+    return new FormGroup({
+
+      destino: new FormControl('', [
+        Validators.required
+      ])
+
+    });
+  }
 
   /**
    * Método que se ejecuta al cargar la página
@@ -70,6 +93,14 @@ export class HccauchosCarritoComponent implements OnInit {
       this.actualizarPaginador();
 
     })
+
+    this.comunicacionCService.getDestinos().subscribe(data => {
+
+      this.destinos = data;
+
+    })
+
+    this.compraForm = this.createFormGroup();
 
   }
 
@@ -126,6 +157,32 @@ export class HccauchosCarritoComponent implements OnInit {
       this.pedidosPaginados = this.dataSource.filteredData.slice(indiceInicial, indiceFinal + 1);
     }
 
+  }
+
+
+  comprar() {
+
+    if (this.compraForm.valid) {
+
+      this.comunicacionCService.setPedidosFactura(this.pedidos);
+
+      const helper = new JwtHelperService();
+
+      let usuarioIncompleto = new Usuario();
+      usuarioIncompleto.correo = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).email;
+      usuarioIncompleto.usuario = helper.decodeToken(sessionStorage.getItem(environment.TOKEN)).name;
+
+      this.usuarioTransversalService.getUsuario(usuarioIncompleto).subscribe(data => {
+
+        this.comunicacionCService.comprarCarrito(this.compraForm.controls["destino"].value, data.direccion).subscribe(data => {
+
+          this.router.navigate(['/hccauchos/factura']);
+
+        })
+
+      })
+
+    }
   }
 
 }

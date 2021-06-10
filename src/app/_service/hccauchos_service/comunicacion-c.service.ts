@@ -5,6 +5,7 @@ import { ProductoH } from 'src/app/_model/hccauchos_model/ProductoH';
 import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
 import { Carro } from 'src/app/_model/hccauchos_model/Carro';
 import { Pedido } from 'src/app/_model/hccauchos_model/Pedido';
+import { Destino } from 'src/app/_model/hccauchos_model/Destino';
 
 /**
  * Decorador de ComunicacionCService
@@ -17,6 +18,11 @@ export class ComunicacionCService {
    * Posee el enlace para llamar a los servicios
    */
   private URL: string = environment.HCCAUCHOS+ '/Usuario';
+
+  /**
+   * Almacena los pedidos que se usarán para generar la factura
+   */
+   private pedidosFactura: Pedido[];
 
   /**
     * Da estado inicial e inyecta variables en UsuarioTransversalService
@@ -99,6 +105,38 @@ export class ComunicacionCService {
   eliminarCarrito(idUsuario: number){
 
     return this.http.get<string>(this.URL + "/EliminarCarrito?user_id=" + idUsuario);
+
+  }
+
+  getDestinos(){
+
+    return this.http.get<Destino[]>(this.URL + "/Lugares");
+
+  }
+
+  setPedidosFactura(pedidos: Pedido[]){
+
+    this.pedidosFactura = pedidos;
+
+  }
+
+  getPedidosFactura(){
+
+    return this.pedidosFactura;
+
+  }
+
+  getHistorial(){
+
+    return this.http.get<Object[]>(this.URL + "/historial");
+
+  }
+
+  comprarCarrito(idDestino: number, direccion: string){
+
+    let cuerpoPeticion = {municipio: idDestino, direccion: direccion};
+
+    return this.http.post<string>(this.URL + "/finalizarcompra", cuerpoPeticion);
 
   }
 

@@ -1,6 +1,6 @@
 import { UsuarioHCCauchos } from 'src/app/_model/hccauchos_model/UsuarioHCCauchos';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 /**
@@ -24,7 +24,7 @@ export class RegistroHCService {
    * Da estado inicial e inyecta variables en ClienteService
    * @param http variable que se inyecta para poder hacer las peticiones http
    */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) { }
 
   /**
    * Permite registrar a un usuario en la aplicación de HCCauchos
@@ -34,6 +34,13 @@ export class RegistroHCService {
   registrar(usuario: UsuarioHCCauchos){
 
     return this.http.post<string>(this.URL + "/Registro", usuario);
+
+  }
+
+  verificarCorreo(usuario: UsuarioHCCauchos){
+
+    let httpVerificar:HttpClient = new HttpClient(this.httpBackend);
+    return httpVerificar.post<string>(this.URL + "/verificarCorreo", usuario);
 
   }
 

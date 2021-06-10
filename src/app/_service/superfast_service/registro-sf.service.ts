@@ -33,4 +33,10 @@ export class RegistroSFService {
 
    }
 
+   verificarCorreo(correo: string){
+
+    return this.http.get<string>(this.URL + "/GetVerificar_correo?correo=" + correo);
+
+   }
+
 }

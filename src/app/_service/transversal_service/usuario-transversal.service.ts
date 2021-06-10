@@ -1,7 +1,8 @@
 import { Usuario } from 'src/app/_model/transversal_model/Usuario';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { UsuarioMototaxi } from 'src/app/_model/mototaxi_model/UsuarioMototaxi';
 
 
 /**
@@ -25,7 +26,8 @@ export class UsuarioTransversalService {
     * Da estado inicial e inyecta variables en UsuarioTransversalService
     * @param http variable que se inyecta para poder hacer las peticiones http
     */
-   constructor(private http: HttpClient) {
+   constructor(private http: HttpClient,
+    private httpBackend: HttpBackend) {
 
 
    }
@@ -109,5 +111,13 @@ export class UsuarioTransversalService {
    actualizarPerfil(nombreUsuario: string, usuario: Usuario){
      return this.http.put(this.URL + "/actualizarPerfil?usuario=" + nombreUsuario, usuario);
    }
+
+   verificarExistenciaUsuario(usuario: UsuarioMototaxi){
+
+    let httpVerificar:HttpClient = new HttpClient(this.httpBackend);
+    return httpVerificar.post<string>(this.URL + "/validarExistenciaCliente", usuario);
+
+   }
+
 
 }
