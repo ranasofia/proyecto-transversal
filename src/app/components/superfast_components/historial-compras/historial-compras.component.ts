@@ -73,13 +73,17 @@ export class HistorialComprasComponent implements OnInit {
 
       pedidos.forEach(pedido => {
 
+        let suma = 0;
 
         pedido.compras.forEach(articulo =>{
 
           var longitud = articulo.imagen_producto1.length;
           articulo.imagen_producto1 = "http://52.67.179.68:8081/" + articulo.imagen_producto1.substring(1, longitud);
+          suma += articulo.v_total;
 
         });
+
+        pedido.valor_total = suma;
 
       });
 
